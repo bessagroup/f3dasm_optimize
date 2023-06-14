@@ -1,0 +1,6 @@
+f3dasm>=0.9.3
+numpy
+GPyOpt>=1.2.6
+GPy>=1.10.0
+tensorflow>=2.11.0
+pygmo; platform_system == "Linux"

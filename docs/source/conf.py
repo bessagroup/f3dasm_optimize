@@ -11,11 +11,11 @@
 import os
 import sys
 
-sys.path.insert(0,  os.path.abspath('../..'))
-sys.path.insert(0,  os.path.abspath('../../src'))
+sys.path.insert(0, os.path.abspath('../..'))
+sys.path.insert(0, os.path.abspath('../../src'))
 src_dir = [f.path for f in os.scandir(os.path.abspath('../../src/')) if f.is_dir()]
 for path in src_dir:
-	sys.path.insert(0,  path)
+    sys.path.insert(0, path)
 
 
 # -- Project information ------------------------------------------------------
@@ -33,15 +33,15 @@ release = '0.0.1'
 # Source: https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-extensions
 # Requires installation of Python package 'sphinx-autodoc-typehints'
 extensions = ['sphinx.ext.duration',
-			  'sphinx.ext.autodoc',
-			  'sphinx.ext.napoleon',
-			  'sphinx.ext.autosummary',
-			  'sphinx.ext.intersphinx',
-			  'sphinx.ext.viewcode',
-			  'sphinx_autodoc_typehints']
+              'sphinx.ext.autodoc',
+              'sphinx.ext.napoleon',
+              'sphinx.ext.autosummary',
+              'sphinx.ext.intersphinx',
+              'sphinx.ext.viewcode',
+              'sphinx_autodoc_typehints']
 
 # Source: https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-source_suffix
-source_suffix = {'.rst': 'restructuredtext',}
+source_suffix = {'.rst': 'restructuredtext', }
 
 # Source: https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-root_doc
 root_doc = 'index'
@@ -101,7 +101,7 @@ intersphinx_mapping = {
 # Source: https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-html_theme_path
 on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
 if on_rtd:
-	html_theme = 'default'
+    html_theme = 'default'
 else:
     # requires installation of Python package 'sphinx_rtd_theme'
     import sphinx_rtd_theme
