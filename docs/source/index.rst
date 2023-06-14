@@ -1,4 +1,4 @@
-bessapypitemplate
+f3dasm_optimize
 ===================
 
 A template for creating a new PyPI package.

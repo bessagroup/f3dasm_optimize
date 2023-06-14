@@ -20,9 +20,9 @@ for path in src_dir:
 
 # -- Project information ------------------------------------------------------
 # Source: https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
-project = 'bessapypitemplate'
-author = 'Your Name'
-copyright = '2023, Your Name'
+project = 'f3dasm_optimize'
+author = 'Martin van der Schelling'
+copyright = '2023, Martin van der Schelling'
 version = '0.0.1'
 release = '0.0.1'
 
