@@ -42,6 +42,7 @@ def test_run_multiple_realizations(function: Function, optimizer: Optimizer, dim
         sampler=sampler,
         iterations=iterations,
         realizations=realizations,
+        parallelization=False,
     )
 
 
