@@ -8,7 +8,7 @@ import json
 from f3dasm.design.experimentdata import ExperimentData
 from f3dasm.optimization.optimizer import Optimizer
 
-from .all_optimizers import OPTIMIZERS
+from ._all_optimizers import OPTIMIZERS
 
 #                                                          Authorship & Credits
 # =============================================================================
