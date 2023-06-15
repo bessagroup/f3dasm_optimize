@@ -1,4 +1,4 @@
-f3dasm@git+https://github.com/bessagroup/f3dasm@991e719
+f3dasm@git+https://github.com/bessagroup/f3dasm@0cf16d0
 GPyOpt>=1.2.6
 GPy>=1.10.0
 tensorflow>=2.11.0
