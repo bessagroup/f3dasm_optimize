@@ -75,13 +75,17 @@
 <span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
 
-<span class="c1"># Third-party</span>
+<span class="c1"># Third-party core</span>
 <span class="kn">import</span> <span class="nn">autograd.numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pygmo</span> <span class="k">as</span> <span class="nn">pg</span>
-<span class="kn">from</span> <span class="nn">f3dasm.optimization.optimizer</span> <span class="kn">import</span> <span class="n">Optimizer</span>
 
 <span class="c1"># Locals</span>
+<span class="kn">from</span> <span class="nn">f3dasm._imports</span> <span class="kn">import</span> <span class="n">try_import</span>
 <span class="kn">from</span> <span class="nn">.._protocol</span> <span class="kn">import</span> <span class="n">DesignSpace</span><span class="p">,</span> <span class="n">Function</span>
+<span class="kn">from</span> <span class="nn">f3dasm.optimization.optimizer</span> <span class="kn">import</span> <span class="n">Optimizer</span>
+
+<span class="c1"># Third-party extension</span>
+<span class="k">with</span> <span class="n">try_import</span><span class="p">(</span><span class="s1">&#39;optimization&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">_imports</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">pygmo</span> <span class="k">as</span> <span class="nn">pg</span>
 
 <span class="c1">#                                                          Authorship &amp; Credits</span>
 <span class="c1"># =============================================================================</span>
@@ -190,7 +194,7 @@
 
 <div class="viewcode-block" id="PygmoAlgorithm._check_imports"><a class="viewcode-back" href="../../../apisource/f3dasm_optimize.adapters.html#f3dasm_optimize.adapters.pygmo_implementations.PygmoAlgorithm._check_imports">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_check_imports</span><span class="p">():</span>
-        <span class="k">pass</span></div>
+        <span class="n">_imports</span><span class="o">.</span><span class="n">check</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="PygmoAlgorithm.set_seed"><a class="viewcode-back" href="../../../apisource/f3dasm_optimize.adapters.html#f3dasm_optimize.adapters.pygmo_implementations.PygmoAlgorithm.set_seed">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">set_seed</span><span class="p">(</span><span class="n">seed</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>

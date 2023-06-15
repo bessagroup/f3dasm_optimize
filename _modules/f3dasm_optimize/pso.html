@@ -76,10 +76,13 @@
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
 
 <span class="c1"># Locals</span>
+<span class="kn">from</span> <span class="nn">f3dasm._imports</span> <span class="kn">import</span> <span class="n">try_import</span>
 <span class="kn">from</span> <span class="nn">.adapters.pygmo_implementations</span> <span class="kn">import</span> <span class="n">PygmoAlgorithm</span>
 <span class="kn">from</span> <span class="nn">f3dasm.optimization.optimizer</span> <span class="kn">import</span> <span class="n">OptimizerParameters</span>
 
-<span class="kn">import</span> <span class="nn">pygmo</span> <span class="k">as</span> <span class="nn">pg</span>
+<span class="c1"># Third-party extension</span>
+<span class="k">with</span> <span class="n">try_import</span><span class="p">(</span><span class="s1">&#39;optimization&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">_imports</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">pygmo</span> <span class="k">as</span> <span class="nn">pg</span>
 
 
 <span class="c1">#                                                          Authorship &amp; Credits</span>

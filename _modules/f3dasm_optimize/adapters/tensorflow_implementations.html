@@ -75,15 +75,19 @@
 <span class="c1"># Standard</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Tuple</span>
 
-<span class="c1"># Third-party core</span>
+<span class="c1"># Third-party</span>
 <span class="kn">import</span> <span class="nn">autograd.core</span>
 <span class="kn">import</span> <span class="nn">autograd.numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
 <span class="kn">from</span> <span class="nn">autograd</span> <span class="kn">import</span> <span class="n">elementwise_grad</span> <span class="k">as</span> <span class="n">egrad</span>
-<span class="c1"># Locals</span>
+<span class="kn">from</span> <span class="nn">f3dasm._imports</span> <span class="kn">import</span> <span class="n">try_import</span>
 <span class="kn">from</span> <span class="nn">f3dasm.functions</span> <span class="kn">import</span> <span class="n">Function</span>
 <span class="kn">from</span> <span class="nn">f3dasm.optimization.optimizer</span> <span class="kn">import</span> <span class="n">Optimizer</span>
-<span class="kn">from</span> <span class="nn">keras</span> <span class="kn">import</span> <span class="n">Model</span>
+
+<span class="c1"># Third-party extension</span>
+<span class="k">with</span> <span class="n">try_import</span><span class="p">(</span><span class="s1">&#39;optimization&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">_imports</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+    <span class="kn">from</span> <span class="nn">keras</span> <span class="kn">import</span> <span class="n">Model</span>
+
 
 <span class="c1">#                                                          Authorship &amp; Credits</span>
 <span class="c1"># =============================================================================</span>
@@ -94,14 +98,14 @@
 <span class="c1">#</span>
 <span class="c1"># =============================================================================</span>
 
-<span class="c1"># if not _imports.is_successful():</span>
-<span class="c1">#     Model = object  # NOQA</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">_imports</span><span class="o">.</span><span class="n">is_successful</span><span class="p">():</span>
+    <span class="n">Model</span> <span class="o">=</span> <span class="nb">object</span>  <span class="c1"># NOQA</span>
 
 
 <div class="viewcode-block" id="TensorflowOptimizer"><a class="viewcode-back" href="../../../apisource/f3dasm_optimize.adapters.html#f3dasm_optimize.adapters.tensorflow_implementations.TensorflowOptimizer">[docs]</a><span class="k">class</span> <span class="nc">TensorflowOptimizer</span><span class="p">(</span><span class="n">Optimizer</span><span class="p">):</span>
 <div class="viewcode-block" id="TensorflowOptimizer._check_imports"><a class="viewcode-back" href="../../../apisource/f3dasm_optimize.adapters.html#f3dasm_optimize.adapters.tensorflow_implementations.TensorflowOptimizer._check_imports">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_check_imports</span><span class="p">():</span>
-        <span class="k">pass</span></div>
+        <span class="n">_imports</span><span class="o">.</span><span class="n">check</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="TensorflowOptimizer.init_parameters"><a class="viewcode-back" href="../../../apisource/f3dasm_optimize.adapters.html#f3dasm_optimize.adapters.tensorflow_implementations.TensorflowOptimizer.init_parameters">[docs]</a>    <span class="k">def</span> <span class="nf">init_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="p">{}</span></div>
@@ -109,15 +113,13 @@
 <div class="viewcode-block" id="TensorflowOptimizer.update_step"><a class="viewcode-back" href="../../../apisource/f3dasm_optimize.adapters.html#f3dasm_optimize.adapters.tensorflow_implementations.TensorflowOptimizer.update_step">[docs]</a>    <span class="k">def</span> <span class="nf">update_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">:</span> <span class="n">Function</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="n">Function</span><span class="p">):</span>
             <span class="n">logits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">get_input_data</span><span class="p">()</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
-            <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">function</span><span class="o">.</span><span class="n">tf_apply_gradients</span><span class="p">(</span>
-                <span class="n">weights</span><span class="o">=</span><span class="n">logits</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">algorithm</span><span class="p">)</span>
+            <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">function</span><span class="o">.</span><span class="n">tf_apply_gradients</span><span class="p">(</span><span class="n">weights</span><span class="o">=</span><span class="n">logits</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">algorithm</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">GradientTape</span><span class="p">()</span> <span class="k">as</span> <span class="n">tape</span><span class="p">:</span>
                 <span class="n">tape</span><span class="o">.</span><span class="n">watch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="s2">&quot;tvars&quot;</span><span class="p">])</span>
                 <span class="n">logits</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="o">+</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">](</span><span class="kc">None</span><span class="p">),</span> <span class="n">tf</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
                 <span class="n">loss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="s2">&quot;func&quot;</span><span class="p">](</span><span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span>
-                    <span class="n">logits</span><span class="p">,</span>
-                    <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">design</span><span class="o">.</span><span class="n">get_number_of_input_parameters</span><span class="p">())))</span>
+                    <span class="n">logits</span><span class="p">,</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">design</span><span class="o">.</span><span class="n">get_number_of_input_parameters</span><span class="p">())))</span>
 
             <span class="n">grads</span> <span class="o">=</span> <span class="n">tape</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">loss</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="s2">&quot;tvars&quot;</span><span class="p">])</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">algorithm</span><span class="o">.</span><span class="n">apply_gradients</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">grads</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="s2">&quot;tvars&quot;</span><span class="p">]))</span>
