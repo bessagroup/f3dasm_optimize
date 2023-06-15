@@ -5,12 +5,14 @@
 from dataclasses import dataclass
 from typing import List
 
-# Third-party extension
-import tensorflow as tf
+# Locals
+from f3dasm._imports import try_import
+from .adapters.tensorflow_implementations import TensorflowOptimizer
 from f3dasm.optimization.optimizer import OptimizerParameters
 
-# Locals
-from .adapters.tensorflow_implementations import TensorflowOptimizer
+# Third-party extension
+with try_import('optimization') as _imports:
+    import tensorflow as tf
 
 #                                                          Authorship & Credits
 # =============================================================================

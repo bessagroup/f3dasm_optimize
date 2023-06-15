@@ -5,15 +5,19 @@
 # Standard
 from typing import Callable, Tuple
 
-# Third-party core
+# Third-party
 import autograd.core
 import autograd.numpy as np
-import tensorflow as tf
 from autograd import elementwise_grad as egrad
-# Locals
+from f3dasm._imports import try_import
 from f3dasm.functions import Function
 from f3dasm.optimization.optimizer import Optimizer
-from keras import Model
+
+# Third-party extension
+with try_import('optimization') as _imports:
+    import tensorflow as tf
+    from keras import Model
+
 
 #                                                          Authorship & Credits
 # =============================================================================
@@ -24,14 +28,14 @@ __status__ = 'Stable'
 #
 # =============================================================================
 
-# if not _imports.is_successful():
-#     Model = object  # NOQA
+if not _imports.is_successful():
+    Model = object  # NOQA
 
 
 class TensorflowOptimizer(Optimizer):
     @staticmethod
     def _check_imports():
-        pass
+        _imports.check()
 
     def init_parameters(self):
         self.args = {}
@@ -39,15 +43,13 @@ class TensorflowOptimizer(Optimizer):
     def update_step(self, function: Function) -> Tuple[np.ndarray, np.ndarray]:
         if not isinstance(function, Function):
             logits = self.data.get_input_data().iloc[-1].to_numpy()
-            x, y = function.tf_apply_gradients(
-                weights=logits, optimizer=self.algorithm)
+            x, y = function.tf_apply_gradients(weights=logits, optimizer=self.algorithm)
         else:
             with tf.GradientTape() as tape:
                 tape.watch(self.args["tvars"])
                 logits = 0.0 + tf.cast(self.args["model"](None), tf.float64)
                 loss = self.args["func"](tf.reshape(
-                    logits,
-                    (self.data.design.get_number_of_input_parameters())))
+                    logits, (self.data.design.get_number_of_input_parameters())))
 
             grads = tape.gradient(loss, self.args["tvars"])
             self.algorithm.apply_gradients(zip(grads, self.args["tvars"]))

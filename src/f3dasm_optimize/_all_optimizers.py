@@ -4,29 +4,12 @@
 # Standard
 from typing import List
 
-# Third-party
-from f3dasm.optimization.optimizer import Optimizer
+# Locals
+from f3dasm.optimization import Optimizer
 
-# Local
-from .adam import Adam
-from .adamax import Adamax
-# from .bayesianoptimization import BayesianOptimization
-from .cg import CG
-from .cmaes import CMAES
-from .differentialevolution import DifferentialEvolution
-from .ftrl import Ftrl
-from .lbfgsb import LBFGSB
-from .nadam import Nadam
-from .neldermead import NelderMead
-from .pso import PSO
-from .randomsearch import RandomSearch
-from .rmsprop import RMSprop
-from .sade import SADE
-from .sea import SEA
-from .sga import SGA
-from .sgd import SGD
-from .simulatedannealing import SimulatedAnnealing
-from .xnes import XNES
+from . import (adam, adamax, cg, cmaes, differentialevolution, ftrl, lbfgsb,
+               nadam, neldermead, pso, randomsearch, rmsprop, sade, sea, sga,
+               sgd, simulatedannealing, xnes)
 
 #                                                          Authorship & Credits
 # =============================================================================
@@ -37,26 +20,58 @@ __status__ = 'Stable'
 #
 # =============================================================================
 
-# List of available optimizers
+# List of available models
+OPTIMIZERS: List[Optimizer] = []
 
-OPTIMIZERS: List[Optimizer] = [
-    RandomSearch,
-    CG,
-    LBFGSB,
-    NelderMead,
-    Adam,
-    Adamax,
-    # BayesianOptimization,
-    CMAES,
-    DifferentialEvolution,
-    Ftrl,
-    Nadam,
-    PSO,
-    RMSprop,
-    SADE,
-    SEA,
-    SGA,
-    SGD,
-    SimulatedAnnealing,
-    XNES,
-]
+# Core models
+OPTIMIZERS.append(randomsearch.RandomSearch)
+OPTIMIZERS.append(cg.CG)
+OPTIMIZERS.append(lbfgsb.LBFGSB)
+OPTIMIZERS.append(neldermead.NelderMead)
+
+# Extension samplers
+if adam._imports.is_successful():
+    OPTIMIZERS.append(adam.Adam)
+
+if adamax._imports.is_successful():
+    OPTIMIZERS.append(adamax.Adamax)
+
+# COMMENT THIS BECAUSE BAYESIAN OPTIMIZATION IS TOO SLOW TO TEST PROPERLY NOW
+# if bayesianoptimization._imports.is_successful():
+#     OPTIMIZERS.append(bayesianoptimization.BayesianOptimization)
+
+if cmaes._imports.is_successful():
+    OPTIMIZERS.append(cmaes.CMAES)
+
+if differentialevolution._imports.is_successful():
+    OPTIMIZERS.append(differentialevolution.DifferentialEvolution)
+
+if ftrl._imports.is_successful():
+    OPTIMIZERS.append(ftrl.Ftrl)
+
+if nadam._imports.is_successful():
+    OPTIMIZERS.append(nadam.Nadam)
+
+if pso._imports.is_successful():
+    OPTIMIZERS.append(pso.PSO)
+
+if rmsprop._imports.is_successful():
+    OPTIMIZERS.append(rmsprop.RMSprop)
+
+if sade._imports.is_successful():
+    OPTIMIZERS.append(sade.SADE)
+
+if sea._imports.is_successful():
+    OPTIMIZERS.append(sea.SEA)
+
+if sga._imports.is_successful():
+    OPTIMIZERS.append(sga.SGA)
+
+if sgd._imports.is_successful():
+    OPTIMIZERS.append(sgd.SGD)
+
+if simulatedannealing._imports.is_successful():
+    OPTIMIZERS.append(simulatedannealing.SimulatedAnnealing)
+
+if xnes._imports.is_successful():
+    OPTIMIZERS.append(xnes.XNES)

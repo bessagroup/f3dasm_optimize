@@ -3,11 +3,11 @@
 
 # Third-party core
 import autograd.numpy as np
-from f3dasm.optimization import Optimizer
 from scipy.optimize import minimize
 
 # Locals
 from .._protocol import Function
+from f3dasm.optimization.optimizer import Optimizer
 
 #                                                          Authorship & Credits
 # =============================================================================

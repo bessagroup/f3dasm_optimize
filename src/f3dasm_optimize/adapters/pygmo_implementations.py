@@ -5,13 +5,17 @@
 from dataclasses import dataclass
 from typing import Any, List, Tuple
 
-# Third-party
+# Third-party core
 import autograd.numpy as np
-import pygmo as pg
-from f3dasm.optimization.optimizer import Optimizer
 
 # Locals
+from f3dasm._imports import try_import
 from .._protocol import DesignSpace, Function
+from f3dasm.optimization.optimizer import Optimizer
+
+# Third-party extension
+with try_import('optimization') as _imports:
+    import pygmo as pg
 
 #                                                          Authorship & Credits
 # =============================================================================
@@ -120,7 +124,7 @@ class PygmoAlgorithm(Optimizer):
 
     @staticmethod
     def _check_imports():
-        pass
+        _imports.check()
 
     @staticmethod
     def set_seed(seed: int):
