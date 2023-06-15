@@ -1,5 +1,5 @@
 """
-Some API information about the opitmizers
+f3dasm_optimize : Optimization extenstion for f3dasm
 """
 #                                                                       Modules
 # =============================================================================
@@ -11,6 +11,7 @@ from typing import List
 from f3dasm.optimization.optimizer import Optimizer
 
 # Local
+from ._all_optimizers import OPTIMIZERS
 from .adam import Adam
 from .adamax import Adamax
 from .bayesianoptimization import BayesianOptimization
@@ -24,6 +25,7 @@ from .neldermead import NelderMead
 from .pso import PSO
 from .randomsearch import RandomSearch
 from .rmsprop import RMSprop
+from .run_optimization import run_multiple_realizations
 from .sade import SADE
 from .sea import SEA
 from .sga import SGA
@@ -41,27 +43,3 @@ __status__ = 'Stable'
 # =============================================================================
 #
 # =============================================================================
-
-# List of available optimizers
-
-OPTIMIZERS: List[Optimizer] = [
-    RandomSearch,
-    CG,
-    LBFGSB,
-    NelderMead,
-    Adam,
-    Adamax,
-    BayesianOptimization,
-    CMAES,
-    DifferentialEvolution,
-    Ftrl,
-    Nadam,
-    PSO,
-    RMSprop,
-    SADE,
-    SEA,
-    SGA,
-    SGD,
-    SimulatedAnnealing,
-    XNES,
-]
