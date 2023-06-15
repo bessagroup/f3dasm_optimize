@@ -8,6 +8,7 @@ Some API information about the opitmizers
 import sys
 from itertools import chain
 from os import path
+from pathlib import Path
 from typing import TYPE_CHECKING
 
 # Local
@@ -15,6 +16,7 @@ from f3dasm._imports import _IntegrationModule
 
 if TYPE_CHECKING:
     from ._all_optimizers import OPTIMIZERS
+    from ._version import __version__
     from .adam import Adam, Adam_Parameters
     from .adamax import Adamax, Adamax_Parameters
     from .bayesianoptimization import (BayesianOptimization,
@@ -71,6 +73,7 @@ _import_structure: dict = {
     "simulatedannealing": ["SimulatedAnnealing", "SimulatedAnnealing_Parameters"],
     "xnes": ["XNES", "XNES_Parameters"],
     "_all_optimizers": ["OPTIMIZERS"],
+    "_version": ["__version__"],
 }
 
 if not TYPE_CHECKING:
