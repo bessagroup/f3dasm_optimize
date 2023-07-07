@@ -3,14 +3,14 @@ from typing import List
 
 import numpy as np
 import pytest
-
 from f3dasm.design import make_nd_continuous_design
 from f3dasm.design.experimentdata import ExperimentData
 from f3dasm.functions import FUNCTIONS, FUNCTIONS_2D, Ackley, Levy, Sphere
 from f3dasm.functions.function import Function
-from f3dasm_optimize import OPTIMIZERS, Adam
 from f3dasm.optimization.optimizer import Optimizer
 from f3dasm.sampling.randomuniform import RandomUniform
+
+from f3dasm_optimize import OPTIMIZERS
 
 
 @pytest.mark.smoke

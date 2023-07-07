@@ -36,14 +36,6 @@ f3dasm\_optimize.bayesianoptimization module
    :undoc-members:
    :show-inheritance:
 
-f3dasm\_optimize.cg module
---------------------------
-
-.. automodule:: f3dasm_optimize.cg
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 f3dasm\_optimize.cmaes module
 -----------------------------
 
@@ -76,26 +68,10 @@ f3dasm\_optimize.ftrl module
    :undoc-members:
    :show-inheritance:
 
-f3dasm\_optimize.lbfgsb module
-------------------------------
-
-.. automodule:: f3dasm_optimize.lbfgsb
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 f3dasm\_optimize.nadam module
 -----------------------------
 
 .. automodule:: f3dasm_optimize.nadam
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-f3dasm\_optimize.neldermead module
-----------------------------------
-
-.. automodule:: f3dasm_optimize.neldermead
    :members:
    :undoc-members:
    :show-inheritance:
@@ -108,26 +84,10 @@ f3dasm\_optimize.pso module
    :undoc-members:
    :show-inheritance:
 
-f3dasm\_optimize.randomsearch module
-------------------------------------
-
-.. automodule:: f3dasm_optimize.randomsearch
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 f3dasm\_optimize.rmsprop module
 -------------------------------
 
 .. automodule:: f3dasm_optimize.rmsprop
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-f3dasm\_optimize.run\_optimization module
------------------------------------------
-
-.. automodule:: f3dasm_optimize.run_optimization
    :members:
    :undoc-members:
    :show-inheritance:
@@ -168,14 +128,6 @@ f3dasm\_optimize.simulatedannealing module
 ------------------------------------------
 
 .. automodule:: f3dasm_optimize.simulatedannealing
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-f3dasm\_optimize.utils module
------------------------------
-
-.. automodule:: f3dasm_optimize.utils
    :members:
    :undoc-members:
    :show-inheritance:

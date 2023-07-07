@@ -7,9 +7,8 @@ from typing import List
 # Locals
 from f3dasm.optimization import Optimizer
 
-from . import (adam, adamax, cg, cmaes, differentialevolution, ftrl, lbfgsb,
-               nadam, neldermead, pso, randomsearch, rmsprop, sade, sea, sga,
-               sgd, simulatedannealing, xnes)
+from . import (adam, adamax, cmaes, differentialevolution, ftrl, nadam, pso,
+               rmsprop, sade, sea, sga, sgd, simulatedannealing, xnes)
 
 #                                                          Authorship & Credits
 # =============================================================================
@@ -20,16 +19,8 @@ __status__ = 'Stable'
 #
 # =============================================================================
 
-# List of available models
 OPTIMIZERS: List[Optimizer] = []
 
-# Core models
-OPTIMIZERS.append(randomsearch.RandomSearch)
-OPTIMIZERS.append(cg.CG)
-OPTIMIZERS.append(lbfgsb.LBFGSB)
-OPTIMIZERS.append(neldermead.NelderMead)
-
-# Extension samplers
 if adam._imports.is_successful():
     OPTIMIZERS.append(adam.Adam)
 

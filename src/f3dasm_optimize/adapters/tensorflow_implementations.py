@@ -10,7 +10,7 @@ import autograd.core
 import autograd.numpy as np
 from autograd import elementwise_grad as egrad
 from f3dasm._imports import try_import
-from f3dasm.functions import Function
+from f3dasm.datageneration.functions import Function
 from f3dasm.optimization.optimizer import Optimizer
 
 # Third-party extension
