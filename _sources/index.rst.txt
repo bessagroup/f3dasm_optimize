@@ -1,7 +1,16 @@
 f3dasm_optimize
 ===================
 
-A template for creating a new PyPI package.
+.. toctree::
+   :maxdepth: 2
+   :caption: Optimization
+   :hidden:
+   :glob:
+
+   /optimization/optimizers
+   /optimization/apidoc
+
+.. include:: readme.rst
 
 Indices and tables
 ==================

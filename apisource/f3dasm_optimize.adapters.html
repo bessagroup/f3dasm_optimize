@@ -42,18 +42,12 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">f3dasm_optimize.adapters package</a><ul>
-<li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#module-f3dasm_optimize.adapters.pygmo_implementations">f3dasm_optimize.adapters.pygmo_implementations module</a></li>
-<li><a class="reference internal" href="#module-f3dasm_optimize.adapters.scipy_implementations">f3dasm_optimize.adapters.scipy_implementations module</a></li>
-<li><a class="reference internal" href="#module-f3dasm_optimize.adapters.tensorflow_implementations">f3dasm_optimize.adapters.tensorflow_implementations module</a></li>
-<li><a class="reference internal" href="#module-f3dasm_optimize.adapters">Module contents</a></li>
+              <p class="caption" role="heading"><span class="caption-text">Optimization</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../optimization/optimizers.html">Implemented optimizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optimization/apidoc.html">API Documentation</a></li>
 </ul>
-</li>
-</ul>
-</div>
+
         </div>
       </div>
     </nav>
@@ -86,7 +80,7 @@
 <span id="f3dasm-optimize-adapters-pygmo-implementations-module"></span><h2>f3dasm_optimize.adapters.pygmo_implementations module<a class="headerlink" href="#module-f3dasm_optimize.adapters.pygmo_implementations" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="f3dasm_optimize.adapters.pygmo_implementations.PygmoAlgorithm">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">PygmoAlgorithm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparameters=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed=15174</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/adapters/pygmo_implementations.html#PygmoAlgorithm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.adapters.pygmo_implementations.PygmoAlgorithm" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">PygmoAlgorithm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparameters=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed=32182</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/adapters/pygmo_implementations.html#PygmoAlgorithm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.adapters.pygmo_implementations.PygmoAlgorithm" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Optimizer</span></code></p>
 <p>Wrapper around the pygmo algorithm class</p>
 <dl class="field-list simple">
@@ -144,7 +138,7 @@
 <dd class="field-odd"><p><strong>function</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code>) – function to be evaluated</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.24)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>, <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.24)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>]</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.25)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>, <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.25)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>]</p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>tuple of updated input parameters (x) and objecti value (y)</p>
@@ -175,10 +169,10 @@ _description_</p></li>
 <dd><p>Pygmo representation of returning multiple objective values of a function</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>x</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.24)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>) – input vectors</p>
+<dd class="field-odd"><p><strong>x</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.25)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>) – input vectors</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.24)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a></p>
+<dd class="field-even"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.25)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>fitnesses</p>
@@ -197,10 +191,10 @@ _description_</p></li>
 <dd><p>Pygmo representation of returning the objective value of a function</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>x</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.24)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>) – input vector</p>
+<dd class="field-odd"><p><strong>x</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.25)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>) – input vector</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.24)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a></p>
+<dd class="field-even"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.25)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>fitness</p>
@@ -233,7 +227,7 @@ _description_</p></li>
 <dd><p>Gradient in pygmo accepted format</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>x</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.24)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>) – input vector</p>
+<dd class="field-odd"><p><strong>x</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.25)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>) – input vector</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>gradient</p>
@@ -253,7 +247,7 @@ _description_</p></li>
 <span id="f3dasm-optimize-adapters-scipy-implementations-module"></span><h2>f3dasm_optimize.adapters.scipy_implementations module<a class="headerlink" href="#module-f3dasm_optimize.adapters.scipy_implementations" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="f3dasm_optimize.adapters.scipy_implementations.SciPyMinimizeOptimizer">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SciPyMinimizeOptimizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparameters=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed=15174</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/adapters/scipy_implementations.html#SciPyMinimizeOptimizer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.adapters.scipy_implementations.SciPyMinimizeOptimizer" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SciPyMinimizeOptimizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparameters=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed=32182</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/adapters/scipy_implementations.html#SciPyMinimizeOptimizer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.adapters.scipy_implementations.SciPyMinimizeOptimizer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#f3dasm_optimize.adapters.scipy_implementations.SciPyOptimizer" title="f3dasm_optimize.adapters.scipy_implementations.SciPyOptimizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">SciPyOptimizer</span></code></a></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="f3dasm_optimize.adapters.scipy_implementations.SciPyMinimizeOptimizer.algorithm">
@@ -293,7 +287,7 @@ _description_</p></li>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="f3dasm_optimize.adapters.scipy_implementations.SciPyOptimizer">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SciPyOptimizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparameters=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed=15174</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/adapters/scipy_implementations.html#SciPyOptimizer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.adapters.scipy_implementations.SciPyOptimizer" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SciPyOptimizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparameters=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed=32182</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/adapters/scipy_implementations.html#SciPyOptimizer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.adapters.scipy_implementations.SciPyOptimizer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Optimizer</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="f3dasm_optimize.adapters.scipy_implementations.SciPyOptimizer._callback">
@@ -362,132 +356,8 @@ _description_</p></li>
 </dd></dl>
 
 </section>
-<section id="module-f3dasm_optimize.adapters.tensorflow_implementations">
-<span id="f3dasm-optimize-adapters-tensorflow-implementations-module"></span><h2>f3dasm_optimize.adapters.tensorflow_implementations module<a class="headerlink" href="#module-f3dasm_optimize.adapters.tensorflow_implementations" title="Permalink to this heading">¶</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="f3dasm_optimize.adapters.tensorflow_implementations.TensorflowOptimizer">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TensorflowOptimizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparameters=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed=15174</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/adapters/tensorflow_implementations.html#TensorflowOptimizer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.adapters.tensorflow_implementations.TensorflowOptimizer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Optimizer</span></code></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="f3dasm_optimize.adapters.tensorflow_implementations.TensorflowOptimizer._check_imports">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_check_imports</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/adapters/tensorflow_implementations.html#TensorflowOptimizer._check_imports"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.adapters.tensorflow_implementations.TensorflowOptimizer._check_imports" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="f3dasm_optimize.adapters.tensorflow_implementations.TensorflowOptimizer._construct_model">
-<span class="sig-name descname"><span class="pre">_construct_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/adapters/tensorflow_implementations.html#TensorflowOptimizer._construct_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.adapters.tensorflow_implementations.TensorflowOptimizer._construct_model" title="Permalink to this definition">¶</a></dt>
-<dd><p>Construct a model necessary for iteration with input of to be evaluated function</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>function</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code>) – function to be evaluated</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.adapters.tensorflow_implementations.TensorflowOptimizer.algorithm">
-<span class="sig-name descname"><span class="pre">algorithm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></em><a class="headerlink" href="#f3dasm_optimize.adapters.tensorflow_implementations.TensorflowOptimizer.algorithm" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.adapters.tensorflow_implementations.TensorflowOptimizer.data">
-<span class="sig-name descname"><span class="pre">data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">ExperimentData</span></code></em><a class="headerlink" href="#f3dasm_optimize.adapters.tensorflow_implementations.TensorflowOptimizer.data" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.adapters.tensorflow_implementations.TensorflowOptimizer.hyperparameters">
-<span class="sig-name descname"><span class="pre">hyperparameters</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Mapping" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mapping</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a><span class="pre">,</span> <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a><span class="pre">]]</span></em><a class="headerlink" href="#f3dasm_optimize.adapters.tensorflow_implementations.TensorflowOptimizer.hyperparameters" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="f3dasm_optimize.adapters.tensorflow_implementations.TensorflowOptimizer.init_parameters">
-<span class="sig-name descname"><span class="pre">init_parameters</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/adapters/tensorflow_implementations.html#TensorflowOptimizer.init_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.adapters.tensorflow_implementations.TensorflowOptimizer.init_parameters" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set the initialization parameters. This could be dynamic or static hyperparameters.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.adapters.tensorflow_implementations.TensorflowOptimizer.parameter">
-<span class="sig-name descname"><span class="pre">parameter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">OptimizerParameters</span></code></em><a class="headerlink" href="#f3dasm_optimize.adapters.tensorflow_implementations.TensorflowOptimizer.parameter" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="f3dasm_optimize.adapters.tensorflow_implementations.TensorflowOptimizer.update_step">
-<span class="sig-name descname"><span class="pre">update_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/adapters/tensorflow_implementations.html#TensorflowOptimizer.update_step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.adapters.tensorflow_implementations.TensorflowOptimizer.update_step" title="Permalink to this definition">¶</a></dt>
-<dd><p>One iteration of the algorithm.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>function</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code>) – Objective function to evaluate</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.24)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>, <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.24)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>]</p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>tuple of new input vector and resulting output vector</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – You should implement an update step for your algorithm!</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="f3dasm_optimize.adapters.tensorflow_implementations._Model">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/adapters/tensorflow_implementations.html#_Model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.adapters.tensorflow_implementations._Model" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="f3dasm_optimize.adapters.tensorflow_implementations._SimpelModel">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_SimpelModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/adapters/tensorflow_implementations.html#_SimpelModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.adapters.tensorflow_implementations._SimpelModel" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#f3dasm_optimize.adapters.tensorflow_implementations._Model" title="f3dasm_optimize.adapters.tensorflow_implementations._Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">_Model</span></code></a></p>
-<p>The class for performing optimization in the input space of the functions.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="f3dasm_optimize.adapters.tensorflow_implementations._SimpelModel.call">
-<span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/adapters/tensorflow_implementations.html#_SimpelModel.call"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.adapters.tensorflow_implementations._SimpelModel.call" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calls the model on new inputs and returns the outputs as tensors.</p>
-<p>In this case <cite>call()</cite> just reapplies
-all ops in the graph to the new inputs
-(e.g. build a new computational graph from the provided inputs).</p>
-<p>Note: This method should not be called directly. It is only meant to be
-overridden when subclassing <cite>tf.keras.Model</cite>.
-To call a model on an input, always use the <cite>__call__()</cite> method,
-i.e. <cite>model(inputs)</cite>, which relies on the underlying <cite>call()</cite> method.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>inputs</strong> – Input tensor, or dict/list/tuple of input tensors.</p></li>
-<li><p><strong>training</strong> – Boolean or boolean scalar tensor, indicating whether to
-run the <cite>Network</cite> in training mode or inference mode.</p></li>
-<li><p><strong>mask</strong> – A mask or list of masks. A mask can be either a boolean tensor
-or None (no mask). For more details, check the guide
-[here](<a class="reference external" href="https://www.tensorflow.org/guide/keras/masking_and_padding">https://www.tensorflow.org/guide/keras/masking_and_padding</a>).</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A tensor if there is a single output, or
-a list of tensors if there are more than one outputs.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="f3dasm_optimize.adapters.tensorflow_implementations._convert_autograd_to_tensorflow">
-<span class="sig-name descname"><span class="pre">_convert_autograd_to_tensorflow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/adapters/tensorflow_implementations.html#_convert_autograd_to_tensorflow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.adapters.tensorflow_implementations._convert_autograd_to_tensorflow" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert autograd function to tensorflow function</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>func</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></a>) – callable function to convert</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>wrapper to convert autograd function to tensorflow function</p>
-</dd>
-</dl>
-</dd></dl>
-
+<section id="f3dasm-optimize-adapters-tensorflow-implementations-module">
+<h2>f3dasm_optimize.adapters.tensorflow_implementations module<a class="headerlink" href="#f3dasm-optimize-adapters-tensorflow-implementations-module" title="Permalink to this heading">¶</a></h2>
 </section>
 <section id="module-f3dasm_optimize.adapters">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-f3dasm_optimize.adapters" title="Permalink to this heading">¶</a></h2>

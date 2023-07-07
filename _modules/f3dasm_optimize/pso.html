@@ -41,8 +41,12 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"></div>
+              <p class="caption" role="heading"><span class="caption-text">Optimization</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../optimization/optimizers.html">Implemented optimizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../optimization/apidoc.html">API Documentation</a></li>
+</ul>
+
         </div>
       </div>
     </nav>
@@ -95,7 +99,7 @@
 <span class="c1"># =============================================================================</span>
 
 
-<div class="viewcode-block" id="PSO_Parameters"><a class="viewcode-back" href="../../apisource/f3dasm_optimize.html#f3dasm_optimize.pso.PSO_Parameters">[docs]</a><span class="nd">@dataclass</span>
+<div class="viewcode-block" id="PSO_Parameters"><a class="viewcode-back" href="../../optimization/apidoc.html#f3dasm_optimize.pso.PSO_Parameters">[docs]</a><span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">PSO_Parameters</span><span class="p">(</span><span class="n">OptimizerParameters</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Hyperparameters for PSO optimizer&quot;&quot;&quot;</span>
 
@@ -104,12 +108,12 @@
     <span class="n">eta2</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.05</span></div>
 
 
-<div class="viewcode-block" id="PSO"><a class="viewcode-back" href="../../apisource/f3dasm_optimize.html#f3dasm_optimize.pso.PSO">[docs]</a><span class="k">class</span> <span class="nc">PSO</span><span class="p">(</span><span class="n">PygmoAlgorithm</span><span class="p">):</span>
+<div class="viewcode-block" id="PSO"><a class="viewcode-back" href="../../optimization/apidoc.html#f3dasm_optimize.pso.PSO">[docs]</a><span class="k">class</span> <span class="nc">PSO</span><span class="p">(</span><span class="n">PygmoAlgorithm</span><span class="p">):</span>
     <span class="s2">&quot;Particle Swarm Optimization (Generational) optimizer implemented from pygmo&quot;</span>
 
     <span class="n">parameter</span><span class="p">:</span> <span class="n">PSO_Parameters</span> <span class="o">=</span> <span class="n">PSO_Parameters</span><span class="p">()</span>
 
-<div class="viewcode-block" id="PSO.set_algorithm"><a class="viewcode-back" href="../../apisource/f3dasm_optimize.html#f3dasm_optimize.pso.PSO.set_algorithm">[docs]</a>    <span class="k">def</span> <span class="nf">set_algorithm</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="PSO.set_algorithm"><a class="viewcode-back" href="../../optimization/apidoc.html#f3dasm_optimize.pso.PSO.set_algorithm">[docs]</a>    <span class="k">def</span> <span class="nf">set_algorithm</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">algorithm</span> <span class="o">=</span> <span class="n">pg</span><span class="o">.</span><span class="n">algorithm</span><span class="p">(</span>
             <span class="n">pg</span><span class="o">.</span><span class="n">pso_gen</span><span class="p">(</span>
                 <span class="n">gen</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
@@ -120,7 +124,7 @@
             <span class="p">)</span>
         <span class="p">)</span></div>
 
-<div class="viewcode-block" id="PSO.get_info"><a class="viewcode-back" href="../../apisource/f3dasm_optimize.html#f3dasm_optimize.pso.PSO.get_info">[docs]</a>    <span class="k">def</span> <span class="nf">get_info</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<div class="viewcode-block" id="PSO.get_info"><a class="viewcode-back" href="../../optimization/apidoc.html#f3dasm_optimize.pso.PSO.get_info">[docs]</a>    <span class="k">def</span> <span class="nf">get_info</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
         <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;Fast&#39;</span><span class="p">,</span> <span class="s1">&#39;Global&#39;</span><span class="p">,</span> <span class="s1">&#39;Derivative-Free&#39;</span><span class="p">,</span> <span class="s1">&#39;Population-Based&#39;</span><span class="p">,</span> <span class="s1">&#39;Single-Solution&#39;</span><span class="p">]</span></div></div>
 </pre></div>
 

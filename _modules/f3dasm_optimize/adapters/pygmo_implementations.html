@@ -41,8 +41,12 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"></div>
+              <p class="caption" role="heading"><span class="caption-text">Optimization</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../optimization/optimizers.html">Implemented optimizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../optimization/apidoc.html">API Documentation</a></li>
+</ul>
+
         </div>
       </div>
     </nav>
@@ -77,11 +81,11 @@
 
 <span class="c1"># Third-party core</span>
 <span class="kn">import</span> <span class="nn">autograd.numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
 <span class="c1"># Locals</span>
 <span class="kn">from</span> <span class="nn">f3dasm._imports</span> <span class="kn">import</span> <span class="n">try_import</span>
-<span class="kn">from</span> <span class="nn">.._protocol</span> <span class="kn">import</span> <span class="n">DesignSpace</span><span class="p">,</span> <span class="n">Function</span>
 <span class="kn">from</span> <span class="nn">f3dasm.optimization.optimizer</span> <span class="kn">import</span> <span class="n">Optimizer</span>
+
+<span class="kn">from</span> <span class="nn">.._protocol</span> <span class="kn">import</span> <span class="n">DesignSpace</span><span class="p">,</span> <span class="n">Function</span>
 
 <span class="c1"># Third-party extension</span>
 <span class="k">with</span> <span class="n">try_import</span><span class="p">(</span><span class="s1">&#39;optimization&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">_imports</span><span class="p">:</span>
@@ -156,8 +160,8 @@
 <span class="sd">            box constraints</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">(</span>
-            <span class="p">[</span><span class="n">parameter</span><span class="o">.</span><span class="n">lower_bound</span> <span class="k">for</span> <span class="n">parameter</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">design</span><span class="o">.</span><span class="n">get_continuous_input_parameters</span><span class="p">()],</span>
-            <span class="p">[</span><span class="n">parameter</span><span class="o">.</span><span class="n">upper_bound</span> <span class="k">for</span> <span class="n">parameter</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">design</span><span class="o">.</span><span class="n">get_continuous_input_parameters</span><span class="p">()],</span>
+            <span class="p">[</span><span class="n">parameter</span><span class="o">.</span><span class="n">lower_bound</span> <span class="k">for</span> <span class="n">parameter</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">design</span><span class="o">.</span><span class="n">get_continuous_input_parameters</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">()],</span>
+            <span class="p">[</span><span class="n">parameter</span><span class="o">.</span><span class="n">upper_bound</span> <span class="k">for</span> <span class="n">parameter</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">design</span><span class="o">.</span><span class="n">get_continuous_input_parameters</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">()],</span>
         <span class="p">)</span></div>
 
 <div class="viewcode-block" id="_PygmoProblem.gradient"><a class="viewcode-back" href="../../../apisource/f3dasm_optimize.adapters.html#f3dasm_optimize.adapters.pygmo_implementations._PygmoProblem.gradient">[docs]</a>    <span class="k">def</span> <span class="nf">gradient</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>

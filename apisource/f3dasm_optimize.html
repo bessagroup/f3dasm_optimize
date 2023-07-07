@@ -42,38 +42,12 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">f3dasm_optimize package</a><ul>
-<li><a class="reference internal" href="#subpackages">Subpackages</a></li>
-<li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#module-f3dasm_optimize.adam">f3dasm_optimize.adam module</a></li>
-<li><a class="reference internal" href="#module-f3dasm_optimize.adamax">f3dasm_optimize.adamax module</a></li>
-<li><a class="reference internal" href="#module-f3dasm_optimize.bayesianoptimization">f3dasm_optimize.bayesianoptimization module</a></li>
-<li><a class="reference internal" href="#module-f3dasm_optimize.cg">f3dasm_optimize.cg module</a></li>
-<li><a class="reference internal" href="#module-f3dasm_optimize.cmaes">f3dasm_optimize.cmaes module</a></li>
-<li><a class="reference internal" href="#module-f3dasm_optimize.cobyla">f3dasm_optimize.cobyla module</a></li>
-<li><a class="reference internal" href="#module-f3dasm_optimize.differentialevolution">f3dasm_optimize.differentialevolution module</a></li>
-<li><a class="reference internal" href="#module-f3dasm_optimize.ftrl">f3dasm_optimize.ftrl module</a></li>
-<li><a class="reference internal" href="#module-f3dasm_optimize.lbfgsb">f3dasm_optimize.lbfgsb module</a></li>
-<li><a class="reference internal" href="#module-f3dasm_optimize.nadam">f3dasm_optimize.nadam module</a></li>
-<li><a class="reference internal" href="#module-f3dasm_optimize.neldermead">f3dasm_optimize.neldermead module</a></li>
-<li><a class="reference internal" href="#module-f3dasm_optimize.pso">f3dasm_optimize.pso module</a></li>
-<li><a class="reference internal" href="#module-f3dasm_optimize.randomsearch">f3dasm_optimize.randomsearch module</a></li>
-<li><a class="reference internal" href="#module-f3dasm_optimize.rmsprop">f3dasm_optimize.rmsprop module</a></li>
-<li><a class="reference internal" href="#module-f3dasm_optimize.run_optimization">f3dasm_optimize.run_optimization module</a></li>
-<li><a class="reference internal" href="#module-f3dasm_optimize.sade">f3dasm_optimize.sade module</a></li>
-<li><a class="reference internal" href="#module-f3dasm_optimize.sea">f3dasm_optimize.sea module</a></li>
-<li><a class="reference internal" href="#module-f3dasm_optimize.sga">f3dasm_optimize.sga module</a></li>
-<li><a class="reference internal" href="#module-f3dasm_optimize.sgd">f3dasm_optimize.sgd module</a></li>
-<li><a class="reference internal" href="#module-f3dasm_optimize.simulatedannealing">f3dasm_optimize.simulatedannealing module</a></li>
-<li><a class="reference internal" href="#module-f3dasm_optimize.utils">f3dasm_optimize.utils module</a></li>
-<li><a class="reference internal" href="#module-f3dasm_optimize.xnes">f3dasm_optimize.xnes module</a></li>
-<li><a class="reference internal" href="#module-f3dasm_optimize">Module contents</a></li>
+              <p class="caption" role="heading"><span class="caption-text">Optimization</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../optimization/optimizers.html">Implemented optimizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optimization/apidoc.html">API Documentation</a></li>
 </ul>
-</li>
-</ul>
-</div>
+
         </div>
       </div>
     </nav>
@@ -107,7 +81,7 @@
 <li class="toctree-l2"><a class="reference internal" href="f3dasm_optimize.adapters.html#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="f3dasm_optimize.adapters.html#module-f3dasm_optimize.adapters.pygmo_implementations">f3dasm_optimize.adapters.pygmo_implementations module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="f3dasm_optimize.adapters.html#module-f3dasm_optimize.adapters.scipy_implementations">f3dasm_optimize.adapters.scipy_implementations module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="f3dasm_optimize.adapters.html#module-f3dasm_optimize.adapters.tensorflow_implementations">f3dasm_optimize.adapters.tensorflow_implementations module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f3dasm_optimize.adapters.html#f3dasm-optimize-adapters-tensorflow-implementations-module">f3dasm_optimize.adapters.tensorflow_implementations module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="f3dasm_optimize.adapters.html#module-f3dasm_optimize.adapters">Module contents</a></li>
 </ul>
 </li>
@@ -117,140 +91,17 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
 </section>
-<section id="module-f3dasm_optimize.adam">
-<span id="f3dasm-optimize-adam-module"></span><h2>f3dasm_optimize.adam module<a class="headerlink" href="#module-f3dasm_optimize.adam" title="Permalink to this heading">¶</a></h2>
-<p>Information on the Adam optimizer</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="f3dasm_optimize.adam.Adam">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Adam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparameters=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed=15174</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/adam.html#Adam"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.adam.Adam" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="f3dasm_optimize.adapters.html#f3dasm_optimize.adapters.tensorflow_implementations.TensorflowOptimizer" title="f3dasm_optimize.adapters.tensorflow_implementations.TensorflowOptimizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">TensorflowOptimizer</span></code></a></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="f3dasm_optimize.adam.Adam.get_info">
-<span class="sig-name descname"><span class="pre">get_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/adam.html#Adam.get_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.adam.Adam.get_info" title="Permalink to this definition">¶</a></dt>
-<dd><p>Give a list of characteristic features of this optimizer</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>List of strings denoting the characteristics of this optimizer</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.adam.Adam.parameter">
-<span class="sig-name descname"><span class="pre">parameter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#f3dasm_optimize.adam.Adam_Parameters" title="f3dasm_optimize.adam.Adam_Parameters"><code class="xref py py-class docutils literal notranslate"><span class="pre">Adam_Parameters</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Adam_Parameters(population=1,</span> <span class="pre">force_bounds=True,</span> <span class="pre">learning_rate=0.001,</span> <span class="pre">beta_1=0.9,</span> <span class="pre">beta_2=0.999,</span> <span class="pre">epsilon=1e-07,</span> <span class="pre">amsgrad=False)</span></em><a class="headerlink" href="#f3dasm_optimize.adam.Adam.parameter" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="f3dasm_optimize.adam.Adam.set_algorithm">
-<span class="sig-name descname"><span class="pre">set_algorithm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/adam.html#Adam.set_algorithm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.adam.Adam.set_algorithm" title="Permalink to this definition">¶</a></dt>
-<dd><p>If necessary, the algorithm needs to be set</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="f3dasm_optimize.adam.Adam_Parameters">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Adam_Parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">population</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learning_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta_1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.9</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta_2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.999</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-07</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amsgrad</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/adam.html#Adam_Parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.adam.Adam_Parameters" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">OptimizerParameters</span></code></p>
-<p>Hyperparameters for Adam optimizer</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.adam.Adam_Parameters.amsgrad">
-<span class="sig-name descname"><span class="pre">amsgrad</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#f3dasm_optimize.adam.Adam_Parameters.amsgrad" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.adam.Adam_Parameters.beta_1">
-<span class="sig-name descname"><span class="pre">beta_1</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.9</span></em><a class="headerlink" href="#f3dasm_optimize.adam.Adam_Parameters.beta_1" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.adam.Adam_Parameters.beta_2">
-<span class="sig-name descname"><span class="pre">beta_2</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.999</span></em><a class="headerlink" href="#f3dasm_optimize.adam.Adam_Parameters.beta_2" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.adam.Adam_Parameters.epsilon">
-<span class="sig-name descname"><span class="pre">epsilon</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1e-07</span></em><a class="headerlink" href="#f3dasm_optimize.adam.Adam_Parameters.epsilon" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.adam.Adam_Parameters.learning_rate">
-<span class="sig-name descname"><span class="pre">learning_rate</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.001</span></em><a class="headerlink" href="#f3dasm_optimize.adam.Adam_Parameters.learning_rate" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
+<section id="f3dasm-optimize-adam-module">
+<h2>f3dasm_optimize.adam module<a class="headerlink" href="#f3dasm-optimize-adam-module" title="Permalink to this heading">¶</a></h2>
 </section>
-<section id="module-f3dasm_optimize.adamax">
-<span id="f3dasm-optimize-adamax-module"></span><h2>f3dasm_optimize.adamax module<a class="headerlink" href="#module-f3dasm_optimize.adamax" title="Permalink to this heading">¶</a></h2>
-<p>Information on the Adamax optimizer</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="f3dasm_optimize.adamax.Adamax">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Adamax</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparameters=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed=15174</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/adamax.html#Adamax"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.adamax.Adamax" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="f3dasm_optimize.adapters.html#f3dasm_optimize.adapters.tensorflow_implementations.TensorflowOptimizer" title="f3dasm_optimize.adapters.tensorflow_implementations.TensorflowOptimizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">TensorflowOptimizer</span></code></a></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="f3dasm_optimize.adamax.Adamax.get_info">
-<span class="sig-name descname"><span class="pre">get_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/adamax.html#Adamax.get_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.adamax.Adamax.get_info" title="Permalink to this definition">¶</a></dt>
-<dd><p>Give a list of characteristic features of this optimizer</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>List of strings denoting the characteristics of this optimizer</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.adamax.Adamax.parameter">
-<span class="sig-name descname"><span class="pre">parameter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#f3dasm_optimize.adamax.Adamax_Parameters" title="f3dasm_optimize.adamax.Adamax_Parameters"><code class="xref py py-class docutils literal notranslate"><span class="pre">Adamax_Parameters</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Adamax_Parameters(population=1,</span> <span class="pre">force_bounds=True,</span> <span class="pre">learning_rate=0.001,</span> <span class="pre">beta_1=0.9,</span> <span class="pre">beta_2=0.999,</span> <span class="pre">epsilon=1e-07)</span></em><a class="headerlink" href="#f3dasm_optimize.adamax.Adamax.parameter" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="f3dasm_optimize.adamax.Adamax.set_algorithm">
-<span class="sig-name descname"><span class="pre">set_algorithm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/adamax.html#Adamax.set_algorithm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.adamax.Adamax.set_algorithm" title="Permalink to this definition">¶</a></dt>
-<dd><p>If necessary, the algorithm needs to be set</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="f3dasm_optimize.adamax.Adamax_Parameters">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Adamax_Parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">population</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learning_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta_1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.9</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta_2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.999</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-07</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/adamax.html#Adamax_Parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.adamax.Adamax_Parameters" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">OptimizerParameters</span></code></p>
-<p>Hyperparameters for Adamax optimizer</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.adamax.Adamax_Parameters.beta_1">
-<span class="sig-name descname"><span class="pre">beta_1</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.9</span></em><a class="headerlink" href="#f3dasm_optimize.adamax.Adamax_Parameters.beta_1" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.adamax.Adamax_Parameters.beta_2">
-<span class="sig-name descname"><span class="pre">beta_2</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.999</span></em><a class="headerlink" href="#f3dasm_optimize.adamax.Adamax_Parameters.beta_2" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.adamax.Adamax_Parameters.epsilon">
-<span class="sig-name descname"><span class="pre">epsilon</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1e-07</span></em><a class="headerlink" href="#f3dasm_optimize.adamax.Adamax_Parameters.epsilon" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.adamax.Adamax_Parameters.learning_rate">
-<span class="sig-name descname"><span class="pre">learning_rate</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.001</span></em><a class="headerlink" href="#f3dasm_optimize.adamax.Adamax_Parameters.learning_rate" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
+<section id="f3dasm-optimize-adamax-module">
+<h2>f3dasm_optimize.adamax module<a class="headerlink" href="#f3dasm-optimize-adamax-module" title="Permalink to this heading">¶</a></h2>
 </section>
 <section id="module-f3dasm_optimize.bayesianoptimization">
 <span id="f3dasm-optimize-bayesianoptimization-module"></span><h2>f3dasm_optimize.bayesianoptimization module<a class="headerlink" href="#module-f3dasm_optimize.bayesianoptimization" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="f3dasm_optimize.bayesianoptimization.BayesianOptimization">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BayesianOptimization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparameters=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed=15174</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/bayesianoptimization.html#BayesianOptimization"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.bayesianoptimization.BayesianOptimization" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BayesianOptimization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparameters=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed=32182</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/bayesianoptimization.html#BayesianOptimization"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.bayesianoptimization.BayesianOptimization" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Optimizer</span></code></p>
 <p>Bayesian Optimization implementation from the GPyOPt library</p>
 <dl class="py method">
@@ -336,56 +187,11 @@
 </dd></dl>
 
 </section>
-<section id="module-f3dasm_optimize.cg">
-<span id="f3dasm-optimize-cg-module"></span><h2>f3dasm_optimize.cg module<a class="headerlink" href="#module-f3dasm_optimize.cg" title="Permalink to this heading">¶</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="f3dasm_optimize.cg.CG">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CG</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparameters=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed=15174</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/cg.html#CG"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.cg.CG" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="f3dasm_optimize.adapters.html#f3dasm_optimize.adapters.scipy_implementations.SciPyMinimizeOptimizer" title="f3dasm_optimize.adapters.scipy_implementations.SciPyMinimizeOptimizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">SciPyMinimizeOptimizer</span></code></a></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="f3dasm_optimize.cg.CG.get_info">
-<span class="sig-name descname"><span class="pre">get_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/cg.html#CG.get_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.cg.CG.get_info" title="Permalink to this definition">¶</a></dt>
-<dd><p>Give a list of characteristic features of this optimizer</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>List of strings denoting the characteristics of this optimizer</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.cg.CG.method">
-<span class="sig-name descname"><span class="pre">method</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'CG'</span></em><a class="headerlink" href="#f3dasm_optimize.cg.CG.method" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.cg.CG.parameter">
-<span class="sig-name descname"><span class="pre">parameter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#f3dasm_optimize.cg.CG_Parameters" title="f3dasm_optimize.cg.CG_Parameters"><code class="xref py py-class docutils literal notranslate"><span class="pre">CG_Parameters</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">CG_Parameters(population=1,</span> <span class="pre">force_bounds=True,</span> <span class="pre">gtol=0.0)</span></em><a class="headerlink" href="#f3dasm_optimize.cg.CG.parameter" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="f3dasm_optimize.cg.CG_Parameters">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CG_Parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">population</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gtol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/cg.html#CG_Parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.cg.CG_Parameters" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">OptimizerParameters</span></code></p>
-<p>CG Parameters</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.cg.CG_Parameters.gtol">
-<span class="sig-name descname"><span class="pre">gtol</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#f3dasm_optimize.cg.CG_Parameters.gtol" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-</section>
 <section id="module-f3dasm_optimize.cmaes">
 <span id="f3dasm-optimize-cmaes-module"></span><h2>f3dasm_optimize.cmaes module<a class="headerlink" href="#module-f3dasm_optimize.cmaes" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="f3dasm_optimize.cmaes.CMAES">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CMAES</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparameters=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed=15174</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/cmaes.html#CMAES"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.cmaes.CMAES" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CMAES</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparameters=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed=32182</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/cmaes.html#CMAES"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.cmaes.CMAES" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="f3dasm_optimize.adapters.html#f3dasm_optimize.adapters.pygmo_implementations.PygmoAlgorithm" title="f3dasm_optimize.adapters.pygmo_implementations.PygmoAlgorithm"><code class="xref py py-class docutils literal notranslate"><span class="pre">PygmoAlgorithm</span></code></a></p>
 <p>Covariance Matrix Adaptation Evolution Strategy optimizer implemented from pygmo</p>
 <dl class="py method">
@@ -432,7 +238,7 @@
 <span id="f3dasm-optimize-cobyla-module"></span><h2>f3dasm_optimize.cobyla module<a class="headerlink" href="#module-f3dasm_optimize.cobyla" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="f3dasm_optimize.cobyla.COBYLA">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">COBYLA</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparameters=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed=15174</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/cobyla.html#COBYLA"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.cobyla.COBYLA" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">COBYLA</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparameters=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed=32182</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/cobyla.html#COBYLA"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.cobyla.COBYLA" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="f3dasm_optimize.adapters.html#f3dasm_optimize.adapters.scipy_implementations.SciPyMinimizeOptimizer" title="f3dasm_optimize.adapters.scipy_implementations.SciPyMinimizeOptimizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">SciPyMinimizeOptimizer</span></code></a></p>
 <p>Minimize a scalar function of one or more variables using the
 Constrained Optimization BY Linear Approximation (COBYLA) algorithm.</p>
@@ -494,7 +300,7 @@ Constrained Optimization BY Linear Approximation (COBYLA) algorithm.</p>
 <span id="f3dasm-optimize-differentialevolution-module"></span><h2>f3dasm_optimize.differentialevolution module<a class="headerlink" href="#module-f3dasm_optimize.differentialevolution" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="f3dasm_optimize.differentialevolution.DifferentialEvolution">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DifferentialEvolution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparameters=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed=15174</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/differentialevolution.html#DifferentialEvolution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.differentialevolution.DifferentialEvolution" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DifferentialEvolution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparameters=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed=32182</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/differentialevolution.html#DifferentialEvolution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.differentialevolution.DifferentialEvolution" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="f3dasm_optimize.adapters.html#f3dasm_optimize.adapters.pygmo_implementations.PygmoAlgorithm" title="f3dasm_optimize.adapters.pygmo_implementations.PygmoAlgorithm"><code class="xref py py-class docutils literal notranslate"><span class="pre">PygmoAlgorithm</span></code></a></p>
 <p>DifferentialEvolution optimizer implemented from pygmo</p>
 <dl class="py method">
@@ -574,256 +380,17 @@ Constrained Optimization BY Linear Approximation (COBYLA) algorithm.</p>
 </dd></dl>
 
 </section>
-<section id="module-f3dasm_optimize.ftrl">
-<span id="f3dasm-optimize-ftrl-module"></span><h2>f3dasm_optimize.ftrl module<a class="headerlink" href="#module-f3dasm_optimize.ftrl" title="Permalink to this heading">¶</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="f3dasm_optimize.ftrl.Ftrl">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Ftrl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparameters=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed=15174</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/ftrl.html#Ftrl"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.ftrl.Ftrl" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="f3dasm_optimize.adapters.html#f3dasm_optimize.adapters.tensorflow_implementations.TensorflowOptimizer" title="f3dasm_optimize.adapters.tensorflow_implementations.TensorflowOptimizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">TensorflowOptimizer</span></code></a></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="f3dasm_optimize.ftrl.Ftrl.get_info">
-<span class="sig-name descname"><span class="pre">get_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/ftrl.html#Ftrl.get_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.ftrl.Ftrl.get_info" title="Permalink to this definition">¶</a></dt>
-<dd><p>Give a list of characteristic features of this optimizer</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>List of strings denoting the characteristics of this optimizer</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.ftrl.Ftrl.parameter">
-<span class="sig-name descname"><span class="pre">parameter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#f3dasm_optimize.ftrl.Ftrl_Parameters" title="f3dasm_optimize.ftrl.Ftrl_Parameters"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ftrl_Parameters</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Ftrl_Parameters(population=1,</span> <span class="pre">force_bounds=True,</span> <span class="pre">learning_rate=0.001,</span> <span class="pre">learning_rate_power=-0.5,</span> <span class="pre">initial_accumulator_value=0.1,</span> <span class="pre">l1_regularization_strength=0.0,</span> <span class="pre">l2_regularization_strength=0.0,</span> <span class="pre">l2_shrinkage_regularization_strength=0.0,</span> <span class="pre">beta=0.0)</span></em><a class="headerlink" href="#f3dasm_optimize.ftrl.Ftrl.parameter" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="f3dasm_optimize.ftrl.Ftrl.set_algorithm">
-<span class="sig-name descname"><span class="pre">set_algorithm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/ftrl.html#Ftrl.set_algorithm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.ftrl.Ftrl.set_algorithm" title="Permalink to this definition">¶</a></dt>
-<dd><p>If necessary, the algorithm needs to be set</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="f3dasm_optimize.ftrl.Ftrl_Parameters">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Ftrl_Parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">population</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learning_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learning_rate_power</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_accumulator_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l1_regularization_strength</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l2_regularization_strength</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l2_shrinkage_regularization_strength</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/ftrl.html#Ftrl_Parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.ftrl.Ftrl_Parameters" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">OptimizerParameters</span></code></p>
-<p>Hyperparameters for Ftrl optimizer</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.ftrl.Ftrl_Parameters.beta">
-<span class="sig-name descname"><span class="pre">beta</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#f3dasm_optimize.ftrl.Ftrl_Parameters.beta" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.ftrl.Ftrl_Parameters.initial_accumulator_value">
-<span class="sig-name descname"><span class="pre">initial_accumulator_value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.1</span></em><a class="headerlink" href="#f3dasm_optimize.ftrl.Ftrl_Parameters.initial_accumulator_value" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.ftrl.Ftrl_Parameters.l1_regularization_strength">
-<span class="sig-name descname"><span class="pre">l1_regularization_strength</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#f3dasm_optimize.ftrl.Ftrl_Parameters.l1_regularization_strength" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.ftrl.Ftrl_Parameters.l2_regularization_strength">
-<span class="sig-name descname"><span class="pre">l2_regularization_strength</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#f3dasm_optimize.ftrl.Ftrl_Parameters.l2_regularization_strength" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.ftrl.Ftrl_Parameters.l2_shrinkage_regularization_strength">
-<span class="sig-name descname"><span class="pre">l2_shrinkage_regularization_strength</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#f3dasm_optimize.ftrl.Ftrl_Parameters.l2_shrinkage_regularization_strength" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.ftrl.Ftrl_Parameters.learning_rate">
-<span class="sig-name descname"><span class="pre">learning_rate</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.001</span></em><a class="headerlink" href="#f3dasm_optimize.ftrl.Ftrl_Parameters.learning_rate" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.ftrl.Ftrl_Parameters.learning_rate_power">
-<span class="sig-name descname"><span class="pre">learning_rate_power</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">-0.5</span></em><a class="headerlink" href="#f3dasm_optimize.ftrl.Ftrl_Parameters.learning_rate_power" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
+<section id="f3dasm-optimize-ftrl-module">
+<h2>f3dasm_optimize.ftrl module<a class="headerlink" href="#f3dasm-optimize-ftrl-module" title="Permalink to this heading">¶</a></h2>
 </section>
-<section id="module-f3dasm_optimize.lbfgsb">
-<span id="f3dasm-optimize-lbfgsb-module"></span><h2>f3dasm_optimize.lbfgsb module<a class="headerlink" href="#module-f3dasm_optimize.lbfgsb" title="Permalink to this heading">¶</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="f3dasm_optimize.lbfgsb.LBFGSB">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LBFGSB</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparameters=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed=15174</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/lbfgsb.html#LBFGSB"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.lbfgsb.LBFGSB" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="f3dasm_optimize.adapters.html#f3dasm_optimize.adapters.scipy_implementations.SciPyMinimizeOptimizer" title="f3dasm_optimize.adapters.scipy_implementations.SciPyMinimizeOptimizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">SciPyMinimizeOptimizer</span></code></a></p>
-<p>L-BFGS-B</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="f3dasm_optimize.lbfgsb.LBFGSB.get_info">
-<span class="sig-name descname"><span class="pre">get_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/lbfgsb.html#LBFGSB.get_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.lbfgsb.LBFGSB.get_info" title="Permalink to this definition">¶</a></dt>
-<dd><p>Give a list of characteristic features of this optimizer</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>List of strings denoting the characteristics of this optimizer</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.lbfgsb.LBFGSB.method">
-<span class="sig-name descname"><span class="pre">method</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'L-BFGS-B'</span></em><a class="headerlink" href="#f3dasm_optimize.lbfgsb.LBFGSB.method" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.lbfgsb.LBFGSB.parameter">
-<span class="sig-name descname"><span class="pre">parameter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#f3dasm_optimize.lbfgsb.LBFGSB_Parameters" title="f3dasm_optimize.lbfgsb.LBFGSB_Parameters"><code class="xref py py-class docutils literal notranslate"><span class="pre">LBFGSB_Parameters</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">LBFGSB_Parameters(population=1,</span> <span class="pre">force_bounds=True,</span> <span class="pre">ftol=0.0,</span> <span class="pre">gtol=0.0)</span></em><a class="headerlink" href="#f3dasm_optimize.lbfgsb.LBFGSB.parameter" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="f3dasm_optimize.lbfgsb.LBFGSB_Parameters">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LBFGSB_Parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">population</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ftol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gtol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/lbfgsb.html#LBFGSB_Parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.lbfgsb.LBFGSB_Parameters" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">OptimizerParameters</span></code></p>
-<p>Hyperparameters for LBFGSB optimizer</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.lbfgsb.LBFGSB_Parameters.ftol">
-<span class="sig-name descname"><span class="pre">ftol</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#f3dasm_optimize.lbfgsb.LBFGSB_Parameters.ftol" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.lbfgsb.LBFGSB_Parameters.gtol">
-<span class="sig-name descname"><span class="pre">gtol</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#f3dasm_optimize.lbfgsb.LBFGSB_Parameters.gtol" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-</section>
-<section id="module-f3dasm_optimize.nadam">
-<span id="f3dasm-optimize-nadam-module"></span><h2>f3dasm_optimize.nadam module<a class="headerlink" href="#module-f3dasm_optimize.nadam" title="Permalink to this heading">¶</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="f3dasm_optimize.nadam.Nadam">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Nadam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparameters=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed=15174</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/nadam.html#Nadam"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.nadam.Nadam" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="f3dasm_optimize.adapters.html#f3dasm_optimize.adapters.tensorflow_implementations.TensorflowOptimizer" title="f3dasm_optimize.adapters.tensorflow_implementations.TensorflowOptimizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">TensorflowOptimizer</span></code></a></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="f3dasm_optimize.nadam.Nadam.get_info">
-<span class="sig-name descname"><span class="pre">get_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/nadam.html#Nadam.get_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.nadam.Nadam.get_info" title="Permalink to this definition">¶</a></dt>
-<dd><p>Give a list of characteristic features of this optimizer</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>List of strings denoting the characteristics of this optimizer</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.nadam.Nadam.parameter">
-<span class="sig-name descname"><span class="pre">parameter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#f3dasm_optimize.nadam.Nadam_Parameters" title="f3dasm_optimize.nadam.Nadam_Parameters"><code class="xref py py-class docutils literal notranslate"><span class="pre">Nadam_Parameters</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Nadam_Parameters(population=1,</span> <span class="pre">force_bounds=True,</span> <span class="pre">learning_rate=0.001,</span> <span class="pre">beta_1=0.9,</span> <span class="pre">beta_2=0.999,</span> <span class="pre">epsilon=1e-07)</span></em><a class="headerlink" href="#f3dasm_optimize.nadam.Nadam.parameter" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="f3dasm_optimize.nadam.Nadam.set_algorithm">
-<span class="sig-name descname"><span class="pre">set_algorithm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/nadam.html#Nadam.set_algorithm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.nadam.Nadam.set_algorithm" title="Permalink to this definition">¶</a></dt>
-<dd><p>If necessary, the algorithm needs to be set</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="f3dasm_optimize.nadam.Nadam_Parameters">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Nadam_Parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">population</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learning_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta_1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.9</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta_2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.999</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-07</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/nadam.html#Nadam_Parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.nadam.Nadam_Parameters" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">OptimizerParameters</span></code></p>
-<p>Hyperparameters for Momentum optimizer
-)</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.nadam.Nadam_Parameters.beta_1">
-<span class="sig-name descname"><span class="pre">beta_1</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.9</span></em><a class="headerlink" href="#f3dasm_optimize.nadam.Nadam_Parameters.beta_1" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.nadam.Nadam_Parameters.beta_2">
-<span class="sig-name descname"><span class="pre">beta_2</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.999</span></em><a class="headerlink" href="#f3dasm_optimize.nadam.Nadam_Parameters.beta_2" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.nadam.Nadam_Parameters.epsilon">
-<span class="sig-name descname"><span class="pre">epsilon</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1e-07</span></em><a class="headerlink" href="#f3dasm_optimize.nadam.Nadam_Parameters.epsilon" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.nadam.Nadam_Parameters.learning_rate">
-<span class="sig-name descname"><span class="pre">learning_rate</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.001</span></em><a class="headerlink" href="#f3dasm_optimize.nadam.Nadam_Parameters.learning_rate" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-</section>
-<section id="module-f3dasm_optimize.neldermead">
-<span id="f3dasm-optimize-neldermead-module"></span><h2>f3dasm_optimize.neldermead module<a class="headerlink" href="#module-f3dasm_optimize.neldermead" title="Permalink to this heading">¶</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="f3dasm_optimize.neldermead.NelderMead">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">NelderMead</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparameters=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed=15174</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/neldermead.html#NelderMead"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.neldermead.NelderMead" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="f3dasm_optimize.adapters.html#f3dasm_optimize.adapters.scipy_implementations.SciPyMinimizeOptimizer" title="f3dasm_optimize.adapters.scipy_implementations.SciPyMinimizeOptimizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">SciPyMinimizeOptimizer</span></code></a></p>
-<p>Nelder-Mead</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="f3dasm_optimize.neldermead.NelderMead.get_info">
-<span class="sig-name descname"><span class="pre">get_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/neldermead.html#NelderMead.get_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.neldermead.NelderMead.get_info" title="Permalink to this definition">¶</a></dt>
-<dd><p>Give a list of characteristic features of this optimizer</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>List of strings denoting the characteristics of this optimizer</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.neldermead.NelderMead.method">
-<span class="sig-name descname"><span class="pre">method</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Nelder-Mead'</span></em><a class="headerlink" href="#f3dasm_optimize.neldermead.NelderMead.method" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.neldermead.NelderMead.parameter">
-<span class="sig-name descname"><span class="pre">parameter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#f3dasm_optimize.neldermead.NelderMead_Parameters" title="f3dasm_optimize.neldermead.NelderMead_Parameters"><code class="xref py py-class docutils literal notranslate"><span class="pre">NelderMead_Parameters</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">NelderMead_Parameters(population=1,</span> <span class="pre">force_bounds=True,</span> <span class="pre">xatol=0.0,</span> <span class="pre">fatol=0.0,</span> <span class="pre">adaptive=False)</span></em><a class="headerlink" href="#f3dasm_optimize.neldermead.NelderMead.parameter" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="f3dasm_optimize.neldermead.NelderMead_Parameters">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">NelderMead_Parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">population</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xatol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fatol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adaptive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/neldermead.html#NelderMead_Parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.neldermead.NelderMead_Parameters" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">OptimizerParameters</span></code></p>
-<p>Hyperparameters for NelderMead optimizer</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.neldermead.NelderMead_Parameters.adaptive">
-<span class="sig-name descname"><span class="pre">adaptive</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#f3dasm_optimize.neldermead.NelderMead_Parameters.adaptive" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.neldermead.NelderMead_Parameters.fatol">
-<span class="sig-name descname"><span class="pre">fatol</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#f3dasm_optimize.neldermead.NelderMead_Parameters.fatol" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.neldermead.NelderMead_Parameters.xatol">
-<span class="sig-name descname"><span class="pre">xatol</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#f3dasm_optimize.neldermead.NelderMead_Parameters.xatol" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
+<section id="f3dasm-optimize-nadam-module">
+<h2>f3dasm_optimize.nadam module<a class="headerlink" href="#f3dasm-optimize-nadam-module" title="Permalink to this heading">¶</a></h2>
 </section>
 <section id="module-f3dasm_optimize.pso">
 <span id="f3dasm-optimize-pso-module"></span><h2>f3dasm_optimize.pso module<a class="headerlink" href="#module-f3dasm_optimize.pso" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="f3dasm_optimize.pso.PSO">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">PSO</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparameters=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed=15174</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/pso.html#PSO"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.pso.PSO" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">PSO</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparameters=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed=32182</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/pso.html#PSO"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.pso.PSO" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="f3dasm_optimize.adapters.html#f3dasm_optimize.adapters.pygmo_implementations.PygmoAlgorithm" title="f3dasm_optimize.adapters.pygmo_implementations.PygmoAlgorithm"><code class="xref py py-class docutils literal notranslate"><span class="pre">PygmoAlgorithm</span></code></a></p>
 <p>Particle Swarm Optimization (Generational) optimizer implemented from pygmo</p>
 <dl class="py method">
@@ -876,265 +443,14 @@ Constrained Optimization BY Linear Approximation (COBYLA) algorithm.</p>
 </dd></dl>
 
 </section>
-<section id="module-f3dasm_optimize.randomsearch">
-<span id="f3dasm-optimize-randomsearch-module"></span><h2>f3dasm_optimize.randomsearch module<a class="headerlink" href="#module-f3dasm_optimize.randomsearch" title="Permalink to this heading">¶</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="f3dasm_optimize.randomsearch.RandomSearch">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">RandomSearch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparameters=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed=15174</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/randomsearch.html#RandomSearch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.randomsearch.RandomSearch" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Optimizer</span></code></p>
-<p>Naive random search</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="f3dasm_optimize.randomsearch.RandomSearch.get_info">
-<span class="sig-name descname"><span class="pre">get_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/randomsearch.html#RandomSearch.get_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.randomsearch.RandomSearch.get_info" title="Permalink to this definition">¶</a></dt>
-<dd><p>Give a list of characteristic features of this optimizer</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>List of strings denoting the characteristics of this optimizer</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.randomsearch.RandomSearch.parameter">
-<span class="sig-name descname"><span class="pre">parameter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#f3dasm_optimize.randomsearch.RandomSearch_Parameters" title="f3dasm_optimize.randomsearch.RandomSearch_Parameters"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomSearch_Parameters</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">RandomSearch_Parameters(population=1,</span> <span class="pre">force_bounds=True)</span></em><a class="headerlink" href="#f3dasm_optimize.randomsearch.RandomSearch.parameter" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="f3dasm_optimize.randomsearch.RandomSearch.update_step">
-<span class="sig-name descname"><span class="pre">update_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/randomsearch.html#RandomSearch.update_step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.randomsearch.RandomSearch.update_step" title="Permalink to this definition">¶</a></dt>
-<dd><p>One iteration of the algorithm.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>function</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code>) – Objective function to evaluate</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.24)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>, <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.24)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>]</p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>tuple of new input vector and resulting output vector</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – You should implement an update step for your algorithm!</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="f3dasm_optimize.randomsearch.RandomSearch_Parameters">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">RandomSearch_Parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">population</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/randomsearch.html#RandomSearch_Parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.randomsearch.RandomSearch_Parameters" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">OptimizerParameters</span></code></p>
-<p>Hyperparameters for RandomSearch optimizer</p>
-</dd></dl>
-
-</section>
-<section id="module-f3dasm_optimize.rmsprop">
-<span id="f3dasm-optimize-rmsprop-module"></span><h2>f3dasm_optimize.rmsprop module<a class="headerlink" href="#module-f3dasm_optimize.rmsprop" title="Permalink to this heading">¶</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="f3dasm_optimize.rmsprop.RMSprop">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">RMSprop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparameters=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed=15174</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/rmsprop.html#RMSprop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.rmsprop.RMSprop" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="f3dasm_optimize.adapters.html#f3dasm_optimize.adapters.tensorflow_implementations.TensorflowOptimizer" title="f3dasm_optimize.adapters.tensorflow_implementations.TensorflowOptimizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">TensorflowOptimizer</span></code></a></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="f3dasm_optimize.rmsprop.RMSprop.get_info">
-<span class="sig-name descname"><span class="pre">get_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/rmsprop.html#RMSprop.get_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.rmsprop.RMSprop.get_info" title="Permalink to this definition">¶</a></dt>
-<dd><p>Give a list of characteristic features of this optimizer</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>List of strings denoting the characteristics of this optimizer</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.rmsprop.RMSprop.parameter">
-<span class="sig-name descname"><span class="pre">parameter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#f3dasm_optimize.rmsprop.RMSprop_Parameters" title="f3dasm_optimize.rmsprop.RMSprop_Parameters"><code class="xref py py-class docutils literal notranslate"><span class="pre">RMSprop_Parameters</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">RMSprop_Parameters(population=1,</span> <span class="pre">force_bounds=True,</span> <span class="pre">learning_rate=0.001,</span> <span class="pre">rho=0.9,</span> <span class="pre">momentum=0.0,</span> <span class="pre">epsilon=1e-07,</span> <span class="pre">centered=False)</span></em><a class="headerlink" href="#f3dasm_optimize.rmsprop.RMSprop.parameter" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="f3dasm_optimize.rmsprop.RMSprop.set_algorithm">
-<span class="sig-name descname"><span class="pre">set_algorithm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/rmsprop.html#RMSprop.set_algorithm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.rmsprop.RMSprop.set_algorithm" title="Permalink to this definition">¶</a></dt>
-<dd><p>If necessary, the algorithm needs to be set</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="f3dasm_optimize.rmsprop.RMSprop_Parameters">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">RMSprop_Parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">population</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learning_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.9</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">momentum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-07</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">centered</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/rmsprop.html#RMSprop_Parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.rmsprop.RMSprop_Parameters" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">OptimizerParameters</span></code></p>
-<p>Hyperparameters for RMSprop optimizer</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.rmsprop.RMSprop_Parameters.centered">
-<span class="sig-name descname"><span class="pre">centered</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#f3dasm_optimize.rmsprop.RMSprop_Parameters.centered" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.rmsprop.RMSprop_Parameters.epsilon">
-<span class="sig-name descname"><span class="pre">epsilon</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1e-07</span></em><a class="headerlink" href="#f3dasm_optimize.rmsprop.RMSprop_Parameters.epsilon" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.rmsprop.RMSprop_Parameters.learning_rate">
-<span class="sig-name descname"><span class="pre">learning_rate</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.001</span></em><a class="headerlink" href="#f3dasm_optimize.rmsprop.RMSprop_Parameters.learning_rate" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.rmsprop.RMSprop_Parameters.momentum">
-<span class="sig-name descname"><span class="pre">momentum</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#f3dasm_optimize.rmsprop.RMSprop_Parameters.momentum" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.rmsprop.RMSprop_Parameters.rho">
-<span class="sig-name descname"><span class="pre">rho</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.9</span></em><a class="headerlink" href="#f3dasm_optimize.rmsprop.RMSprop_Parameters.rho" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-</section>
-<section id="module-f3dasm_optimize.run_optimization">
-<span id="f3dasm-optimize-run-optimization-module"></span><h2>f3dasm_optimize.run_optimization module<a class="headerlink" href="#module-f3dasm_optimize.run_optimization" title="Permalink to this heading">¶</a></h2>
-<p>Module to optimize benchmark optimization functions</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="f3dasm_optimize.run_optimization.OptimizationResult">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">OptimizationResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sampler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number_of_samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seeds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/run_optimization.html#OptimizationResult"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.run_optimization.OptimizationResult" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>Optimization results object</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">ExperimentData</span></code>]) – Data objects for each realization</p></li>
-<li><p><strong>optimizer</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Optimizer</span></code>) – classname of the optimizer used</p></li>
-<li><p><strong>function</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code>) – functionname that was optimized</p></li>
-<li><p><strong>sampler</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Sampler</span></code>) – classname of the initial sampling strategy</p></li>
-<li><p><strong>number_of_samples</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – number of initial samples, sampled by the sampling strategy</p></li>
-<li><p><strong>seeds</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]) – list of seeds that were used for each realization</p></li>
-</ul>
-</dd>
-</dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="f3dasm_optimize.run_optimization.OptimizationResult.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sampler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number_of_samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seeds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/run_optimization.html#OptimizationResult.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.run_optimization.OptimizationResult.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Optimization results object</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">ExperimentData</span></code>]) – Data objects for each realization</p></li>
-<li><p><strong>optimizer</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Optimizer</span></code>) – classname of the optimizer used</p></li>
-<li><p><strong>function</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code>) – functionname that was optimized</p></li>
-<li><p><strong>sampler</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Sampler</span></code>) – classname of the initial sampling strategy</p></li>
-<li><p><strong>number_of_samples</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – number of initial samples, sampled by the sampling strategy</p></li>
-<li><p><strong>seeds</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]) – list of seeds that were used for each realization</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="f3dasm_optimize.run_optimization.OptimizationResult._log">
-<span class="sig-name descname"><span class="pre">_log</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/run_optimization.html#OptimizationResult._log"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.run_optimization.OptimizationResult._log" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="f3dasm_optimize.run_optimization.OptimizationResult.from_dict">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">optimizationresult_dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/run_optimization.html#OptimizationResult.from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.run_optimization.OptimizationResult.from_dict" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#f3dasm_optimize.run_optimization.OptimizationResult" title="f3dasm_optimize.run_optimization.OptimizationResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">OptimizationResult</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="f3dasm_optimize.run_optimization.OptimizationResult.from_json">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json_string</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/run_optimization.html#OptimizationResult.from_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.run_optimization.OptimizationResult.from_json" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#f3dasm_optimize.run_optimization.OptimizationResult" title="f3dasm_optimize.run_optimization.OptimizationResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">OptimizationResult</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="f3dasm_optimize.run_optimization.OptimizationResult.to_json">
-<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/run_optimization.html#OptimizationResult.to_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.run_optimization.OptimizationResult.to_json" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="f3dasm_optimize.run_optimization.calculate_mean_std">
-<span class="sig-name descname"><span class="pre">calculate_mean_std</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/run_optimization.html#calculate_mean_std"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.run_optimization.calculate_mean_std" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="f3dasm_optimize.run_optimization.run_multiple_realizations">
-<span class="sig-name descname"><span class="pre">run_multiple_realizations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">optimizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sampler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterations</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">realizations</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number_of_samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parallelization</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/run_optimization.html#run_multiple_realizations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.run_optimization.run_multiple_realizations" title="Permalink to this definition">¶</a></dt>
-<dd><p>Run multiple realizations of the same algorithm on a benchmark function</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>optimizer</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Optimizer</span></code>) – the optimizer used</p></li>
-<li><p><strong>function</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code>) – the function to be optimized</p></li>
-<li><p><strong>sampler</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Sampler</span></code>) – the sampling strategy</p></li>
-<li><p><strong>iterations</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – number of iterations</p></li>
-<li><p><strong>realizations</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – number of realizations</p></li>
-<li><p><strong>number_of_samples</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – number of initial samples, sampled by the sampling strategy</p></li>
-<li><p><strong>optional</strong> – number of initial samples, sampled by the sampling strategy</p></li>
-<li><p><strong>parallelization</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – set True to enable parallel execution of each realization</p></li>
-<li><p><strong>optional</strong> – set True to enable parallel execution of each realization</p></li>
-<li><p><strong>verbal</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – set True to have more debug message</p></li>
-<li><p><strong>optional</strong> – set True to have more debug message</p></li>
-<li><p><strong>seed</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]) – seed for the random number generator</p></li>
-<li><p><strong>optional</strong> – seed for the random number generator</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="#f3dasm_optimize.run_optimization.OptimizationResult" title="f3dasm_optimize.run_optimization.OptimizationResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">OptimizationResult</span></code></a></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Object with the optimization data results</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="f3dasm_optimize.run_optimization.run_optimization">
-<span class="sig-name descname"><span class="pre">run_optimization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">optimizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sampler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterations</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number_of_samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/run_optimization.html#run_optimization"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.run_optimization.run_optimization" title="Permalink to this definition">¶</a></dt>
-<dd><p>Run optimization on some benchmark function</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>optimizer</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Optimizer</span></code>) – the optimizer used</p></li>
-<li><p><strong>function</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code>) – the function to be optimized</p></li>
-<li><p><strong>sampler</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Sampler</span></code>) – the sampling strategy</p></li>
-<li><p><strong>iterations</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – number of iterations</p></li>
-<li><p><strong>seed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – seed for the random number generator</p></li>
-<li><p><strong>number_of_samples</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – number of initial samples, sampled by the sampling strategy</p></li>
-<li><p><strong>optional</strong> – number of initial samples, sampled by the sampling strategy</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ExperimentData</span></code></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Data object with the optimization data results</p>
-</dd>
-</dl>
-</dd></dl>
-
+<section id="f3dasm-optimize-rmsprop-module">
+<h2>f3dasm_optimize.rmsprop module<a class="headerlink" href="#f3dasm-optimize-rmsprop-module" title="Permalink to this heading">¶</a></h2>
 </section>
 <section id="module-f3dasm_optimize.sade">
 <span id="f3dasm-optimize-sade-module"></span><h2>f3dasm_optimize.sade module<a class="headerlink" href="#module-f3dasm_optimize.sade" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="f3dasm_optimize.sade.SADE">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SADE</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparameters=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed=15174</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/sade.html#SADE"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.sade.SADE" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SADE</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparameters=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed=32182</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/sade.html#SADE"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.sade.SADE" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="f3dasm_optimize.adapters.html#f3dasm_optimize.adapters.pygmo_implementations.PygmoAlgorithm" title="f3dasm_optimize.adapters.pygmo_implementations.PygmoAlgorithm"><code class="xref py py-class docutils literal notranslate"><span class="pre">PygmoAlgorithm</span></code></a></p>
 <p>Self-adaptive Differential Evolution optimizer implemented from pygmo</p>
 <dl class="py method">
@@ -1201,7 +517,7 @@ Constrained Optimization BY Linear Approximation (COBYLA) algorithm.</p>
 <span id="f3dasm-optimize-sea-module"></span><h2>f3dasm_optimize.sea module<a class="headerlink" href="#module-f3dasm_optimize.sea" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="f3dasm_optimize.sea.SEA">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SEA</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparameters=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed=15174</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/sea.html#SEA"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.sea.SEA" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SEA</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparameters=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed=32182</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/sea.html#SEA"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.sea.SEA" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="f3dasm_optimize.adapters.html#f3dasm_optimize.adapters.pygmo_implementations.PygmoAlgorithm" title="f3dasm_optimize.adapters.pygmo_implementations.PygmoAlgorithm"><code class="xref py py-class docutils literal notranslate"><span class="pre">PygmoAlgorithm</span></code></a></p>
 <p>Simple Evolutionary Algorithm optimizer implemented from pygmo</p>
 <dl class="py method">
@@ -1248,7 +564,7 @@ Constrained Optimization BY Linear Approximation (COBYLA) algorithm.</p>
 <span id="f3dasm-optimize-sga-module"></span><h2>f3dasm_optimize.sga module<a class="headerlink" href="#module-f3dasm_optimize.sga" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="f3dasm_optimize.sga.SGA">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SGA</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparameters=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed=15174</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/sga.html#SGA"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.sga.SGA" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SGA</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparameters=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed=32182</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/sga.html#SGA"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.sga.SGA" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="f3dasm_optimize.adapters.html#f3dasm_optimize.adapters.pygmo_implementations.PygmoAlgorithm" title="f3dasm_optimize.adapters.pygmo_implementations.PygmoAlgorithm"><code class="xref py py-class docutils literal notranslate"><span class="pre">PygmoAlgorithm</span></code></a></p>
 <p>Simple Genetic Algorithm optimizer implemented from pygmo</p>
 <dl class="py method">
@@ -1331,67 +647,14 @@ Constrained Optimization BY Linear Approximation (COBYLA) algorithm.</p>
 </dd></dl>
 
 </section>
-<section id="module-f3dasm_optimize.sgd">
-<span id="f3dasm-optimize-sgd-module"></span><h2>f3dasm_optimize.sgd module<a class="headerlink" href="#module-f3dasm_optimize.sgd" title="Permalink to this heading">¶</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="f3dasm_optimize.sgd.SGD">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SGD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparameters=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed=15174</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/sgd.html#SGD"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.sgd.SGD" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="f3dasm_optimize.adapters.html#f3dasm_optimize.adapters.tensorflow_implementations.TensorflowOptimizer" title="f3dasm_optimize.adapters.tensorflow_implementations.TensorflowOptimizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">TensorflowOptimizer</span></code></a></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="f3dasm_optimize.sgd.SGD.get_info">
-<span class="sig-name descname"><span class="pre">get_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/sgd.html#SGD.get_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.sgd.SGD.get_info" title="Permalink to this definition">¶</a></dt>
-<dd><p>Give a list of characteristic features of this optimizer</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>List of strings denoting the characteristics of this optimizer</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.sgd.SGD.parameter">
-<span class="sig-name descname"><span class="pre">parameter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#f3dasm_optimize.sgd.SGD_Parameters" title="f3dasm_optimize.sgd.SGD_Parameters"><code class="xref py py-class docutils literal notranslate"><span class="pre">SGD_Parameters</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">SGD_Parameters(population=1,</span> <span class="pre">force_bounds=True,</span> <span class="pre">learning_rate=0.01,</span> <span class="pre">momentum=0.0,</span> <span class="pre">nesterov=False)</span></em><a class="headerlink" href="#f3dasm_optimize.sgd.SGD.parameter" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="f3dasm_optimize.sgd.SGD.set_algorithm">
-<span class="sig-name descname"><span class="pre">set_algorithm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/sgd.html#SGD.set_algorithm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.sgd.SGD.set_algorithm" title="Permalink to this definition">¶</a></dt>
-<dd><p>If necessary, the algorithm needs to be set</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="f3dasm_optimize.sgd.SGD_Parameters">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SGD_Parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">population</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learning_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">momentum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nesterov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/sgd.html#SGD_Parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.sgd.SGD_Parameters" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">OptimizerParameters</span></code></p>
-<p>Hyperparameters for Momentum optimizer</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.sgd.SGD_Parameters.learning_rate">
-<span class="sig-name descname"><span class="pre">learning_rate</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.01</span></em><a class="headerlink" href="#f3dasm_optimize.sgd.SGD_Parameters.learning_rate" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.sgd.SGD_Parameters.momentum">
-<span class="sig-name descname"><span class="pre">momentum</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#f3dasm_optimize.sgd.SGD_Parameters.momentum" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="f3dasm_optimize.sgd.SGD_Parameters.nesterov">
-<span class="sig-name descname"><span class="pre">nesterov</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#f3dasm_optimize.sgd.SGD_Parameters.nesterov" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
+<section id="f3dasm-optimize-sgd-module">
+<h2>f3dasm_optimize.sgd module<a class="headerlink" href="#f3dasm-optimize-sgd-module" title="Permalink to this heading">¶</a></h2>
 </section>
 <section id="module-f3dasm_optimize.simulatedannealing">
 <span id="f3dasm-optimize-simulatedannealing-module"></span><h2>f3dasm_optimize.simulatedannealing module<a class="headerlink" href="#module-f3dasm_optimize.simulatedannealing" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="f3dasm_optimize.simulatedannealing.SimulatedAnnealing">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SimulatedAnnealing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparameters=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed=15174</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/simulatedannealing.html#SimulatedAnnealing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.simulatedannealing.SimulatedAnnealing" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SimulatedAnnealing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparameters=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed=32182</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/simulatedannealing.html#SimulatedAnnealing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.simulatedannealing.SimulatedAnnealing" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="f3dasm_optimize.adapters.html#f3dasm_optimize.adapters.pygmo_implementations.PygmoAlgorithm" title="f3dasm_optimize.adapters.pygmo_implementations.PygmoAlgorithm"><code class="xref py py-class docutils literal notranslate"><span class="pre">PygmoAlgorithm</span></code></a></p>
 <p>DifferentialEvolution optimizer implemented from pygmo</p>
 <dl class="py method">
@@ -1464,65 +727,11 @@ Constrained Optimization BY Linear Approximation (COBYLA) algorithm.</p>
 </dd></dl>
 
 </section>
-<section id="module-f3dasm_optimize.utils">
-<span id="f3dasm-optimize-utils-module"></span><h2>f3dasm_optimize.utils module<a class="headerlink" href="#module-f3dasm_optimize.utils" title="Permalink to this heading">¶</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="f3dasm_optimize.utils.create_optimizer_from_dict">
-<span class="sig-name descname"><span class="pre">create_optimizer_from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">optimizer_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/utils.html#create_optimizer_from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.utils.create_optimizer_from_dict" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create an Optimizer object from a dictionary</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>optimizer_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – dictionary representation of the information to construct the Optimizer</p></li>
-<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – name of the class</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Optimizer</span></code></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Requested Optimizer object</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="f3dasm_optimize.utils.create_optimizer_from_json">
-<span class="sig-name descname"><span class="pre">create_optimizer_from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json_string</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/utils.html#create_optimizer_from_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.utils.create_optimizer_from_json" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create an Optimizer object from a json string</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>json_string</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – json string representation of the information to construct the Optimizer</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Requested Optimizer object</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="f3dasm_optimize.utils.find_optimizer">
-<span class="sig-name descname"><span class="pre">find_optimizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/utils.html#find_optimizer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.utils.find_optimizer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Find a optimizer from the f3dasm.optimizer submodule</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>query</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – string representation of the requested optimizer</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Optimizer</span></code></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>class of the requested optimizer</p>
-</dd>
-</dl>
-</dd></dl>
-
-</section>
 <section id="module-f3dasm_optimize.xnes">
 <span id="f3dasm-optimize-xnes-module"></span><h2>f3dasm_optimize.xnes module<a class="headerlink" href="#module-f3dasm_optimize.xnes" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="f3dasm_optimize.xnes.XNES">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">XNES</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparameters=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed=15174</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/xnes.html#XNES"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.xnes.XNES" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">XNES</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparameters=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed=32182</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/f3dasm_optimize/xnes.html#XNES"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#f3dasm_optimize.xnes.XNES" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="f3dasm_optimize.adapters.html#f3dasm_optimize.adapters.pygmo_implementations.PygmoAlgorithm" title="f3dasm_optimize.adapters.pygmo_implementations.PygmoAlgorithm"><code class="xref py py-class docutils literal notranslate"><span class="pre">PygmoAlgorithm</span></code></a></p>
 <p>XNES optimizer implemented from pygmo</p>
 <dl class="py method">
