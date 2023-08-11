@@ -49,11 +49,11 @@ class BayesianOptimization(Optimizer):
                 "type": "continuous",
                 "domain": (parameter.lower_bound, parameter.upper_bound),
             }
-            for index, parameter in enumerate(self.data.design.get_continuous_input_parameters())
+            for index, parameter in enumerate(self.data.domain.get_continuous_input_parameters())
         ]
 
         kernel = GPy.kern.RBF(
-            input_dim=self.data.design.get_number_of_input_parameters())
+            input_dim=self.data.domain.get_number_of_input_parameters())
 
         model = GPyOpt.models.gpmodel.GPModel(
             kernel=kernel,

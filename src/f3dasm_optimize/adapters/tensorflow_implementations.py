@@ -49,7 +49,7 @@ class TensorflowOptimizer(Optimizer):
                 tape.watch(self.args["tvars"])
                 logits = 0.0 + tf.cast(self.args["model"](None), tf.float64)
                 loss = self.args["func"](tf.reshape(
-                    logits, (self.data.design.get_number_of_input_parameters())))
+                    logits, (self.data.domain.get_number_of_input_parameters())))
 
             grads = tape.gradient(loss, self.args["tvars"])
             self.algorithm.apply_gradients(zip(grads, self.args["tvars"]))
@@ -63,9 +63,9 @@ class TensorflowOptimizer(Optimizer):
         self.args["model"] = _SimpelModel(
             None,
             args={
-                "dim": self.data.design.get_number_of_input_parameters(),
+                "dim": self.data.domain.get_number_of_input_parameters(),
                 "x0": self.data.get_n_best_input_parameters_numpy(self.parameter.population),
-                "bounds": self.data.design.get_bounds(),
+                "bounds": self.data.domain.get_bounds(),
             },
         )  # Build the model
         self.args["tvars"] = self.args["model"].trainable_variables

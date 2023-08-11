@@ -23,8 +23,8 @@ __status__ = 'Stable'
 # =============================================================================
 
 
-class DesignSpace(Protocol):
-    """Protocol class for the designspace"""
+class Domain(Protocol):
+    """Protocol class for the domain"""
 
     def get_continuous_input_parameters(self):  # List[ContinuousParameter]
         ...

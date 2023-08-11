@@ -97,6 +97,6 @@ class SciPyMinimizeOptimizer(SciPyOptimizer):
                 nosamples=1).ravel(),
             callback=self._callback,
             options=self.parameter.__dict__,
-            bounds=self.data.design.get_bounds(),
+            bounds=self.data.domain.get_bounds(),
             tol=0.0,
         )

@@ -11,7 +11,7 @@ import autograd.numpy as np
 from f3dasm._imports import try_import
 from f3dasm.optimization.optimizer import Optimizer
 
-from .._protocol import DesignSpace, Function
+from .._protocol import Domain, Function
 
 # Third-party extension
 with try_import('optimization') as _imports:
@@ -33,15 +33,15 @@ class _PygmoProblem:
 
     Parameters
     ----------
-    design
-        designspace to be used
+    domain
+        domain to be used
     func
         function to be evaluated
     seed
         seed for the random number generator
         _description_
     """
-    design: DesignSpace
+    domain: Domain
     func: Function
     seed: Any or int = None
 
@@ -86,8 +86,8 @@ class _PygmoProblem:
             box constraints
         """
         return (
-            [parameter.lower_bound for parameter in self.design.get_continuous_input_parameters().values()],
-            [parameter.upper_bound for parameter in self.design.get_continuous_input_parameters().values()],
+            [parameter.lower_bound for parameter in self.domain.get_continuous_input_parameters().values()],
+            [parameter.upper_bound for parameter in self.domain.get_continuous_input_parameters().values()],
         )
 
     def gradient(self, x: np.ndarray):
@@ -152,7 +152,7 @@ class PygmoAlgorithm(Optimizer):
         # Construct the PygmoProblem
         prob = pg.problem(
             _PygmoProblem(
-                design=self.data.design,
+                domain=self.data.domain,
                 func=function,
                 seed=self.seed,
             )
