@@ -7,7 +7,8 @@ from typing import List
 # Locals
 from f3dasm.optimization import Optimizer
 
-from . import (adam, adamax, cmaes, differentialevolution, ftrl, nadam, pso,
+from . import (adam, adamax, cmaes, differential_evoluation_nevergrad,
+               differentialevolution, ftrl, mma, nadam, pso, pso_nevergrad,
                rmsprop, sade, sea, sga, sgd, simulatedannealing, xnes)
 
 #                                                          Authorship & Credits
@@ -66,3 +67,12 @@ if simulatedannealing._imports.is_successful():
 
 if xnes._imports.is_successful():
     OPTIMIZERS.append(xnes.XNES)
+
+# if mma._imports.is_successful():
+#     OPTIMIZERS.append(mma.MMA)
+
+# if pso_nevergrad._imports.is_successful():
+#     OPTIMIZERS.append(pso_nevergrad.PSOConf)
+
+# if differential_evoluation_nevergrad._imports.is_successful():
+#     OPTIMIZERS.append(differential_evoluation_nevergrad.DifferentialEvolution_Nevergrad)

@@ -7,8 +7,9 @@ from typing import Any, List
 
 # Locals
 from f3dasm._imports import try_import
-from ._protocol import Function
 from f3dasm.optimization.optimizer import Optimizer, OptimizerParameters
+
+from ._protocol import Function
 
 # Third-party extension
 with try_import('optimization') as _imports:
@@ -45,15 +46,15 @@ class BayesianOptimization(Optimizer):
     def init_parameters(self):
         domain = [
             {
-                "name": f"var_{index}",
+                "name": f"{name}",
                 "type": "continuous",
                 "domain": (parameter.lower_bound, parameter.upper_bound),
             }
-            for index, parameter in enumerate(self.data.domain.get_continuous_input_parameters())
+            for name, parameter in self.data.domain.get_continuous_input_parameters().items()
         ]
 
         kernel = GPy.kern.RBF(
-            input_dim=self.data.domain.get_number_of_input_parameters())
+            input_dim=len(self.data.domain))
 
         model = GPyOpt.models.gpmodel.GPModel(
             kernel=kernel,

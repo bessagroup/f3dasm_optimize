@@ -22,11 +22,15 @@ if TYPE_CHECKING:
     from .bayesianoptimization import (BayesianOptimization,
                                        BayesianOptimization_Parameters)
     from .cmaes import CMAES, CMAES_Parameters
+    from .differential_evoluation_nevergrad import \
+        DifferentialEvolution_Nevergrad
     from .differentialevolution import (DifferentialEvolution,
                                         DifferentialEvolution_Parameters)
     from .ftrl import Ftrl, Ftrl_Parameters
+    from .mma import MMA, MMA_Parameters
     from .nadam import Nadam, Nadam_Parameters
     from .pso import PSO, PSO_Parameters
+    from .pso_nevergrad import PSOConf
     from .rmsprop import RMSprop, RMSprop_Parameters
     from .sade import SADE, SADE_Parameters
     from .sea import SEA, SEA_Parameters
@@ -61,6 +65,9 @@ _import_structure: dict = {
     "sgd": ["SGD", "SGD_Parameters"],
     "simulatedannealing": ["SimulatedAnnealing", "SimulatedAnnealing_Parameters"],
     "xnes": ["XNES", "XNES_Parameters"],
+    "mma": ["MMA", "MMA_Parameters"],
+    "pso_nvergrad": ["PSOConf", "PSOConf_Parameters"],
+    "differentialevolution_nevergrad": ["DifferentialEvolution_Nevergrad", "DifferentialEvolution_Nevergrad_Parameters"],
     "_all_optimizers": ["OPTIMIZERS"],
     "_version": ["__version__"],
 }

@@ -1,10 +1,10 @@
 import numpy as np
 import pytest
-from f3dasm.design import make_nd_continuous_design
+from f3dasm.datageneration.functions import (FUNCTIONS_2D, FUNCTIONS_7D,
+                                             Ackley, Griewank, Levy, Sphere)
+from f3dasm.datageneration.functions.function import Function
+from f3dasm.design import make_nd_continuous_domain
 from f3dasm.design.experimentdata import ExperimentData
-from f3dasm.functions import (FUNCTIONS_2D, FUNCTIONS_7D, Ackley, Griewank,
-                              Levy, Sphere)
-from f3dasm.functions.function import Function
 from f3dasm.optimization.optimizer import Optimizer
 from f3dasm.run_optimization import run_multiple_realizations
 from f3dasm.sampling.randomuniform import RandomUniform
@@ -28,13 +28,13 @@ def test_run_multiple_realizations(function: Function, optimizer: Optimizer, dim
     realizations = 3
     domain = np.tile([0.0, 1.0], (dimensionality, 1))
 
-    design = make_nd_continuous_design(dimensionality=dimensionality, bounds=domain)
-    func = function(dimensionality=dimensionality, scale_bounds=domain)
-    data = ExperimentData(design=design)
+    domain = make_nd_continuous_domain(dimensionality=dimensionality, bounds=domain)
+    func = function(dimensionality=dimensionality, scale_bounds=domain.get_bounds())
+    data = ExperimentData(domain=domain)
     opt = optimizer(data=data)
-    sampler = RandomUniform(design=design)
+    sampler = RandomUniform(design=domain)
 
-    res = run_multiple_realizations(
+    _ = run_multiple_realizations(
         optimizer=opt,
         function=func,
         sampler=sampler,

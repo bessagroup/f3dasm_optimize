@@ -86,8 +86,8 @@ class _PygmoProblem:
             box constraints
         """
         return (
-            [parameter.lower_bound for parameter in self.domain.get_continuous_input_parameters().values()],
-            [parameter.upper_bound for parameter in self.domain.get_continuous_input_parameters().values()],
+            [parameter.lower_bound for parameter in self.domain.get_continuous_parameters().values()],
+            [parameter.upper_bound for parameter in self.domain.get_continuous_parameters().values()],
         )
 
     def gradient(self, x: np.ndarray):
