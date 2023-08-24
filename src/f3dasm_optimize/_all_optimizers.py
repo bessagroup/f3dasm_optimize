@@ -8,8 +8,9 @@ from typing import List
 from f3dasm.optimization import Optimizer
 
 from . import (adam, adamax, cmaes, differential_evoluation_nevergrad,
-               differentialevolution, ftrl, mma, nadam, pso, pso_nevergrad,
-               rmsprop, sade, sea, sga, sgd, simulatedannealing, xnes)
+               differentialevolution, evosax_implementations, ftrl, mma, nadam,
+               pso, pso_nevergrad, rmsprop, sade, sea, sga, sgd,
+               simulatedannealing, xnes)
 
 #                                                          Authorship & Credits
 # =============================================================================
@@ -76,3 +77,9 @@ if xnes._imports.is_successful():
 
 # if differential_evoluation_nevergrad._imports.is_successful():
 #     OPTIMIZERS.append(differential_evoluation_nevergrad.DifferentialEvolution_Nevergrad)
+
+if evosax_implementations._imports.is_successful():
+    OPTIMIZERS.append(evosax_implementations.EvoSaxCMAES)
+    OPTIMIZERS.append(evosax_implementations.EvoSaxPSO)
+    OPTIMIZERS.append(evosax_implementations.EvoSaxSimAnneal)
+    OPTIMIZERS.append(evosax_implementations.EvoSaxDE)

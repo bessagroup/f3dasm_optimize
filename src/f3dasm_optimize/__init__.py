@@ -26,6 +26,8 @@ if TYPE_CHECKING:
         DifferentialEvolution_Nevergrad
     from .differentialevolution import (DifferentialEvolution,
                                         DifferentialEvolution_Parameters)
+    from .evosax_implementations import (EvoSaxCMAES, EvoSaxCMAES_Parameters,
+                                         EvoSaxDE, EvoSaxPSO, EvoSaxSimAnneal)
     from .ftrl import Ftrl, Ftrl_Parameters
     from .mma import MMA, MMA_Parameters
     from .nadam import Nadam, Nadam_Parameters
@@ -68,6 +70,7 @@ _import_structure: dict = {
     "mma": ["MMA", "MMA_Parameters"],
     "pso_nvergrad": ["PSOConf", "PSOConf_Parameters"],
     "differentialevolution_nevergrad": ["DifferentialEvolution_Nevergrad", "DifferentialEvolution_Nevergrad_Parameters"],
+    "evosax_implementations": ["EvoSaxCMAES", "EvoSaxPSO", "EvoSaxSimAnneal", "EvoSaxDE", "EvoSaxCMAES_Parameters"],
     "_all_optimizers": ["OPTIMIZERS"],
     "_version": ["__version__"],
 }
