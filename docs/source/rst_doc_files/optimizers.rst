@@ -1,13 +1,16 @@
+.. _Pygmo: https://esa.github.io/pygmo2/
+.. _GPyOpt: https://sheffieldml.github.io/GPyOpt/
+.. _Tensorflow keras: https://www.tensorflow.org/api_docs/python/tf/keras/optimizers
+.. _Nevergrad: https://facebookresearch.github.io/nevergrad/index.html
+.. _EvoSax: https://github.com/RobertTLange/evosax
+
 Implemented optimizers
 ======================
 
 The following implementations of optimizers can found under this extension package: 
 
-These are ported from several libraries such as `GPyOpt <https://sheffieldml.github.io/GPyOpt/>`_, `tensorflow <https://www.tensorflow.org/api_docs/python/tf/keras/optimizers>`_ and `pygmo <https://esa.github.io/pygmo2/>`_.
-
-
-Pygmo implementations
-^^^^^^^^^^^^^^^^^^^^^
+`Pygmo`_ implementations
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 These derivative-free global optimizers are ported from the `pygmo <https://esa.github.io/pygmo2/>`_ Python library: 
 
@@ -23,17 +26,17 @@ Differential Evolution   :class:`~f3dasm_optimize.differentialevoluation.Differe
 Simulated Annealing      :class:`~f3dasm_optimize.simulatedannealing.SimulatedAnnealing`            `pygmo simulated_annealing <https://esa.github.io/pygmo2/algorithms.html#pygmo.simulated_annealing>`_
 ======================== ========================================================================== =======================================================================================================
 
-GPyOpt Implementations
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`GPyOpt`_ implementations
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ======================== ========================================================================= ======================================================
 Name                      Docs of the Python class                                                 Reference
 ======================== ========================================================================= ======================================================
-Bayesian Optimization    :class:`~f3dasm_optimize.bayesianoptimization.BayesianOptimization`       `GPyOpt <https://gpyopt.readthedocs.io/en/latest/>`_
+Bayesian Optimization    :class:`~f3dasm_optimize.bayesianoptimization.BayesianOptimization`       `gpyopt <https://gpyopt.readthedocs.io/en/latest/>`_
 ======================== ========================================================================= ======================================================
 
-Tensorflow Keras optimizers
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Tensorflow keras`_ optimizers
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ======================== ====================================================================== =====================================================================================================
 Name                      Docs of the Python class                                              Reference
@@ -45,3 +48,26 @@ Nadam                    :class:`~f3dasm_optimize.nadam.Nadam`                  
 Adamax                   :class:`~f3dasm_optimize.adamax.Adamax`                                `tf.keras.optimizers.Adamax <https://www.tensorflow.org/api_docs/python/tf/keras/optimizers/Adamax>`_
 Ftrl                     :class:`~f3dasm_optimize.ftrl.Ftrl`                                    `tf.keras.optimizers.Ftrl <https://www.tensorflow.org/api_docs/python/tf/keras/optimizers/Ftrl>`_
 ======================== ====================================================================== =====================================================================================================
+
+`Nevergrad`_ optimizers
+^^^^^^^^^^^^^^^^^^^^^^^
+
+======================== ============================================================================================ =============================================================================================================================================================
+Name                      Docs of the Python class                                                                      Reference
+======================== ============================================================================================ =============================================================================================================================================================
+Differential Evolution   :class:`~f3dasm_optimize.differential_evoluation_nevergrad.DifferentialEvolution_Nevergrad`  `nevergrad.optimizers.DifferentialEvolution <https://facebookresearch.github.io/nevergrad/optimizers_ref.html#nevergrad.families.DifferentialEvolution>`_
+PSO                      :class:`~f3dasm_optimize.pso_nevergrad.PSOConf`                                              `nevergrad.optimizers.ConfPSO <https://facebookresearch.github.io/nevergrad/optimizers_ref.html#nevergrad.families.ConfPSO>`_
+======================== ============================================================================================ =============================================================================================================================================================
+
+`Evosax`_ optimizers
+^^^^^^^^^^^^^^^^^^^^
+
+======================== ============================================================================================ =============================================================================================================================================================
+Name                      Docs of the Python class                                                                      Reference
+======================== ============================================================================================ =============================================================================================================================================================
+CMAES                    :class:`~f3dasm_optimize.evosax_implementations.EvoSaxCMAES`                                 `evosax.strategies.cma_es <https://github.com/RobertTLange/evosax/blob/main/evosax/strategies/cma_es.py>`_
+PSO                      :class:`~f3dasm_optimize.evosax_implementations.EvoSaxPSO`                                   `evosax.strategies.pso <https://github.com/RobertTLange/evosax/blob/main/evosax/strategies/pso.py>`_
+Simulated Annealing      :class:`~f3dasm_optimize.evosax_implementations.EvoSaxSimAnneal`                             `evosax.strategies.sim_anneal <https://github.com/RobertTLange/evosax/blob/main/evosax/strategies/sim_anneal.py>`_
+Differential Evolution   :class:`~f3dasm_optimize.evosax_implementations.EvoSaxDE`                                    `evosax.strategies.de <https://github.com/RobertTLange/evosax/blob/main/evosax/strategies/de.py>`_
+
+======================== ============================================================================================ =============================================================================================================================================================

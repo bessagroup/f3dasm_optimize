@@ -52,3 +52,62 @@ class EvoSaxOptimizer(Optimizer):
         # Update the strategy based on fitness
         self.state = self.algorithm.tell(x, y.ravel(), state, self.evosax_param)
         return x, y
+
+    def iterate(self, iterations: int, function: Function):
+        """Calls the update_step function multiple times.
+
+        Parameters
+        ----------
+        iterations
+            number of iterations
+        function
+            objective function to evaluate
+        """
+        self._construct_model(function)
+
+        self._check_number_of_datapoints()
+
+        for _ in range(_number_of_updates(iterations, population=self.parameter.population)):
+            x, y = self.update_step(function=function)
+            self.add_iteration_to_data(x, y)
+
+        # Remove overiterations
+        self.data.remove_rows_bottom(_number_of_overiterations(
+            iterations, population=self.parameter.population))
+
+def _number_of_updates(iterations: int, population: int):
+    """Calculate number of update steps to acquire the correct number of iterations
+
+    Parameters
+    ----------
+    iterations
+        number of desired iteration steps
+    population
+        the population size of the optimizer
+
+    Returns
+    -------
+        number of consecutive update steps
+    """
+    return iterations // population + (iterations % population > 0)
+
+
+def _number_of_overiterations(iterations: int, population: int) -> int:
+    """Calculate the number of iterations that are over the iteration limit
+
+    Parameters
+    ----------
+    iterations
+        number of desired iteration steos
+    population
+        the population size of the optimizer
+
+    Returns
+    -------
+        number of iterations that are over the limit
+    """
+    overiterations: int = iterations % population
+    if overiterations == 0:
+        return overiterations
+    else:
+        return population - overiterations
