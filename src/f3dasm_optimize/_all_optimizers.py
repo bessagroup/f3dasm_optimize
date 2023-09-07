@@ -7,10 +7,9 @@ from typing import List
 # Locals
 from f3dasm.optimization import Optimizer
 
-from . import (adam, adamax, cmaes, differential_evoluation_nevergrad,
-               differentialevolution, evosax_implementations, ftrl, mma, nadam,
-               pso, pso_nevergrad, rmsprop, sade, sea, sga, sgd,
-               simulatedannealing, xnes)
+from . import (adam, adamax, cmaes, differentialevolution,
+               evosax_implementations, ftrl, nadam, pso, rmsprop, sade, sea,
+               sga, sgd, simulatedannealing, xnes)
 
 #                                                          Authorship & Credits
 # =============================================================================
