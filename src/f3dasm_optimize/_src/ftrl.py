@@ -6,9 +6,10 @@ from dataclasses import dataclass
 from typing import List
 
 # Locals
-from f3dasm._imports import try_import
+from f3dasm import try_import
+from f3dasm.optimization import OptimizerParameters
+
 from .adapters.tensorflow_implementations import TensorflowOptimizer
-from f3dasm.optimization.optimizer import OptimizerParameters
 
 # Third-party extension
 with try_import('optimization') as _imports:
@@ -40,17 +41,17 @@ class Ftrl_Parameters(OptimizerParameters):
 class Ftrl(TensorflowOptimizer):
     """Ftrl"""
 
-    parameter: Ftrl_Parameters = Ftrl_Parameters()
+    hyperparameters: Ftrl_Parameters = Ftrl_Parameters()
 
     def set_algorithm(self):
         self.algorithm = tf.keras.optimizers.Ftrl(
-            learning_rate=self.parameter.learning_rate,
-            learning_rate_power=self.parameter.learning_rate_power,
-            initial_accumulator_value=self.parameter.initial_accumulator_value,
-            l1_regularization_strength=self.parameter.l1_regularization_strength,
-            l2_regularization_strength=self.parameter.l2_regularization_strength,
-            l2_shrinkage_regularization_strength=self.parameter.l2_shrinkage_regularization_strength,
-            beta=self.parameter.beta,
+            learning_rate=self.hyperparameters.learning_rate,
+            learning_rate_power=self.hyperparameters.learning_rate_power,
+            initial_accumulator_value=self.hyperparameters.initial_accumulator_value,
+            l1_regularization_strength=self.hyperparameters.l1_regularization_strength,
+            l2_regularization_strength=self.hyperparameters.l2_regularization_strength,
+            l2_shrinkage_regularization_strength=self.hyperparameters.l2_shrinkage_regularization_strength,
+            beta=self.hyperparameters.beta,
         )
 
     def get_info(self) -> List[str]:

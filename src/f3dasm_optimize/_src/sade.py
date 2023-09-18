@@ -6,9 +6,9 @@ from dataclasses import dataclass
 from typing import List
 
 # Locals
-from f3dasm._imports import try_import
+from f3dasm import try_import
 from .adapters.pygmo_implementations import PygmoAlgorithm
-from f3dasm.optimization.optimizer import OptimizerParameters
+from f3dasm.optimization import OptimizerParameters
 
 # Third-party extension
 with try_import('optimization') as _imports:
@@ -26,29 +26,33 @@ __status__ = 'Stable'
 
 
 @dataclass
-class PSO_Parameters(OptimizerParameters):
-    """Hyperparameters for PSO optimizer"""
+class SADE_Parameters(OptimizerParameters):
+    """Hyperparameters for Self-adaptive Differential Evolution optimizer"""
 
     population: int = 30
-    eta1: float = 2.05
-    eta2: float = 2.05
+    variant: int = 2
+    variant_adptv: int = 1
+    ftol: float = 0.0
+    xtol: float = 0.0
 
 
-class PSO(PygmoAlgorithm):
-    "Particle Swarm Optimization (Generational) optimizer implemented from pygmo"
+class SADE(PygmoAlgorithm):
+    "Self-adaptive Differential Evolution optimizer implemented from pygmo"
 
-    parameter: PSO_Parameters = PSO_Parameters()
+    hyperparameters: SADE_Parameters = SADE_Parameters()
 
     def set_algorithm(self):
         self.algorithm = pg.algorithm(
-            pg.pso_gen(
+            pg.sade(
                 gen=1,
+                variant=self.hyperparameters.variant,
+                variant_adptv=self.hyperparameters.variant_adptv,
+                ftol=self.hyperparameters.ftol,
+                xtol=self.hyperparameters.xtol,
                 memory=True,
                 seed=self.seed,
-                eta1=self.parameter.eta1,
-                eta2=self.parameter.eta2,
             )
         )
 
     def get_info(self) -> List[str]:
-        return ['Fast', 'Global', 'Derivative-Free', 'Population-Based', 'Single-Solution']
+        return ['Fast', 'Population-Based', 'Single-Solution']

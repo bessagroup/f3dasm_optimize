@@ -12,35 +12,36 @@ from pathlib import Path
 from typing import TYPE_CHECKING
 
 # Local
-from ._imports import _IntegrationModule
+from ._src._imports import _IntegrationModule
 
 if TYPE_CHECKING:
-    from ._all_optimizers import OPTIMIZERS
-    from ._version import __version__
-    from .adam import Adam, Adam_Parameters
-    from .adamax import Adamax, Adamax_Parameters
-    from .bayesianoptimization import (BayesianOptimization,
-                                       BayesianOptimization_Parameters)
-    from .cmaes import CMAES, CMAES_Parameters
-    from .differential_evoluation_nevergrad import \
+    from ._src._all_optimizers import OPTIMIZERS
+    from ._src._version import __version__
+    from ._src.adam import Adam, Adam_Parameters
+    from ._src.adamax import Adamax, Adamax_Parameters
+    from ._src.bayesianoptimization import (BayesianOptimization,
+                                            BayesianOptimization_Parameters)
+    from ._src.cmaes import CMAES, CMAES_Parameters
+    from ._src.differential_evoluation_nevergrad import \
         DifferentialEvolution_Nevergrad
-    from .differentialevolution import (DifferentialEvolution,
-                                        DifferentialEvolution_Parameters)
-    from .evosax_implementations import (EvoSaxCMAES, EvoSaxCMAES_Parameters,
-                                         EvoSaxDE, EvoSaxPSO, EvoSaxSimAnneal)
-    from .ftrl import Ftrl, Ftrl_Parameters
-    from .mma import MMA, MMA_Parameters
-    from .nadam import Nadam, Nadam_Parameters
-    from .pso import PSO, PSO_Parameters
-    from .pso_nevergrad import PSOConf, PSOConf_Parameters
-    from .rmsprop import RMSprop, RMSprop_Parameters
-    from .sade import SADE, SADE_Parameters
-    from .sea import SEA, SEA_Parameters
-    from .sga import SGA, SGA_Parameters
-    from .sgd import SGD, SGD_Parameters
-    from .simulatedannealing import (SimulatedAnnealing,
-                                     SimulatedAnnealing_Parameters)
-    from .xnes import XNES, XNES_Parameters
+    from ._src.differentialevolution import (DifferentialEvolution,
+                                             DifferentialEvolution_Parameters)
+    from ._src.evosax_implementations import (EvoSaxCMAES,
+                                              EvoSaxCMAES_Parameters, EvoSaxDE,
+                                              EvoSaxPSO, EvoSaxSimAnneal)
+    from ._src.ftrl import Ftrl, Ftrl_Parameters
+    from ._src.mma import MMA, MMA_Parameters
+    from ._src.nadam import Nadam, Nadam_Parameters
+    from ._src.pso import PSO, PSO_Parameters
+    from ._src.pso_nevergrad import PSOConf, PSOConf_Parameters
+    from ._src.rmsprop import RMSprop, RMSprop_Parameters
+    from ._src.sade import SADE, SADE_Parameters
+    from ._src.sea import SEA, SEA_Parameters
+    from ._src.sga import SGA, SGA_Parameters
+    from ._src.sgd import SGD, SGD_Parameters
+    from ._src.simulatedannealing import (SimulatedAnnealing,
+                                          SimulatedAnnealing_Parameters)
+    from ._src.xnes import XNES, XNES_Parameters
 
 #                                                          Authorship & Credits
 # =============================================================================
@@ -52,29 +53,29 @@ __status__ = 'Stable'
 # =============================================================================
 
 _import_structure: dict = {
-    "adam": ["Adam", "Adam_Parameters"],
-    "adamax": ["Adamax", "Adamax_Parameters"],
-    "bayesianoptimization": ["BayesianOptimization", "BayesianOptimization_Parameters"],
-    "cmaes": ["CMAES", "CMAES_Parameters"],
-    "differentialevolution": ["DifferentialEvolution", "DifferentialEvolution_Parameters"],
-    "ftrl": ["Ftrl", "Ftrl_Parameters"],
-    "nadam": ["Nadam", "Nadam_Parameters"],
-    "pso": ["PSO", "PSO_Parameters"],
-    "rmsprop": ["RMSprop", "RMSprop_Parameters"],
-    "sade": ["SADE", "SADE_Parameters"],
-    "sea": ["SEA", "SEA_Parameters"],
-    "sga": ["SGA", "SGA_Parameters"],
-    "sgd": ["SGD", "SGD_Parameters"],
-    "simulatedannealing": ["SimulatedAnnealing", "SimulatedAnnealing_Parameters"],
-    "xnes": ["XNES", "XNES_Parameters"],
-    "mma": ["MMA", "MMA_Parameters"],
-    "pso_nvergrad": ["PSOConf", "PSOConf_Parameters"],
-    "differentialevolution_nevergrad": ["DifferentialEvolution_Nevergrad",
-                                        "DifferentialEvolution_Nevergrad_Parameters"],
-    "evosax_implementations": ["EvoSaxCMAES", "EvoSaxPSO", "EvoSaxSimAnneal",
-                               "EvoSaxDE", "EvoSaxCMAES_Parameters"],
-    "_all_optimizers": ["OPTIMIZERS"],
-    "_version": ["__version__"],
+    "_src.adam": ["Adam", "Adam_Parameters"],
+    "_src.adamax": ["Adamax", "Adamax_Parameters"],
+    "_src.bayesianoptimization": ["BayesianOptimization", "BayesianOptimization_Parameters"],
+    "_src.cmaes": ["CMAES", "CMAES_Parameters"],
+    "_src.differentialevolution": ["DifferentialEvolution", "DifferentialEvolution_Parameters"],
+    "_src.ftrl": ["Ftrl", "Ftrl_Parameters"],
+    "_src.nadam": ["Nadam", "Nadam_Parameters"],
+    "_src.pso": ["PSO", "PSO_Parameters"],
+    "_src.rmsprop": ["RMSprop", "RMSprop_Parameters"],
+    "_src.sade": ["SADE", "SADE_Parameters"],
+    "_src.sea": ["SEA", "SEA_Parameters"],
+    "_src.sga": ["SGA", "SGA_Parameters"],
+    "_src.sgd": ["SGD", "SGD_Parameters"],
+    "_src.simulatedannealing": ["SimulatedAnnealing", "SimulatedAnnealing_Parameters"],
+    "_src.xnes": ["XNES", "XNES_Parameters"],
+    "_src.mma": ["MMA", "MMA_Parameters"],
+    "_src.pso_nvergrad": ["PSOConf", "PSOConf_Parameters"],
+    "_src.differentialevolution_nevergrad": ["DifferentialEvolution_Nevergrad",
+                                             "DifferentialEvolution_Nevergrad_Parameters"],
+    "_src.evosax_implementations": ["EvoSaxCMAES", "EvoSaxPSO", "EvoSaxSimAnneal",
+                                    "EvoSaxDE", "EvoSaxCMAES_Parameters"],
+    "_src._all_optimizers": ["OPTIMIZERS"],
+    "_src._version": ["__version__"],
 }
 
 if not TYPE_CHECKING:

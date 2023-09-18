@@ -5,8 +5,8 @@
 from dataclasses import dataclass
 
 # Locals
-from f3dasm._imports import try_import
-from f3dasm.optimization.optimizer import OptimizerParameters
+from f3dasm import try_import
+from f3dasm.optimization import OptimizerParameters
 
 from .adapters.nevergrad_implementations import NeverGradOptimizer
 

@@ -6,9 +6,10 @@ from dataclasses import dataclass
 from typing import List
 
 # Locals
-from f3dasm._imports import try_import
+from f3dasm import try_import
+from f3dasm.optimization import OptimizerParameters
+
 from .adapters.pygmo_implementations import PygmoAlgorithm
-from f3dasm.optimization.optimizer import OptimizerParameters
 
 # Third-party extension
 with try_import('optimization') as _imports:
@@ -26,33 +27,41 @@ __status__ = 'Stable'
 
 
 @dataclass
-class SADE_Parameters(OptimizerParameters):
-    """Hyperparameters for Self-adaptive Differential Evolution optimizer"""
+class XNES_Parameters(OptimizerParameters):
+    """Hyperparameters for XNES optimizer
+
+
+    """
 
     population: int = 30
-    variant: int = 2
-    variant_adptv: int = 1
-    ftol: float = 0.0
-    xtol: float = 0.0
+    eta_mu: float = -1.0
+    eta_sigma: float = -1.0
+    eta_b: float = -1.0
+    sigma0: float = -1.0
+    ftol: float = 1e-06
+    xtol: float = 1e-06
 
 
-class SADE(PygmoAlgorithm):
-    "Self-adaptive Differential Evolution optimizer implemented from pygmo"
+class XNES(PygmoAlgorithm):
+    """XNES optimizer implemented from pygmo"""
 
-    parameter: SADE_Parameters = SADE_Parameters()
+    hyperparameters: XNES_Parameters = XNES_Parameters()
 
     def set_algorithm(self):
         self.algorithm = pg.algorithm(
-            pg.sade(
+            pg.xnes(
                 gen=1,
-                variant=self.parameter.variant,
-                variant_adptv=self.parameter.variant_adptv,
-                ftol=self.parameter.ftol,
-                xtol=self.parameter.xtol,
+                eta_mu=self.hyperparameters.eta_mu,
+                eta_sigma=self.hyperparameters.eta_sigma,
+                eta_b=self.hyperparameters.eta_b,
+                sigma0=self.hyperparameters.sigma0,
+                ftol=self.hyperparameters.ftol,
+                xtol=self.hyperparameters.xtol,
                 memory=True,
+                force_bounds=self.hyperparameters.force_bounds,
                 seed=self.seed,
             )
         )
 
     def get_info(self) -> List[str]:
-        return ['Fast', 'Population-Based', 'Single-Solution']
+        return ['Stable', 'Global', 'Population-Based']

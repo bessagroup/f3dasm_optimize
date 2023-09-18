@@ -2,16 +2,16 @@
 # =============================================================================
 
 # Standard
-from dataclasses import dataclass
-from typing import Any, List, Tuple
+from typing import List, Optional, Tuple
 
 # Third-party core
 import autograd.numpy as np
 # Locals
-from f3dasm._imports import try_import
-from f3dasm.optimization.optimizer import Optimizer
+from f3dasm import try_import
+from f3dasm.design import ExperimentData, ExperimentSample
+from f3dasm.optimization import Optimizer
 
-from .._protocol import Domain, Function
+from .._protocol import DataGenerator, Domain
 
 # Third-party extension
 with try_import('optimization') as _imports:
@@ -27,7 +27,6 @@ __status__ = 'Stable'
 # =============================================================================
 
 
-@dataclass
 class _PygmoProblem:
     """Convert a testproblem from the problemset to pygmo object
 
@@ -41,12 +40,13 @@ class _PygmoProblem:
         seed for the random number generator
         _description_
     """
-    domain: Domain
-    func: Function
-    seed: Any or int = None
 
-    def __post_init__(self):
-        if self.seed:
+    def __init__(self, domain: Domain, func: DataGenerator, seed: Optional[int] = None):
+        self.domain = domain
+        self.func = func
+        self.seed = seed
+
+        if self.seed is not None:
             pg.set_global_rng_seed(self.seed)
 
     def fitness(self, x: np.ndarray) -> np.ndarray:
@@ -61,7 +61,9 @@ class _PygmoProblem:
         -------
             fitness
         """
-        return self.func(x).ravel()  # pygmo doc: should output 1D numpy array
+        evaluated_sample: ExperimentSample = self.func.run(ExperimentSample.from_numpy(x))
+        _, y_ = evaluated_sample.to_numpy()
+        return y_.ravel()  # pygmo doc: should output 1D numpy array
 
     def batch_fitness(self, x: np.ndarray) -> np.ndarray:
         """Pygmo representation of returning multiple objective values of a function
@@ -90,23 +92,7 @@ class _PygmoProblem:
             [parameter.upper_bound for parameter in self.domain.get_continuous_parameters().values()],
         )
 
-    def gradient(self, x: np.ndarray):
-        """Gradient in pygmo accepted format
 
-        Parameters
-        ----------
-        x
-            input vector
-
-        Returns
-        -------
-            gradient
-        """
-        # return pg.estimate_gradient(lambda x: self.fitness(x), x)
-        return self.func.dfdx(x)
-
-
-@dataclass
 class PygmoAlgorithm(Optimizer):
     """Wrapper around the pygmo algorithm class
 
@@ -126,8 +112,7 @@ class PygmoAlgorithm(Optimizer):
     def _check_imports():
         _imports.check()
 
-    @staticmethod
-    def set_seed(seed: int):
+    def set_seed(self):
         """Set the seed for pygmo
 
         Parameters
@@ -135,9 +120,9 @@ class PygmoAlgorithm(Optimizer):
         seed
             seed for the random number generator
         """
-        pg.set_global_rng_seed(seed=seed)
+        pg.set_global_rng_seed(seed=self.seed)
 
-    def update_step(self, function: Function) -> Tuple[np.ndarray, np.ndarray]:
+    def update_step(self, data_generator: DataGenerator) -> ExperimentData:
         """Update step of the algorithm
 
         Parameters
@@ -152,20 +137,20 @@ class PygmoAlgorithm(Optimizer):
         # Construct the PygmoProblem
         prob = pg.problem(
             _PygmoProblem(
-                domain=self.data.domain,
-                func=function,
+                domain=self.domain,
+                func=data_generator,
                 seed=self.seed,
             )
         )
 
         # Construct the population
-        pop = pg.population(prob, size=self.parameter.population)
+        pop = pg.population(prob, size=self.hyperparameters.population)
 
         # Set the population to the latest datapoints
         pop_x = self.data.get_input_data(
-        ).iloc[-self.parameter.population:].to_numpy()
+        ).iloc[-self.hyperparameters.population:].to_numpy()
         pop_fx = self.data.get_output_data(
-        ).iloc[-self.parameter.population:].to_numpy()
+        ).iloc[-self.hyperparameters.population:].to_numpy()
 
         for index, (x, fx) in enumerate(zip(pop_x, pop_fx)):
             pop.set_xf(index, x, fx)
@@ -173,4 +158,8 @@ class PygmoAlgorithm(Optimizer):
         # Iterate one step
         pop = self.algorithm.evolve(pop)
 
-        return pop.get_x(), pop.get_f()
+        # return the data
+        return ExperimentData.from_numpy(domain=self.domain,
+                                         input_array=pop.get_x(),
+                                         output_array=pop.get_f())
+

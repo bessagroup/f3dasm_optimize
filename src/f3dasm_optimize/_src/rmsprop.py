@@ -6,9 +6,10 @@ from dataclasses import dataclass
 from typing import List
 
 # Locals
-from f3dasm._imports import try_import
+from f3dasm import try_import
+from f3dasm.optimization import OptimizerParameters
+
 from .adapters.tensorflow_implementations import TensorflowOptimizer
-from f3dasm.optimization.optimizer import OptimizerParameters
 
 # Third-party extension
 with try_import('optimization') as _imports:
@@ -25,29 +26,29 @@ __status__ = 'Stable'
 
 
 @dataclass
-class Nadam_Parameters(OptimizerParameters):
-    """Hyperparameters for Momentum optimizer
-    )
-    """
+class RMSprop_Parameters(OptimizerParameters):
+    """Hyperparameters for RMSprop optimizer"""
 
     learning_rate: float = 0.001
-    beta_1: float = 0.9
-    beta_2: float = 0.999
+    rho: float = 0.9
+    momentum: float = 0.0
     epsilon: float = 1e-07
+    centered: bool = False
 
 
-class Nadam(TensorflowOptimizer):
-    """Nadam"""
+class RMSprop(TensorflowOptimizer):
+    """RMSprop"""
 
-    parameter: Nadam_Parameters = Nadam_Parameters()
+    hyperparameters: RMSprop_Parameters = RMSprop_Parameters()
 
     def set_algorithm(self):
-        self.algorithm = tf.keras.optimizers.Nadam(
-            learning_rate=self.parameter.learning_rate,
-            beta_1=self.parameter.beta_1,
-            beta_2=self.parameter.beta_2,
-            epsilon=self.parameter.epsilon,
+        self.algorithm = tf.keras.optimizers.RMSprop(
+            learning_rate=self.hyperparameters.learning_rate,
+            rho=self.hyperparameters.rho,
+            momentum=self.hyperparameters.momentum,
+            epsilon=self.hyperparameters.epsilon,
+            centered=self.hyperparameters.centered,
         )
 
     def get_info(self) -> List[str]:
-        return ['Stable', 'Global', 'First-Order', 'Single-Solution']
+        return ['Stable', 'Single-Solution']

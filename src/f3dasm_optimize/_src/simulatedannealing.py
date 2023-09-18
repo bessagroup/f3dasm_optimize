@@ -6,9 +6,9 @@ from dataclasses import dataclass
 from typing import List
 
 # Locals
-from f3dasm._imports import try_import
+from f3dasm import try_import
 from .adapters.pygmo_implementations import PygmoAlgorithm
-from f3dasm.optimization.optimizer import OptimizerParameters
+from f3dasm.optimization import OptimizerParameters
 
 # Third-party extension
 with try_import('optimization') as _imports:
@@ -41,17 +41,17 @@ class SimulatedAnnealing_Parameters(OptimizerParameters):
 class SimulatedAnnealing(PygmoAlgorithm):
     "DifferentialEvolution optimizer implemented from pygmo"
 
-    parameter: SimulatedAnnealing_Parameters = SimulatedAnnealing_Parameters()
+    hyperparameters: SimulatedAnnealing_Parameters = SimulatedAnnealing_Parameters()
 
     def set_algorithm(self):
         self.algorithm = pg.algorithm(
             pg.simulated_annealing(
-                Ts=self.parameter.Ts,
-                Tf=self.parameter.Tf,
-                n_T_adj=self.parameter.n_T_adj,
-                n_range_adj=self.parameter.n_range_adj,
-                bin_size=self.parameter.bin_size,
-                start_range=self.parameter.start_range,
+                Ts=self.hyperparameters.Ts,
+                Tf=self.hyperparameters.Tf,
+                n_T_adj=self.hyperparameters.n_T_adj,
+                n_range_adj=self.hyperparameters.n_range_adj,
+                bin_size=self.hyperparameters.bin_size,
+                start_range=self.hyperparameters.start_range,
                 seed=self.seed,
             )
         )

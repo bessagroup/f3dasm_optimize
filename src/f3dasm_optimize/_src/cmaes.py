@@ -6,8 +6,8 @@ from dataclasses import dataclass
 from typing import List
 
 # Locals
-from f3dasm._imports import try_import
-from f3dasm.optimization.optimizer import OptimizerParameters
+from f3dasm import try_import
+from f3dasm.optimization import OptimizerParameters
 
 from .adapters.pygmo_implementations import PygmoAlgorithm
 
@@ -27,22 +27,26 @@ __status__ = 'Stable'
 
 
 @dataclass
-class MMA_Parameters(OptimizerParameters):
-    """Hyperparameters for MMA optimizer"""
-    ...
+class CMAES_Parameters(OptimizerParameters):
+    """Hyperparameters for CMAES optimizer"""
+
+    population: int = 30
 
 
-class MMA(PygmoAlgorithm):
-    """Method of Movinging Asymptotes optimizer implemented from pygmo, ported from NLOpt"""
+class CMAES(PygmoAlgorithm):
+    """Covariance Matrix Adaptation Evolution Strategy optimizer implemented from pygmo"""
 
-    parameter: MMA_Parameters = MMA_Parameters()
+    hyperparameters: CMAES_Parameters = CMAES_Parameters()
 
     def set_algorithm(self):
         self.algorithm = pg.algorithm(
-            pg.nlopt(
-                solver='mma'
+            pg.cmaes(
+                gen=1,
+                memory=True,
+                seed=self.seed,
+                force_bounds=self.hyperparameters.force_bounds,
             )
         )
 
     def get_info(self) -> List[str]:
-        return ['Stable', 'Local', 'Single-Solution']
+        return ['Stable', 'Global', 'Population-Based']

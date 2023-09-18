@@ -4,6 +4,8 @@ Protocol classes from types outside the optimization submodule
 #                                                                       Modules
 # =============================================================================
 
+from __future__ import annotations
+
 # Standard
 try:
     from typing import Protocol
@@ -26,7 +28,7 @@ __status__ = 'Stable'
 class Domain(Protocol):
     """Protocol class for the domain"""
 
-    def get_continuous_input_parameters(self):  # List[ContinuousParameter]
+    def get_continuous_parameters(self):  # List[ContinuousParameter]
         ...
 
 
@@ -39,4 +41,11 @@ class Function(Protocol):
 
     def dfdx_legacy(x: np.ndarray) -> np.ndarray:
         """Retrieve the gradient. Legacy code!"""
+        ...
+
+class ExperimentSample(Protocol):
+    ...
+
+class DataGenerator(Protocol):
+    def run(self, experiment_sample: ExperimentSample) -> ExperimentSample:
         ...

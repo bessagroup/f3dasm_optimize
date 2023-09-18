@@ -1,3 +1,6 @@
+"""
+Information on the Adam optimizer
+"""
 #                                                                       Modules
 # =============================================================================
 
@@ -6,13 +9,15 @@ from dataclasses import dataclass
 from typing import List
 
 # Locals
-from f3dasm._imports import try_import
+from f3dasm import try_import
+from f3dasm.optimization import OptimizerParameters
+
 from .adapters.tensorflow_implementations import TensorflowOptimizer
-from f3dasm.optimization.optimizer import OptimizerParameters
 
 # Third-party extension
 with try_import('optimization') as _imports:
     import tensorflow as tf
+
 
 #                                                          Authorship & Credits
 # =============================================================================
@@ -25,29 +30,29 @@ __status__ = 'Stable'
 
 
 @dataclass
-class RMSprop_Parameters(OptimizerParameters):
-    """Hyperparameters for RMSprop optimizer"""
+class Adam_Parameters(OptimizerParameters):
+    """Hyperparameters for Adam optimizer"""
 
     learning_rate: float = 0.001
-    rho: float = 0.9
-    momentum: float = 0.0
+    beta_1: float = 0.9
+    beta_2: float = 0.999
     epsilon: float = 1e-07
-    centered: bool = False
+    amsgrad: bool = False
 
 
-class RMSprop(TensorflowOptimizer):
-    """RMSprop"""
+class Adam(TensorflowOptimizer):
+    """Adam"""
 
-    parameter: RMSprop_Parameters = RMSprop_Parameters()
+    hyperparameters: Adam_Parameters = Adam_Parameters()
 
     def set_algorithm(self):
-        self.algorithm = tf.keras.optimizers.RMSprop(
-            learning_rate=self.parameter.learning_rate,
-            rho=self.parameter.rho,
-            momentum=self.parameter.momentum,
-            epsilon=self.parameter.epsilon,
-            centered=self.parameter.centered,
+        self.algorithm = tf.keras.optimizers.Adam(
+            learning_rate=self.hyperparameters.learning_rate,
+            beta_1=self.hyperparameters.beta_1,
+            beta_2=self.hyperparameters.beta_2,
+            epsilon=self.hyperparameters.epsilon,
+            amsgrad=self.hyperparameters.amsgrad,
         )
 
     def get_info(self) -> List[str]:
-        return ['Stable', 'Single-Solution']
+        return ['Stable', 'Global', 'First-Order', 'Single-Solution']

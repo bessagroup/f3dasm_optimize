@@ -6,9 +6,9 @@ from dataclasses import dataclass
 from typing import List
 
 # Locals
-from f3dasm._imports import try_import
+from f3dasm import try_import
 from .adapters.pygmo_implementations import PygmoAlgorithm
-from f3dasm.optimization.optimizer import OptimizerParameters
+from f3dasm.optimization import OptimizerParameters
 
 # Third-party extension
 with try_import('optimization') as _imports:
@@ -26,41 +26,24 @@ __status__ = 'Stable'
 
 
 @dataclass
-class XNES_Parameters(OptimizerParameters):
-    """Hyperparameters for XNES optimizer
-
-
-    """
+class SEA_Parameters(OptimizerParameters):
+    """Hyperparameters for SEA optimizer"""
 
     population: int = 30
-    eta_mu: float = -1.0
-    eta_sigma: float = -1.0
-    eta_b: float = -1.0
-    sigma0: float = -1.0
-    ftol: float = 1e-06
-    xtol: float = 1e-06
 
 
-class XNES(PygmoAlgorithm):
-    """XNES optimizer implemented from pygmo"""
+class SEA(PygmoAlgorithm):
+    """Simple Evolutionary Algorithm optimizer implemented from pygmo"""
 
-    parameter: XNES_Parameters = XNES_Parameters()
+    hyperparameters: SEA_Parameters = SEA_Parameters()
 
     def set_algorithm(self):
         self.algorithm = pg.algorithm(
-            pg.xnes(
+            pg.sea(
                 gen=1,
-                eta_mu=self.parameter.eta_mu,
-                eta_sigma=self.parameter.eta_sigma,
-                eta_b=self.parameter.eta_b,
-                sigma0=self.parameter.sigma0,
-                ftol=self.parameter.ftol,
-                xtol=self.parameter.xtol,
-                memory=True,
-                force_bounds=self.parameter.force_bounds,
                 seed=self.seed,
             )
         )
 
     def get_info(self) -> List[str]:
-        return ['Stable', 'Global', 'Population-Based']
+        return ['Fast', 'Global', 'Derivative-Free', 'Population-Based']

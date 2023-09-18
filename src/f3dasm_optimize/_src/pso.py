@@ -6,9 +6,9 @@ from dataclasses import dataclass
 from typing import List
 
 # Locals
-from f3dasm._imports import try_import
+from f3dasm import try_import
 from .adapters.pygmo_implementations import PygmoAlgorithm
-from f3dasm.optimization.optimizer import OptimizerParameters
+from f3dasm.optimization import OptimizerParameters
 
 # Third-party extension
 with try_import('optimization') as _imports:
@@ -26,41 +26,27 @@ __status__ = 'Stable'
 
 
 @dataclass
-class DifferentialEvolution_Parameters(OptimizerParameters):
-    """Hyperparameters for DifferentialEvolution optimizer
-
-    Args:
-        population (int): _description_ (Default = 30)
-        F (float): _description_ (Default = 0.8)
-        CR (float): _description_ (Default = 0.9)
-        variant (int): _description_ (Default = 2)
-        ftol (float): _description_ (Default = 0.0)
-        xtol (float): _description_ (Default = 0.0)
-    """
+class PSO_Parameters(OptimizerParameters):
+    """Hyperparameters for PSO optimizer"""
 
     population: int = 30
-    F: float = 0.8
-    CR: float = 0.9
-    variant: int = 2
-    ftol: float = 0.0
-    xtol: float = 0.0
+    eta1: float = 2.05
+    eta2: float = 2.05
 
 
-class DifferentialEvolution(PygmoAlgorithm):
-    "DifferentialEvolution optimizer implemented from pygmo"
+class PSO(PygmoAlgorithm):
+    "Particle Swarm Optimization (Generational) optimizer implemented from pygmo"
 
-    parameter: DifferentialEvolution_Parameters = DifferentialEvolution_Parameters()
+    hyperparameters: PSO_Parameters = PSO_Parameters()
 
     def set_algorithm(self):
         self.algorithm = pg.algorithm(
-            pg.de(
+            pg.pso_gen(
                 gen=1,
-                F=self.parameter.F,
-                CR=self.parameter.CR,
-                variant=self.parameter.variant,
-                ftol=self.parameter.ftol,
-                xtol=self.parameter.xtol,
+                memory=True,
                 seed=self.seed,
+                eta1=self.hyperparameters.eta1,
+                eta2=self.hyperparameters.eta2,
             )
         )
 

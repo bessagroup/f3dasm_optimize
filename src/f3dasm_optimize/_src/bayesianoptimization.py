@@ -6,8 +6,8 @@ from dataclasses import dataclass
 from typing import Any, List
 
 # Locals
-from f3dasm._imports import try_import
-from f3dasm.optimization.optimizer import Optimizer, OptimizerParameters
+from f3dasm import try_import
+from f3dasm.optimization import Optimizer, OptimizerParameters
 
 from ._protocol import Function
 

@@ -6,14 +6,14 @@ from dataclasses import dataclass
 from typing import List
 
 # Locals
-from f3dasm._imports import try_import
-from .adapters.pygmo_implementations import PygmoAlgorithm
-from f3dasm.optimization.optimizer import OptimizerParameters
+from f3dasm import try_import
+from f3dasm.optimization import OptimizerParameters
+
+from .adapters.tensorflow_implementations import TensorflowOptimizer
 
 # Third-party extension
 with try_import('optimization') as _imports:
-    import pygmo as pg
-
+    import tensorflow as tf
 
 #                                                          Authorship & Credits
 # =============================================================================
@@ -26,26 +26,25 @@ __status__ = 'Stable'
 
 
 @dataclass
-class CMAES_Parameters(OptimizerParameters):
-    """Hyperparameters for CMAES optimizer"""
+class SGD_Parameters(OptimizerParameters):
+    """Hyperparameters for Momentum optimizer"""
 
-    population: int = 30
+    learning_rate: float = 0.01
+    momentum: float = 0.0
+    nesterov: bool = False
 
 
-class CMAES(PygmoAlgorithm):
-    """Covariance Matrix Adaptation Evolution Strategy optimizer implemented from pygmo"""
+class SGD(TensorflowOptimizer):
+    """SGD"""
 
-    parameter: CMAES_Parameters = CMAES_Parameters()
+    hyperparameters: SGD_Parameters = SGD_Parameters()
 
     def set_algorithm(self):
-        self.algorithm = pg.algorithm(
-            pg.cmaes(
-                gen=1,
-                memory=True,
-                seed=self.seed,
-                force_bounds=self.parameter.force_bounds,
-            )
+        self.algorithm = tf.keras.optimizers.SGD(
+            learning_rate=self.hyperparameters.learning_rate,
+            momentum=self.hyperparameters.momentum,
+            nesterov=self.hyperparameters.nesterov,
         )
 
     def get_info(self) -> List[str]:
-        return ['Stable', 'Global', 'Population-Based']
+        return ['Stable', 'First-Order', 'Single-Solution']

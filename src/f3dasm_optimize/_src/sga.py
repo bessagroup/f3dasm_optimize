@@ -6,9 +6,9 @@ from dataclasses import dataclass
 from typing import List
 
 # Locals
-from f3dasm._imports import try_import
+from f3dasm import try_import
 from .adapters.pygmo_implementations import PygmoAlgorithm
-from f3dasm.optimization.optimizer import OptimizerParameters
+from f3dasm.optimization import OptimizerParameters
 
 # Third-party extension
 with try_import('optimization') as _imports:
@@ -43,20 +43,20 @@ class SGA_Parameters(OptimizerParameters):
 class SGA(PygmoAlgorithm):
     """Simple Genetic Algorithm optimizer implemented from pygmo"""
 
-    parameter: SGA_Parameters = SGA_Parameters()
+    hyperparameters: SGA_Parameters = SGA_Parameters()
 
     def set_algorithm(self):
         self.algorithm = pg.algorithm(
             pg.sga(
                 gen=1,
-                cr=self.parameter.cr,
-                eta_c=self.parameter.eta_c,
-                m=self.parameter.m,
-                param_m=self.parameter.param_m,
-                param_s=self.parameter.param_s,
-                crossover=self.parameter.crossover,
-                mutation=self.parameter.mutation,
-                selection=self.parameter.selection,
+                cr=self.hyperparameters.cr,
+                eta_c=self.hyperparameters.eta_c,
+                m=self.hyperparameters.m,
+                param_m=self.hyperparameters.param_m,
+                param_s=self.hyperparameters.param_s,
+                crossover=self.hyperparameters.crossover,
+                mutation=self.hyperparameters.mutation,
+                selection=self.hyperparameters.selection,
                 seed=self.seed,
             )
         )

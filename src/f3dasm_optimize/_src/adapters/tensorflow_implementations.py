@@ -3,15 +3,17 @@
 
 
 # Standard
-from typing import Callable, Tuple
+from typing import Callable
 
 # Third-party
 import autograd.core
 import autograd.numpy as np
 from autograd import elementwise_grad as egrad
-from f3dasm._imports import try_import
-from f3dasm.datageneration.functions import Function
-from f3dasm.optimization.optimizer import Optimizer
+from f3dasm import ExperimentData, try_import
+from f3dasm.design import ExperimentSample
+from f3dasm.optimization import Optimizer
+
+from .._protocol import DataGenerator
 
 # Third-party extension
 with try_import('optimization') as _imports:
@@ -37,40 +39,44 @@ class TensorflowOptimizer(Optimizer):
     def _check_imports():
         _imports.check()
 
-    def init_parameters(self):
+    def update_step(self, data_generator: DataGenerator) -> ExperimentData:
+        with tf.GradientTape() as tape:
+            tape.watch(self.args["tvars"])
+            logits = 0.0 + tf.cast(self.args["model"](None), tf.float64)  # tf.float32
+            loss = self.args["func"](tf.reshape(
+                logits, (len(self.domain))))
+
+        grads = tape.gradient(loss, self.args["tvars"])
+        self.algorithm.apply_gradients(zip(grads, self.args["tvars"]))
+
+        x = logits.numpy().copy()
+        y = loss.numpy().copy()
+
+        # return the data
+        return ExperimentData.from_numpy(domain=self.domain,
+                                         input_array=x,
+                                         output_array=np.atleast_2d(np.array(y)))
+
+    def _construct_model(self, data_generator: DataGenerator):
         self.args = {}
 
-    def update_step(self, function: Function) -> Tuple[np.ndarray, np.ndarray]:
-        if not isinstance(function, Function):
-            logits = self.data.get_input_data().iloc[-1].to_numpy()
-            x, y = function.tf_apply_gradients(weights=logits, optimizer=self.algorithm)
-        else:
-            with tf.GradientTape() as tape:
-                tape.watch(self.args["tvars"])
-                logits = 0.0 + tf.cast(self.args["model"](None), tf.float64)
-                loss = self.args["func"](tf.reshape(
-                    logits, (len(self.data.domain))))
+        def fitness(x: np.ndarray) -> np.ndarray:
+            evaluated_sample: ExperimentSample = data_generator.run(ExperimentSample.from_numpy(x))
+            _, y_ = evaluated_sample.to_numpy()
+            return y_
 
-            grads = tape.gradient(loss, self.args["tvars"])
-            self.algorithm.apply_gradients(zip(grads, self.args["tvars"]))
-
-            x = logits.numpy().copy()
-            y = loss.numpy().copy()
-
-        return x, y
-
-    def _construct_model(self, function: Function):
         self.args["model"] = _SimpelModel(
             None,
             args={
-                "dim": len(self.data.domain),
-                "x0": self.data.get_n_best_input_parameters_numpy(self.parameter.population),
-                "bounds": self.data.domain.get_bounds(),
+                "dim": len(self.domain),
+                "x0": self.data.get_n_best_input_parameters_numpy(self.hyperparameters.population),
+                "bounds": self.domain.get_bounds(),
             },
         )  # Build the model
         self.args["tvars"] = self.args["model"].trainable_variables
 
-        self.args["func"] = _convert_autograd_to_tensorflow(function.__call__)
+        # TODO: This is an important conversion!!
+        self.args["func"] = _convert_autograd_to_tensorflow(data_generator.__call__)
 
 
 def _convert_autograd_to_tensorflow(func: Callable):
