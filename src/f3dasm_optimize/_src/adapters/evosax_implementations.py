@@ -1,9 +1,11 @@
 
+from typing import Tuple
+
+import numpy as np
 from f3dasm import try_import
-from f3dasm import ExperimentData
 from f3dasm.optimization import Optimizer
 
-from .._protocol import DataGenerator
+from .._protocol import DataGenerator, ExperimentSample
 
 # Third-party extension
 with try_import('optimization') as _imports:
@@ -32,26 +34,27 @@ class EvoSaxOptimizer(Optimizer):
     def set_seed(self) -> None:
         ...
 
-    def reset(self):
+    def reset(self, data):
         self._check_imports()
         self.set_algorithm()
 
-    def update_step(self, data_generator: DataGenerator) -> ExperimentData:
+    def update_step(self, data_generator: DataGenerator) -> Tuple[np.ndarray, np.ndarray]:
         _, rng_ask = jax.random.split(jax.random.PRNGKey(self.seed))
 
         # Ask for a set candidates
         x, state = self.algorithm.ask(rng_ask, self.state, self.evosax_param)
 
         # Evaluate the candidates
-        x_experimentdata = ExperimentData.from_numpy(domain=self.domain, input_array=x)
-        x_experimentdata.run(data_generator)
 
-        _, y = x_experimentdata.to_numpy()
+        # Evaluate the candidates
+        y = []
+        for x_i in np.array(x):
+            experiment_sample = ExperimentSample.from_numpy(input_array=x_i)
+            data_generator.run(experiment_sample)
+            y.append(experiment_sample.to_numpy()[1])
+
+        y = np.array(y).ravel()
 
         # Update the strategy based on fitness
         self.state = self.algorithm.tell(x, y.ravel(), state, self.evosax_param)
-
-        # return the data
-        return ExperimentData.from_numpy(domain=self.domain,
-                                         input_array=x,
-                                         output_array=y)
+        return np.array(x), y

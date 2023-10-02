@@ -3,17 +3,16 @@
 
 
 # Standard
-from typing import Callable
+from typing import Callable, Tuple
 
 # Third-party
 import autograd.core
 import autograd.numpy as np
 from autograd import elementwise_grad as egrad
-from f3dasm import ExperimentData, try_import
-from f3dasm.design import ExperimentSample
+from f3dasm import try_import
 from f3dasm.optimization import Optimizer
 
-from .._protocol import DataGenerator
+from .._protocol import DataGenerator, ExperimentSample
 
 # Third-party extension
 with try_import('optimization') as _imports:
@@ -39,7 +38,7 @@ class TensorflowOptimizer(Optimizer):
     def _check_imports():
         _imports.check()
 
-    def update_step(self, data_generator: DataGenerator) -> ExperimentData:
+    def update_step(self, data_generator: DataGenerator) -> Tuple[np.ndarray, np.ndarray]:
         with tf.GradientTape() as tape:
             tape.watch(self.args["tvars"])
             logits = 0.0 + tf.cast(self.args["model"](None), tf.float64)  # tf.float32
@@ -53,9 +52,7 @@ class TensorflowOptimizer(Optimizer):
         y = loss.numpy().copy()
 
         # return the data
-        return ExperimentData.from_numpy(domain=self.domain,
-                                         input_array=x,
-                                         output_array=np.atleast_2d(np.array(y)))
+        return x, np.atleast_2d(np.array(y))
 
     def _construct_model(self, data_generator: DataGenerator):
         self.args = {}
@@ -69,7 +66,7 @@ class TensorflowOptimizer(Optimizer):
             None,
             args={
                 "dim": len(self.domain),
-                "x0": self.data.get_n_best_input_parameters_numpy(self.hyperparameters.population),
+                "x0": self.data.get_n_best_output(self.hyperparameters.population).to_numpy()[0],
                 "bounds": self.domain.get_bounds(),
             },
         )  # Build the model

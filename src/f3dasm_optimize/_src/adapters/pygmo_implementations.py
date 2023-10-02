@@ -8,10 +8,9 @@ from typing import List, Optional, Tuple
 import autograd.numpy as np
 # Locals
 from f3dasm import try_import
-from f3dasm.design import ExperimentData, ExperimentSample
 from f3dasm.optimization import Optimizer
 
-from .._protocol import DataGenerator, Domain
+from .._protocol import DataGenerator, Domain, ExperimentSample
 
 # Third-party extension
 with try_import('optimization') as _imports:
@@ -122,7 +121,7 @@ class PygmoAlgorithm(Optimizer):
         """
         pg.set_global_rng_seed(seed=self.seed)
 
-    def update_step(self, data_generator: DataGenerator) -> ExperimentData:
+    def update_step(self, data_generator: DataGenerator) -> Tuple[np.ndarray, np.ndarray]:
         """Update step of the algorithm
 
         Parameters
@@ -147,10 +146,8 @@ class PygmoAlgorithm(Optimizer):
         pop = pg.population(prob, size=self.hyperparameters.population)
 
         # Set the population to the latest datapoints
-        pop_x = self.data.get_input_data(
-        ).iloc[-self.hyperparameters.population:].to_numpy()
-        pop_fx = self.data.get_output_data(
-        ).iloc[-self.hyperparameters.population:].to_numpy()
+        pop_x = self.data.input_data.to_dataframe().iloc[-self.hyperparameters.population:].to_numpy()
+        pop_fx = self.data.output_data.to_dataframe().iloc[-self.hyperparameters.population:].to_numpy()
 
         for index, (x, fx) in enumerate(zip(pop_x, pop_fx)):
             pop.set_xf(index, x, fx)
@@ -159,7 +156,4 @@ class PygmoAlgorithm(Optimizer):
         pop = self.algorithm.evolve(pop)
 
         # return the data
-        return ExperimentData.from_numpy(domain=self.domain,
-                                         input_array=pop.get_x(),
-                                         output_array=pop.get_f())
-
+        return pop.get_x(), pop.get_f()
