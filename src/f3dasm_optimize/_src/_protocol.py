@@ -6,9 +6,9 @@ Protocol classes from types outside the optimization submodule
 
 from __future__ import annotations
 
+# Standard
 from typing import Any, Dict, Optional, Tuple, Type
 
-# Standard
 try:
     from typing import Protocol
 except ImportError:  # Python 3.7
@@ -27,22 +27,14 @@ __status__ = 'Stable'
 # =============================================================================
 
 
+class _Data(Protocol):
+    ...
+
+
 class Domain(Protocol):
     """Protocol class for the domain"""
 
     def get_continuous_parameters(self):  # List[ContinuousParameter]
-        ...
-
-
-class Function(Protocol):
-    """Protocol class for the function"""
-
-    def __call__(self) -> np.ndarray:
-        """Evaluate the lossfunction"""
-        ...
-
-    def dfdx_legacy(x: np.ndarray) -> np.ndarray:
-        """Retrieve the gradient. Legacy code!"""
         ...
 
 

@@ -3,19 +3,16 @@
 
 # Standard
 from dataclasses import dataclass
-from typing import Any, List
+from typing import Any, List, Tuple
 
-# Locals
-from f3dasm import try_import
-from f3dasm.optimization import Optimizer, OptimizerParameters
+# Third-party
+import GPy
+import GPyOpt
+import numpy as np
 
-from ._protocol import Function
-
-# Third-party extension
-with try_import('optimization') as _imports:
-    import GPy
-    import GPyOpt
-
+# Local
+from ._protocol import DataGenerator
+from .optimizer import Optimizer, OptimizerParameters
 
 #                                                          Authorship & Credits
 # =============================================================================
@@ -50,11 +47,11 @@ class BayesianOptimization(Optimizer):
                 "type": "continuous",
                 "domain": (parameter.lower_bound, parameter.upper_bound),
             }
-            for name, parameter in self.data.domain.get_continuous_input_parameters().items()
+            for name, parameter in self.domain.get_continuous_input_parameters().items()
         ]
 
         kernel = GPy.kern.RBF(
-            input_dim=len(self.data.domain))
+            input_dim=len(self.domain))
 
         model = GPyOpt.models.gpmodel.GPModel(
             kernel=kernel,
@@ -93,16 +90,16 @@ class BayesianOptimization(Optimizer):
             de_duplication=self.parameter.de_duplication,
         )
 
-    def update_step(self, function: Function):
+    def update_step(self, data_generator: DataGenerator) -> Tuple[np.ndarray, None]:
 
         self.algorithm.objective = GPyOpt.core.task.SingleObjective(
-            function.__call__)
-        self.algorithm.X = self.data.get_input_data().to_numpy()
-        self.algorithm.Y = self.data.get_output_data().to_numpy()
+            data_generator.__call__)
+        self.algorithm.X = self.data.input_data.to_numpy()
+        self.algorithm.Y = self.data.output_data.to_numpy()
 
         x_new = self.algorithm.suggest_next_locations()
 
-        self.data.add_numpy_arrays(input=x_new, output=function(x_new))
+        return x_new, None
 
     def get_info(self) -> List[str]:
         return ['Stable', 'Robust', 'Global', 'Noisy', 'Derivative-Free', 'Single-Solution']

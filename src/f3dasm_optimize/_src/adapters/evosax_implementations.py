@@ -1,16 +1,26 @@
+#                                                                       Modules
+# =============================================================================
 
+# Standard
 from typing import Tuple
 
+# Third-party
+import jax
 import numpy as np
-from f3dasm import try_import
-from f3dasm.optimization import Optimizer
+from evosax import Strategy
 
+# Local
 from .._protocol import DataGenerator, ExperimentSample
+from ..optimizer import Optimizer
 
-# Third-party extension
-with try_import('optimization') as _imports:
-    import jax
-    from evosax import Strategy
+#                                                          Authorship & Credits
+# =============================================================================
+__author__ = 'Martin van der Schelling (M.P.vanderSchelling@tudelft.nl)'
+__credits__ = ['Martin van der Schelling']
+__status__ = 'Stable'
+# =============================================================================
+#
+# =============================================================================
 
 
 class EvoSaxOptimizer(Optimizer):

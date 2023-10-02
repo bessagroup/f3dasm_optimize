@@ -4,16 +4,12 @@
 # Standard
 from dataclasses import dataclass
 
-# Locals
-from f3dasm import try_import
-from f3dasm.optimization import OptimizerParameters
+# Third-party
+import nevergrad as ng
 
+# Local
 from .adapters.nevergrad_implementations import NeverGradOptimizer
-
-# Third-party extension
-with try_import('optimization') as _imports:
-    import nevergrad as ng
-
+from .optimizer import OptimizerParameters
 
 #                                                          Authorship & Credits
 # =============================================================================
@@ -26,7 +22,7 @@ __status__ = 'Stable'
 
 
 @dataclass
-class DifferentialEvolution_Nevergrad_Parameters(OptimizerParameters):
+class NevergradDE_Parameters(OptimizerParameters):
     population: int = 30
     initialization: str = 'parametrization'
     scale: float = 1.0
@@ -36,13 +32,13 @@ class DifferentialEvolution_Nevergrad_Parameters(OptimizerParameters):
     F2: float = 0.8
 
 
-class DifferentialEvolution_Nevergrad(NeverGradOptimizer):
+class NevergradDE(NeverGradOptimizer):
 
-    hyperparameters: DifferentialEvolution_Nevergrad_Parameters = DifferentialEvolution_Nevergrad_Parameters()
+    hyperparameters: NevergradDE_Parameters = NevergradDE_Parameters()
 
     def set_algorithm(self):
-        p = ng.p.Array(shape=(len(self.data.domain),),
-                       lower=self.data.domain.get_bounds()[:, 0], upper=self.data.domain.get_bounds()[:, 1])
+        p = ng.p.Array(shape=(len(self.domain),),
+                       lower=self.domain.get_bounds()[:, 0], upper=self.domain.get_bounds()[:, 1])
         self.algorithm = ng.optimizers.DifferentialEvolution(initialization=self.hyperparameters.initialization,
                                                              popsize=self.hyperparameters.population,
                                                              scale=self.hyperparameters.scale,
@@ -50,3 +46,34 @@ class DifferentialEvolution_Nevergrad(NeverGradOptimizer):
                                                              crossover=self.hyperparameters.crossover,
                                                              F1=self.hyperparameters.F1,
                                                              F2=self.hyperparameters.F2)(p, budget=1e8)
+
+# =============================================================================
+
+
+@dataclass
+class NevergradPSO_Parameters(OptimizerParameters):
+    population: int = 40
+    transform: str = 'identity'
+    omega: float = 0.7213475204444817
+    phip: float = 1.1931471805599454
+    phig: float = 1.1931471805599454
+    qo: bool = False
+    sqo: bool = False
+    so: bool = False
+
+
+class NevergradPSO(NeverGradOptimizer):
+
+    parameter: NevergradPSO_Parameters = NevergradPSO_Parameters()
+
+    def set_algorithm(self):
+        p = ng.p.Array(shape=(len(self.domain),),
+                       lower=self.domain.get_bounds()[:, 0], upper=self.domain.get_bounds()[:, 1])
+        self.algorithm = ng.optimizers.ConfPSO(transform=self.parameter.transform,
+                                               popsize=self.parameter.population,
+                                               omega=self.parameter.omega,
+                                               phip=self.parameter.phip,
+                                               phig=self.parameter.phig,
+                                               qo=self.parameter.qo,
+                                               sqo=self.parameter.sqo,
+                                               so=self.parameter.so)(p, budget=1e8)

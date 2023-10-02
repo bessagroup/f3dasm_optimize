@@ -1,24 +1,19 @@
 #                                                                       Modules
 # =============================================================================
 
-
 # Standard
 from typing import Callable, Tuple
 
 # Third-party
 import autograd.core
 import autograd.numpy as np
+import tensorflow as tf
 from autograd import elementwise_grad as egrad
-from f3dasm import try_import
-from f3dasm.optimization import Optimizer
+from keras import Model
 
+# Local
 from .._protocol import DataGenerator, ExperimentSample
-
-# Third-party extension
-with try_import('optimization') as _imports:
-    import tensorflow as tf
-    from keras import Model
-
+from ..optimizer import Optimizer
 
 #                                                          Authorship & Credits
 # =============================================================================
@@ -29,14 +24,15 @@ __status__ = 'Stable'
 #
 # =============================================================================
 
-if not _imports.is_successful():
-    Model = object  # NOQA
+# if not _imports.is_successful():
+#     Model = object  # NOQA
 
 
 class TensorflowOptimizer(Optimizer):
     @staticmethod
     def _check_imports():
-        _imports.check()
+        # _imports.check()
+        ...
 
     def update_step(self, data_generator: DataGenerator) -> Tuple[np.ndarray, np.ndarray]:
         with tf.GradientTape() as tape:
