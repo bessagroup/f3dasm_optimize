@@ -38,18 +38,6 @@ class Domain(Protocol):
         ...
 
 
-class Function(Protocol):
-    """Protocol class for the function"""
-
-    def __call__(self) -> np.ndarray:
-        """Evaluate the lossfunction"""
-        ...
-
-    def dfdx_legacy(x: np.ndarray) -> np.ndarray:
-        """Retrieve the gradient. Legacy code!"""
-        ...
-
-
 class ExperimentSample:
     def __init__(self, dict_input: Dict[str, Any], dict_output: Dict[str, Any], jobnumber: int):
         """Single realization of a design of experiments.
