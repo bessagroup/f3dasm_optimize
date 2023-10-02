@@ -92,29 +92,6 @@ class DifferentialEvolution(PygmoAlgorithm):
     def get_info(self) -> List[str]:
         return ['Fast', 'Global', 'Derivative-Free', 'Population-Based', 'Single-Solution']
 
-# =============================================================================
-
-
-@dataclass
-class MMA_Parameters(OptimizerParameters):
-    """Hyperparameters for MMA optimizer"""
-    ...
-
-
-class MMA(PygmoAlgorithm):
-    """Method of Movinging Asymptotes optimizer implemented from pygmo, ported from NLOpt"""
-
-    hyperparameters: MMA_Parameters = MMA_Parameters()
-
-    def set_algorithm(self):
-        self.algorithm = pg.algorithm(
-            pg.nlopt(
-                solver='mma'
-            )
-        )
-
-    def get_info(self) -> List[str]:
-        return ['Stable', 'Local', 'Single-Solution']
 
 # =============================================================================
 

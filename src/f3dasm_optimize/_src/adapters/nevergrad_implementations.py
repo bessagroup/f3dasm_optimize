@@ -28,7 +28,9 @@ class NeverGradOptimizer(Optimizer):
         # Evaluate the candidates
         y = []
         for x_i in x:
-            experiment_sample = ExperimentSample.from_numpy(input_array=x_i)
+            # BUG: from Array() object to numpy object
+
+            experiment_sample = ExperimentSample.from_numpy(input_array=x_i._value)
             data_generator.run(experiment_sample)
             y.append(experiment_sample.to_numpy()[1])
 
@@ -36,4 +38,4 @@ class NeverGradOptimizer(Optimizer):
             self.algorithm.tell(x_tell, y_tell)
 
         # return the data
-        return np.vstack([x_.value for x_ in x]), np.atleast_2d(np.array(y))
+        return np.vstack([x_.value for x_ in x]), np.array(y).ravel()

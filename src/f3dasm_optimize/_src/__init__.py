@@ -10,7 +10,7 @@ from .evosax_optimizers import (EvoSaxCMAES, EvoSaxDE, EvoSaxPSO,
 from .nevergrad_optimizers import NevergradDE, NevergradPSO
 
 with try_import() as _imports:
-    from .pygmo_optimizers import (CMAES, MMA, PSO, SADE, SEA, SGA, XNES,
+    from .pygmo_optimizers import (CMAES, PSO, SADE, SEA, SGA, XNES,
                                    DifferentialEvolution, SimulatedAnnealing)
 # from .bayesianoptimization import BayesianOptimization
 from .tensorflow_optimizers import SGD, Adam, Adamax, Ftrl, Nadam, RMSprop
@@ -29,7 +29,7 @@ _OPTIMIZERS = [Adam, Adamax, Ftrl, Nadam, RMSprop, SGD, EvoSaxPSO,
                EvoSaxSimAnneal, EvoSaxDE, EvoSaxCMAES, NevergradDE, NevergradPSO]
 
 if _imports.is_successful():
-    _OPTIMIZERS.extend([CMAES, MMA, PSO, SADE, SEA, SGA, XNES,
+    _OPTIMIZERS.extend([CMAES, PSO, SADE, SEA, SGA, XNES,
                         DifferentialEvolution, SimulatedAnnealing])
 
 

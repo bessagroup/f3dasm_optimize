@@ -37,8 +37,8 @@ class NevergradDE(NeverGradOptimizer):
     hyperparameters: NevergradDE_Parameters = NevergradDE_Parameters()
 
     def set_algorithm(self):
-        p = ng.p.Array(shape=(len(self.data.domain),),
-                       lower=self.data.domain.get_bounds()[:, 0], upper=self.data.domain.get_bounds()[:, 1])
+        p = ng.p.Array(shape=(len(self.domain),),
+                       lower=self.domain.get_bounds()[:, 0], upper=self.domain.get_bounds()[:, 1])
         self.algorithm = ng.optimizers.DifferentialEvolution(initialization=self.hyperparameters.initialization,
                                                              popsize=self.hyperparameters.population,
                                                              scale=self.hyperparameters.scale,
@@ -67,8 +67,8 @@ class NevergradPSO(NeverGradOptimizer):
     parameter: NevergradPSO_Parameters = NevergradPSO_Parameters()
 
     def set_algorithm(self):
-        p = ng.p.Array(shape=(len(self.data.domain),),
-                       lower=self.data.domain.get_bounds()[:, 0], upper=self.data.domain.get_bounds()[:, 1])
+        p = ng.p.Array(shape=(len(self.domain),),
+                       lower=self.domain.get_bounds()[:, 0], upper=self.domain.get_bounds()[:, 1])
         self.algorithm = ng.optimizers.ConfPSO(transform=self.parameter.transform,
                                                popsize=self.parameter.population,
                                                omega=self.parameter.omega,
