@@ -1,9 +1,10 @@
-name: Push to main branch
+name: Pull request from pr/** branches
 
 on:
-  push:
+  pull_request:
     branches:
-      - main
+      - "main"
+      - "pr/**"
 
 jobs:
   check-coding-style:

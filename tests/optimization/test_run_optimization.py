@@ -1,61 +1,70 @@
+import os
+
 import numpy as np
 import pytest
-from f3dasm.design import make_nd_continuous_design
-from f3dasm.design.experimentdata import ExperimentData
-from f3dasm.functions import (FUNCTIONS_2D, FUNCTIONS_7D, Ackley, Griewank,
-                              Levy, Sphere)
-from f3dasm.functions.function import Function
-from f3dasm.optimization.optimizer import Optimizer
-from f3dasm.run_optimization import run_multiple_realizations
-from f3dasm.sampling.randomuniform import RandomUniform
+from f3dasm import run_multiple_realizations
+from f3dasm.datageneration import (FUNCTIONS_2D, FUNCTIONS_7D, Ackley,
+                                   DataGenerator, Griewank, Levy, Sphere)
+from f3dasm.design import make_nd_continuous_domain
+from f3dasm.optimization import Optimizer
+from f3dasm.sampling import RandomUniform
 
 from f3dasm_optimize import OPTIMIZERS
 
 
 @pytest.mark.smoke
 @pytest.mark.parametrize("optimizer", OPTIMIZERS)
-@pytest.mark.parametrize("function", [Levy, Ackley, Sphere])
+@pytest.mark.parametrize("data_generator", [Levy, Ackley, Sphere])
 @pytest.mark.parametrize("dimensionality", [2])
-def test_run_multiple_realizations_3_functions(function: Function, optimizer: Optimizer, dimensionality: int):
-    test_run_multiple_realizations(function, optimizer, dimensionality)
+def test_run_multiple_realizations_3_functions(data_generator: DataGenerator,
+                                               optimizer: Optimizer, dimensionality: int):
+    test_run_multiple_realizations(data_generator, optimizer, dimensionality)
 
 
 @pytest.mark.parametrize("optimizer", OPTIMIZERS)
-@pytest.mark.parametrize("function", FUNCTIONS_2D)
+@pytest.mark.parametrize("data_generator", FUNCTIONS_2D)
 @pytest.mark.parametrize("dimensionality", [2])
-def test_run_multiple_realizations(function: Function, optimizer: Optimizer, dimensionality: int):
+def test_run_multiple_realizations(data_generator: DataGenerator, optimizer: Optimizer, dimensionality: int):
     iterations = 30
     realizations = 3
     domain = np.tile([0.0, 1.0], (dimensionality, 1))
 
-    design = make_nd_continuous_design(dimensionality=dimensionality, bounds=domain)
-    func = function(dimensionality=dimensionality, scale_bounds=domain)
-    data = ExperimentData(design=design)
-    opt = optimizer(data=data)
-    sampler = RandomUniform(design=design)
+    domain = make_nd_continuous_domain(dimensionality=dimensionality, bounds=domain)
+    func = data_generator(dimensionality=dimensionality, scale_bounds=domain.get_bounds())
+    opt = optimizer(domain=domain)
+    sampler = RandomUniform(domain=domain)
 
-    res = run_multiple_realizations(
+    # Check if os is windows
+    if os.name == 'nt':
+        PARALLELIZATION = False
+    else:
+        PARALLELIZATION = True
+
+    if opt.get_name() in ['EvoSaxCMAES', 'EvoSaxSimAnneal', 'EvoSaxPSO', 'EvoSaxDE']:
+        PARALLELIZATION = False
+
+    _ = run_multiple_realizations(
         optimizer=opt,
-        function=func,
+        data_generator=func,
         sampler=sampler,
         iterations=iterations,
         realizations=realizations,
-        parallelization=False,
+        parallelization=PARALLELIZATION,
     )
 
 
 @pytest.mark.parametrize("optimizer", OPTIMIZERS)
-@pytest.mark.parametrize("function", FUNCTIONS_7D)
+@pytest.mark.parametrize("data_generator", FUNCTIONS_7D)
 @pytest.mark.parametrize("dimensionality", [7])
-def test_run_multiple_realizations_7D(function: Function, optimizer: Optimizer, dimensionality: int):
-    test_run_multiple_realizations(function, optimizer, dimensionality)
+def test_run_multiple_realizations_7D(data_generator: DataGenerator, optimizer: Optimizer, dimensionality: int):
+    test_run_multiple_realizations(data_generator, optimizer, dimensionality)
 
 
 @pytest.mark.parametrize("optimizer", OPTIMIZERS)
-@pytest.mark.parametrize("function", [Griewank])
+@pytest.mark.parametrize("data_generator", [Griewank])
 @pytest.mark.parametrize("dimensionality", [2])
-def test_run_multiple_realizations_fast(function: Function, optimizer: Optimizer, dimensionality: int):
-    test_run_multiple_realizations(function, optimizer, dimensionality)
+def test_run_multiple_realizations_fast(data_generator: DataGenerator, optimizer: Optimizer, dimensionality: int):
+    test_run_multiple_realizations(data_generator, optimizer, dimensionality)
 
 
 if __name__ == "__main__":  # pragma: no cover
