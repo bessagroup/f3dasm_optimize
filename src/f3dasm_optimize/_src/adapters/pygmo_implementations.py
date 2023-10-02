@@ -6,15 +6,11 @@ from typing import List, Optional, Tuple
 
 # Third-party core
 import autograd.numpy as np
-# Locals
-from f3dasm import try_import
-from f3dasm.optimization import Optimizer
+import pygmo as pg
 
+# Local
 from .._protocol import DataGenerator, Domain, ExperimentSample
-
-# Third-party extension
-with try_import('optimization') as _imports:
-    import pygmo as pg
+from ..optimizer import Optimizer
 
 #                                                          Authorship & Credits
 # =============================================================================
@@ -109,7 +105,8 @@ class PygmoAlgorithm(Optimizer):
 
     @staticmethod
     def _check_imports():
-        _imports.check()
+        # _imports.check()
+        ...
 
     def set_seed(self):
         """Set the seed for pygmo

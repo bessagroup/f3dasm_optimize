@@ -5,17 +5,13 @@
 from dataclasses import dataclass
 from typing import Any, List
 
-# Locals
-from f3dasm import try_import
-from f3dasm.optimization import Optimizer, OptimizerParameters
+# Third-party
+import GPy
+import GPyOpt
 
+# Local
 from ._protocol import Function
-
-# Third-party extension
-with try_import('optimization') as _imports:
-    import GPy
-    import GPyOpt
-
+from .optimizer import Optimizer, OptimizerParameters
 
 #                                                          Authorship & Credits
 # =============================================================================

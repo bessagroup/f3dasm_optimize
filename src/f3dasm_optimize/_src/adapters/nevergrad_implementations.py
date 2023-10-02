@@ -1,19 +1,15 @@
 #                                                                       Modules
 # =============================================================================
 
+# Standard
 from typing import Tuple
 
-# Third-party core
-# Locals
-# from f3dasm._imports import try_import
+# Third-party
 import autograd.numpy as np
-from f3dasm.optimization import Optimizer
 
+# Local
 from .._protocol import DataGenerator, ExperimentSample
-
-# # Third-party extension
-# with try_import('optimization') as _imports:
-#     import nevergrad as ng
+from ..optimizer import Optimizer
 
 #                                                          Authorship & Credits
 # =============================================================================
@@ -26,11 +22,6 @@ __status__ = 'Stable'
 
 
 class NeverGradOptimizer(Optimizer):
-
-    @staticmethod
-    def _check_imports():
-        ...
-
     def update_step(self, data_generator: DataGenerator) -> Tuple[np.ndarray, None]:
         x = [self.algorithm.ask() for _ in range(self.hyperparameters.population)]
 
