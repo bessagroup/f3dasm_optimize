@@ -7,15 +7,16 @@ f3dasm_optimize
    :hidden:
    :glob:
 
-   /optimization/optimizers
-   /optimization/apidoc
+   rst_doc_files/optimizers
+
+.. toctree::
+   :name: apitoc
+   :caption: API
+   :hidden:
+
+   rst_doc_files/reference/index.rst
+   Code <_autosummary/f3dasm_optimize>
 
 .. include:: readme.rst
 
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
   
