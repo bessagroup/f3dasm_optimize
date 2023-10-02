@@ -12,7 +12,7 @@ from .nevergrad_optimizers import NevergradDE, NevergradPSO
 with try_import() as _imports:
     from .pygmo_optimizers import (CMAES, MMA, PSO, SADE, SEA, SGA, XNES,
                                    DifferentialEvolution, SimulatedAnnealing)
-
+# from .bayesianoptimization import BayesianOptimization
 from .tensorflow_optimizers import SGD, Adam, Adamax, Ftrl, Nadam, RMSprop
 
 #                                                          Authorship & Credits
