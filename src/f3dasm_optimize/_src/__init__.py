@@ -13,6 +13,7 @@ with try_import() as _imports:
     from .pygmo_optimizers import (CMAES, PSO, SADE, SEA, SGA, XNES,
                                    DifferentialEvolution, SimulatedAnnealing)
 # from .bayesianoptimization import BayesianOptimization
+from .optuna_optimizers import TPESampler
 from .tensorflow_optimizers import SGD, Adam, Adamax, Ftrl, Nadam, RMSprop
 
 #                                                          Authorship & Credits
@@ -26,7 +27,7 @@ __status__ = 'Stable'
 
 
 _OPTIMIZERS = [Adam, Adamax, Ftrl, Nadam, RMSprop, SGD, EvoSaxPSO,
-               EvoSaxSimAnneal, EvoSaxDE, EvoSaxCMAES, NevergradDE, NevergradPSO]
+               EvoSaxSimAnneal, EvoSaxDE, EvoSaxCMAES, NevergradDE, NevergradPSO, TPESampler]
 
 if _imports.is_successful():
     _OPTIMIZERS.extend([CMAES, PSO, SADE, SEA, SGA, XNES,
@@ -55,5 +56,6 @@ __all__ = [
     'SGD',
     'SimulatedAnnealing',
     'XNES',
+    'TPESampler',
     '__version__',
 ]

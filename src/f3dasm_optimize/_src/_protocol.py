@@ -96,6 +96,34 @@ class ExperimentSample:
     def __setitem__(self, key: str, value: Any):
         self._dict_output[key] = value
 
+    @property
+    def input_data(self) -> Dict[str, Any]:
+        """Retrieve the input data of the design as a dictionary.
+
+        Returns
+        -------
+        Dict[str, Any]
+            The input data of the design as a dictionary.
+        """
+        return self._dict_input
+
+    @property
+    def output_data(self) -> Dict[str, Any]:
+        """Retrieve the output data of the design as a dictionary.
+
+        Returns
+        -------
+        Dict[str, Any]
+            The output data of the design as a dictionary.
+        """
+        # Load all the data from the experiment data
+        # return {key: self.get(key) for key in self._dict_output.keys()}
+        return self._dict_output
+
+    @property
+    def jobs(self) -> int:
+        return self._jobnumber
+
 
 class DataGenerator(Protocol):
     def run(self, experiment_sample: ExperimentSample) -> ExperimentSample:
