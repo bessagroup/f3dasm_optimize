@@ -5,8 +5,8 @@
 
 from ._imports import try_import
 from ._version import __version__
-from .evosax_optimizers import (EvoSaxCMAES, EvoSaxDE, EvoSaxPSO,
-                                EvoSaxSimAnneal)
+from .evosax_optimizers import (EvoSaxBIPOPCMAES, EvoSaxCMAES, EvoSaxDE,
+                                EvoSaxPSO, EvoSaxSimAnneal)
 from .nevergrad_optimizers import NevergradDE, NevergradPSO
 
 with try_import() as _imports:
@@ -27,7 +27,7 @@ __status__ = 'Stable'
 
 
 _OPTIMIZERS = [Adam, Adamax, Ftrl, Nadam, RMSprop, SGD, EvoSaxPSO,
-               EvoSaxSimAnneal, EvoSaxDE, EvoSaxCMAES, NevergradDE, NevergradPSO, TPESampler]
+               EvoSaxSimAnneal, EvoSaxDE, EvoSaxCMAES, NevergradDE, NevergradPSO, TPESampler, EvoSaxBIPOPCMAES]
 
 if _imports.is_successful():
     _OPTIMIZERS.extend([CMAES, PSO, SADE, SEA, SGA, XNES,
@@ -43,6 +43,7 @@ __all__ = [
     'EvoSaxDE',
     'EvoSaxPSO',
     'EvoSaxSimAnneal',
+    'EvoSaxBIPOPCMAES',
     'Ftrl',
     'MMA',
     'Nadam',
