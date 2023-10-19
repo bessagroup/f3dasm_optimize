@@ -7,11 +7,12 @@ from ._imports import try_import
 from ._version import __version__
 from .evosax_optimizers import (EvoSaxBIPOPCMAES, EvoSaxCMAES, EvoSaxDE,
                                 EvoSaxPSO, EvoSaxSimAnneal)
-from .nevergrad_optimizers import NevergradDE, NevergradPSO
+from .nevergrad_optimizers import PSO, NevergradDE
 
 with try_import() as _imports:
-    from .pygmo_optimizers import (CMAES, PSO, SADE, SEA, SGA, XNES,
-                                   DifferentialEvolution, SimulatedAnnealing)
+    from .pygmo_optimizers import (CMAES, SADE, SEA, SGA, XNES,
+                                   DifferentialEvolution, PygmoPSO,
+                                   SimulatedAnnealing)
 # from .bayesianoptimization import BayesianOptimization
 from .optuna_optimizers import TPESampler
 from .tensorflow_optimizers import SGD, Adam, Adamax, Ftrl, Nadam, RMSprop
@@ -27,10 +28,10 @@ __status__ = 'Stable'
 
 
 _OPTIMIZERS = [Adam, Adamax, Ftrl, Nadam, RMSprop, SGD, EvoSaxPSO,
-               EvoSaxSimAnneal, EvoSaxDE, EvoSaxCMAES, NevergradDE, NevergradPSO, TPESampler, EvoSaxBIPOPCMAES]
+               EvoSaxSimAnneal, EvoSaxDE, EvoSaxCMAES, NevergradDE, PSO, TPESampler, EvoSaxBIPOPCMAES]
 
 if _imports.is_successful():
-    _OPTIMIZERS.extend([CMAES, PSO, SADE, SEA, SGA, XNES,
+    _OPTIMIZERS.extend([CMAES, PygmoPSO, SADE, SEA, SGA, XNES,
                         DifferentialEvolution, SimulatedAnnealing])
 
 
@@ -48,8 +49,8 @@ __all__ = [
     'MMA',
     'Nadam',
     'NevergradDE',
-    'NevergradPSO',
     'PSO',
+    'PygmoPSO',
     'RMSprop',
     'SADE',
     'SEA',

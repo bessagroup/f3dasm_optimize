@@ -105,7 +105,7 @@ class PSO_Parameters(OptimizerParameters):
     eta2: float = 2.05
 
 
-class PSO(PygmoAlgorithm):
+class PygmoPSO(PygmoAlgorithm):
     "Particle Swarm Optimization (Generational) optimizer implemented from pygmo"
 
     hyperparameters: PSO_Parameters = PSO_Parameters()

@@ -62,7 +62,7 @@ class NevergradPSO_Parameters(OptimizerParameters):
     so: bool = False
 
 
-class NevergradPSO(NeverGradOptimizer):
+class PSO(NeverGradOptimizer):
 
     parameter: NevergradPSO_Parameters = NevergradPSO_Parameters()
 
