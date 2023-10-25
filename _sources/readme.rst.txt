@@ -2,7 +2,7 @@ Welcome to the documentation page of the optimization extension of the 'Framewor
 Here you will find all information on installing, using and contributing to the Python package.
 
 .. warning::
-    **This package is not standalone and requires the :mod:`f3dasm` package to be installed.**
+    **This package is not standalone and requires the f3dasm package to be installed.**
     If you want more information on the :mod:`f3dasm` main package, go the the `documentation page <https://bessagroup.github.io/f3dasm/>`_
     There you will find a getting started, statement of need, installation instructions and much more.
 

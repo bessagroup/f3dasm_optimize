@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Implemented optimizers &mdash; f3dasm_optimize 1.1.0 documentation</title>
+  <title>Implemented optimizers &mdash; f3dasm_optimize 1.2.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/readthedocs-custom.css" type="text/css" />
@@ -15,7 +15,7 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=def9ab29"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4c8675c2"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
         <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/js/theme.js"></script>
@@ -37,7 +37,7 @@
             f3dasm_optimize
           </a>
               <div class="version">
-                1.1.0
+                1.2.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -51,7 +51,7 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Implemented optimizers</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#pygmo-implementations">Pygmo implementations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#gpyopt-implementations">`GPyOpt`_ implementations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gpyopt-implementations">GPyOpt implementations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#tensorflow-keras-optimizers">Tensorflow keras optimizers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#nevergrad-optimizers">Nevergrad optimizers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#evosax-optimizers">Evosax optimizers</a></li>
@@ -97,54 +97,54 @@
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
-<th class="head"><p>Docs of the Python class</p></th>
+<th class="head"><p>Keyword argument</p></th>
 <th class="head"><p>Reference</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>CMAES</p></td>
-<td><p><code class="xref py py-class docutils literal notranslate"><span class="pre">CMAES</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;CMAES&quot;</span></code></p></td>
 <td><p><a class="reference external" href="https://esa.github.io/pygmo2/algorithms.html#pygmo.cmaes">pygmo cmaes</a></p></td>
 </tr>
 <tr class="row-odd"><td><p>PSO</p></td>
-<td><p><code class="xref py py-class docutils literal notranslate"><span class="pre">PSO</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;PSO&quot;</span></code></p></td>
 <td><p><a class="reference external" href="https://esa.github.io/pygmo2/algorithms.html#pygmo.pso_gen">pygmo pso_gen</a></p></td>
 </tr>
 <tr class="row-even"><td><p>SGA</p></td>
-<td><p><code class="xref py py-class docutils literal notranslate"><span class="pre">SGA</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;SGA&quot;</span></code></p></td>
 <td><p><a class="reference external" href="https://esa.github.io/pygmo2/algorithms.html#pygmo.sga">pygmo sga</a></p></td>
 </tr>
 <tr class="row-odd"><td><p>SEA</p></td>
-<td><p><code class="xref py py-class docutils literal notranslate"><span class="pre">SEA</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;SEA&quot;</span></code></p></td>
 <td><p><a class="reference external" href="https://esa.github.io/pygmo2/algorithms.html#pygmo.sea">pygmo sea</a></p></td>
 </tr>
 <tr class="row-even"><td><p>XNES</p></td>
-<td><p><code class="xref py py-class docutils literal notranslate"><span class="pre">XNES</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;XNES&quot;</span></code></p></td>
 <td><p><a class="reference external" href="https://esa.github.io/pygmo2/algorithms.html#pygmo.xnes">pygmo xnes</a></p></td>
 </tr>
 <tr class="row-odd"><td><p>Differential Evolution</p></td>
-<td><p><code class="xref py py-class docutils literal notranslate"><span class="pre">DifferentialEvolution</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;DifferentialEvolution&quot;</span></code></p></td>
 <td><p><a class="reference external" href="https://esa.github.io/pygmo2/algorithms.html#pygmo.de">pygmo de</a></p></td>
 </tr>
 <tr class="row-even"><td><p>Simulated Annealing</p></td>
-<td><p><code class="xref py py-class docutils literal notranslate"><span class="pre">SimulatedAnnealing</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;SimulatedAnnealing&quot;</span></code></p></td>
 <td><p><a class="reference external" href="https://esa.github.io/pygmo2/algorithms.html#pygmo.simulated_annealing">pygmo simulated_annealing</a></p></td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="gpyopt-implementations">
-<h2><a href="#id3"><span class="problematic" id="id4">`GPyOpt`_</span></a> implementations<a class="headerlink" href="#gpyopt-implementations" title="Permalink to this heading"></a></h2>
+<h2><a class="reference external" href="https://sheffieldml.github.io/GPyOpt/">GPyOpt</a> implementations<a class="headerlink" href="#gpyopt-implementations" title="Permalink to this heading"></a></h2>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
-<th class="head"><p>Docs of the Python class</p></th>
+<th class="head"><p>Keyword argument</p></th>
 <th class="head"><p>Reference</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>Bayesian Optimization</p></td>
-<td><p><code class="xref py py-class docutils literal notranslate"><span class="pre">BayesianOptimization</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;BayesianOptimization&quot;</span></code></p></td>
 <td><p><a class="reference external" href="https://gpyopt.readthedocs.io/en/latest/">gpyopt</a></p></td>
 </tr>
 </tbody>
@@ -155,33 +155,33 @@
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
-<th class="head"><p>Docs of the Python class</p></th>
+<th class="head"><p>Keyword argument</p></th>
 <th class="head"><p>Reference</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>SGD</p></td>
-<td><p><code class="xref py py-class docutils literal notranslate"><span class="pre">SGD</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;SGD&quot;</span></code></p></td>
 <td><p><a class="reference external" href="https://www.tensorflow.org/api_docs/python/tf/keras/optimizers/SGD">tf.keras.optimizers.SGD</a></p></td>
 </tr>
 <tr class="row-odd"><td><p>RMSprop</p></td>
-<td><p><code class="xref py py-class docutils literal notranslate"><span class="pre">RMSprop</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;RMSprop&quot;</span></code></p></td>
 <td><p><a class="reference external" href="https://www.tensorflow.org/api_docs/python/tf/keras/optimizers/RMSprop">tf.keras.optimizers.RMSprop</a></p></td>
 </tr>
 <tr class="row-even"><td><p>Adam</p></td>
-<td><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Adam</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;Adam&quot;</span></code></p></td>
 <td><p><a class="reference external" href="https://www.tensorflow.org/api_docs/python/tf/keras/optimizers/Adam">tf.keras.optimizers.Adam</a></p></td>
 </tr>
 <tr class="row-odd"><td><p>Nadam</p></td>
-<td><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Nadam</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;NAdam&quot;</span></code></p></td>
 <td><p><a class="reference external" href="https://www.tensorflow.org/api_docs/python/tf/keras/optimizers/Nadam">tf.keras.optimizers.Nadam</a></p></td>
 </tr>
 <tr class="row-even"><td><p>Adamax</p></td>
-<td><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Adamax</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;Adamax&quot;</span></code></p></td>
 <td><p><a class="reference external" href="https://www.tensorflow.org/api_docs/python/tf/keras/optimizers/Adamax">tf.keras.optimizers.Adamax</a></p></td>
 </tr>
 <tr class="row-odd"><td><p>Ftrl</p></td>
-<td><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Ftrl</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;Ftrl&quot;</span></code></p></td>
 <td><p><a class="reference external" href="https://www.tensorflow.org/api_docs/python/tf/keras/optimizers/Ftrl">tf.keras.optimizers.Ftrl</a></p></td>
 </tr>
 </tbody>
@@ -192,17 +192,17 @@
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
-<th class="head"><p>Docs of the Python class</p></th>
+<th class="head"><p>Keyword argument</p></th>
 <th class="head"><p>Reference</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>Differential Evolution</p></td>
-<td><p><code class="xref py py-class docutils literal notranslate"><span class="pre">DifferentialEvolution_Nevergrad</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;NevergradDE&quot;</span></code></p></td>
 <td><p><a class="reference external" href="https://facebookresearch.github.io/nevergrad/optimizers_ref.html#nevergrad.families.DifferentialEvolution">nevergrad.optimizers.DifferentialEvolution</a></p></td>
 </tr>
 <tr class="row-odd"><td><p>PSO</p></td>
-<td><p><code class="xref py py-class docutils literal notranslate"><span class="pre">PSOConf</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;NevergradPSO&quot;</span></code></p></td>
 <td><p><a class="reference external" href="https://facebookresearch.github.io/nevergrad/optimizers_ref.html#nevergrad.families.ConfPSO">nevergrad.optimizers.ConfPSO</a></p></td>
 </tr>
 </tbody>
@@ -213,25 +213,25 @@
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
-<th class="head"><p>Docs of the Python class</p></th>
+<th class="head"><p>Keyword argument</p></th>
 <th class="head"><p>Reference</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>CMAES</p></td>
-<td><p><code class="xref py py-class docutils literal notranslate"><span class="pre">EvoSaxCMAES</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;EvoSaxCMAES&quot;</span></code></p></td>
 <td><p><a class="reference external" href="https://github.com/RobertTLange/evosax/blob/main/evosax/strategies/cma_es.py">evosax.strategies.cma_es</a></p></td>
 </tr>
 <tr class="row-odd"><td><p>PSO</p></td>
-<td><p><code class="xref py py-class docutils literal notranslate"><span class="pre">EvoSaxPSO</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;EvoSaxPSO&quot;</span></code></p></td>
 <td><p><a class="reference external" href="https://github.com/RobertTLange/evosax/blob/main/evosax/strategies/pso.py">evosax.strategies.pso</a></p></td>
 </tr>
 <tr class="row-even"><td><p>Simulated Annealing</p></td>
-<td><p><code class="xref py py-class docutils literal notranslate"><span class="pre">EvoSaxSimAnneal</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;EvoSaxSimAnneal&quot;</span></code></p></td>
 <td><p><a class="reference external" href="https://github.com/RobertTLange/evosax/blob/main/evosax/strategies/sim_anneal.py">evosax.strategies.sim_anneal</a></p></td>
 </tr>
 <tr class="row-odd"><td><p>Differential Evolution</p></td>
-<td><p><code class="xref py py-class docutils literal notranslate"><span class="pre">EvoSaxDE</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;EvoSaxDE&quot;</span></code></p></td>
 <td><p><a class="reference external" href="https://github.com/RobertTLange/evosax/blob/main/evosax/strategies/de.py">evosax.strategies.de</a></p></td>
 </tr>
 </tbody>
