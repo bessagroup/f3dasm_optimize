@@ -60,7 +60,7 @@ class EvoSaxOptimizer(Optimizer):
         y = []
         for x_i in np.array(x):
             experiment_sample = ExperimentSample.from_numpy(input_array=x_i)
-            data_generator.run(experiment_sample)
+            data_generator._run(experiment_sample)
             y.append(experiment_sample.to_numpy()[1])
 
         y = np.array(y).ravel()

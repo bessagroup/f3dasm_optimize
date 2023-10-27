@@ -56,7 +56,7 @@ class _PygmoProblem:
         -------
             fitness
         """
-        evaluated_sample: ExperimentSample = self.func.run(ExperimentSample.from_numpy(x))
+        evaluated_sample: ExperimentSample = self.func._run(ExperimentSample.from_numpy(x))
         _, y_ = evaluated_sample.to_numpy()
         return y_.ravel()  # pygmo doc: should output 1D numpy array
 

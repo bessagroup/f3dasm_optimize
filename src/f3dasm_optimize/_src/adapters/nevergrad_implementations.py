@@ -31,7 +31,7 @@ class NeverGradOptimizer(Optimizer):
             # BUG: from Array() object to numpy object
 
             experiment_sample = ExperimentSample.from_numpy(input_array=x_i._value)
-            data_generator.run(experiment_sample)
+            data_generator._run(experiment_sample)
             y.append(experiment_sample.to_numpy()[1])
 
         for x_tell, y_tell in zip(x, y):

@@ -126,5 +126,5 @@ class ExperimentSample:
 
 
 class DataGenerator(Protocol):
-    def run(self, experiment_sample: ExperimentSample) -> ExperimentSample:
+    def _run(self, experiment_sample: ExperimentSample) -> ExperimentSample:
         ...
