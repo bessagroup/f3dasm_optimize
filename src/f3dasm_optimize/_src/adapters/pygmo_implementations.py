@@ -143,8 +143,8 @@ class PygmoAlgorithm(Optimizer):
         pop = pg.population(prob, size=self.hyperparameters.population)
 
         # Set the population to the latest datapoints
-        pop_x = self.data.input_data.to_dataframe().iloc[-self.hyperparameters.population:].to_numpy()
-        pop_fx = self.data.output_data.to_dataframe().iloc[-self.hyperparameters.population:].to_numpy()
+        pop_x = self.data._input_data.to_dataframe().iloc[-self.hyperparameters.population:].to_numpy()
+        pop_fx = self.data._output_data.to_dataframe().iloc[-self.hyperparameters.population:].to_numpy()
 
         for index, (x, fx) in enumerate(zip(pop_x, pop_fx)):
             pop.set_xf(index, x, fx)
