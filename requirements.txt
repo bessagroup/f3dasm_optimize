@@ -1,6 +1,4 @@
-f3dasm>=1.4.4
-GPyOpt
-GPy
+f3dasm>=1.4.5
 tensorflow
 pygmo; platform_system == "Linux"
 nevergrad
