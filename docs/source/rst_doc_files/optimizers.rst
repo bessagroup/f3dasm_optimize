@@ -28,7 +28,7 @@ In order to use this optimizers you need to install the :code:`pygmo` dependency
 Name                     Keyword argument                                                           Reference
 ======================== ========================================================================== =======================================================================================================
 CMAES                    ``"CMAES"``                                                                `pygmo cmaes <https://esa.github.io/pygmo2/algorithms.html#pygmo.cmaes>`_
-PSO                      ``"PSO"``                                                                  `pygmo pso_gen <https://esa.github.io/pygmo2/algorithms.html#pygmo.pso_gen>`_
+PSO                      ``"PygmoPSO"``                                                             `pygmo pso_gen <https://esa.github.io/pygmo2/algorithms.html#pygmo.pso_gen>`_
 SGA                      ``"SGA"``                                                                  `pygmo sga <https://esa.github.io/pygmo2/algorithms.html#pygmo.sga>`_
 SEA                      ``"SEA"``                                                                  `pygmo sea <https://esa.github.io/pygmo2/algorithms.html#pygmo.sea>`_
 XNES                     ``"XNES"``                                                                 `pygmo xnes <https://esa.github.io/pygmo2/algorithms.html#pygmo.xnes>`_
@@ -74,7 +74,7 @@ In order to use this optimizers you need to install the :code:`nevergrad` depend
 Name                     Keyword argument                                                                             Reference
 ======================== ============================================================================================ =============================================================================================================================================================
 Differential Evolution   ``"NevergradDE"``                                                                            `nevergrad.optimizers.DifferentialEvolution <https://facebookresearch.github.io/nevergrad/optimizers_ref.html#nevergrad.families.DifferentialEvolution>`_
-PSO                      ``"NevergradPSO"``                                                                           `nevergrad.optimizers.ConfPSO <https://facebookresearch.github.io/nevergrad/optimizers_ref.html#nevergrad.families.ConfPSO>`_
+PSO                      ``"PSO"``                                                                                    `nevergrad.optimizers.ConfPSO <https://facebookresearch.github.io/nevergrad/optimizers_ref.html#nevergrad.families.ConfPSO>`_
 ======================== ============================================================================================ =============================================================================================================================================================
 
 `Evosax`_ optimizers
