@@ -36,7 +36,8 @@ class _PygmoProblem:
         _description_
     """
 
-    def __init__(self, domain: Domain, func: DataGenerator, seed: Optional[int] = None):
+    def __init__(self, domain: Domain,
+                 func: DataGenerator, seed: Optional[int] = None):
         self.domain = domain
         self.func = func
         self.seed = seed
@@ -56,12 +57,14 @@ class _PygmoProblem:
         -------
             fitness
         """
-        evaluated_sample: ExperimentSample = self.func._run(ExperimentSample.from_numpy(x))
+        evaluated_sample: ExperimentSample = self.func._run(
+            ExperimentSample.from_numpy(x))
         _, y_ = evaluated_sample.to_numpy()
         return y_.ravel()  # pygmo doc: should output 1D numpy array
 
     def batch_fitness(self, x: np.ndarray) -> np.ndarray:
-        """Pygmo representation of returning multiple objective values of a function
+        """Pygmo representation of returning multiple objective
+        values of a function
 
         Parameters
         ----------
@@ -72,19 +75,25 @@ class _PygmoProblem:
         -------
             fitnesses
         """
-        # Pygmo representation of returning multiple objective values of a function
+        # Pygmo representation of returning multiple
+        # objective values of a function
         return self.fitness(x)
 
     def get_bounds(self) -> Tuple[List[float], List[float]]:
-        """Box-constrained boundaries of the problem. Necessary for pygmo library
+        """Box-constrained boundaries of the problem.
+        Necessary for pygmo library
 
         Returns
         -------
             box constraints
         """
         return (
-            [parameter.lower_bound for parameter in self.domain.get_continuous_parameters().values()],
-            [parameter.upper_bound for parameter in self.domain.get_continuous_parameters().values()],
+            [parameter.lower_bound
+             for parameter in self.domain.get_continuous_parameters(
+             ).values()],
+            [parameter.upper_bound
+             for parameter in self.domain.get_continuous_parameters(
+             ).values()],
         )
 
 
@@ -103,11 +112,6 @@ class PygmoAlgorithm(Optimizer):
         Default hyperparameter arguments
     """
 
-    @staticmethod
-    def _check_imports():
-        # _imports.check()
-        ...
-
     def set_seed(self):
         """Set the seed for pygmo
 
@@ -118,7 +122,9 @@ class PygmoAlgorithm(Optimizer):
         """
         pg.set_global_rng_seed(seed=self.seed)
 
-    def update_step(self, data_generator: DataGenerator) -> Tuple[np.ndarray, np.ndarray]:
+    def update_step(
+            self,
+            data_generator: DataGenerator) -> Tuple[np.ndarray, np.ndarray]:
         """Update step of the algorithm
 
         Parameters
@@ -143,8 +149,10 @@ class PygmoAlgorithm(Optimizer):
         pop = pg.population(prob, size=self.hyperparameters.population)
 
         # Set the population to the latest datapoints
-        pop_x = self.data._input_data.to_dataframe().iloc[-self.hyperparameters.population:].to_numpy()
-        pop_fx = self.data._output_data.to_dataframe().iloc[-self.hyperparameters.population:].to_numpy()
+        pop_x = self.data._input_data.to_dataframe(
+        ).iloc[-self.hyperparameters.population:].to_numpy()
+        pop_fx = self.data._output_data.to_dataframe(
+        ).iloc[-self.hyperparameters.population:].to_numpy()
 
         for index, (x, fx) in enumerate(zip(pop_x, pop_fx)):
             pop.set_xf(index, x, fx)

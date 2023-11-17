@@ -7,6 +7,7 @@ f3dasm_optimize
    :hidden:
    :glob:
 
+   rst_doc_files/getting_started
    rst_doc_files/optimizers
 
 .. toctree::

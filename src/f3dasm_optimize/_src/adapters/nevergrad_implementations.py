@@ -22,15 +22,18 @@ __status__ = 'Stable'
 
 
 class NeverGradOptimizer(Optimizer):
-    def update_step(self, data_generator: DataGenerator) -> Tuple[np.ndarray, None]:
-        x = [self.algorithm.ask() for _ in range(self.hyperparameters.population)]
+    def update_step(self,
+                    data_generator: DataGenerator) -> Tuple[np.ndarray, None]:
+        x = [self.algorithm.ask() for _ in range(
+            self.hyperparameters.population)]
 
         # Evaluate the candidates
         y = []
         for x_i in x:
             # BUG: from Array() object to numpy object
 
-            experiment_sample = ExperimentSample.from_numpy(input_array=x_i._value)
+            experiment_sample = ExperimentSample.from_numpy(
+                input_array=x_i._value)
             data_generator._run(experiment_sample)
             y.append(experiment_sample.to_numpy()[1])
 

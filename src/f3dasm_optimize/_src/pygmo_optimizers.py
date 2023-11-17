@@ -30,7 +30,8 @@ class CMAES_Parameters(OptimizerParameters):
 
 
 class CMAES(PygmoAlgorithm):
-    """Covariance Matrix Adaptation Evolution Strategy optimizer implemented from pygmo"""
+    """Covariance Matrix Adaptation Evolution Strategy optimizer
+    implemented from pygmo"""
 
     hyperparameters: CMAES_Parameters = CMAES_Parameters()
 
@@ -74,7 +75,8 @@ class DifferentialEvolution_Parameters(OptimizerParameters):
 class DifferentialEvolution(PygmoAlgorithm):
     "DifferentialEvolution optimizer implemented from pygmo"
 
-    hyperparameters: DifferentialEvolution_Parameters = DifferentialEvolution_Parameters()
+    hyperparameters: DifferentialEvolution_Parameters = \
+        DifferentialEvolution_Parameters()
 
     def set_algorithm(self):
         self.algorithm = pg.algorithm(
@@ -90,7 +92,8 @@ class DifferentialEvolution(PygmoAlgorithm):
         )
 
     def get_info(self) -> List[str]:
-        return ['Fast', 'Global', 'Derivative-Free', 'Population-Based', 'Single-Solution']
+        return ['Fast', 'Global', 'Derivative-Free',
+                'Population-Based', 'Single-Solution']
 
 
 # =============================================================================
@@ -106,7 +109,10 @@ class PSO_Parameters(OptimizerParameters):
 
 
 class PygmoPSO(PygmoAlgorithm):
-    "Particle Swarm Optimization (Generational) optimizer implemented from pygmo"
+    """
+    Particle Swarm Optimization (Generational) optimizer
+    implemented from pygmo
+    """
 
     hyperparameters: PSO_Parameters = PSO_Parameters()
 
@@ -122,7 +128,8 @@ class PygmoPSO(PygmoAlgorithm):
         )
 
     def get_info(self) -> List[str]:
-        return ['Fast', 'Global', 'Derivative-Free', 'Population-Based', 'Single-Solution']
+        return ['Fast', 'Global', 'Derivative-Free',
+                'Population-Based', 'Single-Solution']
 
 # =============================================================================
 
@@ -246,7 +253,8 @@ class SimulatedAnnealing_Parameters(OptimizerParameters):
 class SimulatedAnnealing(PygmoAlgorithm):
     "DifferentialEvolution optimizer implemented from pygmo"
 
-    hyperparameters: SimulatedAnnealing_Parameters = SimulatedAnnealing_Parameters()
+    hyperparameters: SimulatedAnnealing_Parameters = \
+        SimulatedAnnealing_Parameters()
 
     def set_algorithm(self):
         self.algorithm = pg.algorithm(

@@ -34,12 +34,13 @@ class _Data(Protocol):
 class Domain(Protocol):
     """Protocol class for the domain"""
 
-    def get_continuous_parameters(self):  # List[ContinuousParameter]
+    def get_continuous_parameters(self):
         ...
 
 
 class ExperimentSample:
-    def __init__(self, dict_input: Dict[str, Any], dict_output: Dict[str, Any], jobnumber: int):
+    def __init__(self, dict_input: Dict[str, Any],
+                 dict_output: Dict[str, Any], jobnumber: int):
         """Single realization of a design of experiments.
 
         Parameters
@@ -57,7 +58,8 @@ class ExperimentSample:
 
     @classmethod
     def from_numpy(cls: Type[ExperimentSample], input_array: np.ndarray,
-                   output_value: Optional[float] = None, jobnumber: int = 0) -> ExperimentSample:
+                   output_value: Optional[float] = None,
+                   jobnumber: int = 0) -> ExperimentSample:
         """Create a ExperimentSample object from a numpy array.
 
         Parameters
@@ -81,7 +83,8 @@ class ExperimentSample:
         else:
             dict_output = {"y": output_value}
 
-        return cls(dict_input=dict_input, dict_output=dict_output, jobnumber=jobnumber)
+        return cls(dict_input=dict_input,
+                   dict_output=dict_output, jobnumber=jobnumber)
 
     def to_numpy(self) -> Tuple[np.ndarray, np.ndarray]:
         """Converts the design to a tuple of numpy arrays.
@@ -91,7 +94,8 @@ class ExperimentSample:
         Tuple[np.ndarray, np.ndarray]
             A tuple of numpy arrays containing the input and output data.
         """
-        return np.array(list(self._dict_input.values())), np.array(list(self._dict_output.values()))
+        return (np.array(list(self._dict_input.values())),
+                np.array(list(self._dict_output.values())))
 
     def __setitem__(self, key: str, value: Any):
         self._dict_output[key] = value
@@ -123,6 +127,10 @@ class ExperimentSample:
     @property
     def jobs(self) -> int:
         return self._jobnumber
+
+    _output_data = output_data
+    _input_data = input_data
+    _jobs = jobs
 
 
 class DataGenerator(Protocol):

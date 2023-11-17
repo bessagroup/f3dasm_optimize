@@ -1,6 +1,9 @@
 # Core package requirements
 -r ./requirements.txt
 
+# All optional requirements
+-r ./requirements_all.txt
+
 # Linting
 flake8
 

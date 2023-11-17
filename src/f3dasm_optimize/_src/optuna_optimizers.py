@@ -19,4 +19,5 @@ __status__ = 'Stable'
 
 class TPESampler(OptunaOptimizer):
     def set_algorithm(self):
-        self.algorithm = optuna.create_study(sampler=optuna.samplers.TPESampler(seed=self.seed))
+        self.algorithm = optuna.create_study(
+            sampler=optuna.samplers.TPESampler(seed=self.seed))

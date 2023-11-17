@@ -105,12 +105,18 @@ class Ftrl(TensorflowOptimizer):
 
     def set_algorithm(self):
         self.algorithm = tf.keras.optimizers.Ftrl(
-            learning_rate=self.hyperparameters.learning_rate,
-            learning_rate_power=self.hyperparameters.learning_rate_power,
-            initial_accumulator_value=self.hyperparameters.initial_accumulator_value,
-            l1_regularization_strength=self.hyperparameters.l1_regularization_strength,
-            l2_regularization_strength=self.hyperparameters.l2_regularization_strength,
-            l2_shrinkage_regularization_strength=self.hyperparameters.l2_shrinkage_regularization_strength,
+            learning_rate=self.
+            hyperparameters.learning_rate,
+            learning_rate_power=self.
+            hyperparameters.learning_rate_power,
+            initial_accumulator_value=self.
+            hyperparameters.initial_accumulator_value,
+            l1_regularization_strength=self.
+            hyperparameters.l1_regularization_strength,
+            l2_regularization_strength=self.
+            hyperparameters.l2_regularization_strength,
+            l2_shrinkage_regularization_strength=self.
+            hyperparameters.l2_shrinkage_regularization_strength,
             beta=self.hyperparameters.beta,
         )
 
