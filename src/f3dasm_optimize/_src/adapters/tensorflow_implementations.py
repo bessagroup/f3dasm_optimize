@@ -29,15 +29,13 @@ __status__ = 'Stable'
 
 
 class TensorflowOptimizer(Optimizer):
-    @staticmethod
-    def _check_imports():
-        # _imports.check()
-        ...
-
-    def update_step(self, data_generator: DataGenerator) -> Tuple[np.ndarray, np.ndarray]:
+    def update_step(
+            self,
+            data_generator: DataGenerator) -> Tuple[np.ndarray, np.ndarray]:
         with tf.GradientTape() as tape:
             tape.watch(self.args["tvars"])
-            logits = 0.0 + tf.cast(self.args["model"](None), tf.float64)  # tf.float32
+            # tf.float32
+            logits = 0.0 + tf.cast(self.args["model"](None), tf.float64)
             loss = self.args["func"](tf.reshape(
                 logits, (len(self.domain))))
 
@@ -54,7 +52,8 @@ class TensorflowOptimizer(Optimizer):
         self.args = {}
 
         def fitness(x: np.ndarray) -> np.ndarray:
-            evaluated_sample: ExperimentSample = data_generator.run(ExperimentSample.from_numpy(x))
+            evaluated_sample: ExperimentSample = data_generator._run(
+                ExperimentSample.from_numpy(x))
             _, y_ = evaluated_sample.to_numpy()
             return y_
 
@@ -62,14 +61,16 @@ class TensorflowOptimizer(Optimizer):
             None,
             args={
                 "dim": len(self.domain),
-                "x0": self.data.get_n_best_output(self.hyperparameters.population).to_numpy()[0],
+                "x0": self.data.get_n_best_output(
+                    self.hyperparameters.population).to_numpy()[0],
                 "bounds": self.domain.get_bounds(),
             },
         )  # Build the model
         self.args["tvars"] = self.args["model"].trainable_variables
 
         # TODO: This is an important conversion!!
-        self.args["func"] = _convert_autograd_to_tensorflow(data_generator.__call__)
+        self.args["func"] = _convert_autograd_to_tensorflow(
+            data_generator.__call__)
 
 
 def _convert_autograd_to_tensorflow(func: Callable):

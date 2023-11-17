@@ -1,8 +1,11 @@
 #                                                                       Modules
 # =============================================================================
 
-# Standard
-from pathlib import Path
+# Third party
+import optuna
+
+# Local
+from .adapters.optuna_implementations import OptunaOptimizer
 
 #                                                          Authorship & Credits
 # =============================================================================
@@ -13,11 +16,8 @@ __status__ = 'Stable'
 #
 # =============================================================================
 
-# Set __version__ attribute
-# Reading VERSION file
-version_file = Path(__file__).resolve().parent.parent.parent.parent / Path('VERSION')
 
-with open(version_file, 'r') as f:
-    version = f.read().strip()
-
-__version__: str = version
+class TPESampler(OptunaOptimizer):
+    def set_algorithm(self):
+        self.algorithm = optuna.create_study(
+            sampler=optuna.samplers.TPESampler(seed=self.seed))

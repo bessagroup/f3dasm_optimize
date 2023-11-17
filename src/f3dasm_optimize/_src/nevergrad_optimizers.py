@@ -38,14 +38,16 @@ class NevergradDE(NeverGradOptimizer):
 
     def set_algorithm(self):
         p = ng.p.Array(shape=(len(self.domain),),
-                       lower=self.domain.get_bounds()[:, 0], upper=self.domain.get_bounds()[:, 1])
-        self.algorithm = ng.optimizers.DifferentialEvolution(initialization=self.hyperparameters.initialization,
-                                                             popsize=self.hyperparameters.population,
-                                                             scale=self.hyperparameters.scale,
-                                                             recommendation=self.hyperparameters.recommendation,
-                                                             crossover=self.hyperparameters.crossover,
-                                                             F1=self.hyperparameters.F1,
-                                                             F2=self.hyperparameters.F2)(p, budget=1e8)
+                       lower=self.domain.get_bounds()[:, 0],
+                       upper=self.domain.get_bounds()[:, 1])
+        self.algorithm = ng.optimizers.DifferentialEvolution(
+            initialization=self.hyperparameters.initialization,
+            popsize=self.hyperparameters.population,
+            scale=self.hyperparameters.scale,
+            recommendation=self.hyperparameters.recommendation,
+            crossover=self.hyperparameters.crossover,
+            F1=self.hyperparameters.F1,
+            F2=self.hyperparameters.F2)(p, budget=1e8)
 
 # =============================================================================
 
@@ -62,18 +64,20 @@ class NevergradPSO_Parameters(OptimizerParameters):
     so: bool = False
 
 
-class NevergradPSO(NeverGradOptimizer):
+class PSO(NeverGradOptimizer):
 
     parameter: NevergradPSO_Parameters = NevergradPSO_Parameters()
 
     def set_algorithm(self):
         p = ng.p.Array(shape=(len(self.domain),),
-                       lower=self.domain.get_bounds()[:, 0], upper=self.domain.get_bounds()[:, 1])
-        self.algorithm = ng.optimizers.ConfPSO(transform=self.parameter.transform,
-                                               popsize=self.parameter.population,
-                                               omega=self.parameter.omega,
-                                               phip=self.parameter.phip,
-                                               phig=self.parameter.phig,
-                                               qo=self.parameter.qo,
-                                               sqo=self.parameter.sqo,
-                                               so=self.parameter.so)(p, budget=1e8)
+                       lower=self.domain.get_bounds()[:, 0],
+                       upper=self.domain.get_bounds()[:, 1])
+        self.algorithm = ng.optimizers.ConfPSO(
+            transform=self.parameter.transform,
+            popsize=self.parameter.population,
+            omega=self.parameter.omega,
+            phip=self.parameter.phip,
+            phig=self.parameter.phig,
+            qo=self.parameter.qo,
+            sqo=self.parameter.sqo,
+            so=self.parameter.so)(p, budget=1e8)

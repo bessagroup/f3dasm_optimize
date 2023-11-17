@@ -5,7 +5,7 @@
 from dataclasses import dataclass
 
 # Third-party
-from evosax import CMA_ES, DE, PSO, SimAnneal
+from evosax import BIPOP_CMA_ES, CMA_ES, DE, PSO, SimAnneal
 
 # Local
 from .adapters.evosax_implementations import EvoSaxOptimizer
@@ -35,20 +35,55 @@ class EvoSaxCMAES(EvoSaxOptimizer):
 # =============================================================================
 
 
+@dataclass
+class PSO_Parameters(OptimizerParameters):
+    """Hyperparameters for EvoSaxPSO optimizer"""
+
+    population: int = 30
+
+
 class EvoSaxPSO(EvoSaxOptimizer):
-    hyperparameters: CMAES_Parameters = CMAES_Parameters()
+    hyperparameters: PSO_Parameters = PSO_Parameters()
     evosax_algorithm = PSO
 
 # =============================================================================
 
 
+@dataclass
+class SimAnneal_Parameters(OptimizerParameters):
+    """Hyperparameters for EvoSaxSimAnneal optimizer"""
+
+    population: int = 30
+
+
 class EvoSaxSimAnneal(EvoSaxOptimizer):
-    hyperparameters: CMAES_Parameters = CMAES_Parameters()
+    hyperparameters: SimAnneal_Parameters = SimAnneal_Parameters()
     evosax_algorithm = SimAnneal
 
 # =============================================================================
 
 
+@dataclass
+class DE_Parameters(OptimizerParameters):
+    """Hyperparameters for EvoSaxDE optimizer"""
+
+    population: int = 30
+
+
 class EvoSaxDE(EvoSaxOptimizer):
-    hyperparameters: CMAES_Parameters = CMAES_Parameters()
+    hyperparameters: DE_Parameters = DE_Parameters()
     evosax_algorithm = DE
+
+# =============================================================================
+
+
+@dataclass
+class BIPOPCMAES_Parameters(OptimizerParameters):
+    """Hyperparameters for EvoSaxBIPOP_CMAES optimizer"""
+
+    population: int = 30
+
+
+class EvoSaxBIPOPCMAES(EvoSaxOptimizer):
+    hyperparameters: BIPOPCMAES_Parameters = BIPOPCMAES_Parameters()
+    evosax_algorithm = BIPOP_CMA_ES

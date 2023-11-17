@@ -1,32 +1,54 @@
-<p align="center">
-  <a href=""><img alt="logo" src="https://user-images.githubusercontent.com/25851824/200928507-a65327f9-bc70-4c12-beaa-bc6ba74d968e.svg" width="60%"></a>
-</p>
+f3dasm_optimize
+---------------
+*Optimization extension package for the framework for data-driven design \& analysis of structures and materials*
 
-## Bessa Group Python repository template
-      
-**Authors**:
-- Martin van der Schelling ([M.P.vanderSchelling@tudelft.nl](mailto:M.P.vanderSchelling@tudelft.nl))
+***
 
-**Authors afilliation:**
-- Bessa Research Group @ Delft University of Technology
+[![Python](https://img.shields.io/pypi/pyversions/f3dasm_optimize)](https://www.python.org)
+[![pypi](https://img.shields.io/pypi/v/f3dasm_optimize.svg)](https://pypi.org/project/f3dasm_optimize/)
+[![GitHub license](https://img.shields.io/badge/license-BSD-blue)](https://github.com/bessagroup/f3dasm_optimize)
 
-**Maintainer:**
-- Martin van der Schelling ([M.P.vanderSchelling@tudelft.nl](mailto:M.P.vanderSchelling@tudelft.nl))
+[**Docs**](https://bessagroup.github.io/f3dasm/)
+| [**Installation**](https://bessagroup.github.io/f3dasm/general/gettingstarted.html)
+| [**GitHub**](https://github.com/bessagroup/f3dasm)
+| [**PyPI**](https://pypi.org/project/f3dasm/)
+| [**Practical sessions**](https://github.com/mpvanderschelling/f3dasm_teach)
 
-**Maintainer afilliation:**
-- Bessa Research Group @ Delft University of Technology
+## Summary
 
----
-
-**First publication:** June 14, 2022
-
----
-
-### Summary
-
-This repository serves as a template for Python code. The template is compliant to the [Bessa Research Group Python Development Code of Conduct](https://github.com/bessagroup/python_code_of_conduct)
-
-The repository is suitable for any Python code that works in version 3.7+.
+Welcome to `f3dasm_optimize`, an optimization extension Python package for data-driven design and analysis of structures and materials.
 
 
----
+## Authorship
+
+* Current created and developer: [M.P. van der Schelling](https://github.com/mpvanderschelling/) (M.P.vanderSchelling@tudelft.nl)
+
+The Bessa research group at TU Delft is small... At the moment, we have limited availability to help future users/developers adapting the code to new problems, but we will do our best to help!
+
+## Getting started
+
+The best way to get started is to follow the [installation instructions](https://f3dasm.readthedocs.io/en/latest/rst_doc_files/general/gettingstarted.html) of the `f3dasm` package.
+
+## Referencing
+
+If you use or edit our work, please cite at least one of the appropriate references:
+
+[1] Bessa, M. A., Bostanabad, R., Liu, Z., Hu, A., Apley, D. W., Brinson, C., Chen, W., & Liu, W. K. (2017). A framework for data-driven analysis of materials under uncertainty: Countering the curse of dimensionality. Computer Methods in Applied Mechanics and Engineering, 320, 633-667.
+
+[2] Bessa, M. A., & Pellegrino, S. (2018). Design of ultra-thin shell structures in the stochastic post-buckling range using Bayesian machine learning and optimization. International Journal of Solids and Structures, 139, 174-188.
+
+[3] Bessa, M. A., Glowacki, P., & Houlder, M. (2019). Bayesian machine learning in metamaterial design: fragile becomes super-compressible. Advanced Materials, 31(48), 1904845.
+
+[4] Mojtaba, M., Bostanabad, R., Chen, W., Ehmann, K., Cao, J., & Bessa, M. A. (2019). Deep learning predicts path-dependent plasticity. Proceedings of the National Academy of Sciences, 116(52), 26414-26420.
+
+## Community Support
+
+If you find any **issues, bugs or problems** with this template, please use the [GitHub issue tracker](https://github.com/bessagroup/f3dasm_optimize/issues) to report them.
+
+## License
+
+Copyright 2023, Martin van der Schelling
+
+All rights reserved.
+
+This project is licensed under the BSD 3-Clause License. See [LICENSE](https://github.com/bessagroup/f3dasm_optimize/blob/main/LICENSE) for the full license text.

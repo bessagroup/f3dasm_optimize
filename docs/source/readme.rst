@@ -3,7 +3,7 @@ Here you will find all information on installing, using and contributing to the 
 
 .. warning::
     **This package is not standalone and requires the f3dasm package to be installed.**
-    If you want more information on the :mod:`f3dasm` main package, go the the `documentation page <https://bessagroup.github.io/f3dasm/>`_
+    If you want more information on the :mod:`f3dasm` main package, go the the `documentation page <https://f3dasm.readthedocs.io/>`_
     There you will find a getting started, statement of need, installation instructions and much more.
 
 Authorship & Citation
