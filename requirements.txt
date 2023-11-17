@@ -2,5 +2,6 @@ f3dasm>=1.4.5
 tensorflow
 pygmo; platform_system == "Linux"
 nevergrad
-evosax
+evosax>=0.0.2
+jaxlib
 optuna
