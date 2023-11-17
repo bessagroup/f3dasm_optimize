@@ -3,6 +3,4 @@ tensorflow
 pygmo; platform_system == "Linux"
 nevergrad
 evosax
-jax
-jaxlib
 optuna
