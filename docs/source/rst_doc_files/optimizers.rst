@@ -1,5 +1,4 @@
 .. _Pygmo: https://esa.github.io/pygmo2/
-.. _GPyOpt_link: https://sheffieldml.github.io/GPyOpt/
 .. _Tensorflow keras: https://www.tensorflow.org/api_docs/python/tf/keras/optimizers
 .. _Nevergrad: https://facebookresearch.github.io/nevergrad/index.html
 .. _EvoSax: https://github.com/RobertTLange/evosax
@@ -25,15 +24,6 @@ XNES                     ``"XNES"``                                             
 Differential Evolution   ``"DifferentialEvolution"``                                                `pygmo de <https://esa.github.io/pygmo2/algorithms.html#pygmo.de>`_
 Simulated Annealing      ``"SimulatedAnnealing"``                                                   `pygmo simulated_annealing <https://esa.github.io/pygmo2/algorithms.html#pygmo.simulated_annealing>`_
 ======================== ========================================================================== =======================================================================================================
-
-`GPyOpt <https://sheffieldml.github.io/GPyOpt/>`_ implementations
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-======================== ========================================================================= ======================================================
-Name                     Keyword argument                                                          Reference
-======================== ========================================================================= ======================================================
-Bayesian Optimization    ``"BayesianOptimization"``                                                `gpyopt <https://gpyopt.readthedocs.io/en/latest/>`_
-======================== ========================================================================= ======================================================
 
 `Tensorflow keras`_ optimizers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
