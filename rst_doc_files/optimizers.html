@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Implemented optimizers &mdash; f3dasm_optimize 1.2.0 documentation</title>
+  <title>Implemented optimizers &mdash; f3dasm_optimize 1.3.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/readthedocs-custom.css" type="text/css" />
@@ -15,14 +15,14 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4c8675c2"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=3d533f9b"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
         <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Index" href="reference/index.html" />
-    <link rel="prev" title="f3dasm_optimize" href="../index.html" /> 
+    <link rel="prev" title="Getting Started" href="getting_started.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -37,7 +37,7 @@
             f3dasm_optimize
           </a>
               <div class="version">
-                1.2.0
+                1.3.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -49,12 +49,13 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Optimization</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Implemented optimizers</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#pygmo-implementations">Pygmo implementations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#gpyopt-implementations">GPyOpt implementations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#tensorflow-keras-optimizers">Tensorflow keras optimizers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#nevergrad-optimizers">Nevergrad optimizers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#evosax-optimizers">Evosax optimizers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#optuna-optimizers">Optuna optimizers</a></li>
 </ul>
 </li>
 </ul>
@@ -94,6 +95,14 @@
 <section id="pygmo-implementations">
 <h2><a class="reference external" href="https://esa.github.io/pygmo2/">Pygmo</a> implementations<a class="headerlink" href="#pygmo-implementations" title="Permalink to this heading"></a></h2>
 <p>These derivative-free global optimizers are ported from the <a class="reference external" href="https://esa.github.io/pygmo2/">pygmo</a> Python library:</p>
+<p>In order to use this optimizers you need to install the <code class="code docutils literal notranslate"><span class="pre">pygmo</span></code> dependency:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>pygmo
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <a class="reference external" href="https://esa.github.io/pygmo2/">pygmo</a> library is not compatible with Python 3.9 yet and only available for Linux and Unix systems.</p>
+</div>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -107,7 +116,7 @@
 <td><p><a class="reference external" href="https://esa.github.io/pygmo2/algorithms.html#pygmo.cmaes">pygmo cmaes</a></p></td>
 </tr>
 <tr class="row-odd"><td><p>PSO</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">&quot;PSO&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;PygmoPSO&quot;</span></code></p></td>
 <td><p><a class="reference external" href="https://esa.github.io/pygmo2/algorithms.html#pygmo.pso_gen">pygmo pso_gen</a></p></td>
 </tr>
 <tr class="row-even"><td><p>SGA</p></td>
@@ -133,25 +142,13 @@
 </tbody>
 </table>
 </section>
-<section id="gpyopt-implementations">
-<h2><a class="reference external" href="https://sheffieldml.github.io/GPyOpt/">GPyOpt</a> implementations<a class="headerlink" href="#gpyopt-implementations" title="Permalink to this heading"></a></h2>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Name</p></th>
-<th class="head"><p>Keyword argument</p></th>
-<th class="head"><p>Reference</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Bayesian Optimization</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">&quot;BayesianOptimization&quot;</span></code></p></td>
-<td><p><a class="reference external" href="https://gpyopt.readthedocs.io/en/latest/">gpyopt</a></p></td>
-</tr>
-</tbody>
-</table>
-</section>
 <section id="tensorflow-keras-optimizers">
 <h2><a class="reference external" href="https://www.tensorflow.org/api_docs/python/tf/keras/optimizers">Tensorflow keras</a> optimizers<a class="headerlink" href="#tensorflow-keras-optimizers" title="Permalink to this heading"></a></h2>
+<p>These gradient based optimizers are ported from the <a class="reference external" href="https://www.tensorflow.org/api_docs/python/tf/keras/optimizers">tensorflow keras</a> Python library:</p>
+<p>In order to use this optimizers you need to install the <code class="code docutils literal notranslate"><span class="pre">tensorflow</span></code> dependency:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>tensorflow
+</pre></div>
+</div>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -189,6 +186,11 @@
 </section>
 <section id="nevergrad-optimizers">
 <h2><a class="reference external" href="https://facebookresearch.github.io/nevergrad/index.html">Nevergrad</a> optimizers<a class="headerlink" href="#nevergrad-optimizers" title="Permalink to this heading"></a></h2>
+<p>These derivative-free global optimizers are ported from the <a class="reference external" href="https://facebookresearch.github.io/nevergrad/index.html">nevergrad</a> Python library:</p>
+<p>In order to use this optimizers you need to install the <code class="code docutils literal notranslate"><span class="pre">nevergrad</span></code> dependency:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>nevergrad
+</pre></div>
+</div>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -202,7 +204,7 @@
 <td><p><a class="reference external" href="https://facebookresearch.github.io/nevergrad/optimizers_ref.html#nevergrad.families.DifferentialEvolution">nevergrad.optimizers.DifferentialEvolution</a></p></td>
 </tr>
 <tr class="row-odd"><td><p>PSO</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">&quot;NevergradPSO&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;PSO&quot;</span></code></p></td>
 <td><p><a class="reference external" href="https://facebookresearch.github.io/nevergrad/optimizers_ref.html#nevergrad.families.ConfPSO">nevergrad.optimizers.ConfPSO</a></p></td>
 </tr>
 </tbody>
@@ -210,6 +212,15 @@
 </section>
 <section id="evosax-optimizers">
 <h2><a class="reference external" href="https://github.com/RobertTLange/evosax">Evosax</a> optimizers<a class="headerlink" href="#evosax-optimizers" title="Permalink to this heading"></a></h2>
+<p>These derivative-free global optimizers are ported from the <a class="reference external" href="https://github.com/RobertTLange/evosax">evosax</a> Python library:</p>
+<p>In order to use this optimizers you need to install the <code class="code docutils literal notranslate"><span class="pre">evosax</span></code> dependency:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>evosax
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <a class="reference external" href="https://github.com/RobertTLange/evosax">evosax</a> library is only available for Linux and Unix systems.</p>
+</div>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -237,13 +248,35 @@
 </tbody>
 </table>
 </section>
+<section id="optuna-optimizers">
+<h2><a class="reference external" href="https://optuna.readthedocs.io/en/stable/index.html">Optuna</a> optimizers<a class="headerlink" href="#optuna-optimizers" title="Permalink to this heading"></a></h2>
+<p>These derivative-free global optimizers are ported from the <a class="reference external" href="https://optuna.readthedocs.io/en/stable/index.html">optuna</a> Python library:</p>
+<p>In order to use this optimizers you need to install the <code class="code docutils literal notranslate"><span class="pre">optuna</span></code> dependency:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>optuna
+</pre></div>
+</div>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Keyword argument</p></th>
+<th class="head"><p>Reference</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Tree-structured Parzen Estimator</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;TPESampler&quot;</span></code></p></td>
+<td><p><a class="reference external" href="https://optuna.readthedocs.io/en/stable/reference/samplers/generated/optuna.samplers.TPESampler.html#optuna.samplers.TPESampler">optuna.samplers.TPESampler</a></p></td>
+</tr>
+</tbody>
+</table>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../index.html" class="btn btn-neutral float-left" title="f3dasm_optimize" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="getting_started.html" class="btn btn-neutral float-left" title="Getting Started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="reference/index.html" class="btn btn-neutral float-right" title="Index" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
