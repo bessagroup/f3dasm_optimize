@@ -21,7 +21,7 @@ else:
 import numpy as np
 
 # Locals
-from ._protocol import DataGenerator, Domain, _Data
+from ._protocol import DataGenerator, Domain
 
 #                                                          Authorship & Credits
 # =============================================================================
@@ -35,8 +35,6 @@ __status__ = 'Stable'
 
 class ExperimentData(Protocol):
     domain: Domain
-    input_data: _Data
-    output_data: _Data
 
     def get_n_best_output(self, n_samples: int) -> ExperimentData:
         ...
@@ -45,9 +43,6 @@ class ExperimentData(Protocol):
         ...
 
     def to_numpy() -> Tuple[np.ndarray, np.ndarray]:
-        ...
-
-    def empty() -> None:
         ...
 
 
@@ -116,18 +111,8 @@ class Optimizer:
         self.__post_init__()
 
     def __post_init__(self):
-        self._check_imports()
         self.set_seed()
-        # self.init_data()
         self.set_algorithm()
-
-    @staticmethod
-    def _check_imports():
-        ...
-
-    # def init_data(self):
-    #     """Set the data atrribute to an empty ExperimentData object"""
-    #     self.data = ExperimentData(self.domain)
 
     def set_algorithm(self):
         """Set the algorithm attribute to the algorithm of choice"""

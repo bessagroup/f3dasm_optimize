@@ -1,11 +1,13 @@
 #                                                                       Modules
 # =============================================================================
 
+from typing import Dict
+
 # Third party
 import optuna
 
 # Local
-from .._protocol import DataGenerator, Domain, ExperimentSample
+from .._protocol import DataGenerator, Domain
 from ..optimizer import Optimizer
 
 #                                                          Authorship & Credits
@@ -31,7 +33,7 @@ class OptunaOptimizer(Optimizer):
                 )
             )
 
-    def _create_trial(self) -> ExperimentSample:
+    def _create_trial(self) -> Dict:
         optuna_dict = {}
         for name, parameter in self.domain.items():
             if parameter._type == 'float':
@@ -52,8 +54,9 @@ class OptunaOptimizer(Optimizer):
                 optuna_dict[name] = self.trial.suggest_categorical(
                     name=name, choices=[parameter.value])
 
-        return ExperimentSample(dict_input=optuna_dict,
-                                dict_output={}, jobnumber=0)
+        return optuna_dict
+        # return ExperimentSample(dict_input=optuna_dict,
+        # dict_output = {}, jobnumber = 0)
 
     def update_step(self, data_generator: DataGenerator):
         self.trial = self.algorithm.ask()

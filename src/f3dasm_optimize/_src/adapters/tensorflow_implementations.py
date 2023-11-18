@@ -12,7 +12,7 @@ from autograd import elementwise_grad as egrad
 from keras import Model
 
 # Local
-from .._protocol import DataGenerator, ExperimentSample
+from .._protocol import DataGenerator
 from ..optimizer import Optimizer
 
 #                                                          Authorship & Credits
@@ -23,9 +23,6 @@ __status__ = 'Stable'
 # =============================================================================
 #
 # =============================================================================
-
-# if not _imports.is_successful():
-#     Model = object  # NOQA
 
 
 class TensorflowOptimizer(Optimizer):
@@ -52,8 +49,8 @@ class TensorflowOptimizer(Optimizer):
         self.args = {}
 
         def fitness(x: np.ndarray) -> np.ndarray:
-            evaluated_sample: ExperimentSample = data_generator._run(
-                ExperimentSample.from_numpy(x))
+            evaluated_sample = data_generator._run(x)
+
             _, y_ = evaluated_sample.to_numpy()
             return y_
 
