@@ -34,7 +34,8 @@ class NeverGradOptimizer(Optimizer):
 
             # experiment_sample = ExperimentSample.from_numpy(
             #     input_array=x_i._value)
-            experiment_sample = data_generator._run(x_i.value)
+            experiment_sample = data_generator._run(x_i.value,
+                                                    domain=self.domain)
             y.append(experiment_sample.to_numpy()[1])
 
         for x_tell, y_tell in zip(x, y):

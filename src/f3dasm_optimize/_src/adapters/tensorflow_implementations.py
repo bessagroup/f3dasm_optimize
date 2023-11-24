@@ -49,7 +49,7 @@ class TensorflowOptimizer(Optimizer):
         self.args = {}
 
         def fitness(x: np.ndarray) -> np.ndarray:
-            evaluated_sample = data_generator._run(x)
+            evaluated_sample = data_generator._run(x, domain=self.domain)
 
             _, y_ = evaluated_sample.to_numpy()
             return y_

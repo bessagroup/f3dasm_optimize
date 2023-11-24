@@ -60,7 +60,8 @@ class OptunaOptimizer(Optimizer):
 
     def update_step(self, data_generator: DataGenerator):
         self.trial = self.algorithm.ask()
-        experiment_sample = data_generator._run(self._create_trial())
+        experiment_sample = data_generator._run(
+            self._create_trial(), domain=self.domain)
         self.algorithm.tell(self.trial, experiment_sample.to_numpy()[1])
         return experiment_sample
 
