@@ -10,7 +10,7 @@ import numpy as np
 from evosax import Strategy
 
 # Local
-from .._protocol import DataGenerator, ExperimentSample
+from .._protocol import DataGenerator
 from ..optimizer import Optimizer
 
 #                                                          Authorship & Credits
@@ -25,7 +25,6 @@ __status__ = 'Stable'
 
 class EvoSaxOptimizer(Optimizer):
     type: str = 'evosax'
-    # evosax_algorithm: Strategy = None
 
     def _construct_model(self, data_generator: DataGenerator):
         _, rng_ask = jax.random.split(jax.random.PRNGKey(self.seed))
@@ -48,7 +47,6 @@ class EvoSaxOptimizer(Optimizer):
         ...
 
     def reset(self, data):
-        self._check_imports()
         self.set_algorithm()
 
     def update_step(
@@ -62,8 +60,7 @@ class EvoSaxOptimizer(Optimizer):
         # Evaluate the candidates
         y = []
         for x_i in np.array(x):
-            experiment_sample = ExperimentSample.from_numpy(input_array=x_i)
-            data_generator._run(experiment_sample)
+            experiment_sample = data_generator._run(x_i, domain=self.domain)
             y.append(experiment_sample.to_numpy()[1])
 
         y = np.array(y).ravel()

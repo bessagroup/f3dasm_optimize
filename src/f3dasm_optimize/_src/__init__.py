@@ -6,8 +6,8 @@
 from ._imports import try_import
 
 with try_import() as _evosax_imports:
-    from .evosax_optimizers import (EvoSaxBIPOPCMAES, EvoSaxCMAES, EvoSaxDE,
-                                    EvoSaxPSO, EvoSaxSimAnneal)
+    from .evosax_optimizers import (EvoSaxCMAES, EvoSaxDE, EvoSaxPSO,
+                                    EvoSaxSimAnneal)
 
 with try_import() as _nevergrad_imports:
     from .nevergrad_optimizers import PSO, NevergradDE
@@ -47,7 +47,7 @@ if _tensorflow_imports.is_successful():
 
 if _evosax_imports.is_successful():
     _OPTIMIZERS.extend([EvoSaxPSO, EvoSaxSimAnneal, EvoSaxDE,
-                        EvoSaxCMAES, EvoSaxBIPOPCMAES])
+                        EvoSaxCMAES])
 
 if _nevergrad_imports.is_successful():
     _OPTIMIZERS.extend([NevergradDE, PSO])

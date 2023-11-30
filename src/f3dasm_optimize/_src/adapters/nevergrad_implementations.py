@@ -8,7 +8,7 @@ from typing import Tuple
 import autograd.numpy as np
 
 # Local
-from .._protocol import DataGenerator, ExperimentSample
+from .._protocol import DataGenerator
 from ..optimizer import Optimizer
 
 #                                                          Authorship & Credits
@@ -32,9 +32,10 @@ class NeverGradOptimizer(Optimizer):
         for x_i in x:
             # BUG: from Array() object to numpy object
 
-            experiment_sample = ExperimentSample.from_numpy(
-                input_array=x_i._value)
-            data_generator._run(experiment_sample)
+            # experiment_sample = ExperimentSample.from_numpy(
+            #     input_array=x_i._value)
+            experiment_sample = data_generator._run(x_i.value,
+                                                    domain=self.domain)
             y.append(experiment_sample.to_numpy()[1])
 
         for x_tell, y_tell in zip(x, y):

@@ -14,7 +14,8 @@ import sys
 
 sys.path.insert(0, os.path.abspath('../..'))
 sys.path.insert(0, os.path.abspath('../../src'))
-src_dir = [f.path for f in os.scandir(os.path.abspath('../../src/')) if f.is_dir()]
+src_dir = [f.path for f in os.scandir(
+    os.path.abspath('../../src/')) if f.is_dir()]
 for path in src_dir:
     sys.path.insert(0, path)
 
@@ -24,8 +25,8 @@ for path in src_dir:
 project = 'f3dasm_optimize'
 author = 'Martin van der Schelling'
 copyright = '2023, Martin van der Schelling'
-version = '1.3.0'
-release = '1.3.0'
+version = '1.4.0'
+release = '1.4.0'
 
 # -- General configuration ----------------------------------------------------
 
