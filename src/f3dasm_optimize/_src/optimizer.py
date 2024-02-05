@@ -10,7 +10,7 @@ from __future__ import annotations
 # Standard
 import sys
 from dataclasses import dataclass
-from typing import ClassVar, List, Optional, Tuple
+from typing import ClassVar, Iterable, List, Optional, Tuple
 
 if sys.version_info < (3, 8):  # NOQA
     from typing_extensions import Protocol  # NOQA
@@ -19,6 +19,7 @@ else:
 
 # Third-party core
 import numpy as np
+import pandas as pd
 
 # Locals
 from ._protocol import DataGenerator, Domain
@@ -36,6 +37,10 @@ __status__ = 'Stable'
 class ExperimentData(Protocol):
     domain: Domain
 
+    @property
+    def index(self, index) -> pd.Index:
+        ...
+
     def get_n_best_output(self, n_samples: int) -> ExperimentData:
         ...
 
@@ -43,6 +48,9 @@ class ExperimentData(Protocol):
         ...
 
     def to_numpy() -> Tuple[np.ndarray, np.ndarray]:
+        ...
+
+    def select(self, indices: int | slice | Iterable[int]) -> ExperimentData:
         ...
 
 
@@ -66,9 +74,9 @@ class Optimizer:
     type: ClassVar[str] = 'any'
     hyperparameters: OptimizerParameters = OptimizerParameters()
 
-    def __init__(self, domain: Domain,
-                 seed: Optional[int] = None,
-                 name: Optional[str] = None, **hyperparameters):
+    def __init__(
+            self, domain: Domain, seed: Optional[int] = None,
+            name: Optional[str] = None, **hyperparameters):
         """Optimizer class for the optimization of a data-driven process
 
         Parameters
@@ -86,8 +94,8 @@ class Optimizer:
         Note
         ----
 
-        Any additional keyword arguments will be used to overwrite the default
-        hyperparameters of the optimizer.
+        Any additional keyword arguments will be used to overwrite
+        the default hyperparameters of the optimizer.
         """
 
         # Check if **hyperparameters is empty
@@ -123,7 +131,7 @@ class Optimizer:
 
     def _check_number_of_datapoints(self):
         """Check if the number of datapoints is sufficient
-        for the initial population
+         for the initial population
 
         Raises
         ------
@@ -133,8 +141,8 @@ class Optimizer:
         if len(self.data) < self.hyperparameters.population:
             raise ValueError(
                 f'There are {len(self.data)} datapoints available, \
-                     need {self.hyperparameters.population} for \
-                         initial population!'
+                     need {self.hyperparameters.population} for initial \
+                         population!'
             )
 
     def set_seed(self):
@@ -143,14 +151,15 @@ class Optimizer:
 
     def reset(self, data: ExperimentData):
         """Reset the optimizer to its initial state"""
-        self.data = data
+        self.set_data(data)
         self.__post_init__()
 
     def set_data(self, data: ExperimentData):
         """Set the data attribute to the given data"""
         self.data = data
 
-    def set_x0(self, experiment_data: ExperimentData, mode: str):
+    def set_x0(self, experiment_data: ExperimentData,
+               mode: str | ExperimentData):
         """Set the initial population to the best n samples of the given data
 
         Parameters
@@ -165,14 +174,17 @@ class Optimizer:
         ValueError
             Raises when the mode is not recognized
 
-        Notes
-        -----
+        Note
+        ----
         The following modes are available:
             - best: select the best n samples
             - random: select n random samples
             - last: select the last n samples
         """
-        if mode.lower() == 'best':
+        if isinstance(mode, ExperimentData):
+            x0 = mode
+
+        elif mode.lower() == 'best':
             x0 = experiment_data.get_n_best_output(
                 self.hyperparameters.population)
 
@@ -191,7 +203,7 @@ class Optimizer:
                 f'Unknown selection mode {mode}, use best, random or last')
 
         x0._reset_index()
-        self.data = x0
+        self.set_data(x0)
 
     def get_name(self) -> str:
         """Get the name of the optimizer
@@ -213,8 +225,8 @@ class Optimizer:
         return []
 
     def update_step(self, data_generator: DataGenerator) -> ExperimentData:
-        """Update step of the optimizer. Needs to be
-        implemented by the child class
+        """Update step of the optimizer. Needs to be implemented
+         by the child class
 
         Parameters
         ----------
