@@ -5,6 +5,7 @@ from typing import Dict
 
 # Third party
 import optuna
+import numpy as np
 
 # Local
 from .._protocol import DataGenerator, Domain
@@ -62,8 +63,10 @@ class OptunaOptimizer(Optimizer):
         self.trial = self.algorithm.ask()
         experiment_sample = data_generator._run(
             self._create_trial(), domain=self.domain)
-        self.algorithm.tell(self.trial, experiment_sample.to_numpy()[1])
-        return experiment_sample
+        
+        x, y = experiment_sample.to_numpy()
+        self.algorithm.tell(self.trial, y)
+        return np.atleast_2d(x), np.atleast_2d(y)
 
 
 def domain_to_optuna_distributions(domain: Domain):
