@@ -4,16 +4,10 @@ Information on the Adam optimizer
 #                                                                       Modules
 # =============================================================================
 
+
 # Standard
 from dataclasses import dataclass
 from typing import List
-import os
-
-# '0' to display all logs, 
-# '1' to display only INFO logs, 
-# '2' to suppress all logs except ERROR logs
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  
-
 
 # Third-party
 import tensorflow as tf

@@ -3,9 +3,9 @@
 
 from typing import Dict, Tuple
 
+import numpy as np
 # Third party
 import optuna
-import numpy as np
 
 # Local
 from .._protocol import DataGenerator, Domain
@@ -63,11 +63,11 @@ class OptunaOptimizer(Optimizer):
 
     def update_step(
             self, data_generator: DataGenerator
-            ) -> Tuple[np.ndarray, np.ndarray]:
+    ) -> Tuple[np.ndarray, np.ndarray]:
         self.trial = self.algorithm.ask()
         experiment_sample = data_generator._run(
             self._create_trial(), domain=self.domain)
-        
+
         x, y = experiment_sample.to_numpy()
         self.algorithm.tell(self.trial, y)
         return np.atleast_2d(x), np.atleast_2d(y)
