@@ -54,7 +54,7 @@ class NevergradDE(NeverGradOptimizer):
 
 @dataclass
 class NevergradPSO_Parameters(OptimizerParameters):
-    population: int = 40
+    population: int = 30
     transform: str = 'identity'
     omega: float = 0.7213475204444817
     phip: float = 1.1931471805599454
@@ -66,18 +66,18 @@ class NevergradPSO_Parameters(OptimizerParameters):
 
 class PSO(NeverGradOptimizer):
 
-    parameter: NevergradPSO_Parameters = NevergradPSO_Parameters()
+    hyperparameters: NevergradPSO_Parameters = NevergradPSO_Parameters()
 
     def set_algorithm(self):
         p = ng.p.Array(shape=(len(self.domain),),
                        lower=self.domain.get_bounds()[:, 0],
                        upper=self.domain.get_bounds()[:, 1])
         self.algorithm = ng.optimizers.ConfPSO(
-            transform=self.parameter.transform,
-            popsize=self.parameter.population,
-            omega=self.parameter.omega,
-            phip=self.parameter.phip,
-            phig=self.parameter.phig,
-            qo=self.parameter.qo,
-            sqo=self.parameter.sqo,
-            so=self.parameter.so)(p, budget=1e8)
+            transform=self.hyperparameters.transform,
+            popsize=self.hyperparameters.population,
+            omega=self.hyperparameters.omega,
+            phip=self.hyperparameters.phip,
+            phig=self.hyperparameters.phig,
+            qo=self.hyperparameters.qo,
+            sqo=self.hyperparameters.sqo,
+            so=self.hyperparameters.so)(p, budget=1e8)
