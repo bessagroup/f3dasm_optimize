@@ -25,8 +25,8 @@ for path in src_dir:
 project = 'f3dasm_optimize'
 author = 'Martin van der Schelling'
 copyright = '2023, Martin van der Schelling'
-version = '1.4.0'
-release = '1.4.0'
+version = '1.5.0'
+release = '1.5.0'
 
 # -- General configuration ----------------------------------------------------
 
@@ -95,7 +95,7 @@ intersphinx_mapping = {
     "scipy": ("https://docs.scipy.org/doc/scipy/reference/", None),
     "matplotlib": ("https://matplotlib.org/stable/", None),
     "pandas": ('https://pandas.pydata.org/docs/', None),
-    "f3dasm": ('https://bessagroup.github.io/f3dasm/', None),
+    "f3dasm": ('https://f3dasm.readthedocs.io/en/latest/index.html', None),
 }
 
 # -- Options for HTML output -------------------------------------------------

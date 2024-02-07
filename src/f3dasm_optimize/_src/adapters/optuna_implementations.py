@@ -1,8 +1,9 @@
 #                                                                       Modules
 # =============================================================================
 
-from typing import Dict
+from typing import Dict, Tuple
 
+import numpy as np
 # Third party
 import optuna
 
@@ -18,6 +19,8 @@ __status__ = 'Stable'
 # =============================================================================
 #
 # =============================================================================
+
+optuna.logging.set_verbosity(optuna.logging.WARNING)
 
 
 class OptunaOptimizer(Optimizer):
@@ -58,15 +61,19 @@ class OptunaOptimizer(Optimizer):
         # return ExperimentSample(dict_input=optuna_dict,
         # dict_output = {}, jobnumber = 0)
 
-    def update_step(self, data_generator: DataGenerator):
+    def update_step(
+            self, data_generator: DataGenerator
+    ) -> Tuple[np.ndarray, np.ndarray]:
         self.trial = self.algorithm.ask()
         experiment_sample = data_generator._run(
             self._create_trial(), domain=self.domain)
-        self.algorithm.tell(self.trial, experiment_sample.to_numpy()[1])
-        return experiment_sample
+
+        x, y = experiment_sample.to_numpy()
+        self.algorithm.tell(self.trial, y)
+        return np.atleast_2d(x), np.atleast_2d(y)
 
 
-def domain_to_optuna_distributions(domain: Domain):
+def domain_to_optuna_distributions(domain: Domain) -> dict:
     optuna_distributions = {}
     for name, parameter in domain.items():
         if parameter._type == 'float':
