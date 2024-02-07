@@ -20,6 +20,8 @@ __status__ = 'Stable'
 #
 # =============================================================================
 
+optuna.logging.set_verbosity(optuna.logging.WARNING)
+
 
 class OptunaOptimizer(Optimizer):
     def _construct_model(self, data_generator: DataGenerator):
