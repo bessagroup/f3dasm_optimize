@@ -74,7 +74,7 @@ class DifferentialEvolution_Parameters(OptimizerParameters):
 
 class DifferentialEvolution(PygmoAlgorithm):
     "DifferentialEvolution optimizer implemented from pygmo"
-
+    require_gradients: bool = False
     hyperparameters: DifferentialEvolution_Parameters = \
         DifferentialEvolution_Parameters()
 
@@ -113,7 +113,7 @@ class PygmoPSO(PygmoAlgorithm):
     Particle Swarm Optimization (Generational) optimizer
     implemented from pygmo
     """
-
+    require_gradients: bool = False
     hyperparameters: PSO_Parameters = PSO_Parameters()
 
     def set_algorithm(self):
@@ -147,7 +147,7 @@ class SADE_Parameters(OptimizerParameters):
 
 class SADE(PygmoAlgorithm):
     "Self-adaptive Differential Evolution optimizer implemented from pygmo"
-
+    require_gradients: bool = False
     hyperparameters: SADE_Parameters = SADE_Parameters()
 
     def set_algorithm(self):
@@ -172,13 +172,13 @@ class SADE(PygmoAlgorithm):
 @dataclass
 class SEA_Parameters(OptimizerParameters):
     """Hyperparameters for SEA optimizer"""
-
+    require_gradients: bool = False
     population: int = 30
 
 
 class SEA(PygmoAlgorithm):
     """Simple Evolutionary Algorithm optimizer implemented from pygmo"""
-
+    require_gradients: bool = False
     hyperparameters: SEA_Parameters = SEA_Parameters()
 
     def set_algorithm(self):
@@ -212,7 +212,7 @@ class SGA_Parameters(OptimizerParameters):
 
 class SGA(PygmoAlgorithm):
     """Simple Genetic Algorithm optimizer implemented from pygmo"""
-
+    require_gradients: bool = False
     hyperparameters: SGA_Parameters = SGA_Parameters()
 
     def set_algorithm(self):
@@ -252,7 +252,7 @@ class SimulatedAnnealing_Parameters(OptimizerParameters):
 
 class SimulatedAnnealing(PygmoAlgorithm):
     "DifferentialEvolution optimizer implemented from pygmo"
-
+    require_gradients: bool = False
     hyperparameters: SimulatedAnnealing_Parameters = \
         SimulatedAnnealing_Parameters()
 
@@ -293,7 +293,7 @@ class XNES_Parameters(OptimizerParameters):
 
 class XNES(PygmoAlgorithm):
     """XNES optimizer implemented from pygmo"""
-
+    require_gradients: bool = False
     hyperparameters: XNES_Parameters = XNES_Parameters()
 
     def set_algorithm(self):

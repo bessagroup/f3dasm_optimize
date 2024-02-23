@@ -39,7 +39,7 @@ class Adam_Parameters(OptimizerParameters):
 
 class Adam(TensorflowOptimizer):
     """Adam"""
-
+    require_gradients: bool = True
     hyperparameters: Adam_Parameters = Adam_Parameters()
 
     def set_algorithm(self):
@@ -69,7 +69,7 @@ class Adamax_Parameters(OptimizerParameters):
 
 class Adamax(TensorflowOptimizer):
     """Adamax"""
-
+    require_gradients: bool = True
     hyperparameters: Adamax_Parameters = Adamax_Parameters()
 
     def set_algorithm(self):
@@ -101,7 +101,7 @@ class Ftrl_Parameters(OptimizerParameters):
 
 class Ftrl(TensorflowOptimizer):
     """Ftrl"""
-
+    require_gradients: bool = True
     hyperparameters: Ftrl_Parameters = Ftrl_Parameters()
 
     def set_algorithm(self):
@@ -141,7 +141,7 @@ class Nadam_Parameters(OptimizerParameters):
 
 class Nadam(TensorflowOptimizer):
     """Nadam"""
-
+    require_gradients: bool = True
     hyperparameters: Nadam_Parameters = Nadam_Parameters()
 
     def set_algorithm(self):
@@ -171,7 +171,7 @@ class RMSprop_Parameters(OptimizerParameters):
 
 class RMSprop(TensorflowOptimizer):
     """RMSprop"""
-
+    require_gradients: bool = True
     hyperparameters: RMSprop_Parameters = RMSprop_Parameters()
 
     def set_algorithm(self):
@@ -200,7 +200,7 @@ class SGD_Parameters(OptimizerParameters):
 
 class SGD(TensorflowOptimizer):
     """SGD"""
-
+    require_gradients: bool = True
     hyperparameters: SGD_Parameters = SGD_Parameters()
 
     def set_algorithm(self):

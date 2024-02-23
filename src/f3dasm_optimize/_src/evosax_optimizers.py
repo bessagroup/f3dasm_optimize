@@ -43,6 +43,7 @@ class PSO_Parameters(OptimizerParameters):
 
 
 class EvoSaxPSO(EvoSaxOptimizer):
+    require_gradients: bool = False
     hyperparameters: PSO_Parameters = PSO_Parameters()
     evosax_algorithm = PSO
 
@@ -57,6 +58,7 @@ class SimAnneal_Parameters(OptimizerParameters):
 
 
 class EvoSaxSimAnneal(EvoSaxOptimizer):
+    require_gradients: bool = False
     hyperparameters: SimAnneal_Parameters = SimAnneal_Parameters()
     evosax_algorithm = SimAnneal
 
@@ -71,6 +73,7 @@ class DE_Parameters(OptimizerParameters):
 
 
 class EvoSaxDE(EvoSaxOptimizer):
+    require_gradients: bool = False
     hyperparameters: DE_Parameters = DE_Parameters()
     evosax_algorithm = DE
 
@@ -85,5 +88,6 @@ class BIPOPCMAES_Parameters(OptimizerParameters):
 
 
 class EvoSaxBIPOPCMAES(EvoSaxOptimizer):
+    require_gradients: bool = False
     hyperparameters: BIPOPCMAES_Parameters = BIPOPCMAES_Parameters()
     evosax_algorithm = BIPOP_CMA_ES

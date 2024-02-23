@@ -33,7 +33,7 @@ class NevergradDE_Parameters(OptimizerParameters):
 
 
 class NevergradDE(NeverGradOptimizer):
-
+    require_gradients: bool = False
     hyperparameters: NevergradDE_Parameters = NevergradDE_Parameters()
 
     def set_algorithm(self):
@@ -66,6 +66,7 @@ class NevergradPSO_Parameters(OptimizerParameters):
 
 class PSO(NeverGradOptimizer):
 
+    require_gradients: bool = False
     hyperparameters: NevergradPSO_Parameters = NevergradPSO_Parameters()
 
     def set_algorithm(self):
