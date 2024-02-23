@@ -18,6 +18,7 @@ __status__ = 'Stable'
 
 
 class TPESampler(OptunaOptimizer):
+    require_gradients: bool = False
     def set_algorithm(self):
         self.algorithm = optuna.create_study(
             sampler=optuna.samplers.TPESampler(seed=self.seed))
