@@ -34,6 +34,7 @@ class CMAES(PygmoAlgorithm):
     implemented from pygmo"""
 
     hyperparameters: CMAES_Parameters = CMAES_Parameters()
+    require_gradients: bool = False
 
     def set_algorithm(self):
         self.algorithm = pg.algorithm(
