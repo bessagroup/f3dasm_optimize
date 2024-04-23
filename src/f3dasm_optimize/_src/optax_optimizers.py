@@ -22,7 +22,7 @@ __status__ = 'Stable'
 
 
 @dataclass
-class AdamOptax_Hyperparameters(OptimizerParameters):
+class Adam_Hyperparameters(OptimizerParameters):
     """Hyperparameters for Adam Optax optimizer"""
 
     learning_rate: float = 0.001
@@ -32,9 +32,9 @@ class AdamOptax_Hyperparameters(OptimizerParameters):
     eps_root: float = 0.0
 
 
-class AdamOptax(OptaxOptimizer):
+class Adam(OptaxOptimizer):
     require_gradients: bool = True
-    hyperparameters: AdamOptax_Hyperparameters = AdamOptax_Hyperparameters()
+    hyperparameters: Adam_Hyperparameters = Adam_Hyperparameters()
 
     def set_algorithm(self):
         self.algorithm = optax.adam(

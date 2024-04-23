@@ -21,10 +21,11 @@ with try_import() as _optuna_imports:
     from .optuna_optimizers import TPESampler
 
 with try_import() as _tensorflow_imports:
-    from .tensorflow_optimizers import SGD, Adam, Adamax, Ftrl, Nadam, RMSprop
+    from .tensorflow_optimizers import (SGD, Adamax, AdamTensorflow, Ftrl,
+                                        Nadam, RMSprop)
 
 with try_import() as _optax_imports:
-    from .optax_optimizers import AdamOptax
+    from .optax_optimizers import Adam
 
 #                                                          Authorship & Credits
 # =============================================================================
@@ -46,7 +47,7 @@ if _optuna_imports.is_successful():
     _OPTIMIZERS.extend([TPESampler])
 
 if _tensorflow_imports.is_successful():
-    _OPTIMIZERS.extend([SGD, Adam, Adamax, Ftrl, Nadam, RMSprop])
+    _OPTIMIZERS.extend([SGD, AdamTensorflow, Adamax, Ftrl, Nadam, RMSprop])
 
 if _evosax_imports.is_successful():
     _OPTIMIZERS.extend([EvoSaxPSO, EvoSaxSimAnneal, EvoSaxDE,
@@ -56,10 +57,10 @@ if _nevergrad_imports.is_successful():
     _OPTIMIZERS.extend([NevergradDE, PSO])
 
 if _optax_imports.is_successful():
-    _OPTIMIZERS.extend([AdamOptax])
+    _OPTIMIZERS.extend([Adam])
 
 __all__ = [
-    'Adam',
+    'AdamTensorflow',
     'Adamax',
     'CMAES',
     'DifferentialEvolution',
@@ -82,6 +83,6 @@ __all__ = [
     'SimulatedAnnealing',
     'XNES',
     'TPESampler',
-    'AdamOptax',
+    'Adam',
     '__version__',
 ]

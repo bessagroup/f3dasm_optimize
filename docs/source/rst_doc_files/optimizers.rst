@@ -53,7 +53,7 @@ Name                     Keyword argument                                       
 ======================== ====================================================================== =====================================================================================================
 SGD                      ``"SGD"``                                                              `tf.keras.optimizers.SGD <https://www.tensorflow.org/api_docs/python/tf/keras/optimizers/SGD>`_
 RMSprop                  ``"RMSprop"``                                                          `tf.keras.optimizers.RMSprop <https://www.tensorflow.org/api_docs/python/tf/keras/optimizers/RMSprop>`_
-Adam                     ``"Adam"``                                                             `tf.keras.optimizers.Adam <https://www.tensorflow.org/api_docs/python/tf/keras/optimizers/Adam>`_
+Adam                     ``"AdamTensorflow"``                                                   `tf.keras.optimizers.Adam <https://www.tensorflow.org/api_docs/python/tf/keras/optimizers/Adam>`_
 Nadam                    ``"NAdam"``                                                            `tf.keras.optimizers.Nadam <https://www.tensorflow.org/api_docs/python/tf/keras/optimizers/Nadam>`_
 Adamax                   ``"Adamax"``                                                           `tf.keras.optimizers.Adamax <https://www.tensorflow.org/api_docs/python/tf/keras/optimizers/Adamax>`_
 Ftrl                     ``"Ftrl"``                                                             `tf.keras.optimizers.Ftrl <https://www.tensorflow.org/api_docs/python/tf/keras/optimizers/Ftrl>`_
@@ -134,6 +134,6 @@ In order to use this optimizers you need to install the :code:`optax` dependency
 ================================ ========================================================================= ===========================================================================================================================================================================
 Name                             Keyword argument                                                          Reference
 ================================ ========================================================================= ===========================================================================================================================================================================
-Adam                             ``"AdamOptax"``                                                           `optax.adam <https://optax.readthedocs.io/en/latest/api/optimizers.html#optax.adam>`_
+Adam                             ``"Adam"``                                                                `optax.adam <https://optax.readthedocs.io/en/latest/api/optimizers.html#optax.adam>`_
 SGD                              ``"SGDOptax"``                                                            `optax.sgd <https://optax.readthedocs.io/en/latest/api/optimizers.html#optax.sgd>`_
 ================================ ========================================================================= ===========================================================================================================================================================================
