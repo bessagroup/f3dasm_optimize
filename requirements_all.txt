@@ -2,5 +2,5 @@ tensorflow
 pygmo; platform_system == "Linux"
 nevergrad
 evosax
-optuna
+optuna==0.1.7
 optax
