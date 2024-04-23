@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Implemented optimizers &mdash; f3dasm_optimize 1.5.0 documentation</title>
+  <title>Implemented optimizers &mdash; f3dasm_optimize 1.5.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/readthedocs-custom.css?v=9a3201e5" />
@@ -17,7 +17,7 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=c2dd840c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=66a50015"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
         <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/js/theme.js"></script>
@@ -39,7 +39,7 @@
             f3dasm_optimize
           </a>
               <div class="version">
-                1.5.0
+                1.5.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -58,6 +58,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#nevergrad-optimizers">Nevergrad optimizers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#evosax-optimizers">Evosax optimizers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#optuna-optimizers">Optuna optimizers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#optax-optimizers">Optax optimizers</a></li>
 </ul>
 </li>
 </ul>
@@ -168,7 +169,7 @@
 <td><p><a class="reference external" href="https://www.tensorflow.org/api_docs/python/tf/keras/optimizers/RMSprop">tf.keras.optimizers.RMSprop</a></p></td>
 </tr>
 <tr class="row-even"><td><p>Adam</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">&quot;Adam&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;AdamTensorflow&quot;</span></code></p></td>
 <td><p><a class="reference external" href="https://www.tensorflow.org/api_docs/python/tf/keras/optimizers/Adam">tf.keras.optimizers.Adam</a></p></td>
 </tr>
 <tr class="row-odd"><td><p>Nadam</p></td>
@@ -268,6 +269,32 @@
 <tr class="row-even"><td><p>Tree-structured Parzen Estimator</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">&quot;TPESampler&quot;</span></code></p></td>
 <td><p><a class="reference external" href="https://optuna.readthedocs.io/en/stable/reference/samplers/generated/optuna.samplers.TPESampler.html#optuna.samplers.TPESampler">optuna.samplers.TPESampler</a></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="optax-optimizers">
+<h2><a class="reference external" href="https://optax.readthedocs.io/en/latest/index.html">Optax</a> optimizers<a class="headerlink" href="#optax-optimizers" title="Permalink to this heading"></a></h2>
+<p>These derivative-free global optimizers are ported from the <a class="reference external" href="https://optax.readthedocs.io/en/latest/index.html">optax</a> Python library:</p>
+<p>In order to use this optimizers you need to install the <code class="code docutils literal notranslate"><span class="pre">optax</span></code> dependency:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>optax
+</pre></div>
+</div>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Keyword argument</p></th>
+<th class="head"><p>Reference</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Adam</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;Adam&quot;</span></code></p></td>
+<td><p><a class="reference external" href="https://optax.readthedocs.io/en/latest/api/optimizers.html#optax.adam">optax.adam</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>SGD</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;SGDOptax&quot;</span></code></p></td>
+<td><p><a class="reference external" href="https://optax.readthedocs.io/en/latest/api/optimizers.html#optax.sgd">optax.sgd</a></p></td>
 </tr>
 </tbody>
 </table>
