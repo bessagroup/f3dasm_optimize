@@ -27,7 +27,7 @@ __status__ = 'Stable'
 
 
 @dataclass
-class Adam_Parameters(OptimizerParameters):
+class AdamTensorflow_Parameters(OptimizerParameters):
     """Hyperparameters for Adam optimizer"""
 
     learning_rate: float = 0.001
@@ -37,10 +37,10 @@ class Adam_Parameters(OptimizerParameters):
     amsgrad: bool = False
 
 
-class Adam(TensorflowOptimizer):
+class AdamTensorflow(TensorflowOptimizer):
     """Adam"""
     require_gradients: bool = True
-    hyperparameters: Adam_Parameters = Adam_Parameters()
+    hyperparameters: AdamTensorflow_Parameters = AdamTensorflow_Parameters()
 
     def set_algorithm(self):
         self.algorithm = tf.keras.optimizers.Adam(
