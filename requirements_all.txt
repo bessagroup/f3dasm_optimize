@@ -3,3 +3,4 @@ pygmo; platform_system == "Linux"
 nevergrad
 evosax
 optuna
+optax

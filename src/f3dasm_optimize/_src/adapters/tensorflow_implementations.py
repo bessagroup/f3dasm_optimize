@@ -39,6 +39,10 @@ class TensorflowOptimizer(Optimizer):
         grads = tape.gradient(loss, self.args["tvars"])
         self.algorithm.apply_gradients(zip(grads, self.args["tvars"]))
 
+        logits = 0.0 + tf.cast(self.args["model"](None), tf.float64)
+        loss = self.args["func"](tf.reshape(
+            logits, (len(self.domain))))
+
         x = logits.numpy().copy()
         y = loss.numpy().copy()
 
