@@ -30,7 +30,8 @@ __status__ = 'Stable'
 class Domain(Protocol):
     """Protocol class for the domain"""
 
-    def get_continuous_parameters(self):
+    @property
+    def continuous(self):
         ...
 
 

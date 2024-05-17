@@ -88,11 +88,9 @@ class _PygmoProblem:
         """
         return (
             [parameter.lower_bound
-             for parameter in self.domain.get_continuous_parameters(
-             ).values()],
+             for parameter in self.domain.continuous.space.values()],
             [parameter.upper_bound
-             for parameter in self.domain.get_continuous_parameters(
-             ).values()],
+             for parameter in self.domain.continuous.space.values()],
         )
 
 

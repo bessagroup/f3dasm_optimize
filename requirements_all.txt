@@ -3,4 +3,4 @@ pygmo; platform_system == "Linux"
 nevergrad
 evosax
 optuna
-optax
+optax==0.1.7
