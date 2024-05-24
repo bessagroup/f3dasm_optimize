@@ -7,7 +7,7 @@ Protocol classes from types outside the optimization submodule
 from __future__ import annotations
 
 # Standard
-from typing import Dict, Tuple
+from typing import Dict
 
 try:
     from typing import Protocol
@@ -34,10 +34,12 @@ class Domain(Protocol):
     def continuous(self):
         ...
 
+    def get_bounds(self) -> np.ndarray:
+        ...
+
 
 class ExperimentSample(Protocol):
-    def to_numpy(self) -> Tuple[np.ndarray, np.ndarray]:
-        ...
+    ...
 
 
 class DataGenerator(Protocol):

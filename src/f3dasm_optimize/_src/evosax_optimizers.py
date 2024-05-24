@@ -2,14 +2,14 @@
 # =============================================================================
 
 # Standard
-from dataclasses import dataclass
+from typing import Optional
 
 # Third-party
 from evosax import BIPOP_CMA_ES, CMA_ES, DE, PSO, SimAnneal
 
 # Local
+from ._protocol import Domain
 from .adapters.evosax_implementations import EvoSaxOptimizer
-from .optimizer import OptimizerParameters
 
 #                                                          Authorship & Credits
 # =============================================================================
@@ -21,73 +21,72 @@ __status__ = 'Stable'
 # =============================================================================
 
 
-@dataclass
-class CMAES_Parameters(OptimizerParameters):
-    """Hyperparameters for EvoSaxCMAES optimizer"""
-
-    population: int = 30
-
-
 class EvoSaxCMAES(EvoSaxOptimizer):
-    hyperparameters: CMAES_Parameters = CMAES_Parameters()
-    evosax_algorithm = CMA_ES
+    require_gradients: bool = False
+
+    def __init__(
+        self, domain: Domain, population: int = 30, seed: Optional[int] = None,
+            **kwargs):
+        super().__init__(
+            domain=domain, population=population, seed=seed)
+        self.evosax_algorithm = CMA_ES
+        self._set_algorithm()
 
 # =============================================================================
-
-
-@dataclass
-class PSO_Parameters(OptimizerParameters):
-    """Hyperparameters for EvoSaxPSO optimizer"""
-
-    population: int = 30
 
 
 class EvoSaxPSO(EvoSaxOptimizer):
     require_gradients: bool = False
-    hyperparameters: PSO_Parameters = PSO_Parameters()
-    evosax_algorithm = PSO
+
+    def __init__(
+        self, domain: Domain, population: int = 30, seed: Optional[int] = None,
+            **kwargs):
+        super().__init__(
+            domain=domain, population=population, seed=seed, **kwargs)
+        self.evosax_algorithm = PSO
+        self._set_algorithm()
 
 # =============================================================================
-
-
-@dataclass
-class SimAnneal_Parameters(OptimizerParameters):
-    """Hyperparameters for EvoSaxSimAnneal optimizer"""
-
-    population: int = 30
 
 
 class EvoSaxSimAnneal(EvoSaxOptimizer):
     require_gradients: bool = False
-    hyperparameters: SimAnneal_Parameters = SimAnneal_Parameters()
-    evosax_algorithm = SimAnneal
+
+    def __init__(
+        self, domain: Domain, population: int = 30, seed: Optional[int] = None,
+            **kwargs):
+        super().__init__(
+            domain=domain, population=population, seed=seed)
+        self.evosax_algorithm = SimAnneal
+        self._set_algorithm()
 
 # =============================================================================
 
 
-@dataclass
-class DE_Parameters(OptimizerParameters):
-    """Hyperparameters for EvoSaxDE optimizer"""
-
-    population: int = 30
+EvoSaxDE_DEFAULTS = {'population': 30}
 
 
 class EvoSaxDE(EvoSaxOptimizer):
     require_gradients: bool = False
-    hyperparameters: DE_Parameters = DE_Parameters()
-    evosax_algorithm = DE
+
+    def __init__(
+        self, domain: Domain, population: int = 30, seed: Optional[int] = None,
+            **kwargs):
+        super().__init__(
+            domain=domain, population=population, seed=seed)
+        self.evosax_algorithm = DE
+        self._set_algorithm()
 
 # =============================================================================
 
 
-@dataclass
-class BIPOPCMAES_Parameters(OptimizerParameters):
-    """Hyperparameters for EvoSaxBIPOP_CMAES optimizer"""
-
-    population: int = 30
-
-
 class EvoSaxBIPOPCMAES(EvoSaxOptimizer):
     require_gradients: bool = False
-    hyperparameters: BIPOPCMAES_Parameters = BIPOPCMAES_Parameters()
-    evosax_algorithm = BIPOP_CMA_ES
+
+    def __init__(
+        self, domain: Domain, population: int = 30, seed: Optional[int] = None,
+            **kwargs):
+        super().__init__(
+            domain=domain, population=population, seed=seed)
+        self.evosax_algorithm = BIPOP_CMA_ES
+        self._set_algorithm()

@@ -10,7 +10,7 @@ import numpy as onp
 import optax
 
 # Local
-from .._protocol import DataGenerator
+from .._protocol import DataGenerator, Domain
 from ..optimizer import Optimizer
 
 #                                                          Authorship & Credits
@@ -24,6 +24,9 @@ __status__ = 'Stable'
 
 
 class OptaxOptimizer(Optimizer):
+    def __init__(self, domain: Domain):
+        self.domain = domain
+
     def update_step(
             self,
             data_generator: DataGenerator) -> Tuple[onp.ndarray, onp.ndarray]:
@@ -34,7 +37,7 @@ class OptaxOptimizer(Optimizer):
                                :, 0], self.domain.get_bounds()[:, 1])
         return onp.atleast_2d(self.params), None
 
-    def _construct_model(self, data_generator):
+    def _construct_model(self, data_generator: DataGenerator):
         self.grad_f = lambda params: jnp.array(
             data_generator.dfdx(onp.array(params)))
         self.params = jnp.array(self.data.get_experiment_sample(

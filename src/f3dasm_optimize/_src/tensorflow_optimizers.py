@@ -6,15 +6,14 @@ Information on the Adam optimizer
 
 
 # Standard
-from dataclasses import dataclass
 from typing import List
 
 # Third-party
 import tensorflow as tf
 
+from ._protocol import Domain
 # Locals
 from .adapters.tensorflow_implementations import TensorflowOptimizer
-from .optimizer import OptimizerParameters
 
 #                                                          Authorship & Credits
 # =============================================================================
@@ -26,189 +25,179 @@ __status__ = 'Stable'
 # =============================================================================
 
 
-@dataclass
-class AdamTensorflow_Parameters(OptimizerParameters):
-    """Hyperparameters for Adam optimizer"""
-
-    learning_rate: float = 0.001
-    beta_1: float = 0.9
-    beta_2: float = 0.999
-    epsilon: float = 1e-07
-    amsgrad: bool = False
-
-
 class AdamTensorflow(TensorflowOptimizer):
     """Adam"""
     require_gradients: bool = True
-    hyperparameters: AdamTensorflow_Parameters = AdamTensorflow_Parameters()
 
-    def set_algorithm(self):
+    def __init__(self, domain: Domain, learning_rate: float = 0.001,
+                 beta_1: float = 0.9, beta_2: float = 0.999,
+                 epsilon: float = 1e-07, amsgrad: bool = False, **kwargs):
+        super().__init__(domain=domain)
+        self.learning_rate = learning_rate
+        self.beta_1 = beta_1
+        self.beta_2 = beta_2
+        self.epsilon = epsilon
+        self.amsgrad = amsgrad
+        self._set_algorithm()
+
+    def _set_algorithm(self):
         self.algorithm = tf.keras.optimizers.Adam(
-            learning_rate=self.hyperparameters.learning_rate,
-            beta_1=self.hyperparameters.beta_1,
-            beta_2=self.hyperparameters.beta_2,
-            epsilon=self.hyperparameters.epsilon,
-            amsgrad=self.hyperparameters.amsgrad,
+            learning_rate=self.learning_rate,
+            beta_1=self.beta_1,
+            beta_2=self.beta_2,
+            epsilon=self.epsilon,
+            amsgrad=self.amsgrad,
         )
 
-    def get_info(self) -> List[str]:
+    def _get_info(self) -> List[str]:
         return ['Stable', 'Global', 'First-Order', 'Single-Solution']
 
 # =============================================================================
-
-
-@dataclass
-class Adamax_Parameters(OptimizerParameters):
-    """Hyperparameters for Adamax optimizer"""
-
-    learning_rate: float = 0.001
-    beta_1: float = 0.9
-    beta_2: float = 0.999
-    epsilon: float = 1e-07
 
 
 class Adamax(TensorflowOptimizer):
     """Adamax"""
     require_gradients: bool = True
-    hyperparameters: Adamax_Parameters = Adamax_Parameters()
 
-    def set_algorithm(self):
+    def __init__(self, domain: Domain, learning_rate: float = 0.001,
+                 beta_1: float = 0.9, beta_2: float = 0.999,
+                 epsilon: float = 1e-07, **kwargs):
+        super().__init__(domain=domain)
+        self.learning_rate = learning_rate
+        self.beta_1 = beta_1
+        self.beta_2 = beta_2
+        self.epsilon = epsilon
+        self._set_algorithm()
+
+    def _set_algorithm(self):
         self.algorithm = tf.keras.optimizers.Adamax(
-            learning_rate=self.hyperparameters.learning_rate,
-            beta_1=self.hyperparameters.beta_1,
-            beta_2=self.hyperparameters.beta_2,
-            epsilon=self.hyperparameters.epsilon,
+            learning_rate=self.learning_rate,
+            beta_1=self.beta_1,
+            beta_2=self.beta_2,
+            epsilon=self.epsilon,
         )
 
-    def get_info(self) -> List[str]:
+    def _get_info(self) -> List[str]:
         return ['Fast', 'Single-Solution']
 
 # =============================================================================
-
-
-@dataclass
-class Ftrl_Parameters(OptimizerParameters):
-    """Hyperparameters for Ftrl optimizer"""
-
-    learning_rate: float = 0.001
-    learning_rate_power: float = -0.5
-    initial_accumulator_value: float = 0.1
-    l1_regularization_strength: float = 0.0
-    l2_regularization_strength: float = 0.0
-    l2_shrinkage_regularization_strength: float = 0.0
-    beta: float = 0.0
 
 
 class Ftrl(TensorflowOptimizer):
     """Ftrl"""
     require_gradients: bool = True
-    hyperparameters: Ftrl_Parameters = Ftrl_Parameters()
 
-    def set_algorithm(self):
+    def __init__(self, domain: Domain, learning_rate: float = 0.001,
+                 learning_rate_power: float = -0.5,
+                 initial_accumulator_value: float = 0.1,
+                 l1_regularization_strength: float = 0.0,
+                 l2_regularization_strength: float = 0.0,
+                 l2_shrinkage_regularization_strength: float = 0.0,
+                 beta: float = 0.0, **kwargs):
+        super().__init__(domain=domain)
+        self.learning_rate = learning_rate
+        self.learning_rate_power = learning_rate_power
+        self.initial_accumulator_value = initial_accumulator_value
+        self.l1_regularization_strength = l1_regularization_strength
+        self.l2_regularization_strength = l2_regularization_strength
+        self.l2_shrinkage_regularization_strength =\
+            l2_shrinkage_regularization_strength
+        self.beta = beta
+        self._set_algorithm()
+
+    def _set_algorithm(self):
         self.algorithm = tf.keras.optimizers.Ftrl(
-            learning_rate=self.
-            hyperparameters.learning_rate,
-            learning_rate_power=self.
-            hyperparameters.learning_rate_power,
-            initial_accumulator_value=self.
-            hyperparameters.initial_accumulator_value,
-            l1_regularization_strength=self.
-            hyperparameters.l1_regularization_strength,
-            l2_regularization_strength=self.
-            hyperparameters.l2_regularization_strength,
-            l2_shrinkage_regularization_strength=self.
-            hyperparameters.l2_shrinkage_regularization_strength,
-            beta=self.hyperparameters.beta,
+            learning_rate=self.learning_rate,
+            learning_rate_power=self.learning_rate_power,
+            initial_accumulator_value=self.initial_accumulator_value,
+            l1_regularization_strength=self.l1_regularization_strength,
+            l2_regularization_strength=self.l2_regularization_strength,
+            l2_shrinkage_regularization_strength=self.l2_shrinkage_regularization_strength,  # NOQA
+            beta=self.beta,
         )
 
-    def get_info(self) -> List[str]:
+    def _get_info(self) -> List[str]:
         return ['Fast', 'Single-Solution']
 
 # =============================================================================
 
 
-@dataclass
-class Nadam_Parameters(OptimizerParameters):
-    """Hyperparameters for Momentum optimizer
-    )
-    """
-
-    learning_rate: float = 0.001
-    beta_1: float = 0.9
-    beta_2: float = 0.999
-    epsilon: float = 1e-07
-
-
 class Nadam(TensorflowOptimizer):
     """Nadam"""
     require_gradients: bool = True
-    hyperparameters: Nadam_Parameters = Nadam_Parameters()
 
-    def set_algorithm(self):
+    def __init__(self, domain: Domain, learning_rate: float = 0.001,
+                 beta_1: float = 0.9, beta_2: float = 0.999,
+                 epsilon: float = 1e-07, **kwargs):
+        super().__init__(domain=domain)
+        self.learning_rate = learning_rate
+        self.beta_1 = beta_1
+        self.beta_2 = beta_2
+        self.epsilon = epsilon
+        self._set_algorithm()
+
+    def _set_algorithm(self):
         self.algorithm = tf.keras.optimizers.Nadam(
-            learning_rate=self.hyperparameters.learning_rate,
-            beta_1=self.hyperparameters.beta_1,
-            beta_2=self.hyperparameters.beta_2,
-            epsilon=self.hyperparameters.epsilon,
+            learning_rate=self.learning_rate,
+            beta_1=self.beta_1,
+            beta_2=self.beta_2,
+            epsilon=self.epsilon,
         )
 
-    def get_info(self) -> List[str]:
+    def _get_info(self) -> List[str]:
         return ['Stable', 'Global', 'First-Order', 'Single-Solution']
 
 # =============================================================================
 
 
-@dataclass
-class RMSprop_Parameters(OptimizerParameters):
-    """Hyperparameters for RMSprop optimizer"""
-
-    learning_rate: float = 0.001
-    rho: float = 0.9
-    momentum: float = 0.0
-    epsilon: float = 1e-07
-    centered: bool = False
-
-
 class RMSprop(TensorflowOptimizer):
     """RMSprop"""
     require_gradients: bool = True
-    hyperparameters: RMSprop_Parameters = RMSprop_Parameters()
 
-    def set_algorithm(self):
+    def __init__(self, domain: Domain, learning_rate: float = 0.001,
+                 rho: float = 0.9, momentum: float = 0.0,
+                 epsilon: float = 1e-07, centered: bool = False, **kwargs):
+        super().__init__(domain=domain)
+        self.learning_rate = learning_rate
+        self.rho = rho
+        self.momentum = momentum
+        self.epsilon = epsilon
+        self.centered = centered
+        self._set_algorithm()
+
+    def _set_algorithm(self):
         self.algorithm = tf.keras.optimizers.RMSprop(
-            learning_rate=self.hyperparameters.learning_rate,
-            rho=self.hyperparameters.rho,
-            momentum=self.hyperparameters.momentum,
-            epsilon=self.hyperparameters.epsilon,
-            centered=self.hyperparameters.centered,
+            learning_rate=self.learning_rate,
+            rho=self.rho,
+            momentum=self.momentum,
+            epsilon=self.epsilon,
+            centered=self.centered,
         )
 
-    def get_info(self) -> List[str]:
+    def _get_info(self) -> List[str]:
         return ['Stable', 'Single-Solution']
 
 # =============================================================================
 
 
-@dataclass
-class SGD_Parameters(OptimizerParameters):
-    """Hyperparameters for Momentum optimizer"""
-
-    learning_rate: float = 0.01
-    momentum: float = 0.0
-    nesterov: bool = False
-
-
 class SGD(TensorflowOptimizer):
     """SGD"""
     require_gradients: bool = True
-    hyperparameters: SGD_Parameters = SGD_Parameters()
 
-    def set_algorithm(self):
+    def __init__(self, domain: Domain, learning_rate: float = 0.01,
+                 momentum: float = 0.0, nesterov: bool = False, **kwargs):
+        super().__init__(domain=domain)
+        self.learning_rate = learning_rate
+        self.momentum = momentum
+        self.nesterov = nesterov
+        self._set_algorithm()
+
+    def _set_algorithm(self):
         self.algorithm = tf.keras.optimizers.SGD(
-            learning_rate=self.hyperparameters.learning_rate,
-            momentum=self.hyperparameters.momentum,
-            nesterov=self.hyperparameters.nesterov,
+            learning_rate=self.learning_rate,
+            momentum=self.momentum,
+            nesterov=self.nesterov,
         )
 
-    def get_info(self) -> List[str]:
+    def _get_info(self) -> List[str]:
         return ['Stable', 'First-Order', 'Single-Solution']

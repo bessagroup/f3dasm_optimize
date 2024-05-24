@@ -1,10 +1,11 @@
 #                                                                       Modules
 # =============================================================================
 
+# Standard
 from typing import Dict, Tuple
 
-import numpy as np
 # Third party
+import numpy as np
 import optuna
 
 # Local
@@ -24,6 +25,9 @@ optuna.logging.set_verbosity(optuna.logging.WARNING)
 
 
 class OptunaOptimizer(Optimizer):
+    def __init__(self, domain: Domain):
+        self.domain = domain
+
     def _construct_model(self, data_generator: DataGenerator):
 
         for i in range(len(self.data)):
@@ -58,8 +62,6 @@ class OptunaOptimizer(Optimizer):
                     name=name, choices=[parameter.value])
 
         return optuna_dict
-        # return ExperimentSample(dict_input=optuna_dict,
-        # dict_output = {}, jobnumber = 0)
 
     def update_step(
             self, data_generator: DataGenerator
