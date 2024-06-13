@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>f3dasm_optimize._src._imports &mdash; f3dasm_optimize 1.5.3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/readthedocs-custom.css?v=9a3201e5" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/theme_overrides.css?v=881f237e" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=f5250e66"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            f3dasm_optimize
+          </a>
+              <div class="version">
+                1.5.3
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Optimization</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../rst_doc_files/getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rst_doc_files/optimizers.html">Implemented optimizers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../rst_doc_files/reference/index.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_autosummary/f3dasm_optimize.html">Code</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">f3dasm_optimize</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">f3dasm_optimize._src._imports</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for f3dasm_optimize._src._imports</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Classes that manage importing and exceptions of submodules with extension.</span>
+<span class="sd">This code was adapted from Optuna</span>
+<span class="sd">(https://github.com/optuna/optuna/blob/master/optuna/_imports.py)</span>
+<span class="sd">and modified to fit the specific case of f3dasm.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1">#                                                                       Modules</span>
+<span class="c1"># =============================================================================</span>
+
+<span class="c1"># Standard</span>
+<span class="kn">from</span> <span class="nn">types</span> <span class="kn">import</span> <span class="n">TracebackType</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Type</span>
+
+<span class="c1">#                                                          Authorship &amp; Credits</span>
+<span class="c1"># =============================================================================</span>
+<span class="n">__author__</span> <span class="o">=</span> <span class="s1">&#39;Martin van der Schelling (M.P.vanderSchelling@tudelft.nl)&#39;</span>
+<span class="n">__credits__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Martin van der Schelling&#39;</span><span class="p">,</span> <span class="s1">&#39;Optuna&#39;</span><span class="p">]</span>
+<span class="n">__status__</span> <span class="o">=</span> <span class="s1">&#39;Stable&#39;</span>
+<span class="c1"># =============================================================================</span>
+<span class="c1">#</span>
+<span class="c1"># =============================================================================</span>
+
+
+<span class="k">class</span> <span class="nc">_DeferredImportExceptionContextManager</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Context manager to defer exceptions from imports.</span>
+
+<span class="sd">    Catches :exc:`ImportError` and :exc:`SyntaxError`.</span>
+<span class="sd">    If any exception is caught, this class raises an :exc:`ImportError`</span>
+<span class="sd">    when being checked.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_deferred</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="ne">Exception</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;_DeferredImportExceptionContextManager&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Enter the context manager.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Itself.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">exc_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Type</span><span class="p">[</span><span class="ne">Exception</span><span class="p">]],</span>
+        <span class="n">exc_value</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="ne">Exception</span><span class="p">],</span>
+        <span class="n">traceback</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TracebackType</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Exit the context manager.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            exc_type:</span>
+<span class="sd">                Raised exception type. :obj:`None` if nothing is raised.</span>
+<span class="sd">            exc_value:</span>
+<span class="sd">                Raised exception object. :obj:`None` if nothing is raised.</span>
+<span class="sd">            traceback:</span>
+<span class="sd">                Associated traceback. :obj:`None` if nothing is raised.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            :obj:`None` if nothing is deferred, otherwise :obj:`True`.</span>
+<span class="sd">            :obj:`True` will suppress any exceptions avoiding</span>
+<span class="sd">            them from propagating.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">exc_value</span><span class="p">,</span> <span class="p">(</span><span class="ne">ImportError</span><span class="p">,</span> <span class="ne">SyntaxError</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">exc_value</span><span class="p">,</span> <span class="ne">ImportError</span><span class="p">):</span>
+                <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Tried to import &#39;</span><span class="si">{</span><span class="n">exc_value</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39; but failed. </span><span class="se">\</span>
+<span class="s2">                        Please make sure that you have &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;installed the required package correctly to use </span><span class="se">\</span>
+<span class="s2">                        this optimizer. &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;Actual error: </span><span class="si">{</span><span class="n">exc_value</span><span class="si">}</span><span class="s2">.&quot;</span>
+                <span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">exc_value</span><span class="p">,</span> <span class="ne">SyntaxError</span><span class="p">):</span>
+                <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Tried to import a package but failed due to a </span><span class="se">\</span>
+<span class="s2">                        syntax error in </span><span class="si">{</span><span class="n">exc_value</span><span class="o">.</span><span class="n">filename</span><span class="si">}</span><span class="s2">. Please &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;make sure that the Python version is correct </span><span class="se">\</span>
+<span class="s2">                        to use this optimizer. Actual &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;error: </span><span class="si">{</span><span class="n">exc_value</span><span class="si">}</span><span class="s2">.&quot;</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">assert</span> <span class="kc">False</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_deferred</span> <span class="o">=</span> <span class="p">(</span><span class="n">exc_value</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">is_successful</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return whether the context manager has caught any exceptions.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            :obj:`True` if no exceptions are caught, :obj:`False` otherwise.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_deferred</span> <span class="ow">is</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check whether the context manager has caught any exceptions.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            :exc:`ImportError`:</span>
+<span class="sd">                If any exception was caught from the caught exception.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_deferred</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">exc_value</span><span class="p">,</span> <span class="n">message</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_deferred</span>
+            <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">exc_value</span>
+
+
+<div class="viewcode-block" id="try_import"><a class="viewcode-back" href="../../../_autosummary/f3dasm_optimize.try_import.html#f3dasm_optimize.try_import">[docs]</a><span class="k">def</span> <span class="nf">try_import</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">_DeferredImportExceptionContextManager</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a context manager that can wrap imports of optional packages</span>
+<span class="sd">    to defer exceptions.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        Extension name for this particular context manager</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Deferred import context manager.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">_DeferredImportExceptionContextManager</span><span class="p">()</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Martin van der Schelling.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

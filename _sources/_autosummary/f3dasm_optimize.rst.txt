@@ -18,6 +18,13 @@
 
    
    
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:
+   
+      try_import
+   
    
 
    

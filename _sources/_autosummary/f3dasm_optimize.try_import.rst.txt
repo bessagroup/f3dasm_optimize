@@ -1,0 +1,6 @@
+f3dasm\_optimize.try\_import
+============================
+
+.. currentmodule:: f3dasm_optimize
+
+.. autofunction:: try_import
