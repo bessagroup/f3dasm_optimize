@@ -25,8 +25,8 @@ for path in src_dir:
 project = 'f3dasm_optimize'
 author = 'Martin van der Schelling'
 copyright = '2023, Martin van der Schelling'
-version = '1.5.2'
-release = '1.5.2'
+version = '1.5.3'
+release = '1.5.3'
 
 # -- General configuration ----------------------------------------------------
 
@@ -87,7 +87,7 @@ napoleon_include_private_with_doc = False
 # autosummary: https://www.sphinx-doc.org/en/master/usage/extensions/autosummary.html#module-sphinx.ext.autosummary
 autosummary_generate = True
 autosummary_generate_overwrite = True
-autosummary_imported_members = False
+autosummary_imported_members = True
 
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3/", None),

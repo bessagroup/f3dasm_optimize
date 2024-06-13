@@ -86,12 +86,8 @@ class _PygmoProblem:
         -------
             box constraints
         """
-        return (
-            [parameter.lower_bound
-             for parameter in self.domain.continuous.space.values()],
-            [parameter.upper_bound
-             for parameter in self.domain.continuous.space.values()],
-        )
+        bounds = self.domain.get_bounds()
+        return bounds[:, 0].tolist(), bounds[:, 1].tolist()
 
 
 class PygmoAlgorithm(Optimizer):
@@ -109,15 +105,30 @@ class PygmoAlgorithm(Optimizer):
         Default hyperparameter arguments
     """
 
-    def set_seed(self):
-        """Set the seed for pygmo
+    def __init__(self, domain: Domain, population: int,
+                 seed: Optional[int]):
 
-        Parameters
-        ----------
-        seed
-            seed for the random number generator
-        """
+        if seed is None:
+            seed = np.random.randint(1e6)
+
+        self.domain = domain
+        self.seed = seed
+        self.population = population
+
         pg.set_global_rng_seed(seed=self.seed)
+
+    def _construct_model(self, data_generator: DataGenerator):
+        # Construct the PygmoProblem
+        prob = pg.problem(
+            _PygmoProblem(
+                domain=self.domain,
+                func=data_generator,
+                seed=self.seed,
+            )
+        )
+
+        # Construct the population
+        self.pop = pg.population(prob, size=self.population)
 
     def update_step(
             self,
@@ -133,29 +144,29 @@ class PygmoAlgorithm(Optimizer):
         -------
             tuple of updated input parameters (x) and objecti value (y)
         """
-        # Construct the PygmoProblem
-        prob = pg.problem(
-            _PygmoProblem(
-                domain=self.domain,
-                func=data_generator,
-                seed=self.seed,
-            )
-        )
+        # # Construct the PygmoProblem
+        # prob = pg.problem(
+        #     _PygmoProblem(
+        #         domain=self.domain,
+        #         func=data_generator,
+        #         seed=self.seed,
+        #     )
+        # )
 
-        # Construct the population
-        pop = pg.population(prob, size=self.hyperparameters.population)
+        # # Construct the population
+        # pop = pg.population(prob, size=self.population)
 
         # Set the population to the latest datapoints
         pop_x = self.data._input_data.to_dataframe(
-        ).iloc[-self.hyperparameters.population:].to_numpy()
+        ).iloc[-self.population:].to_numpy()
         pop_fx = self.data._output_data.to_dataframe(
-        ).iloc[-self.hyperparameters.population:].to_numpy()
+        ).iloc[-self.population:].to_numpy()
 
         for index, (x, fx) in enumerate(zip(pop_x, pop_fx)):
-            pop.set_xf(index, x, fx)
+            self.pop.set_xf(index, x, fx)
 
         # Iterate one step
-        pop = self.algorithm.evolve(pop)
+        self.pop = self.algorithm.evolve(self.pop)
 
         # return the data
-        return pop.get_x(), pop.get_f()
+        return self.pop.get_x(), self.pop.get_f()

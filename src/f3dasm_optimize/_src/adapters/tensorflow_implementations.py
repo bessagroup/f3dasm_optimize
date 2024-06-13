@@ -12,7 +12,7 @@ from autograd import elementwise_grad as egrad
 from keras import Model
 
 # Local
-from .._protocol import DataGenerator
+from .._protocol import DataGenerator, Domain
 from ..optimizer import Optimizer
 
 #                                                          Authorship & Credits
@@ -26,6 +26,9 @@ __status__ = 'Stable'
 
 
 class TensorflowOptimizer(Optimizer):
+    def __init__(self, domain: Domain):
+        self.domain = domain
+
     def update_step(
             self,
             data_generator: DataGenerator) -> Tuple[np.ndarray, np.ndarray]:
@@ -62,8 +65,7 @@ class TensorflowOptimizer(Optimizer):
             None,
             args={
                 "dim": len(self.domain),
-                "x0": self.data.get_n_best_output(
-                    self.hyperparameters.population).to_numpy()[0],
+                "x0": self.data.get_n_best_output(1).to_numpy()[0],
                 "bounds": self.domain.get_bounds(),
             },
         )  # Build the model
