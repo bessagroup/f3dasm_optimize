@@ -2,7 +2,7 @@
 # =============================================================================
 
 # Standard
-from typing import Tuple
+from typing import Optional, Tuple
 
 # Third-party
 import jax.numpy as jnp
@@ -24,8 +24,9 @@ __status__ = 'Stable'
 
 
 class OptaxOptimizer(Optimizer):
-    def __init__(self, domain: Domain):
+    def __init__(self, domain: Domain, seed: Optional[int]):
         self.domain = domain
+        self.seed = seed
 
     def update_step(
             self,

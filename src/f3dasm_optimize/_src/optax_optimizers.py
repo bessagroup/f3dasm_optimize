@@ -2,6 +2,8 @@
 # =============================================================================
 
 # Third-party
+from typing import Optional
+
 import optax
 
 # Local
@@ -23,8 +25,9 @@ class Adam(OptaxOptimizer):
 
     def __init__(self, domain: Domain, learning_rate: float = 0.001,
                  beta_1: float = 0.9, beta_2: float = 0.999,
-                 epsilon: float = 1e-07, eps_root: float = 0.0, **kwargs):
-        super().__init__(domain=domain)
+                 epsilon: float = 1e-07, eps_root: float = 0.0,
+                 seed: Optional[int] = None, **kwargs):
+        super().__init__(domain=domain, seed=seed)
         self.learning_rate = learning_rate
         self.beta_1 = beta_1
         self.beta_2 = beta_2
@@ -49,8 +52,9 @@ class SGDOptax(OptaxOptimizer):
     require_gradients: bool = True
 
     def __init__(self, domain: Domain, learning_rate: float = 0.01,
-                 momentum: float = 0.0, nesterov: bool = False, **kwargs):
-        super().__init__(domain=domain)
+                 momentum: float = 0.0, nesterov: bool = False,
+                 seed: Optional[int] = None, **kwargs):
+        super().__init__(domain=domain, seed=seed)
         self.learning_rate = learning_rate
         self.momentum = momentum
         self.nesterov = nesterov
