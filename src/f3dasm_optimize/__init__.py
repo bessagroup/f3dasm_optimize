@@ -5,6 +5,7 @@ from ._src import _OPTIMIZERS
 from ._src._imports import try_import
 
 with try_import() as _evosax_imports:
+    from ._src.alias import cmaes
     from ._src.evosax_optimizers import (EvoSaxCMAES, EvoSaxDE, EvoSaxPSO,
                                          EvoSaxSimAnneal)
 
@@ -59,6 +60,7 @@ __all__ = [
     "SimulatedAnnealing",
     "TPESampler",
     "XNES",
+    "cmaes",
 ]
 
 __version__ = '1.5.4'
