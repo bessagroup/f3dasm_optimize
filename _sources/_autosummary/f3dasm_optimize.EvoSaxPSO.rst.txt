@@ -1,0 +1,34 @@
+f3dasm\_optimize.EvoSaxPSO
+==========================
+
+.. currentmodule:: f3dasm_optimize
+
+.. autoclass:: EvoSaxPSO
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: List of Public Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~EvoSaxPSO.update_step
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~EvoSaxPSO.require_gradients
+      ~EvoSaxPSO.type
+   
+   
+
+   .. rubric:: Methods

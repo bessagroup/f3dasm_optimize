@@ -1,0 +1,34 @@
+f3dasm\_optimize.RMSprop
+========================
+
+.. currentmodule:: f3dasm_optimize
+
+.. autoclass:: RMSprop
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: List of Public Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~RMSprop.update_step
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~RMSprop.require_gradients
+      ~RMSprop.type
+   
+   
+
+   .. rubric:: Methods

@@ -21,7 +21,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="f3dasm_optimize.try_import" href="f3dasm_optimize.try_import.html" />
+    <link rel="next" title="f3dasm_optimize.Adam" href="f3dasm_optimize.Adam.html" />
     <link rel="prev" title="Index" href="../rst_doc_files/reference/index.html" /> 
 </head>
 
@@ -53,6 +53,28 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../rst_doc_files/reference/index.html">Index</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Code</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="f3dasm_optimize.Adam.html">f3dasm_optimize.Adam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f3dasm_optimize.AdamTensorflow.html">f3dasm_optimize.AdamTensorflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f3dasm_optimize.Adamax.html">f3dasm_optimize.Adamax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f3dasm_optimize.CMAES.html">f3dasm_optimize.CMAES</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f3dasm_optimize.DifferentialEvolution.html">f3dasm_optimize.DifferentialEvolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f3dasm_optimize.EvoSaxCMAES.html">f3dasm_optimize.EvoSaxCMAES</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f3dasm_optimize.EvoSaxDE.html">f3dasm_optimize.EvoSaxDE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f3dasm_optimize.EvoSaxPSO.html">f3dasm_optimize.EvoSaxPSO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f3dasm_optimize.EvoSaxSimAnneal.html">f3dasm_optimize.EvoSaxSimAnneal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f3dasm_optimize.Ftrl.html">f3dasm_optimize.Ftrl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f3dasm_optimize.Nadam.html">f3dasm_optimize.Nadam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f3dasm_optimize.NevergradDE.html">f3dasm_optimize.NevergradDE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f3dasm_optimize.PSO.html">f3dasm_optimize.PSO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f3dasm_optimize.PygmoPSO.html">f3dasm_optimize.PygmoPSO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f3dasm_optimize.RMSprop.html">f3dasm_optimize.RMSprop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f3dasm_optimize.SADE.html">f3dasm_optimize.SADE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f3dasm_optimize.SEA.html">f3dasm_optimize.SEA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f3dasm_optimize.SGA.html">f3dasm_optimize.SGA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f3dasm_optimize.SGD.html">f3dasm_optimize.SGD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f3dasm_optimize.SimulatedAnnealing.html">f3dasm_optimize.SimulatedAnnealing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f3dasm_optimize.TPESampler.html">f3dasm_optimize.TPESampler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f3dasm_optimize.XNES.html">f3dasm_optimize.XNES</a></li>
 <li class="toctree-l2"><a class="reference internal" href="f3dasm_optimize.try_import.html">f3dasm_optimize.try_import</a></li>
 </ul>
 </li>
@@ -84,6 +106,77 @@
              
   <section id="module-f3dasm_optimize">
 <span id="f3dasm-optimize"></span><h1>f3dasm_optimize<a class="headerlink" href="#module-f3dasm_optimize" title="Permalink to this heading"></a></h1>
+<p class="rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="f3dasm_optimize.Adam.html#f3dasm_optimize.Adam" title="f3dasm_optimize.Adam"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Adam</span></code></a>(domain[, learning_rate, beta_1, ...])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="f3dasm_optimize.AdamTensorflow.html#f3dasm_optimize.AdamTensorflow" title="f3dasm_optimize.AdamTensorflow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AdamTensorflow</span></code></a>(domain[, learning_rate, ...])</p></td>
+<td><p>Adam</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="f3dasm_optimize.Adamax.html#f3dasm_optimize.Adamax" title="f3dasm_optimize.Adamax"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Adamax</span></code></a>(domain[, learning_rate, beta_1, ...])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="f3dasm_optimize.CMAES.html#f3dasm_optimize.CMAES" title="f3dasm_optimize.CMAES"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CMAES</span></code></a>(domain[, population, force_bounds, seed])</p></td>
+<td><p>Covariance Matrix Adaptation Evolution Strategy optimizer implemented from pygmo</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="f3dasm_optimize.DifferentialEvolution.html#f3dasm_optimize.DifferentialEvolution" title="f3dasm_optimize.DifferentialEvolution"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DifferentialEvolution</span></code></a>(domain[, population, ...])</p></td>
+<td><p>DifferentialEvolution optimizer implemented from pygmo</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="f3dasm_optimize.EvoSaxCMAES.html#f3dasm_optimize.EvoSaxCMAES" title="f3dasm_optimize.EvoSaxCMAES"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EvoSaxCMAES</span></code></a>(domain[, population, seed])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="f3dasm_optimize.EvoSaxDE.html#f3dasm_optimize.EvoSaxDE" title="f3dasm_optimize.EvoSaxDE"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EvoSaxDE</span></code></a>(domain[, population, seed])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="f3dasm_optimize.EvoSaxPSO.html#f3dasm_optimize.EvoSaxPSO" title="f3dasm_optimize.EvoSaxPSO"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EvoSaxPSO</span></code></a>(domain[, population, seed])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="f3dasm_optimize.EvoSaxSimAnneal.html#f3dasm_optimize.EvoSaxSimAnneal" title="f3dasm_optimize.EvoSaxSimAnneal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EvoSaxSimAnneal</span></code></a>(domain[, population, seed])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="f3dasm_optimize.Ftrl.html#f3dasm_optimize.Ftrl" title="f3dasm_optimize.Ftrl"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Ftrl</span></code></a>(domain[, learning_rate, ...])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="f3dasm_optimize.Nadam.html#f3dasm_optimize.Nadam" title="f3dasm_optimize.Nadam"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Nadam</span></code></a>(domain[, learning_rate, beta_1, ...])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="f3dasm_optimize.NevergradDE.html#f3dasm_optimize.NevergradDE" title="f3dasm_optimize.NevergradDE"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NevergradDE</span></code></a>(domain[, population, ...])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="f3dasm_optimize.PSO.html#f3dasm_optimize.PSO" title="f3dasm_optimize.PSO"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PSO</span></code></a>(domain[, population, transform, omega, ...])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="f3dasm_optimize.PygmoPSO.html#f3dasm_optimize.PygmoPSO" title="f3dasm_optimize.PygmoPSO"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PygmoPSO</span></code></a>(domain[, population, eta1, eta2, seed])</p></td>
+<td><p>Particle Swarm Optimization (Generational) optimizer implemented from pygmo</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="f3dasm_optimize.RMSprop.html#f3dasm_optimize.RMSprop" title="f3dasm_optimize.RMSprop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RMSprop</span></code></a>(domain[, learning_rate, rho, ...])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="f3dasm_optimize.SADE.html#f3dasm_optimize.SADE" title="f3dasm_optimize.SADE"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SADE</span></code></a>(domain[, population, variant, ...])</p></td>
+<td><p>Self-adaptive Differential Evolution optimizer implemented from pygmo</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="f3dasm_optimize.SEA.html#f3dasm_optimize.SEA" title="f3dasm_optimize.SEA"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SEA</span></code></a>(domain[, population, seed])</p></td>
+<td><p>Simple Evolutionary Algorithm optimizer implemented from pygmo</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="f3dasm_optimize.SGA.html#f3dasm_optimize.SGA" title="f3dasm_optimize.SGA"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SGA</span></code></a>(domain[, population, cr, eta_c, m, ...])</p></td>
+<td><p>Simple Genetic Algorithm optimizer implemented from pygmo</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="f3dasm_optimize.SGD.html#f3dasm_optimize.SGD" title="f3dasm_optimize.SGD"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SGD</span></code></a>(domain[, learning_rate, momentum, nesterov])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="f3dasm_optimize.SimulatedAnnealing.html#f3dasm_optimize.SimulatedAnnealing" title="f3dasm_optimize.SimulatedAnnealing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SimulatedAnnealing</span></code></a>(domain[, population, Ts, ...])</p></td>
+<td><p>DifferentialEvolution optimizer implemented from pygmo</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="f3dasm_optimize.TPESampler.html#f3dasm_optimize.TPESampler" title="f3dasm_optimize.TPESampler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TPESampler</span></code></a>(domain[, seed])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="f3dasm_optimize.XNES.html#f3dasm_optimize.XNES" title="f3dasm_optimize.XNES"><code class="xref py py-obj docutils literal notranslate"><span class="pre">XNES</span></code></a>(domain[, population, eta_mu, ...])</p></td>
+<td><p>XNES optimizer implemented from pygmo</p></td>
+</tr>
+</tbody>
+</table>
 <p class="rubric">Functions</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
@@ -99,7 +192,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../rst_doc_files/reference/index.html" class="btn btn-neutral float-left" title="Index" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="f3dasm_optimize.try_import.html" class="btn btn-neutral float-right" title="f3dasm_optimize.try_import" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="f3dasm_optimize.Adam.html" class="btn btn-neutral float-right" title="f3dasm_optimize.Adam" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

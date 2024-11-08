@@ -1,0 +1,34 @@
+f3dasm\_optimize.EvoSaxSimAnneal
+================================
+
+.. currentmodule:: f3dasm_optimize
+
+.. autoclass:: EvoSaxSimAnneal
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: List of Public Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~EvoSaxSimAnneal.update_step
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~EvoSaxSimAnneal.require_gradients
+      ~EvoSaxSimAnneal.type
+   
+   
+
+   .. rubric:: Methods

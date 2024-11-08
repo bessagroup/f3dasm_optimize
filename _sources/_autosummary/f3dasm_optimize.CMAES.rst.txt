@@ -1,0 +1,34 @@
+f3dasm\_optimize.CMAES
+======================
+
+.. currentmodule:: f3dasm_optimize
+
+.. autoclass:: CMAES
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: List of Public Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~CMAES.update_step
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~CMAES.require_gradients
+      ~CMAES.type
+   
+   
+
+   .. rubric:: Methods

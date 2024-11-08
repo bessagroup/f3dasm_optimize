@@ -14,6 +14,35 @@
 
    
    
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+   
+      Adam
+      AdamTensorflow
+      Adamax
+      CMAES
+      DifferentialEvolution
+      EvoSaxCMAES
+      EvoSaxDE
+      EvoSaxPSO
+      EvoSaxSimAnneal
+      Ftrl
+      Nadam
+      NevergradDE
+      PSO
+      PygmoPSO
+      RMSprop
+      SADE
+      SEA
+      SGA
+      SGD
+      SimulatedAnnealing
+      TPESampler
+      XNES
+   
    
 
    

@@ -1,0 +1,34 @@
+f3dasm\_optimize.Nadam
+======================
+
+.. currentmodule:: f3dasm_optimize
+
+.. autoclass:: Nadam
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: List of Public Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~Nadam.update_step
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Nadam.require_gradients
+      ~Nadam.type
+   
+   
+
+   .. rubric:: Methods

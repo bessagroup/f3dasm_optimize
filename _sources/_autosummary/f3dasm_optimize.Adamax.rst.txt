@@ -1,0 +1,34 @@
+f3dasm\_optimize.Adamax
+=======================
+
+.. currentmodule:: f3dasm_optimize
+
+.. autoclass:: Adamax
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: List of Public Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~Adamax.update_step
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Adamax.require_gradients
+      ~Adamax.type
+   
+   
+
+   .. rubric:: Methods

@@ -1,0 +1,34 @@
+f3dasm\_optimize.PSO
+====================
+
+.. currentmodule:: f3dasm_optimize
+
+.. autoclass:: PSO
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: List of Public Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~PSO.update_step
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~PSO.require_gradients
+      ~PSO.type
+   
+   
+
+   .. rubric:: Methods

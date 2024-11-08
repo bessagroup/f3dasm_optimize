@@ -1,0 +1,34 @@
+f3dasm\_optimize.EvoSaxCMAES
+============================
+
+.. currentmodule:: f3dasm_optimize
+
+.. autoclass:: EvoSaxCMAES
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: List of Public Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~EvoSaxCMAES.update_step
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~EvoSaxCMAES.require_gradients
+      ~EvoSaxCMAES.type
+   
+   
+
+   .. rubric:: Methods

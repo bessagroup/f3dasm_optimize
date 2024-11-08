@@ -1,0 +1,34 @@
+f3dasm\_optimize.NevergradDE
+============================
+
+.. currentmodule:: f3dasm_optimize
+
+.. autoclass:: NevergradDE
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: List of Public Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~NevergradDE.update_step
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~NevergradDE.require_gradients
+      ~NevergradDE.type
+   
+   
+
+   .. rubric:: Methods
