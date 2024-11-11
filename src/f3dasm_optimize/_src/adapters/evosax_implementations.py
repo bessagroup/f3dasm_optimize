@@ -2,7 +2,7 @@
 # =============================================================================
 
 # Standard
-from typing import Optional, Tuple
+from typing import Optional, Tuple, Type
 
 # Third-party
 import jax
@@ -28,7 +28,7 @@ class EvoSaxOptimizer(Optimizer):
 
     def __init__(
             self, domain: Domain, data_generator: DataGenerator,
-            population: int, seed: Optional[int], algorithm,
+            population: int, seed: Optional[int], algorithm: Type[Strategy],
             **hyperparameters):
         if seed is None:
             seed = np.random.default_rng().integers(1e6)
