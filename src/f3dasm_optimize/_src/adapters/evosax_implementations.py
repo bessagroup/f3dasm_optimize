@@ -24,50 +24,55 @@ __status__ = 'Stable'
 
 class EvoSaxOptimizer(Optimizer):
     type: str = 'evosax'
+    require_gradients: bool = False
 
     def __init__(
-            self, domain: Domain,
-            population: int, seed: Optional[int]):
+            self, domain: Domain, data_generator: DataGenerator,
+            population: int, seed: Optional[int], algorithm,
+            **hyperparameters):
         if seed is None:
-            seed = np.random.randint(1e6)
+            seed = np.random.default_rng().integers(1e6)
 
         self.domain = domain
+        self.data_generator = data_generator
+        self.algorithm: Strategy = algorithm(num_dims=len(
+            domain), popsize=population, **hyperparameters)
         self.population = population
         self.seed = seed
 
-    def _set_algorithm(self):
+        # Set algorithm
         _, rng_ask = jax.random.split(
             jax.random.PRNGKey(self.seed))
-        self.algorithm: Strategy = self.evosax_algorithm(
-            num_dims=len(self.domain),
-            popsize=self.population)
         self.evosax_param = self.algorithm.default_params
         self.evosax_param = self.evosax_param.replace(
             clip_min=self.domain.get_bounds()[
                 0, 0], clip_max=self.domain.get_bounds()[0, 1])
 
-        self.state = self.algorithm.initialize(rng_ask, self.evosax_param)
+        self.state = self.algorithm.initialize(
+            rng_ask, self.evosax_param)
 
-    def _construct_model(self, data_generator: DataGenerator):
+    def init(self):
+        # This step depends on data!
+        # Construct model
         x_init, y_init = self.data.get_n_best_output(
             self.population).to_numpy()
 
         self.state = self.algorithm.tell(
             x_init, y_init.ravel(), self.state, self.evosax_param)
 
-    def update_step(
-            self,
-            data_generator: DataGenerator) -> Tuple[np.ndarray, np.ndarray]:
+    def update_step(self) -> Tuple[np.ndarray, np.ndarray]:
         _, rng_ask = jax.random.split(
             jax.random.PRNGKey(self.seed))
 
         # Ask for a set candidates
-        x, state = self.algorithm.ask(rng_ask, self.state, self.evosax_param)
+        x, state = self.algorithm.ask(
+            rng_ask, self.state, self.evosax_param)
 
         # Evaluate the candidates
         y = []
         for x_i in np.array(x):
-            experiment_sample = data_generator._run(x_i, domain=self.domain)
+            experiment_sample = self.data_generator._run(
+                x_i, domain=self.domain)
             y.append(experiment_sample.to_numpy()[1])
 
         y = np.array(y).ravel()

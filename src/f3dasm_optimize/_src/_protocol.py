@@ -8,7 +8,8 @@ Protocol classes from types outside the optimization submodule
 # Standard
 from __future__ import annotations
 
-from typing import ClassVar, Dict, Iterable, List, NamedTuple, Tuple, Type
+from typing import (Callable, ClassVar, Dict, Iterable, List, NamedTuple,
+                    Tuple, Type)
 
 # Third-party
 import pandas as pd
@@ -55,12 +56,14 @@ class DataGenerator(Protocol):
 
 
 class OptimizerTuple(NamedTuple):
-    optimizer: Type[Optimizer]
+    base_class: Type[Optimizer]
+    algorithm: Callable
     hyperparameters: dict
 
     def init(self, domain: Domain, data_generator: DataGenerator) -> Optimizer:
-        return self.optimizer(domain=domain, data_generator=data_generator,
-                              **self.hyperparameters)
+        return self.base_class(
+            domain=domain, data_generator=data_generator,
+            algorithm=self.algorithm, **self.hyperparameters)
 
 
 """
@@ -68,22 +71,6 @@ Module containing the interface class Optimizer
 """
 
 #                                                                       Modules
-# =============================================================================
-
-
-# Standard
-
-# Third-party core
-
-# Locals
-
-#                                                          Authorship & Credits
-# =============================================================================
-__author__ = 'Martin van der Schelling (M.P.vanderSchelling@tudelft.nl)'
-__credits__ = ['Martin van der Schelling']
-__status__ = 'Stable'
-# =============================================================================
-#
 # =============================================================================
 
 

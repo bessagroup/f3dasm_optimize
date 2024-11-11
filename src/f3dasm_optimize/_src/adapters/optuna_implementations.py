@@ -24,11 +24,20 @@ optuna.logging.set_verbosity(optuna.logging.WARNING)
 
 
 class OptunaOptimizer(Optimizer):
-    def __init__(self, domain: Domain):
+    require_gradients: bool = False
+
+    def __init__(self, domain: Domain, data_generator: DataGenerator,
+                 algorithm, seed, **hyperparameters):
         self.domain = domain
+        self.data_generator = data_generator
+        self.algorithm = optuna.create_study(
+            sampler=algorithm(seed=seed, **hyperparameters)
+        )
 
-    def _construct_model(self, data_generator: DataGenerator):
+    def init(self):
+        # TODO: Dependent on data!
 
+        # Construct model
         for i in range(len(self.data)):
             experiment_sample = self.data.get_experiment_sample(i)
             self.algorithm.add_trial(
@@ -62,11 +71,9 @@ class OptunaOptimizer(Optimizer):
 
         return optuna_dict
 
-    def update_step(
-            self, data_generator: DataGenerator
-    ) -> Tuple[np.ndarray, np.ndarray]:
+    def update_step(self) -> Tuple[np.ndarray, np.ndarray]:
         self.trial = self.algorithm.ask()
-        experiment_sample = data_generator._run(
+        experiment_sample = self.data_generator._run(
             self._create_trial(), domain=self.domain)
 
         x, y = experiment_sample.to_numpy()

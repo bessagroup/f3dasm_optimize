@@ -8,7 +8,7 @@ from typing import Optional
 from evosax import BIPOP_CMA_ES, CMA_ES, DE, PSO, SimAnneal
 
 # Local
-from ._protocol import Domain, OptimizerTuple
+from ._protocol import OptimizerTuple
 from .adapters.evosax_implementations import EvoSaxOptimizer
 
 #                                                          Authorship & Credits
@@ -21,20 +21,8 @@ __status__ = 'Stable'
 # =============================================================================
 
 
-class EvoSaxCMAES(EvoSaxOptimizer):
-    require_gradients: bool = False
-
-    def __init__(
-        self, domain: Domain, population: int = 30, seed: Optional[int] = None,
-            **kwargs):
-        super().__init__(
-            domain=domain, population=population, seed=seed)
-        self.evosax_algorithm = CMA_ES
-        self._set_algorithm()
-
-
 def cmaes(population: int = 30,
-          seed: Optional[int] = None) -> OptimizerTuple:
+          seed: Optional[int] = None, **kwargs) -> OptimizerTuple:
     """
     Covariance Matrix Adaptation Evolution Strategy (CMA-ES) optimizer.
     Adapated from the EvoSax library.
@@ -52,26 +40,15 @@ def cmaes(population: int = 30,
         A tuple containing the optimizer and its hyperparameters
     """
     return OptimizerTuple(
-        optimizer=EvoSaxCMAES,
-        hyperparameters={'population': population, 'seed': seed})
+        base_class=EvoSaxOptimizer,
+        algorithm=CMA_ES,
+        hyperparameters={'population': population, 'seed': seed, **kwargs})
 
 # =============================================================================
 
 
-class EvoSaxPSO(EvoSaxOptimizer):
-    require_gradients: bool = False
-
-    def __init__(
-        self, domain: Domain, population: int = 30, seed: Optional[int] = None,
-            **kwargs):
-        super().__init__(
-            domain=domain, population=population, seed=seed, **kwargs)
-        self.evosax_algorithm = PSO
-        self._set_algorithm()
-
-
 def pso(population: int = 30,
-        seed: Optional[int] = None) -> OptimizerTuple:
+        seed: Optional[int] = None, **kwargs) -> OptimizerTuple:
     """
     Particle Swarm Optimization (PSO) optimizer.
     Adapted from the EvoSax library.
@@ -89,26 +66,15 @@ def pso(population: int = 30,
         A tuple containing the optimizer and its hyperparameters
     """
     return OptimizerTuple(
-        optimizer=EvoSaxPSO,
-        hyperparameters={'population': population, 'seed': seed})
+        base_class=EvoSaxOptimizer,
+        algorithm=PSO,
+        hyperparameters={'population': population, 'seed': seed, **kwargs})
 
 # =============================================================================
 
 
-class EvoSaxSimAnneal(EvoSaxOptimizer):
-    require_gradients: bool = False
-
-    def __init__(
-        self, domain: Domain, population: int = 30, seed: Optional[int] = None,
-            **kwargs):
-        super().__init__(
-            domain=domain, population=population, seed=seed)
-        self.evosax_algorithm = SimAnneal
-        self._set_algorithm()
-
-
 def simanneal(population: int = 30,
-              seed: Optional[int] = None) -> OptimizerTuple:
+              seed: Optional[int] = None, **kwargs) -> OptimizerTuple:
     """
     Simulated Annealing (SimAnneal) optimizer.
     Adapted from the EvoSax library.
@@ -126,26 +92,15 @@ def simanneal(population: int = 30,
         A tuple containing the optimizer and its hyperparameters
     """
     return OptimizerTuple(
-        optimizer=EvoSaxSimAnneal,
-        hyperparameters={'population': population, 'seed': seed})
+        base_class=EvoSaxOptimizer,
+        algorithm=SimAnneal,
+        hyperparameters={'population': population, 'seed': seed, **kwargs})
 
 # =============================================================================
 
 
-class EvoSaxDE(EvoSaxOptimizer):
-    require_gradients: bool = False
-
-    def __init__(
-        self, domain: Domain, population: int = 30, seed: Optional[int] = None,
-            **kwargs):
-        super().__init__(
-            domain=domain, population=population, seed=seed)
-        self.evosax_algorithm = DE
-        self._set_algorithm()
-
-
 def de(population: int = 30,
-       seed: Optional[int] = None) -> OptimizerTuple:
+       seed: Optional[int] = None, **kwargs) -> OptimizerTuple:
     """
     Differential Evolution (DE) optimizer.
     Adapted from the EvoSax library.
@@ -163,26 +118,15 @@ def de(population: int = 30,
         A tuple containing the optimizer and its hyperparameters
     """
     return OptimizerTuple(
-        optimizer=EvoSaxDE,
-        hyperparameters={'population': population, 'seed': seed})
+        base_class=EvoSaxOptimizer,
+        algorithm=DE,
+        hyperparameters={'population': population, 'seed': seed, **kwargs})
 
 # =============================================================================
 
 
-class EvoSaxBIPOPCMAES(EvoSaxOptimizer):
-    require_gradients: bool = False
-
-    def __init__(
-        self, domain: Domain, population: int = 30, seed: Optional[int] = None,
-            **kwargs):
-        super().__init__(
-            domain=domain, population=population, seed=seed)
-        self.evosax_algorithm = BIPOP_CMA_ES
-        self._set_algorithm()
-
-
 def bipopcmaes(population: int = 30,
-               seed: Optional[int] = None) -> OptimizerTuple:
+               seed: Optional[int] = None, **kwargs) -> OptimizerTuple:
     """
     BIPOP-CMA-ES optimizer.
     Adapted from the EvoSax library.
@@ -200,7 +144,8 @@ def bipopcmaes(population: int = 30,
         A tuple containing the optimizer and its hyperparameters
     """
     return OptimizerTuple(
-        optimizer=EvoSaxBIPOPCMAES,
-        hyperparameters={'population': population, 'seed': seed})
+        base_class=EvoSaxOptimizer,
+        algorithm=BIPOP_CMA_ES,
+        hyperparameters={'population': population, 'seed': seed, **kwargs})
 
 # =============================================================================

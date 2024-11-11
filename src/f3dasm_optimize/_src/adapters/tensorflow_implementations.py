@@ -25,12 +25,39 @@ __status__ = 'Stable'
 
 
 class TensorflowOptimizer(Optimizer):
-    def __init__(self, domain: Domain):
-        self.domain = domain
+    require_gradients: bool = True
 
-    def update_step(
-            self,
-            data_generator: DataGenerator) -> Tuple[np.ndarray, np.ndarray]:
+    def __init__(self, domain: Domain, data_generator: DataGenerator,
+                 algorithm, **hyperparameters):
+        self.domain = domain
+        self.data_generator = data_generator
+        self.algorithm = algorithm(**hyperparameters)
+
+    def init(self):
+        # Depends on data
+        self.args = {}
+
+        def fitness(x: np.ndarray) -> np.ndarray:
+            evaluated_sample = self.data_generator._run(x, domain=self.domain)
+
+            _, y_ = evaluated_sample.to_numpy()
+            return y_
+
+        self.args["model"] = _SimpelModel(
+            None,
+            args={
+                "dim": len(self.domain),
+                "x0": self.data.get_n_best_output(1).to_numpy()[0],
+                "bounds": self.domain.get_bounds(),
+            },
+        )  # Build the model
+        self.args["tvars"] = self.args["model"].trainable_variables
+
+        # TODO: This is an important conversion!!
+        self.args["func"] = _convert_autograd_to_tensorflow(
+            self.data_generator.__call__)
+
+    def update_step(self) -> Tuple[np.ndarray, np.ndarray]:
         with tf.GradientTape() as tape:
             tape.watch(self.args["tvars"])
             # tf.float32
@@ -50,29 +77,6 @@ class TensorflowOptimizer(Optimizer):
 
         # return the data
         return x, np.atleast_2d(np.array(y))
-
-    def _construct_model(self, data_generator: DataGenerator):
-        self.args = {}
-
-        def fitness(x: np.ndarray) -> np.ndarray:
-            evaluated_sample = data_generator._run(x, domain=self.domain)
-
-            _, y_ = evaluated_sample.to_numpy()
-            return y_
-
-        self.args["model"] = _SimpelModel(
-            None,
-            args={
-                "dim": len(self.domain),
-                "x0": self.data.get_n_best_output(1).to_numpy()[0],
-                "bounds": self.domain.get_bounds(),
-            },
-        )  # Build the model
-        self.args["tvars"] = self.args["model"].trainable_variables
-
-        # TODO: This is an important conversion!!
-        self.args["func"] = _convert_autograd_to_tensorflow(
-            data_generator.__call__)
 
 
 def _convert_autograd_to_tensorflow(func: Callable):

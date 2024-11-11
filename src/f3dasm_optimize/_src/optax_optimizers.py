@@ -7,7 +7,7 @@ from typing import Optional
 import optax
 
 # Local
-from ._protocol import Domain, OptimizerTuple
+from ._protocol import OptimizerTuple
 from .adapters.optax_implementations import OptaxOptimizer
 
 #                                                          Authorship & Credits
@@ -20,34 +20,9 @@ __status__ = 'Stable'
 # =============================================================================
 
 
-class Adam(OptaxOptimizer):
-    require_gradients: bool = True
-
-    def __init__(self, domain: Domain, learning_rate: float = 0.001,
-                 beta_1: float = 0.9, beta_2: float = 0.999,
-                 epsilon: float = 1e-07, eps_root: float = 0.0,
-                 seed: Optional[int] = None, **kwargs):
-        super().__init__(domain=domain, seed=seed)
-        self.learning_rate = learning_rate
-        self.beta_1 = beta_1
-        self.beta_2 = beta_2
-        self.epsilon = epsilon
-        self.eps_root = eps_root
-        self._set_algorithm()
-
-    def _set_algorithm(self):
-        self.algorithm = optax.adam(
-            learning_rate=self.learning_rate,
-            b1=self.beta_1,
-            b2=self.beta_2,
-            eps=self.epsilon,
-            eps_root=self.eps_root
-        )
-
-
 def adam(learning_rate: float = 0.001, beta_1: float = 0.9,
          beta_2: float = 0.999, epsilon: float = 1e-07, eps_root: float = 0.0,
-         seed: Optional[int] = None) -> OptimizerTuple:
+         seed: Optional[int] = None, **kwargs) -> OptimizerTuple:
     """
     Adam optimizer.
     Adapted from the Optax library.
@@ -75,42 +50,25 @@ def adam(learning_rate: float = 0.001, beta_1: float = 0.9,
     """
 
     return OptimizerTuple(
-        optimizer=Adam,
+        base_class=OptaxOptimizer,
+        algorithm=optax.adam,
         hyperparameters={
             'learning_rate': learning_rate,
             'beta_1': beta_1,
             'beta_2': beta_2,
             'epsilon': epsilon,
             'eps_root': eps_root,
-            'seed': seed
+            'seed': seed,
+            **kwargs
         }
     )
 
 # =============================================================================
 
 
-class SGDOptax(OptaxOptimizer):
-    require_gradients: bool = True
-
-    def __init__(self, domain: Domain, learning_rate: float = 0.01,
-                 momentum: float = 0.0, nesterov: bool = False,
-                 seed: Optional[int] = None, **kwargs):
-        super().__init__(domain=domain, seed=seed)
-        self.learning_rate = learning_rate
-        self.momentum = momentum
-        self.nesterov = nesterov
-        self._set_algorithm()
-
-    def _set_algorithm(self):
-        self.algorithm = optax.sgd(
-            learning_rate=self.learning_rate,
-            momentum=self.momentum,
-            nesterov=self.nesterov
-        )
-
-
 def sgd(learning_rate: float = 0.01, momentum: float = 0.0,
-        nesterov: bool = False, seed: Optional[int] = None) -> OptimizerTuple:
+        nesterov: bool = False, seed: Optional[int] = None, **kwargs
+        ) -> OptimizerTuple:
     """
     Stochastic Gradient Descent (SGD) optimizer.
     Adapted from the Optax library.
@@ -133,12 +91,14 @@ def sgd(learning_rate: float = 0.01, momentum: float = 0.0,
     """
 
     return OptimizerTuple(
-        optimizer=SGDOptax,
+        base_class=OptaxOptimizer,
+        algorithm=optax.sgd,
         hyperparameters={
             'learning_rate': learning_rate,
             'momentum': momentum,
             'nesterov': nesterov,
-            'seed': seed
+            'seed': seed,
+            **kwargs
         }
     )
 

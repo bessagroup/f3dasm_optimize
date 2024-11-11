@@ -2,13 +2,13 @@
 # =============================================================================
 
 # Standard
-from typing import List, Optional
+from typing import Optional
 
 # Third-party
 import pygmo as pg
 
-from ._protocol import Domain, OptimizerTuple
 # Locals
+from ._protocol import OptimizerTuple
 from .adapters.pygmo_implementations import PygmoAlgorithm
 
 #                                                          Authorship & Credits
@@ -21,36 +21,9 @@ __status__ = 'Stable'
 # =============================================================================
 
 
-class CMAES(PygmoAlgorithm):
-    """Covariance Matrix Adaptation Evolution Strategy optimizer
-    implemented from pygmo"""
-    require_gradients: bool = False
-
-    def __init__(
-        self, domain: Domain, population: int = 30,
-            force_bounds: bool = True, seed: Optional[int] = None, **kwargs):
-        super().__init__(domain=domain,
-                         population=population, seed=seed)
-        self.force_bounds = force_bounds
-        self._set_algorithm()
-
-    def _set_algorithm(self):
-        self.algorithm = pg.algorithm(
-            pg.cmaes(
-                gen=1,
-                memory=True,
-                seed=self.seed,
-                force_bounds=self.force_bounds,
-            )
-        )
-
-    def _get_info(self) -> List[str]:
-        return ['Stable', 'Global', 'Population-Based']
-
-
 def cmaes_pygmo(population: int = 30,
                 force_bounds: bool = True,
-                seed: Optional[int] = None) -> OptimizerTuple:
+                seed: Optional[int] = None, **kwargs) -> OptimizerTuple:
     """
     Covariance Matrix Adaptation Evolution Strategy (CMA-ES)
     Adapted from pygmo.
@@ -70,49 +43,17 @@ def cmaes_pygmo(population: int = 30,
         A configured instance of the CMA-ES optimizer.
     """
     return OptimizerTuple(
-        optimizer=CMAES,
+        base_class=PygmoAlgorithm,
+        algorithm=pg.cmaes,
         hyperparameters={
             'population': population,
             'force_bounds': force_bounds,
-            'seed': seed
+            'seed': seed,
+            'memory': True,
+            **kwargs
         })
 
 # =============================================================================
-
-
-class DifferentialEvolution(PygmoAlgorithm):
-    "DifferentialEvolution optimizer implemented from pygmo"
-    require_gradients: bool = False
-
-    def __init__(self, domain: Domain, population: int = 30,
-                 F: float = 0.8, CR: float = 0.9, variant: int = 2,
-                 ftol: float = 0.0, xtol: float = 0.0,
-                 seed: Optional[int] = None, **kwargs):
-        super().__init__(domain=domain,
-                         population=population, seed=seed)
-        self.F = F
-        self.CR = CR
-        self.variant = variant
-        self.ftol = ftol
-        self.xtol = xtol
-        self._set_algorithm()
-
-    def _set_algorithm(self):
-        self.algorithm = pg.algorithm(
-            pg.de(
-                gen=1,
-                F=self.F,
-                CR=self.CR,
-                variant=self.variant,
-                ftol=self.ftol,
-                xtol=self.xtol,
-                seed=self.seed,
-            )
-        )
-
-    def _get_info(self) -> List[str]:
-        return ['Fast', 'Global', 'Derivative-Free',
-                'Population-Based', 'Single-Solution']
 
 
 def de_pygmo(population: int = 30,
@@ -121,7 +62,7 @@ def de_pygmo(population: int = 30,
              variant: int = 2,
              ftol: float = 0.0,
              xtol: float = 0.0,
-             seed: Optional[int] = None) -> OptimizerTuple:
+             seed: Optional[int] = None, **kwargs) -> OptimizerTuple:
     """
     Differential Evolution optimizer using pygmo.
 
@@ -148,7 +89,8 @@ def de_pygmo(population: int = 30,
         A configured instance of the Differential Evolution optimizer.
     """
     return OptimizerTuple(
-        optimizer=DifferentialEvolution,
+        base_class=PygmoAlgorithm,
+        algorithm=pg.de,
         hyperparameters={
             'population': population,
             'F': F,
@@ -156,48 +98,17 @@ def de_pygmo(population: int = 30,
             'variant': variant,
             'ftol': ftol,
             'xtol': xtol,
-            'seed': seed
+            'seed': seed,
+            **kwargs
         })
 
 
 # =============================================================================
 
-class PygmoPSO(PygmoAlgorithm):
-    """
-    Particle Swarm Optimization (Generational) optimizer
-    implemented from pygmo
-    """
-    require_gradients: bool = False
-
-    def __init__(self, domain: Domain, population: int = 30,
-                 eta1: float = 2.05, eta2: float = 2.05,
-                 seed: Optional[int] = None, **kwargs):
-        super().__init__(domain=domain,
-                         population=population, seed=seed)
-        self.eta1 = eta1
-        self.eta2 = eta2
-        self._set_algorithm()
-
-    def _set_algorithm(self):
-        self.algorithm = pg.algorithm(
-            pg.pso_gen(
-                gen=1,
-                memory=True,
-                seed=self.seed,
-                eta1=self.eta1,
-                eta2=self.eta2,
-            )
-        )
-
-    def _get_info(self) -> List[str]:
-        return ['Fast', 'Global', 'Derivative-Free',
-                'Population-Based', 'Single-Solution']
-
-
 def pso_pygmo(population: int = 30,
               eta1: float = 2.05,
               eta2: float = 2.05,
-              seed: Optional[int] = None) -> OptimizerTuple:
+              seed: Optional[int] = None, **kwargs) -> OptimizerTuple:
     """
     Particle Swarm Optimization (Generational) using pygmo.
 
@@ -218,49 +129,19 @@ def pso_pygmo(population: int = 30,
         A configured instance of the PSO optimizer.
     """
     return OptimizerTuple(
-        optimizer=PygmoPSO,
+        base_class=PygmoAlgorithm,
+        algorithm=pg.pso_gen,
         hyperparameters={
             'population': population,
             'eta1': eta1,
             'eta2': eta2,
-            'seed': seed
+            'seed': seed,
+            'memory': True,
+            **kwargs
         })
 
 
 # =============================================================================
-
-
-class SADE(PygmoAlgorithm):
-    "Self-adaptive Differential Evolution optimizer implemented from pygmo"
-    require_gradients: bool = False
-
-    def __init__(self, domain: Domain, population: int = 30,
-                 variant: int = 2, variant_adptv: int = 1,
-                 ftol: float = 0.0, xtol: float = 0.0,
-                 seed: Optional[int] = None, **kwargs):
-        super().__init__(domain=domain,
-                         population=population, seed=seed)
-        self.variant = variant
-        self.variant_adptv = variant_adptv
-        self.ftol = ftol
-        self.xtol = xtol
-        self._set_algorithm()
-
-    def _set_algorithm(self):
-        self.algorithm = pg.algorithm(
-            pg.sade(
-                gen=1,
-                variant=self.variant,
-                variant_adptv=self.variant_adptv,
-                ftol=self.ftol,
-                xtol=self.xtol,
-                memory=True,
-                seed=self.seed,
-            )
-        )
-
-    def _get_info(self) -> List[str]:
-        return ['Fast', 'Population-Based', 'Single-Solution']
 
 
 def sade(population: int = 30,
@@ -268,7 +149,7 @@ def sade(population: int = 30,
          variant_adptv: int = 1,
          ftol: float = 0.0,
          xtol: float = 0.0,
-         seed: Optional[int] = None) -> OptimizerTuple:
+         seed: Optional[int] = None, **kwargs) -> OptimizerTuple:
     """
     Self-adaptive Differential Evolution (SADE) using pygmo.
 
@@ -293,43 +174,24 @@ def sade(population: int = 30,
         A configured instance of the SADE optimizer.
     """
     return OptimizerTuple(
-        optimizer=SADE,
+        base_class=PygmoAlgorithm,
+        algorithm=pg.sade,
         hyperparameters={
             'population': population,
             'variant': variant,
             'variant_adptv': variant_adptv,
             'ftol': ftol,
             'xtol': xtol,
-            'seed': seed
+            'seed': seed,
+            'memory': True,
+            **kwargs
         })
 
 
 # =============================================================================
 
-class SEA(PygmoAlgorithm):
-    """Simple Evolutionary Algorithm optimizer implemented from pygmo"""
-    require_gradients: bool = False
-
-    def __init__(self, domain: Domain, population: int = 30,
-                 seed: Optional[int] = None, **kwargs):
-        super().__init__(domain=domain,
-                         population=population, seed=seed)
-        self._set_algorithm()
-
-    def _set_algorithm(self):
-        self.algorithm = pg.algorithm(
-            pg.sea(
-                gen=1,
-                seed=self.seed,
-            )
-        )
-
-    def _get_info(self) -> List[str]:
-        return ['Fast', 'Global', 'Derivative-Free', 'Population-Based']
-
-
 def sea(population: int = 30,
-        seed: Optional[int] = None) -> OptimizerTuple:
+        seed: Optional[int] = None, **kwargs) -> OptimizerTuple:
     """
     Simple Evolutionary Algorithm (SEA) optimizer using pygmo.
 
@@ -346,57 +208,16 @@ def sea(population: int = 30,
         A configured instance of the SEA optimizer.
     """
     return OptimizerTuple(
-        optimizer=SEA,
+        base_class=PygmoAlgorithm,
+        algorithm=pg.sea,
         hyperparameters={
             'population': population,
-            'seed': seed
+            'seed': seed,
+            **kwargs
         })
 
 
 # =============================================================================
-
-
-class SGA(PygmoAlgorithm):
-    """Simple Genetic Algorithm optimizer implemented from pygmo"""
-    require_gradients: bool = False
-
-    def __init__(self, domain: Domain, population: int = 30,
-                 cr: float = 0.9, eta_c: float = 1.0, m: float = 0.02,
-                 param_m: float = 1.0, param_s: int = 2,
-                 crossover: str = 'exponential', mutation: str = 'polynomial',
-                 selection: str = 'tournament',
-                 seed: Optional[int] = None, **kwargs):
-        super().__init__(domain=domain,
-                         population=population, seed=seed)
-        self.cr = cr
-        self.eta_c = eta_c
-        self.m = m
-        self.param_m = param_m
-        self.param_s = param_s
-        self.crossover = crossover
-        self.mutation = mutation
-        self.selection = selection
-        self._set_algorithm()
-
-    def _set_algorithm(self):
-        self.algorithm = pg.algorithm(
-            pg.sga(
-                gen=1,
-                cr=self.cr,
-                eta_c=self.eta_c,
-                m=self.m,
-                param_m=self.param_m,
-                param_s=self.param_s,
-                crossover=self.crossover,
-                mutation=self.mutation,
-                selection=self.selection,
-                seed=self.seed,
-            )
-        )
-
-    def _get_info(self) -> List[str]:
-        return ['Fast', 'Population-Based']
-
 
 def sga(population: int = 30,
         cr: float = 0.9,
@@ -407,7 +228,8 @@ def sga(population: int = 30,
         crossover: str = 'exponential',
         mutation: str = 'polynomial',
         selection: str = 'tournament',
-        seed: Optional[int] = None) -> OptimizerTuple:
+        seed: Optional[int] = None,
+        **kwargs) -> OptimizerTuple:
     """
     Simple Genetic Algorithm (SGA) optimizer using pygmo.
 
@@ -440,7 +262,8 @@ def sga(population: int = 30,
         A configured instance of the SGA optimizer.
     """
     return OptimizerTuple(
-        optimizer=SGA,
+        base_class=PygmoAlgorithm,
+        algorithm=pg.sga,
         hyperparameters={
             'population': population,
             'cr': cr,
@@ -451,48 +274,12 @@ def sga(population: int = 30,
             'crossover': crossover,
             'mutation': mutation,
             'selection': selection,
-            'seed': seed
+            'seed': seed,
+            **kwargs
         })
 
 
 # =============================================================================
-
-
-class SimulatedAnnealing(PygmoAlgorithm):
-    "DifferentialEvolution optimizer implemented from pygmo"
-    require_gradients: bool = False
-
-    def __init__(self, domain: Domain, population: int = 30,
-                 Ts: float = 10.0, Tf: float = 0.1, n_T_adj: int = 10,
-                 n_range_adj: int = 10, bin_size: int = 10,
-                 start_range: float = 1.0,
-                 seed: Optional[int] = None, **kwargs):
-        super().__init__(domain=domain,
-                         population=population, seed=seed)
-        self.Ts = Ts
-        self.Tf = Tf
-        self.n_T_adj = n_T_adj
-        self.n_range_adj = n_range_adj
-        self.bin_size = bin_size
-        self.start_range = start_range
-        self._set_algorithm()
-
-    def _set_algorithm(self):
-        self.algorithm = pg.algorithm(
-            pg.simulated_annealing(
-                Ts=self.Ts,
-                Tf=self.Tf,
-                n_T_adj=self.n_T_adj,
-                n_range_adj=self.n_range_adj,
-                bin_size=self.bin_size,
-                start_range=self.start_range,
-                seed=self.seed,
-            )
-        )
-
-    def _get_info(self) -> List[str]:
-        return ['Stable', 'Global', 'Derivative-Free', 'Single-Solution']
-
 
 def simanneal_pygmo(population: int = 30,
                     Ts: float = 10.0,
@@ -501,7 +288,7 @@ def simanneal_pygmo(population: int = 30,
                     n_range_adj: int = 10,
                     bin_size: int = 10,
                     start_range: float = 1.0,
-                    seed: Optional[int] = None) -> OptimizerTuple:
+                    seed: Optional[int] = None, **kwargs) -> OptimizerTuple:
     """
     Simulated Annealing optimizer using pygmo.
 
@@ -530,7 +317,8 @@ def simanneal_pygmo(population: int = 30,
         A configured instance of the Simulated Annealing optimizer.
     """
     return OptimizerTuple(
-        optimizer=SimulatedAnnealing,
+        base_class=PygmoAlgorithm,
+        algorithm=pg.simulated_annealing,
         hyperparameters={
             'population': population,
             'Ts': Ts,
@@ -539,52 +327,12 @@ def simanneal_pygmo(population: int = 30,
             'n_range_adj': n_range_adj,
             'bin_size': bin_size,
             'start_range': start_range,
-            'seed': seed
+            'seed': seed,
+            **kwargs
         })
 
 
 # =============================================================================
-
-
-class XNES(PygmoAlgorithm):
-    """XNES optimizer implemented from pygmo"""
-    require_gradients: bool = False
-
-    def __init__(self, domain: Domain, population: int = 30,
-                 eta_mu: float = -1.0, eta_sigma: float = -1.0,
-                 eta_b: float = -1.0, sigma0: float = -1.0,
-                 ftol: float = 1e-06, xtol: float = 1e-06,
-                 force_bounds: bool = True,
-                 seed: Optional[int] = None, **kwargs):
-        super().__init__(domain=domain,
-                         population=population, seed=seed)
-        self.eta_mu = eta_mu
-        self.eta_sigma = eta_sigma
-        self.eta_b = eta_b
-        self.sigma0 = sigma0
-        self.ftol = ftol
-        self.xtol = xtol
-        self.force_bounds = force_bounds
-        self._set_algorithm()
-
-    def _set_algorithm(self):
-        self.algorithm = pg.algorithm(
-            pg.xnes(
-                gen=1,
-                eta_mu=self.eta_mu,
-                eta_sigma=self.eta_sigma,
-                eta_b=self.eta_b,
-                sigma0=self.sigma0,
-                ftol=self.ftol,
-                xtol=self.xtol,
-                memory=True,
-                force_bounds=self.force_bounds,
-                seed=self.seed,
-            )
-        )
-
-    def _get_info(self) -> List[str]:
-        return ['Stable', 'Global', 'Population-Based']
 
 
 def xnes(population: int = 30,
@@ -595,7 +343,8 @@ def xnes(population: int = 30,
          ftol: float = 1e-06,
          xtol: float = 1e-06,
          force_bounds: bool = True,
-         seed: Optional[int] = None) -> OptimizerTuple:
+         seed: Optional[int] = None,
+         **kwargs) -> OptimizerTuple:
     """
     Exponential Natural Evolution Strategies (xNES) optimizer using pygmo.
 
@@ -626,7 +375,8 @@ def xnes(population: int = 30,
         A configured instance of the xNES optimizer.
     """
     return OptimizerTuple(
-        optimizer=XNES,
+        base_class=PygmoAlgorithm,
+        algorithm=pg.xnes,
         hyperparameters={
             'population': population,
             'eta_mu': eta_mu,
@@ -636,5 +386,7 @@ def xnes(population: int = 30,
             'ftol': ftol,
             'xtol': xtol,
             'force_bounds': force_bounds,
-            'seed': seed
+            'seed': seed,
+            'memory': True,
+            **kwargs
         })
