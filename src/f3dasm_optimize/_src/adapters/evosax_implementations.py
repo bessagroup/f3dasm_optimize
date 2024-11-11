@@ -52,8 +52,6 @@ class EvoSaxOptimizer(Optimizer):
             rng_ask, self.evosax_param)
 
     def init(self):
-        # This step depends on data!
-        # Construct model
         x_init, y_init = self.data.get_n_best_output(
             self.population).to_numpy()
 

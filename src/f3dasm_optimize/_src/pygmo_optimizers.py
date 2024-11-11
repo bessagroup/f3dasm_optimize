@@ -50,6 +50,7 @@ def cmaes_pygmo(population: int = 30,
             'force_bounds': force_bounds,
             'seed': seed,
             'memory': True,
+            'gen': 1,
             **kwargs
         })
 
@@ -99,6 +100,7 @@ def de_pygmo(population: int = 30,
             'ftol': ftol,
             'xtol': xtol,
             'seed': seed,
+            'gen': 1,
             **kwargs
         })
 
@@ -137,6 +139,7 @@ def pso_pygmo(population: int = 30,
             'eta2': eta2,
             'seed': seed,
             'memory': True,
+            'gen': 1,
             **kwargs
         })
 
@@ -184,6 +187,7 @@ def sade(population: int = 30,
             'xtol': xtol,
             'seed': seed,
             'memory': True,
+            'gen': 1,
             **kwargs
         })
 
@@ -213,6 +217,7 @@ def sea(population: int = 30,
         hyperparameters={
             'population': population,
             'seed': seed,
+            'gen': 1,
             **kwargs
         })
 
@@ -275,6 +280,7 @@ def sga(population: int = 30,
             'mutation': mutation,
             'selection': selection,
             'seed': seed,
+            'gen': 1,
             **kwargs
         })
 
@@ -388,5 +394,6 @@ def xnes(population: int = 30,
             'force_bounds': force_bounds,
             'seed': seed,
             'memory': True,
+            'gen': 1,
             **kwargs
         })

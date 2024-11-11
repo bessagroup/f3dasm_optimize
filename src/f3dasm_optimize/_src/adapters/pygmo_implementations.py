@@ -50,7 +50,7 @@ class PygmoAlgorithm(Optimizer):
         self.seed = seed
         self.population = population
         self.algorithm = pg.algorithm(
-            algorithm(gen=1, seed=seed, **hyperparameters))
+            algorithm(seed=seed, **hyperparameters))
 
         pg.set_global_rng_seed(seed=self.seed)
 

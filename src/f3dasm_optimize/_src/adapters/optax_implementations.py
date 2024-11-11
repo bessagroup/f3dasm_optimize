@@ -33,7 +33,6 @@ class OptaxOptimizer(Optimizer):
         self.algorithm = algorithm(**hyperparameters)
 
     def init(self):
-        # TODO: Dependent on data!
         self.grad_f = lambda params: jnp.array(
             self.data_generator.dfdx(onp.array(params)))
         self.params = jnp.array(self.data.get_experiment_sample(

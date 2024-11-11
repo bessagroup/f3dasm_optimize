@@ -104,7 +104,7 @@ def pso_nevergrad(population: int = 30,
     """
     return OptimizerTuple(
         base_class=NeverGradOptimizer,
-        algorithm=ng.optimizers.PSO,
+        algorithm=ng.optimizers.ConfPSO,
         hyperparameters={
             'population': population,
             'transform': transform,

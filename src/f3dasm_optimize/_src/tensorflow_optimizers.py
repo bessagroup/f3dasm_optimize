@@ -175,7 +175,6 @@ def nadam(learning_rate: float = 0.001, beta_1: float = 0.9,
         base_class=TensorflowOptimizer,
         algorithm=tf.keras.optimizers.Nadam,
         hyperparameters={
-            'tensorflow_algorithm': tf.keras.optimizers.Nadam,
             'learning_rate': learning_rate,
             'beta_1': beta_1,
             'beta_2': beta_2,

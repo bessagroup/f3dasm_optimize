@@ -54,9 +54,9 @@ def adam(learning_rate: float = 0.001, beta_1: float = 0.9,
         algorithm=optax.adam,
         hyperparameters={
             'learning_rate': learning_rate,
-            'beta_1': beta_1,
-            'beta_2': beta_2,
-            'epsilon': epsilon,
+            'b1': beta_1,
+            'b2': beta_2,
+            'eps': epsilon,
             'eps_root': eps_root,
             'seed': seed,
             **kwargs

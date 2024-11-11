@@ -35,8 +35,6 @@ class OptunaOptimizer(Optimizer):
         )
 
     def init(self):
-        # TODO: Dependent on data!
-
         # Construct model
         for i in range(len(self.data)):
             experiment_sample = self.data.get_experiment_sample(i)

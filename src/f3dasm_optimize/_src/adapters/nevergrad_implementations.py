@@ -2,7 +2,7 @@
 # =============================================================================
 
 # Standard
-from typing import Tuple
+from typing import Optional, Tuple
 
 # Third-party
 import autograd.numpy as np
@@ -25,20 +25,21 @@ class NeverGradOptimizer(Optimizer):
     require_gradients: bool = False
 
     def __init__(self, domain: Domain, data_generator: DataGenerator,
-                 algorithm, population: int, **hyperparameters):
+                 algorithm, population: int, seed: Optional[int] = None,
+                 **hyperparameters):
         self.domain = domain
         self.data_generator = data_generator
         self.population = population
+        self.seed = seed
         p = ng.p.Array(shape=(len(self.domain),),
                        lower=self.domain.get_bounds()[:, 0],
-                       upper=self.domain.get_bounds()[:, 1])
+                       upper=self.domain.get_bounds()[:, 1],
+                       )
+
+        p._set_random_state(np.random.RandomState(seed))
 
         self.algorithm = algorithm(popsize=population,
                                    **hyperparameters)(p, budget=1e8)
-
-    def init(self):
-        # Depends on data
-        ...
 
     def update_step(self) -> Tuple[np.ndarray, None]:
         x = [self.algorithm.ask() for _ in range(

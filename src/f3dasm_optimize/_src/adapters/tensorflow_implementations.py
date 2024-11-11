@@ -2,7 +2,7 @@
 # =============================================================================
 
 # Standard
-from typing import Callable, Tuple
+from typing import Callable, Optional, Tuple
 
 # Third-party
 import autograd.core
@@ -28,13 +28,12 @@ class TensorflowOptimizer(Optimizer):
     require_gradients: bool = True
 
     def __init__(self, domain: Domain, data_generator: DataGenerator,
-                 algorithm, **hyperparameters):
+                 algorithm, seed: Optional[int] = None, **hyperparameters):
         self.domain = domain
         self.data_generator = data_generator
         self.algorithm = algorithm(**hyperparameters)
 
     def init(self):
-        # Depends on data
         self.args = {}
 
         def fitness(x: np.ndarray) -> np.ndarray:
