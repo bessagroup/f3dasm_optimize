@@ -10,8 +10,7 @@ import numpy as np
 from evosax import Strategy
 
 # Local
-from .._protocol import DataGenerator, Domain
-from ..optimizer import Optimizer
+from .._protocol import DataGenerator, Domain, Optimizer
 
 #                                                          Authorship & Credits
 # =============================================================================

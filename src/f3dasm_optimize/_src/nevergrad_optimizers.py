@@ -4,8 +4,8 @@
 # Third-party
 import nevergrad as ng
 
-from ._protocol import Domain
 # Local
+from ._protocol import Domain, OptimizerTuple
 from .adapters.nevergrad_implementations import NeverGradOptimizer
 
 #                                                          Authorship & Credits
@@ -48,6 +48,51 @@ class NevergradDE(NeverGradOptimizer):
             F1=self.F1,
             F2=self.F2)(p, budget=1e8)
 
+
+def de_nevergrad(population: int = 30,
+                 initialization: str = 'parametrization',
+                 scale: float = 1.0,
+                 recommendation: str = 'optimistic',
+                 crossover: float = 0.5,
+                 F1: float = 0.8,
+                 F2: float = 0.8) -> NeverGradOptimizer:
+    """
+    Nevergrad Differential Evolution (DE) optimizer.
+
+    Parameters
+    ----------
+    population : int, optional
+        The number of individuals in the population, by default 30
+    initialization : str, optional
+        Initialization strategy, by default 'parametrization'
+    scale : float, optional
+        Scale factor, by default 1.0
+    recommendation : str, optional
+        Recommendation strategy, by default 'optimistic'
+    crossover : float, optional
+        Crossover probability, by default 0.5
+    F1 : float, optional
+        First differential weight, by default 0.8
+    F2 : float, optional
+        Second differential weight, by default 0.8
+
+    Returns
+    -------
+    NeverGradOptimizer
+        A configured instance of the Nevergrad DE optimizer.
+    """
+    return OptimizerTuple(
+        optimizer=NevergradDE,
+        hyperparameters={
+            'population': population,
+            'initialization': initialization,
+            'scale': scale,
+            'recommendation': recommendation,
+            'crossover': crossover,
+            'F1': F1,
+            'F2': F2
+        })
+
 # =============================================================================
 
 
@@ -83,3 +128,52 @@ class PSO(NeverGradOptimizer):
             qo=self.qo,
             sqo=self.sqo,
             so=self.so)(p, budget=1e8)
+
+
+def pso_nevergrad(population: int = 30,
+                  transform: str = 'identity',
+                  omega: float = 0.7213475204444817,
+                  phip: float = 1.1931471805599454,
+                  phig: float = 1.1931471805599454,
+                  qo: bool = False,
+                  sqo: bool = False,
+                  so: bool = False) -> NeverGradOptimizer:
+    """
+    Nevergrad Particle Swarm Optimization (PSO) optimizer.
+
+    Parameters
+    ----------
+    population : int, optional
+        The number of individuals in the population, by default 30
+    transform : str, optional
+        Transform strategy, by default 'identity'
+    omega : float, optional
+        Inertia weight, by default 0.7213475204444817
+    phip : float, optional
+        Personal attraction coefficient, by default 1.1931471805599454
+    phig : float, optional
+        Global attraction coefficient, by default 1.1931471805599454
+    qo : bool, optional
+        Use quasi-opposition, by default False
+    sqo : bool, optional
+        Use stochastic quasi-opposition, by default False
+    so : bool, optional
+        Use space opposition, by default False
+
+    Returns
+    -------
+    NeverGradOptimizer
+        A configured instance of the Nevergrad PSO optimizer.
+    """
+    return OptimizerTuple(
+        optimizer=PSO,
+        hyperparameters={
+            'population': population,
+            'transform': transform,
+            'omega': omega,
+            'phip': phip,
+            'phig': phig,
+            'qo': qo,
+            'sqo': sqo,
+            'so': so
+        })

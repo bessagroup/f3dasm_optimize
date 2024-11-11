@@ -3,28 +3,28 @@
 
 # Standard
 
-from ._imports import try_import
+from ._imports import _try_import
 
-with try_import() as _evosax_imports:
+with _try_import() as _evosax_imports:
     from .evosax_optimizers import (EvoSaxCMAES, EvoSaxDE, EvoSaxPSO,
                                     EvoSaxSimAnneal)
 
-with try_import() as _nevergrad_imports:
+with _try_import() as _nevergrad_imports:
     from .nevergrad_optimizers import PSO, NevergradDE
 
-with try_import() as _pygmo_imports:
+with _try_import() as _pygmo_imports:
     from .pygmo_optimizers import (CMAES, SADE, SEA, SGA, XNES,
                                    DifferentialEvolution, PygmoPSO,
                                    SimulatedAnnealing)
 
-with try_import() as _optuna_imports:
+with _try_import() as _optuna_imports:
     from .optuna_optimizers import TPESampler
 
-with try_import() as _tensorflow_imports:
+with _try_import() as _tensorflow_imports:
     from .tensorflow_optimizers import (SGD, Adamax, AdamTensorflow, Ftrl,
                                         Nadam, RMSprop)
 
-with try_import() as _optax_imports:
+with _try_import() as _optax_imports:
     from .optax_optimizers import Adam
 
 #                                                          Authorship & Credits

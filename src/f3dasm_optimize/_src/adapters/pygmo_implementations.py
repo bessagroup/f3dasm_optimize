@@ -9,8 +9,7 @@ import autograd.numpy as np
 import pygmo as pg
 
 # Local
-from .._protocol import DataGenerator, Domain
-from ..optimizer import Optimizer
+from .._protocol import DataGenerator, Domain, Optimizer
 
 #                                                          Authorship & Credits
 # =============================================================================

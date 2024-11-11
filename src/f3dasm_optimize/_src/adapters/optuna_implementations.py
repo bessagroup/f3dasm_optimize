@@ -9,8 +9,7 @@ import numpy as np
 import optuna
 
 # Local
-from .._protocol import DataGenerator, Domain
-from ..optimizer import Optimizer
+from .._protocol import DataGenerator, Domain, Optimizer
 
 #                                                          Authorship & Credits
 # =============================================================================

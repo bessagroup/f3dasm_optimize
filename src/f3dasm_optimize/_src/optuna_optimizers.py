@@ -7,7 +7,7 @@ from typing import Optional
 # Third party
 import optuna
 
-from f3dasm_optimize._src._protocol import Domain
+from f3dasm_optimize._src._protocol import Domain, OptimizerTuple
 
 # Local
 from .adapters.optuna_implementations import OptunaOptimizer
@@ -34,3 +34,27 @@ class TPESampler(OptunaOptimizer):
         self.algorithm = optuna.create_study(
             sampler=optuna.samplers.TPESampler(
                 seed=self.seed))
+
+
+def tpe_sampler(seed: Optional[int] = None) -> OptimizerTuple:
+    """
+    Tree-structured Parzen Estimator (TPE) sampler.
+    Adapted from the optuna library
+
+    Parameters
+    ----------
+    seed : int, optional
+        Random seed, by default None.
+
+    Returns
+    -------
+    OptimizerTuple
+        OptimizerTuple object.
+    """
+
+    return OptimizerTuple(
+        optimizer=TPESampler,
+        hyperparameters={
+            'seed': seed
+        }
+    )

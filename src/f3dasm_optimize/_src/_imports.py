@@ -110,7 +110,7 @@ class _DeferredImportExceptionContextManager:
             raise ImportError(message) from exc_value
 
 
-def try_import() -> _DeferredImportExceptionContextManager:
+def _try_import() -> _DeferredImportExceptionContextManager:
     """Create a context manager that can wrap imports of optional packages
     to defer exceptions.
 

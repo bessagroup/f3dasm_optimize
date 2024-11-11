@@ -12,8 +12,7 @@ from autograd import elementwise_grad as egrad
 from keras import Model
 
 # Local
-from .._protocol import DataGenerator, Domain
-from ..optimizer import Optimizer
+from .._protocol import DataGenerator, Domain, Optimizer
 
 #                                                          Authorship & Credits
 # =============================================================================
