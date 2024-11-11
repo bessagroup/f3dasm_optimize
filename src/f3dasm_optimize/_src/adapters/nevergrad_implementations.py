@@ -41,6 +41,9 @@ class NeverGradOptimizer(Optimizer):
         self.algorithm = algorithm(popsize=population,
                                    **hyperparameters)(p, budget=1e8)
 
+    def init(self):
+        pass
+
     def update_step(self) -> Tuple[np.ndarray, None]:
         x = [self.algorithm.ask() for _ in range(
             self.population)]
