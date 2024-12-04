@@ -65,6 +65,13 @@ class OptimizerTuple(NamedTuple):
             domain=domain, data_generator=data_generator,
             algorithm=self.algorithm, **self.hyperparameters)
 
+    @property
+    def population(self):
+        if 'population' in self.hyperparameters:
+            return self.hyperparameters['population']
+        else:
+            return 1
+
 
 """
 Module containing the interface class Optimizer
