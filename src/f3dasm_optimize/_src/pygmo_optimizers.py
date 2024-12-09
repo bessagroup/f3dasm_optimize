@@ -9,7 +9,7 @@ import pygmo as pg
 
 # Locals
 from ._protocol import Optimizer
-from .adapters.pygmo_implementations import PygmoAlgorithm
+from .adapters.pygmo_implementations import PygmoOptimizer
 
 #                                                          Authorship & Credits
 # =============================================================================
@@ -42,7 +42,7 @@ def cmaes_pygmo(population: int = 30,
     Optimizer
         Optimizer object.
     """
-    return PygmoAlgorithm(
+    return PygmoOptimizer(
         algorithm_cls=pg.cmaes,
         population=population,
         force_bounds=force_bounds,
@@ -87,7 +87,7 @@ def de_pygmo(population: int = 30,
     Optimizer
         Optimizer object.
     """
-    return PygmoAlgorithm(
+    return PygmoOptimizer(
         algorithm_cls=pg.de,
         population=population,
         F=F,
@@ -126,7 +126,7 @@ def pso_pygmo(population: int = 30,
     Optimizer
         Optimizer object.
     """
-    return PygmoAlgorithm(
+    return PygmoOptimizer(
         algorithm_cls=pg.pso_gen,
         population=population,
         eta1=eta1,
@@ -169,7 +169,7 @@ def sade(population: int = 30,
     Optimizer
         Optimizer object.
     """
-    return PygmoAlgorithm(
+    return PygmoOptimizer(
         algorithm_cls=pg.sade,
         population=population,
         variant=variant,
@@ -202,7 +202,7 @@ def sea(population: int = 30,
     Optimizer
         Optimizer object.
     """
-    return PygmoAlgorithm(
+    return PygmoOptimizer(
         algorithm_cls=pg.sea,
         population=population,
         seed=seed,
@@ -255,7 +255,7 @@ def sga(population: int = 30,
     Optimizer
         Optimizer object.
     """
-    return PygmoAlgorithm(
+    return PygmoOptimizer(
         algorithm_cls=pg.sga,
         population=population,
         seed=seed,
@@ -309,7 +309,7 @@ def simanneal_pygmo(population: int = 30,
     Optimizer
         Optimizer object.
     """
-    return PygmoAlgorithm(
+    return PygmoOptimizer(
         algorithm_cls=pg.simulated_annealing,
         population=population,
         Ts=Ts,
@@ -365,7 +365,7 @@ def xnes(population: int = 30,
     Optimizer
         Optimizer object.
     """
-    return PygmoAlgorithm(
+    return PygmoOptimizer(
         algorithm_cls=pg.xnes,
         population=population,
         eta_mu=eta_mu,

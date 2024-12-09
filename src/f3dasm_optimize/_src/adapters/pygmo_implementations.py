@@ -21,7 +21,7 @@ __status__ = 'Stable'
 # =============================================================================
 
 
-class PygmoAlgorithm(Optimizer):
+class PygmoOptimizer(Optimizer):
     """Wrapper around the pygmo algorithm class
 
     Parameters
