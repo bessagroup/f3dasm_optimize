@@ -1,11 +1,14 @@
 #                                                                       Modules
 # =============================================================================
 
+# Standard
+from typing import Optional
+
 # Third-party
 import nevergrad as ng
 
 # Local
-from ._protocol import OptimizerTuple
+from ._protocol import Optimizer
 from .adapters.nevergrad_implementations import NeverGradOptimizer
 
 #                                                          Authorship & Credits
@@ -24,7 +27,9 @@ def de_nevergrad(population: int = 30,
                  recommendation: str = 'optimistic',
                  crossover: float = 0.5,
                  F1: float = 0.8,
-                 F2: float = 0.8, **kwargs) -> OptimizerTuple:
+                 F2: float = 0.8,
+                 seed: Optional[int] = None,
+                 **kwargs) -> Optimizer:
     """
     Nevergrad Differential Evolution (DE) optimizer.
 
@@ -44,37 +49,39 @@ def de_nevergrad(population: int = 30,
         First differential weight, by default 0.8
     F2 : float, optional
         Second differential weight, by default 0.8
+    seed : Optional[int], optional
+        The seed for the random number generator, by default None
 
     Returns
     -------
-    OptimizerTuple
-        A configured instance of the Nevergrad DE optimizer.
+    Optimizer
+        Optimizer object.
     """
-    return OptimizerTuple(
-        base_class=NeverGradOptimizer,
-        algorithm=ng.optimizers.DifferentialEvolution,
-        hyperparameters={
-            'population': population,
-            'initialization': initialization,
-            'scale': scale,
-            'recommendation': recommendation,
-            'crossover': crossover,
-            'F1': F1,
-            'F2': F2,
-            **kwargs
-        })
-
+    return NeverGradOptimizer(
+        algorithm_cls=ng.optimizers.DifferentialEvolution,
+        population=population,
+        seed=seed,
+        initialization=initialization,
+        scale=scale,
+        recommendation=recommendation,
+        crossover=crossover,
+        F1=F1,
+        F2=F2,
+        **kwargs
+    )
 # =============================================================================
 
 
-def pso_nevergrad(population: int = 30,
-                  transform: str = 'identity',
-                  omega: float = 0.7213475204444817,
-                  phip: float = 1.1931471805599454,
-                  phig: float = 1.1931471805599454,
-                  qo: bool = False,
-                  sqo: bool = False,
-                  so: bool = False, **kwargs) -> OptimizerTuple:
+def pso_nevergrad(
+    population: int = 30,
+        transform: str = 'identity',
+        omega: float = 0.7213475204444817,
+        phip: float = 1.1931471805599454,
+        phig: float = 1.1931471805599454,
+        qo: bool = False,
+        sqo: bool = False,
+        seed: Optional[int] = None,
+        so: bool = False, **kwargs) -> Optimizer:
     """
     Nevergrad Particle Swarm Optimization (PSO) optimizer.
 
@@ -96,23 +103,24 @@ def pso_nevergrad(population: int = 30,
         Use stochastic quasi-opposition, by default False
     so : bool, optional
         Use space opposition, by default False
+    seed : Optional[int], optional
+        The seed for the random number generator, by default None
 
     Returns
     -------
-    OptimizerTuple
-        A configured instance of the Nevergrad PSO optimizer.
+    Optimizer
+        Optimizer object.
     """
-    return OptimizerTuple(
-        base_class=NeverGradOptimizer,
-        algorithm=ng.optimizers.ConfPSO,
-        hyperparameters={
-            'population': population,
-            'transform': transform,
-            'omega': omega,
-            'phip': phip,
-            'phig': phig,
-            'qo': qo,
-            'sqo': sqo,
-            'so': so,
-            **kwargs
-        })
+    return NeverGradOptimizer(
+        algorithm_cls=ng.optimizers.ConfPSO,
+        population=population,
+        seed=seed,
+        transform=transform,
+        omega=omega,
+        phip=phip,
+        phig=phig,
+        qo=qo,
+        sqo=sqo,
+        so=so,
+        **kwargs
+    )

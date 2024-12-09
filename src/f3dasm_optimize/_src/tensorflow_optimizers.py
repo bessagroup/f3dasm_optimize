@@ -8,7 +8,7 @@ Information on the Adam optimizer
 import tensorflow as tf
 
 # Locals
-from ._protocol import OptimizerTuple
+from ._protocol import Optimizer
 from .adapters.tensorflow_implementations import TensorflowOptimizer
 
 #                                                          Authorship & Credits
@@ -23,7 +23,7 @@ __status__ = 'Stable'
 
 def adam_tensorflow(learning_rate: float = 0.001, beta_1: float = 0.9,
                     beta_2: float = 0.999, epsilon: float = 1e-07,
-                    amsgrad: bool = False, **kwargs) -> OptimizerTuple:
+                    amsgrad: bool = False, **kwargs) -> Optimizer:
     """
     Adam optimizer using TensorFlow.
 
@@ -42,20 +42,17 @@ def adam_tensorflow(learning_rate: float = 0.001, beta_1: float = 0.9,
 
     Returns
     -------
-    OptimizerTuple
-        OptimizerTuple object.
+    Optimizer
+        Optimizer object.
     """
-    return OptimizerTuple(
-        base_class=TensorflowOptimizer,
-        algorithm=tf.keras.optimizers.Adam,
-        hyperparameters={
-            'learning_rate': learning_rate,
-            'beta_1': beta_1,
-            'beta_2': beta_2,
-            'epsilon': epsilon,
-            'amsgrad': amsgrad,
-            **kwargs
-        }
+    return TensorflowOptimizer(
+        algorithm_cls=tf.keras.optimizers.Adam,
+        learning_rate=learning_rate,
+        beta_1=beta_1,
+        beta_2=beta_2,
+        epsilon=epsilon,
+        amsgrad=amsgrad,
+        **kwargs
     )
 
 
@@ -63,7 +60,7 @@ def adam_tensorflow(learning_rate: float = 0.001, beta_1: float = 0.9,
 
 def adamax(learning_rate: float = 0.001, beta_1: float = 0.9,
            beta_2: float = 0.999, epsilon: float = 1e-07,
-           **kwargs) -> OptimizerTuple:
+           **kwargs) -> Optimizer:
     """
     Adamax optimizer using TensorFlow.
 
@@ -80,19 +77,16 @@ def adamax(learning_rate: float = 0.001, beta_1: float = 0.9,
 
     Returns
     -------
-    OptimizerTuple
-        OptimizerTuple object.
+    Optimizer
+        Optimizer object.
     """
-    return OptimizerTuple(
-        base_class=TensorflowOptimizer,
-        algorithm=tf.keras.optimizers.Adamax,
-        hyperparameters={
-            'learning_rate': learning_rate,
-            'beta_1': beta_1,
-            'beta_2': beta_2,
-            'epsilon': epsilon,
-            **kwargs
-        }
+    return TensorflowOptimizer(
+        algorithm_cls=tf.keras.optimizers.Adamax,
+        learning_rate=learning_rate,
+        beta_1=beta_1,
+        beta_2=beta_2,
+        epsilon=epsilon,
+        **kwargs
     )
 
 
@@ -103,7 +97,7 @@ def ftrl(learning_rate: float = 0.001, learning_rate_power: float = -0.5,
          l1_regularization_strength: float = 0.0,
          l2_regularization_strength: float = 0.0,
          l2_shrinkage_regularization_strength: float = 0.0,
-         beta: float = 0.0, **kwargs) -> OptimizerTuple:
+         beta: float = 0.0, **kwargs) -> Optimizer:
     """
     Ftrl optimizer using TensorFlow.
 
@@ -126,23 +120,20 @@ def ftrl(learning_rate: float = 0.001, learning_rate_power: float = -0.5,
 
     Returns
     -------
-    OptimizerTuple
-        OptimizerTuple object.
+    Optimizer
+        Optimizer object.
     """
-    return OptimizerTuple(
-        base_class=TensorflowOptimizer,
-        algorithm=tf.keras.optimizers.Ftrl,
-        hyperparameters={
-            'learning_rate': learning_rate,
-            'learning_rate_power': learning_rate_power,
-            'initial_accumulator_value': initial_accumulator_value,
-            'l1_regularization_strength': l1_regularization_strength,
-            'l2_regularization_strength': l2_regularization_strength,
-            'l2_shrinkage_regularization_strength':
-            l2_shrinkage_regularization_strength,
-            'beta': beta,
-            **kwargs
-        }
+    return TensorflowOptimizer(
+        algorithm_cls=tf.keras.optimizers.Ftrl,
+        learning_rate=learning_rate,
+        learning_rate_power=learning_rate_power,
+        initial_accumulator_value=initial_accumulator_value,
+        l1_regularization_strength=l1_regularization_strength,
+        l2_regularization_strength=l2_regularization_strength,
+        l2_shrinkage_regularization_strength=(
+            l2_shrinkage_regularization_strength),
+        beta=beta,
+        **kwargs
     )
 
 
@@ -151,7 +142,7 @@ def ftrl(learning_rate: float = 0.001, learning_rate_power: float = -0.5,
 
 def nadam(learning_rate: float = 0.001, beta_1: float = 0.9,
           beta_2: float = 0.999, epsilon: float = 1e-07,
-          **kwargs) -> OptimizerTuple:
+          **kwargs) -> Optimizer:
     """
     Nadam optimizer using TensorFlow.
 
@@ -168,19 +159,16 @@ def nadam(learning_rate: float = 0.001, beta_1: float = 0.9,
 
     Returns
     -------
-    OptimizerTuple
-        OptimizerTuple object.
+    Optimizer
+        Optimizer object.
     """
-    return OptimizerTuple(
-        base_class=TensorflowOptimizer,
-        algorithm=tf.keras.optimizers.Nadam,
-        hyperparameters={
-            'learning_rate': learning_rate,
-            'beta_1': beta_1,
-            'beta_2': beta_2,
-            'epsilon': epsilon,
-            **kwargs
-        }
+    return TensorflowOptimizer(
+        algorithm_cls=tf.keras.optimizers.Nadam,
+        learning_rate=learning_rate,
+        beta_1=beta_1,
+        beta_2=beta_2,
+        epsilon=epsilon,
+        **kwargs
     )
 
 
@@ -189,7 +177,7 @@ def nadam(learning_rate: float = 0.001, beta_1: float = 0.9,
 
 def rmsprop(learning_rate: float = 0.001, rho: float = 0.9,
             momentum: float = 0.0, epsilon: float = 1e-07,
-            centered: bool = False, **kwargs) -> OptimizerTuple:
+            centered: bool = False, **kwargs) -> Optimizer:
     """
     RMSprop optimizer using TensorFlow.
 
@@ -208,26 +196,24 @@ def rmsprop(learning_rate: float = 0.001, rho: float = 0.9,
 
     Returns
     -------
-    OptimizerTuple
-        OptimizerTuple object.
+    Optimizer
+        Optimizer object.
     """
-    return OptimizerTuple(
-        base_class=TensorflowOptimizer,
-        algorithm=tf.keras.optimizers.RMSprop,
-        hyperparameters={
-            'learning_rate': learning_rate,
-            'rho': rho,
-            'momentum': momentum,
-            'epsilon': epsilon,
-            'centered': centered,
-            **kwargs
-        }
+    return TensorflowOptimizer(
+        algorithm_cls=tf.keras.optimizers.RMSprop,
+        learning_rate=learning_rate,
+        rho=rho,
+        momentum=momentum,
+        epsilon=epsilon,
+        centered=centered,
+        **kwargs
     )
 
-
 # =============================================================================
+
+
 def sgd_tensorflow(learning_rate: float = 0.01, momentum: float = 0.0,
-                   nesterov: bool = False, **kwargs) -> OptimizerTuple:
+                   nesterov: bool = False, **kwargs) -> Optimizer:
     """
     SGD optimizer using TensorFlow.
 
@@ -242,19 +228,15 @@ def sgd_tensorflow(learning_rate: float = 0.01, momentum: float = 0.0,
 
     Returns
     -------
-    OptimizerTuple
-        OptimizerTuple object.
+    Optimizer
+        Optimizer object.
     """
-    return OptimizerTuple(
-        base_class=TensorflowOptimizer,
-        algorithm=tf.keras.optimizers.SGD,
-        hyperparameters={
-            'learning_rate': learning_rate,
-            'momentum': momentum,
-            'nesterov': nesterov,
-            **kwargs
-        }
+    return TensorflowOptimizer(
+        algorithm_cls=tf.keras.optimizers.SGD,
+        learning_rate=learning_rate,
+        momentum=momentum,
+        nesterov=nesterov,
+        **kwargs
     )
-
 
 # =============================================================================

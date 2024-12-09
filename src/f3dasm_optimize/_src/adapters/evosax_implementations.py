@@ -10,7 +10,7 @@ import numpy as np
 from evosax import Strategy
 
 # Local
-from .._protocol import DataGenerator, Domain, Optimizer
+from .._protocol import DataGenerator, ExperimentData, Optimizer
 
 #                                                          Authorship & Credits
 # =============================================================================
@@ -26,32 +26,35 @@ class EvoSaxOptimizer(Optimizer):
     type: str = 'evosax'
     require_gradients: bool = False
 
-    def __init__(
-            self, domain: Domain, data_generator: DataGenerator,
-            population: int, seed: Optional[int], algorithm: Type[Strategy],
-            **hyperparameters):
+    def __init__(self, algorithm_cls: Type[Strategy], population: int,
+                 seed: Optional[int], **hyperparameters):
+
         if seed is None:
             seed = np.random.default_rng().integers(1e6)
 
-        self.domain = domain
-        self.data_generator = data_generator
-        self.algorithm: Strategy = algorithm(num_dims=len(
-            domain), popsize=population, **hyperparameters)
+        self.algorithm_cls = algorithm_cls
         self.population = population
         self.seed = seed
+        self.hyperparameters = hyperparameters
+
+    def init(self, data: ExperimentData, data_generator: DataGenerator):
+        self.data = data
+        self.data_generator = data_generator
+        self.algorithm: Strategy = self.algorithm_cls(num_dims=len(
+            data.domain), popsize=self.population, **self.hyperparameters)
 
         # Set algorithm
         _, rng_ask = jax.random.split(
             jax.random.PRNGKey(self.seed))
         self.evosax_param = self.algorithm.default_params
         self.evosax_param = self.evosax_param.replace(
-            clip_min=self.domain.get_bounds()[
-                0, 0], clip_max=self.domain.get_bounds()[0, 1])
+            clip_min=data.domain.get_bounds()[
+                0, 0], clip_max=self.data.domain.get_bounds()[0, 1])
 
         self.state = self.algorithm.initialize(
             rng_ask, self.evosax_param)
 
-    def init(self):
+        # Set data
         x_init, y_init = self.data.get_n_best_output(
             self.population).to_numpy()
 
@@ -70,7 +73,7 @@ class EvoSaxOptimizer(Optimizer):
         y = []
         for x_i in np.array(x):
             experiment_sample = self.data_generator._run(
-                x_i, domain=self.domain)
+                x_i, domain=self.data.domain)
             y.append(experiment_sample.to_numpy()[1])
 
         y = np.array(y).ravel()

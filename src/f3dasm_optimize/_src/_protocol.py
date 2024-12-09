@@ -8,8 +8,7 @@ Protocol classes from types outside the optimization submodule
 # Standard
 from __future__ import annotations
 
-from typing import (Callable, ClassVar, Dict, Iterable, List, NamedTuple,
-                    Tuple, Type)
+from typing import ClassVar, Dict, Iterable, List, Tuple
 
 # Third-party
 import pandas as pd
@@ -54,34 +53,16 @@ class DataGenerator(Protocol):
             ExperimentSample:
         ...
 
-
-class OptimizerTuple(NamedTuple):
-    base_class: Type[Optimizer]
-    algorithm: Callable
-    hyperparameters: dict
-
-    def init(self, domain: Domain, data_generator: DataGenerator) -> Optimizer:
-        return self.base_class(
-            domain=domain, data_generator=data_generator,
-            algorithm=self.algorithm, **self.hyperparameters)
-
-    @property
-    def population(self):
-        if 'population' in self.hyperparameters:
-            return self.hyperparameters['population']
-        else:
-            return 1
-
-
-"""
-Module containing the interface class Optimizer
-"""
-
 #                                                                       Modules
 # =============================================================================
 
 
 class ExperimentData(Protocol):
+
+    @property
+    def domain(self) -> Domain:
+        ...
+
     @property
     def index(self, index) -> pd.Index:
         ...
@@ -106,11 +87,11 @@ class Optimizer:
 
     Note
     ----
-    The updat_step method should have the following signature:
+    The update_step method should have the following signature:
 
     '''
     def update_step(self, data_generator: DataGenerator)
-     -> Tuple[np.ndarray, np.ndarray]:
+    -> Tuple[np.ndarray, np.ndarray]:
     '''
 
     The method should return a tuple containing the new samples and the
@@ -132,7 +113,7 @@ class Optimizer:
     type: ClassVar[str] = 'any'
     require_gradients: ClassVar[bool] = False
 
-#                                                                    Properties
+#                                                            Private Properties
 # =============================================================================
 
     @property
@@ -174,14 +155,9 @@ class Optimizer:
 #                                                                Public Methods
 # =============================================================================
 
-    def update_step(self, data_generator: DataGenerator) -> ExperimentData:
+    def update_step(self) -> ExperimentData:
         """Update step of the optimizer. Needs to be implemented
          by the child class
-
-        Parameters
-        ----------
-        data_generator : DataGenerator
-            data generator object to calculate the objective value
 
         Returns
         -------
@@ -200,38 +176,29 @@ class Optimizer:
         f3dasm.ExperimentData object.
         """
         raise NotImplementedError(
-            "You should implement an update step for your algorithm!")
+            "You should implement an update step for your optimizer!")
+
+    def init(self, data: ExperimentData, data_generator: DataGenerator):
+        """
+        Initialize the optimizer with the given data and data generator
+
+        Parameters
+        ----------
+        data : ExperimentData
+            Data to initialize the optimizer
+        data_generator : DataGenerator
+            Data generator to calculate the objective value
+        """
+        raise NotImplementedError(
+            "You should implement this method for your optimizer!")
 
 #                                                               Private Methods
 # =============================================================================
 
-    def _set_algorithm(self):
-        """
-        Method that can be implemented to set the optimization algorithm.
-        Whenever the reset method is called, this method will be called to
-        reset the algorithm to its initial state."""
-        ...
-
-    def _construct_model(self, data_generator: DataGenerator):
-        """
-        Method that is called before the optimization starts. This method can
-        be used to construct a model based on the available data or a specific
-        data generator.
-
-        Parameters
-        ----------
-        data_generator : DataGenerator
-            DataGenerator object
-
-        Note
-        ----
-        When this method is not implemented, the method will do nothing.
-        """
-        ...
-
     def _check_number_of_datapoints(self):
-        """Check if the number of datapoints is sufficient
-         for the initial population
+        """
+        Check if the number of datapoints is sufficient for the
+        initial population
 
         Raises
         ------
@@ -245,13 +212,14 @@ class Optimizer:
                          population!'
             )
 
-    def _reset(self, data: ExperimentData):
-        """Reset the optimizer to its initial state"""
-        self._set_data(data)
-        self._set_algorithm()
-
     def _set_data(self, data: ExperimentData):
-        """Set the data attribute to the given data"""
+        """Set the data attribute to the given data
+
+        Parameters
+        ----------
+        data : ExperimentData
+            Data to set the optimizer to its initial state
+        """
         self.data = data
 
     def _get_info(self) -> List[str]:
@@ -259,6 +227,7 @@ class Optimizer:
 
         Returns
         -------
-            List of strings denoting the characteristics of this optimizer
+        List[str]
+            List of characteristics of the optimizer
         """
         return []

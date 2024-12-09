@@ -12,7 +12,7 @@ from autograd import elementwise_grad as egrad
 from keras import Model
 
 # Local
-from .._protocol import DataGenerator, Domain, Optimizer
+from .._protocol import DataGenerator, ExperimentData, Optimizer
 
 #                                                          Authorship & Credits
 # =============================================================================
@@ -27,17 +27,22 @@ __status__ = 'Stable'
 class TensorflowOptimizer(Optimizer):
     require_gradients: bool = True
 
-    def __init__(self, domain: Domain, data_generator: DataGenerator,
-                 algorithm, seed: Optional[int] = None, **hyperparameters):
-        self.domain = domain
-        self.data_generator = data_generator
-        self.algorithm = algorithm(**hyperparameters)
+    def __init__(self, algorithm_cls, seed: Optional[int] = None,
+                 **hyperparameters):
+        self.algorithm_cls = algorithm_cls
+        self.seed = seed
+        self.hyperparameters = hyperparameters
 
-    def init(self):
+    def init(self, data: ExperimentData, data_generator: DataGenerator):
+        self.data = data
+        self.data_generator = data_generator
+        self.algorithm = self.algorithm_cls(**self.hyperparameters)
+
         self.args = {}
 
         def fitness(x: np.ndarray) -> np.ndarray:
-            evaluated_sample = self.data_generator._run(x, domain=self.domain)
+            evaluated_sample = self.data_generator._run(
+                x, domain=self.data.domain)
 
             _, y_ = evaluated_sample.to_numpy()
             return y_
@@ -45,9 +50,9 @@ class TensorflowOptimizer(Optimizer):
         self.args["model"] = _SimpelModel(
             None,
             args={
-                "dim": len(self.domain),
+                "dim": len(self.data.domain),
                 "x0": self.data.get_n_best_output(1).to_numpy()[0],
-                "bounds": self.domain.get_bounds(),
+                "bounds": self.data.domain.get_bounds(),
             },
         )  # Build the model
         self.args["tvars"] = self.args["model"].trainable_variables
@@ -62,14 +67,14 @@ class TensorflowOptimizer(Optimizer):
             # tf.float32
             logits = 0.0 + tf.cast(self.args["model"](None), tf.float64)
             loss = self.args["func"](tf.reshape(
-                logits, (len(self.domain))))
+                logits, (len(self.data.domain))))
 
         grads = tape.gradient(loss, self.args["tvars"])
         self.algorithm.apply_gradients(zip(grads, self.args["tvars"]))
 
         logits = 0.0 + tf.cast(self.args["model"](None), tf.float64)
         loss = self.args["func"](tf.reshape(
-            logits, (len(self.domain))))
+            logits, (len(self.data.domain))))
 
         x = logits.numpy().copy()
         y = loss.numpy().copy()

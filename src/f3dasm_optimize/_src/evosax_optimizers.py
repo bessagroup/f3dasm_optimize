@@ -8,7 +8,7 @@ from typing import Optional
 from evosax import BIPOP_CMA_ES, CMA_ES, DE, PSO, SimAnneal
 
 # Local
-from ._protocol import OptimizerTuple
+from ._protocol import Optimizer
 from .adapters.evosax_implementations import EvoSaxOptimizer
 
 #                                                          Authorship & Credits
@@ -22,7 +22,7 @@ __status__ = 'Stable'
 
 
 def cmaes(population: int = 30,
-          seed: Optional[int] = None, **kwargs) -> OptimizerTuple:
+          seed: Optional[int] = None, **kwargs) -> Optimizer:
     """
     Covariance Matrix Adaptation Evolution Strategy (CMA-ES) optimizer.
     Adapated from the EvoSax library.
@@ -36,19 +36,20 @@ def cmaes(population: int = 30,
 
     Returns
     -------
-    OptimizerTuple
-        A tuple containing the optimizer and its hyperparameters
+    Optimizer
+        Optimizer object
     """
-    return OptimizerTuple(
-        base_class=EvoSaxOptimizer,
-        algorithm=CMA_ES,
-        hyperparameters={'population': population, 'seed': seed, **kwargs})
+    return EvoSaxOptimizer(
+        algorithm_cls=CMA_ES,
+        population=population,
+        seed=seed,
+        **kwargs)
 
 # =============================================================================
 
 
 def pso(population: int = 30,
-        seed: Optional[int] = None, **kwargs) -> OptimizerTuple:
+        seed: Optional[int] = None, **kwargs) -> Optimizer:
     """
     Particle Swarm Optimization (PSO) optimizer.
     Adapted from the EvoSax library.
@@ -62,19 +63,20 @@ def pso(population: int = 30,
 
     Returns
     -------
-    OptimizerTuple
-        A tuple containing the optimizer and its hyperparameters
+    Optimizer
+        Optimizer object
     """
-    return OptimizerTuple(
-        base_class=EvoSaxOptimizer,
-        algorithm=PSO,
-        hyperparameters={'population': population, 'seed': seed, **kwargs})
+    return EvoSaxOptimizer(
+        algorithm_cls=PSO,
+        population=population,
+        seed=seed,
+        **kwargs)
 
 # =============================================================================
 
 
 def simanneal(population: int = 30,
-              seed: Optional[int] = None, **kwargs) -> OptimizerTuple:
+              seed: Optional[int] = None, **kwargs) -> Optimizer:
     """
     Simulated Annealing (SimAnneal) optimizer.
     Adapted from the EvoSax library.
@@ -88,19 +90,20 @@ def simanneal(population: int = 30,
 
     Returns
     -------
-    OptimizerTuple
-        A tuple containing the optimizer and its hyperparameters
+    Optimizer
+        Optimizer object
     """
-    return OptimizerTuple(
-        base_class=EvoSaxOptimizer,
-        algorithm=SimAnneal,
-        hyperparameters={'population': population, 'seed': seed, **kwargs})
+    return EvoSaxOptimizer(
+        algorithm_cls=SimAnneal,
+        population=population,
+        seed=seed,
+        **kwargs)
 
 # =============================================================================
 
 
 def de(population: int = 30,
-       seed: Optional[int] = None, **kwargs) -> OptimizerTuple:
+       seed: Optional[int] = None, **kwargs) -> Optimizer:
     """
     Differential Evolution (DE) optimizer.
     Adapted from the EvoSax library.
@@ -114,19 +117,20 @@ def de(population: int = 30,
 
     Returns
     -------
-    OptimizerTuple
-        A tuple containing the optimizer and its hyperparameters
+    Optimizer
+        Optimizer object
     """
-    return OptimizerTuple(
-        base_class=EvoSaxOptimizer,
-        algorithm=DE,
-        hyperparameters={'population': population, 'seed': seed, **kwargs})
+    return EvoSaxOptimizer(
+        algorithm_cls=DE,
+        population=population,
+        seed=seed,
+        **kwargs)
 
 # =============================================================================
 
 
 def bipopcmaes(population: int = 30,
-               seed: Optional[int] = None, **kwargs) -> OptimizerTuple:
+               seed: Optional[int] = None, **kwargs) -> Optimizer:
     """
     BIPOP-CMA-ES optimizer.
     Adapted from the EvoSax library.
@@ -140,12 +144,13 @@ def bipopcmaes(population: int = 30,
 
     Returns
     -------
-    OptimizerTuple
-        A tuple containing the optimizer and its hyperparameters
+    Optimizer
+        Optimizer object
     """
-    return OptimizerTuple(
-        base_class=EvoSaxOptimizer,
-        algorithm=BIPOP_CMA_ES,
-        hyperparameters={'population': population, 'seed': seed, **kwargs})
+    return EvoSaxOptimizer(
+        algorithm_cls=BIPOP_CMA_ES,
+        population=population,
+        seed=seed,
+        **kwargs)
 
 # =============================================================================

@@ -9,7 +9,7 @@ import autograd.numpy as np
 import nevergrad as ng
 
 # Local
-from .._protocol import DataGenerator, Domain, Optimizer
+from .._protocol import DataGenerator, ExperimentData, Optimizer
 
 #                                                          Authorship & Credits
 # =============================================================================
@@ -24,25 +24,27 @@ __status__ = 'Stable'
 class NeverGradOptimizer(Optimizer):
     require_gradients: bool = False
 
-    def __init__(self, domain: Domain, data_generator: DataGenerator,
-                 algorithm, population: int, seed: Optional[int] = None,
+    def __init__(self, algorithm_cls, population: int,
+                 seed: Optional[int] = None,
                  **hyperparameters):
-        self.domain = domain
-        self.data_generator = data_generator
+        self.algorithm_cls = algorithm_cls
         self.population = population
         self.seed = seed
-        p = ng.p.Array(shape=(len(self.domain),),
-                       lower=self.domain.get_bounds()[:, 0],
-                       upper=self.domain.get_bounds()[:, 1],
+        self.hyperparameters = hyperparameters
+
+    def init(self, data: ExperimentData, data_generator: DataGenerator):
+        self.data = data
+        self.data_generator = data_generator
+        p = ng.p.Array(shape=(len(self.data.domain),),
+                       lower=self.data.domain.get_bounds()[:, 0],
+                       upper=self.data.domain.get_bounds()[:, 1],
                        )
 
-        p._set_random_state(np.random.RandomState(seed))
+        p._set_random_state(np.random.RandomState(self.seed))
 
-        self.algorithm = algorithm(popsize=population,
-                                   **hyperparameters)(p, budget=1e8)
-
-    def init(self):
-        pass
+        self.algorithm = self.algorithm_cls(
+            popsize=self.population,
+            **self.hyperparameters)(p, budget=1e8)
 
     def update_step(self) -> Tuple[np.ndarray, None]:
         x = [self.algorithm.ask() for _ in range(
@@ -51,8 +53,9 @@ class NeverGradOptimizer(Optimizer):
         # Evaluate the candidates
         y = []
         for x_i in x:
-            experiment_sample = self.data_generator._run(x_i.value,
-                                                         domain=self.domain)
+            experiment_sample = self.data_generator._run(
+                x_i.value,
+                domain=self.data.domain)
             y.append(experiment_sample.to_numpy()[1])
 
         for x_tell, y_tell in zip(x, y):

@@ -9,7 +9,7 @@ import autograd.numpy as np
 import pygmo as pg
 
 # Local
-from .._protocol import DataGenerator, Domain, Optimizer
+from .._protocol import DataGenerator, Domain, ExperimentData, Optimizer
 
 #                                                          Authorship & Credits
 # =============================================================================
@@ -37,27 +37,30 @@ class PygmoAlgorithm(Optimizer):
     """
     require_gradients: bool = False
 
-    def __init__(
-            self, domain: Domain, data_generator: DataGenerator,
-            population: int, algorithm,
-            seed: Optional[int], **hyperparameters):
-
+    def __init__(self, algorithm_cls, population: int,
+                 seed: Optional[int] = None, **hyperparameters):
         if seed is None:
             seed = np.random.default_rng().integers(1e6)
 
-        self.domain = domain
-        self.data_generator = data_generator
-        self.seed = seed
+        self.algorithm_cls = algorithm_cls
         self.population = population
-        self.algorithm = pg.algorithm(
-            algorithm(seed=seed, **hyperparameters))
+        self.seed = seed
+        self.hyperparameters = hyperparameters
 
         pg.set_global_rng_seed(seed=self.seed)
+
+    def init(self, data: ExperimentData, data_generator: DataGenerator):
+        self.data = data
+        self.data_generator = data_generator
+
+        # Construct the algorithm
+        self.algorithm = pg.algorithm(
+            self.algorithm_cls(seed=self.seed, **self.hyperparameters))
 
         # Construct the PygmoProblem
         prob = pg.problem(
             _PygmoProblem(
-                domain=self.domain,
+                domain=self.data.domain,
                 func=self.data_generator,
                 seed=self.seed,
             )
@@ -66,7 +69,6 @@ class PygmoAlgorithm(Optimizer):
         # Construct the population
         self.pop = pg.population(prob, size=self.population)
 
-    def init(self):
         # Set the population to the latest datapoints
         pop_x = self.data._input_data.to_dataframe(
         ).iloc[-self.population:].to_numpy()
