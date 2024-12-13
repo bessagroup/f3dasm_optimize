@@ -8,7 +8,8 @@ Protocol classes from types outside the optimization submodule
 # Standard
 from __future__ import annotations
 
-from typing import ClassVar, Dict, Iterable, Tuple
+from typing import (Any, Callable, ClassVar, Dict, Iterable, List, Literal,
+                    Optional, Tuple)
 
 # Third-party
 import pandas as pd
@@ -20,6 +21,8 @@ except ImportError:  # Python 3.7
 
 # Third-party core
 import numpy as np
+from f3dasm._src.experimentdata.utils import (number_of_overiterations,
+                                              number_of_updates)
 
 #                                                          Authorship & Credits
 # =============================================================================
@@ -53,18 +56,38 @@ class DataGenerator(Protocol):
             ExperimentSample:
         ...
 
+
+class Sampler(Protocol):
+    ...
+
 #                                                                       Modules
 # =============================================================================
 
 
 class ExperimentData(Protocol):
 
+    def __init__(self, domain: Domain, input_data: np.ndarray,
+                 output_data: np.ndarray):
+        ...
+
     @property
     def domain(self) -> Domain:
         ...
 
+    @classmethod
+    def from_sampling(cls, domain: Domain, sampler: Sampler,
+                      n_samples: int, seed: int) -> ExperimentData:
+        ...
+
+    def sample(self, sampler: Sampler, **kwargs):
+        ...
+
+    def evaluate(self, data_generator: DataGenerator, mode:
+                 str, output_names: Optional[List[str]] = None, **kwargs):
+        ...
+
     @property
-    def index(self, index) -> pd.Index:
+    def index(self) -> pd.Index:
         ...
 
     def get_n_best_output(self, n_samples: int) -> ExperimentData:
@@ -75,6 +98,23 @@ class ExperimentData(Protocol):
 
     def select(self, indices: int | slice | Iterable[int]) -> ExperimentData:
         ...
+
+    def get_experiment_sample(self, index: int) -> ExperimentData:
+        ...
+
+    def remove_rows_bottom(self, n_rows: int):
+        ...
+
+    def add_experiments(self, experiment_sample: ExperimentData):
+        ...
+
+    def _overwrite_experiments(self, experiment_sample: ExperimentData,
+                               indices: pd.Index, add_if_not_exist: bool):
+        ...
+
+    def _reset_index(self):
+        ...
+
 
 # =============================================================================
 
@@ -90,7 +130,7 @@ class Optimizer:
     The update_step method should have the following signature:
 
     '''
-    def update_step(self, data_generator: DataGenerator)
+    def update_step(self)
     -> Tuple[np.ndarray, np.ndarray]:
     '''
 
@@ -189,5 +229,118 @@ class Optimizer:
         data_generator : DataGenerator
             Data generator to calculate the objective value
         """
-        raise NotImplementedError(
-            "You should implement this method for your optimizer!")
+        self.data = data
+        self.data_generator = data_generator
+
+    def call(self, iterations: int, last_index: int,
+             kwargs: Optional[Dict[str, Any]] = None,
+             x0_selection: Literal['best', 'random',
+                                   'last',
+                                   'new'] | ExperimentData = 'best',
+             sampler: Optional[Sampler | str] = 'random',
+             overwrite: bool = False,
+             callback: Optional[Callable] = None,
+             ) -> ExperimentData:
+
+        return self._iterate(
+            iterations=iterations, kwargs=kwargs,
+            x0_selection=x0_selection,
+            sampler=sampler,
+            overwrite=overwrite,
+            callback=callback,
+            last_index=last_index)
+
+    def _iterate(self, iterations: int, kwargs: Dict[str, Any],
+                 x0_selection: str, sampler: Sampler, overwrite: bool,
+                 callback: Callable, last_index: int):
+        """Internal represenation of the iteration process
+
+        Parameters
+        ----------
+        optimizer : Optimizer
+            Optimizer object
+        data_generator : DataGenerator
+            DataGenerator object
+        iterations : int
+            number of iterations
+        kwargs : Dict[str, Any]
+            any additional keyword arguments that will be passed to
+            the DataGenerator
+        x0_selection : str | ExperimentData
+            How to select the initial design.
+            The following x0_selections are available:
+
+            * 'best': Select the best designs from the current experimentdata
+            * 'random': Select random designs from the current experimentdata
+            * 'last': Select the last designs from the current experimentdata
+            * 'new': Create new random designs from the current experimentdata
+
+            If the x0_selection is 'new', new designs are sampled with the
+            sampler provided. The number of designs selected is equal to the
+            population size of the optimizer.
+
+            If an ExperimentData object is passed as x0_selection,
+            the optimizer will use the input_data and output_data from this
+            object as initial samples.
+
+        sampler: Sampler
+            If x0_selection = 'new', the sampler to use
+        overwrite: bool
+            If True, the optimizer will overwrite the current data.
+        callback : Callable
+            A callback function that is called after every iteration. It has
+            the following signature:
+
+                    ``callback(intermediate_result: ExperimentData)``
+
+            where the first argument is a parameter containing an
+            `ExperimentData` object with the current iterate(s).
+
+        Raises
+        ------
+        ValueError
+            Raised when invalid x0_selection is specified
+        """
+        if len(self.data) < self._population:
+            raise ValueError(
+                f'There are {len(self.data)} datapoints available, \
+                        need {self._population} for initial \
+                            population!'
+            )
+
+        for _ in range(number_of_updates(
+                iterations,
+                population=self._population)):
+            new_samples = self.update_step()
+
+            # If new_samples is a tuple of input_data and output_data
+            if isinstance(new_samples, tuple):
+                new_samples = type(self.data)(
+                    domain=self.data.domain,
+                    input_data=new_samples[0],
+                    output_data=new_samples[1],
+                )
+
+            # If applicable, evaluate the new designs:
+            new_samples.evaluate(data_generator=self.data_generator,
+                                 mode='sequential', **kwargs)
+
+            if callback is not None:
+                callback(new_samples)
+
+            if overwrite:
+                _indices = new_samples.index + last_index + 1
+                self.data._overwrite_experiments(experiment_sample=new_samples,
+                                                 indices=_indices,
+                                                 add_if_not_exist=True)
+
+            else:
+                self.data.add_experiments(new_samples)
+
+        if not overwrite:
+            # Remove overiterations
+            self.data.remove_rows_bottom(number_of_overiterations(
+                iterations,
+                population=self._population))
+
+        return self.data.select(self.data.index[self._population:])
