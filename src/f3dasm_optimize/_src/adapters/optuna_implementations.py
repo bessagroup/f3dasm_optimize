@@ -55,7 +55,7 @@ class OptunaOptimizer(Optimizer):
 
     def _create_trial(self) -> Dict:
         optuna_dict = {}
-        for name, parameter in self.data.domain.items():
+        for name, parameter in self.data.domain.input_space.items():
             if parameter._type == 'float':
                 optuna_dict[name] = self.trial.suggest_float(
                     name=name,
@@ -88,7 +88,7 @@ class OptunaOptimizer(Optimizer):
 
 def domain_to_optuna_distributions(domain: Domain) -> dict:
     optuna_distributions = {}
-    for name, parameter in domain.items():
+    for name, parameter in domain.input_space.items():
         if parameter._type == 'float':
             optuna_distributions[
                 name] = optuna.distributions.FloatDistribution(
