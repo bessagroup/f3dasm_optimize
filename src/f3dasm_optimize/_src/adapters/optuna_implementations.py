@@ -7,8 +7,9 @@ from typing import Dict, Tuple
 # Third party
 import numpy as np
 import optuna
-from f3dasm._src.optimization._protocol import (DataGenerator, Domain,
-                                                ExperimentData)
+from f3dasm import ExperimentData
+from f3dasm.datageneration import DataGenerator
+from f3dasm.design import Domain
 from f3dasm.optimization import Optimizer
 
 #                                                          Authorship & Credits

@@ -8,7 +8,8 @@ from typing import Optional, Tuple
 import jax.numpy as jnp
 import numpy as onp
 import optax
-from f3dasm._src.optimization._protocol import DataGenerator, ExperimentData
+from f3dasm import ExperimentData
+from f3dasm.datageneration import DataGenerator
 from f3dasm.optimization import Optimizer
 
 #                                                          Authorship & Credits

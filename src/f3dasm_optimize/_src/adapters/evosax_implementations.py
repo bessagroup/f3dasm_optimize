@@ -8,7 +8,8 @@ from typing import Optional, Tuple, Type
 import jax
 import numpy as np
 from evosax import Strategy
-from f3dasm._src.optimization._protocol import DataGenerator, ExperimentData
+from f3dasm import ExperimentData
+from f3dasm.datageneration import DataGenerator
 from f3dasm.optimization import Optimizer
 
 #                                                          Authorship & Credits

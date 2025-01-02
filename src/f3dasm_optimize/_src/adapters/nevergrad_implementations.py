@@ -7,7 +7,8 @@ from typing import Optional, Tuple
 # Third-party
 import autograd.numpy as np
 import nevergrad as ng
-from f3dasm._src.optimization._protocol import DataGenerator, ExperimentData
+from f3dasm import ExperimentData
+from f3dasm.datageneration import DataGenerator
 from f3dasm.optimization import Optimizer
 
 #                                                          Authorship & Credits
