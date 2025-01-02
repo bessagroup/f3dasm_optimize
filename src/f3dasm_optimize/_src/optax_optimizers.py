@@ -5,9 +5,9 @@
 from typing import Optional
 
 import optax
+from f3dasm.optimization import Optimizer
 
 # Local
-from ._protocol import Optimizer
 from .adapters.optax_implementations import OptaxOptimizer
 
 #                                                          Authorship & Credits

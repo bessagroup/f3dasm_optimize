@@ -6,9 +6,9 @@ from typing import Optional
 
 # Third-party
 from evosax import BIPOP_CMA_ES, CMA_ES, DE, PSO, SimAnneal
+from f3dasm.optimization import Optimizer
 
 # Local
-from ._protocol import Optimizer
 from .adapters.evosax_implementations import EvoSaxOptimizer
 
 #                                                          Authorship & Credits

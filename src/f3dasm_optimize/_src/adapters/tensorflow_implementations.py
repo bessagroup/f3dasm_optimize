@@ -9,10 +9,9 @@ import autograd.core
 import autograd.numpy as np
 import tensorflow as tf
 from autograd import elementwise_grad as egrad
+from f3dasm._src.optimization._protocol import DataGenerator, ExperimentData
+from f3dasm.optimization import Optimizer
 from keras import Model
-
-# Local
-from .._protocol import DataGenerator, ExperimentData, Optimizer
 
 #                                                          Authorship & Credits
 # =============================================================================

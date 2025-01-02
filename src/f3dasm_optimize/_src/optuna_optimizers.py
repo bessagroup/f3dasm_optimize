@@ -4,10 +4,9 @@
 # Standard
 from typing import Optional
 
-import optuna
-
 # Third party
-from f3dasm_optimize._src._protocol import Optimizer
+import optuna
+from f3dasm.optimization import Optimizer
 
 # Local
 from .adapters.optuna_implementations import OptunaOptimizer

@@ -6,9 +6,9 @@ from typing import Optional
 
 # Third-party
 import nevergrad as ng
+from f3dasm.optimization import Optimizer
 
 # Local
-from ._protocol import Optimizer
 from .adapters.nevergrad_implementations import NeverGradOptimizer
 
 #                                                          Authorship & Credits

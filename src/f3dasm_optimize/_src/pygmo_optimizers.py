@@ -6,9 +6,9 @@ from typing import Optional
 
 # Third-party
 import pygmo as pg
+from f3dasm.optimization import Optimizer
 
 # Locals
-from ._protocol import Optimizer
 from .adapters.pygmo_implementations import PygmoOptimizer
 
 #                                                          Authorship & Credits

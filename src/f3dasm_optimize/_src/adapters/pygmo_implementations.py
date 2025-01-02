@@ -7,9 +7,9 @@ from typing import List, Optional, Tuple
 # Third-party core
 import autograd.numpy as np
 import pygmo as pg
-
-# Local
-from .._protocol import DataGenerator, Domain, ExperimentData, Optimizer
+from f3dasm._src.optimization._protocol import (DataGenerator, Domain,
+                                                ExperimentData)
+from f3dasm.optimization import Optimizer
 
 #                                                          Authorship & Credits
 # =============================================================================

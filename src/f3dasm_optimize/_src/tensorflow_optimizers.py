@@ -6,9 +6,9 @@ Information on the Adam optimizer
 
 # Third-party
 import tensorflow as tf
+from f3dasm.optimization import Optimizer
 
 # Locals
-from ._protocol import Optimizer
 from .adapters.tensorflow_implementations import TensorflowOptimizer
 
 #                                                          Authorship & Credits
