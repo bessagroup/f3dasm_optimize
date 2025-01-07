@@ -9,7 +9,7 @@ import autograd.core
 import autograd.numpy as np
 import tensorflow as tf
 from autograd import elementwise_grad as egrad
-from f3dasm import ExperimentData
+from f3dasm import ExperimentData, ExperimentSample
 from f3dasm.datageneration import DataGenerator
 from f3dasm.optimization import Optimizer
 from keras import Model
@@ -41,8 +41,9 @@ class TensorflowOptimizer(Optimizer):
         self.args = {}
 
         def fitness(x: np.ndarray) -> np.ndarray:
+            _x = ExperimentSample.from_numpy(x, self.data.domain)
             evaluated_sample = self.data_generator._run(
-                x, domain=self.data.domain)
+                _x, domain=self.data.domain)
 
             _, y_ = evaluated_sample.to_numpy()
             return y_

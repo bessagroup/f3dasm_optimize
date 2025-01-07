@@ -7,7 +7,7 @@ from typing import Optional, Tuple
 # Third-party
 import autograd.numpy as np
 import nevergrad as ng
-from f3dasm import ExperimentData
+from f3dasm import ExperimentData, ExperimentSample
 from f3dasm.datageneration import DataGenerator
 from f3dasm.optimization import Optimizer
 
@@ -53,8 +53,10 @@ class NeverGradOptimizer(Optimizer):
         # Evaluate the candidates
         y = []
         for x_i in x:
+            _x = ExperimentSample.from_numpy(input_array=x_i.value,
+                                             domain=self.data.domain)
             experiment_sample = self.data_generator._run(
-                x_i.value,
+                _x,
                 domain=self.data.domain)
             y.append(experiment_sample.to_numpy()[1])
 

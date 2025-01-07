@@ -8,7 +8,7 @@ from typing import Optional, Tuple, Type
 import jax
 import numpy as np
 from evosax import Strategy
-from f3dasm import ExperimentData
+from f3dasm import ExperimentData, ExperimentSample
 from f3dasm.datageneration import DataGenerator
 from f3dasm.optimization import Optimizer
 
@@ -72,8 +72,10 @@ class EvoSaxOptimizer(Optimizer):
         # Evaluate the candidates
         y = []
         for x_i in np.array(x):
+            _x = ExperimentSample.from_numpy(input_array=x_i,
+                                             domain=self.data.domain)
             experiment_sample = self.data_generator._run(
-                x_i, domain=self.data.domain)
+                _x, domain=self.data.domain)
             y.append(experiment_sample.to_numpy()[1])
 
         y = np.array(y).ravel()

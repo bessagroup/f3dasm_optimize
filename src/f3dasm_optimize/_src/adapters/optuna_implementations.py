@@ -7,7 +7,7 @@ from typing import Dict, Tuple
 # Third party
 import numpy as np
 import optuna
-from f3dasm import ExperimentData
+from f3dasm import ExperimentData, ExperimentSample
 from f3dasm.datageneration import DataGenerator
 from f3dasm.design import Domain
 from f3dasm.optimization import Optimizer
@@ -74,7 +74,8 @@ class OptunaOptimizer(Optimizer):
                 optuna_dict[name] = self.trial.suggest_categorical(
                     name=name, choices=[parameter.value])
 
-        return optuna_dict
+        return ExperimentSample(input_data=optuna_dict,
+                                domain=self.data.domain)
 
     def update_step(self) -> Tuple[np.ndarray, np.ndarray]:
         self.trial = self.algorithm.ask()

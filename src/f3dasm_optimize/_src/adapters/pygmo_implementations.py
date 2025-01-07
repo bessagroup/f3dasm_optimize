@@ -7,7 +7,7 @@ from typing import List, Optional, Tuple
 # Third-party core
 import autograd.numpy as np
 import pygmo as pg
-from f3dasm import ExperimentData
+from f3dasm import ExperimentData, ExperimentSample
 from f3dasm.datageneration import DataGenerator
 from f3dasm.design import Domain
 from f3dasm.optimization import Optimizer
@@ -71,10 +71,9 @@ class PygmoOptimizer(Optimizer):
         self.pop = pg.population(prob, size=self.population)
 
         # Set the population to the latest datapoints
-        pop_x = self.data._input_data.to_dataframe(
-        ).iloc[-self.population:].to_numpy()
-        pop_fx = self.data._output_data.to_dataframe(
-        ).iloc[-self.population:].to_numpy()
+        _x, _y = self.data.to_numpy()
+        pop_x = _x[-self.population:]
+        pop_fx = _y[-self.population:]
 
         for index, (x, fx) in enumerate(zip(pop_x, pop_fx)):
             self.pop.set_xf(index, x, fx)
@@ -136,7 +135,8 @@ class _PygmoProblem:
         -------
             fitness
         """
-        evaluated_sample = self.func._run(x, domain=self.domain)
+        x_ = ExperimentSample.from_numpy(input_array=x, domain=self.domain)
+        evaluated_sample = self.func._run(x_, domain=self.domain)
         _, y_ = evaluated_sample.to_numpy()
         return y_.ravel()  # pygmo doc: should output 1D numpy array
 
