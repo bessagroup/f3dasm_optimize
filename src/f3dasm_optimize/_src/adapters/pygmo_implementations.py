@@ -50,7 +50,7 @@ class PygmoOptimizer(Optimizer):
 
         pg.set_global_rng_seed(seed=self.seed)
 
-    def init(self, data: ExperimentData, data_generator: DataGenerator):
+    def arm(self, data: ExperimentData, data_generator: DataGenerator):
         self.data = data
         self.data_generator = data_generator
 

@@ -30,7 +30,7 @@ class OptaxOptimizer(Optimizer):
         self.seed = seed
         self.hyperparameters = hyperparameters
 
-    def init(self, data: ExperimentData, data_generator: DataGenerator):
+    def arm(self, data: ExperimentData, data_generator: DataGenerator):
         self.data = data
         self.data_generator = data_generator
 
