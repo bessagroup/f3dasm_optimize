@@ -1,16 +1,10 @@
 #                                                                       Modules
 # =============================================================================
 
-# Standard
-from typing import Dict, Tuple
-
 # Third party
-import numpy as np
 import optuna
-from f3dasm import ExperimentData, ExperimentSample
-from f3dasm.datageneration import DataGenerator
+from f3dasm import Block, ExperimentData, ExperimentSample
 from f3dasm.design import Domain
-from f3dasm.optimization import Optimizer
 
 #                                                          Authorship & Credits
 # =============================================================================
@@ -24,7 +18,7 @@ __status__ = 'Stable'
 optuna.logging.set_verbosity(optuna.logging.WARNING)
 
 
-class OptunaOptimizer(Optimizer):
+class OptunaOptimizer(Block):
     require_gradients: bool = False
 
     def __init__(self, algorithm_cls, seed: int, **hyperparameters):
@@ -32,59 +26,64 @@ class OptunaOptimizer(Optimizer):
         self.seed = seed
         self.hyperparameters = hyperparameters
 
-    def arm(self, data: ExperimentData, data_generator: DataGenerator):
+    def arm(self, data: ExperimentData):
         self.data = data
-        self.data_generator = data_generator
+        self.distributions = domain_to_optuna_distributions(
+            self.data.domain)
 
         # Set algorithm
         self.algorithm = optuna.create_study(
             sampler=self.algorithm_cls(seed=self.seed, **self.hyperparameters)
         )
 
-        # Construct model
-        for i in range(len(self.data)):
-            experiment_sample = self.data.get_experiment_sample(i)
+        for _, es in self.data:
             self.algorithm.add_trial(
                 optuna.trial.create_trial(
-                    params=experiment_sample.input_data,
-                    distributions=domain_to_optuna_distributions(
-                        self.data.domain),
-                    value=experiment_sample.to_numpy()[1],
+                    params=es.input_data,
+                    distributions=self.distributions,
+                    value=es.to_numpy()[1],
                 )
             )
 
-    def _create_trial(self) -> Dict:
+    def call(self, **kwargs) -> ExperimentData:
+        for _, es in self.data[-1]:
+            self.algorithm.add_trial(
+                optuna.trial.create_trial(
+                    params=es.input_data,
+                    distributions=self.distributions,
+                    value=es.to_numpy()[1],
+                )
+            )
+        trial = self.algorithm.ask()
+        new_es = self._suggest_experimentsample(trial)
+        return type(self.data).from_data(data={0: new_es},
+                                         domain=self.data.domain,
+                                         project_dir=self.data.project_dir)
+
+    def _suggest_experimentsample(self, trial: optuna.Trial
+                                  ) -> ExperimentSample:
         optuna_dict = {}
         for name, parameter in self.data.domain.input_space.items():
             if parameter._type == 'float':
-                optuna_dict[name] = self.trial.suggest_float(
+                optuna_dict[name] = trial.suggest_float(
                     name=name,
                     low=parameter.lower_bound,
                     high=parameter.upper_bound, log=parameter.log)
             elif parameter._type == 'int':
-                optuna_dict[name] = self.trial.suggest_int(
+                optuna_dict[name] = trial.suggest_int(
                     name=name,
                     low=parameter.lower_bound,
                     high=parameter.upper_bound, step=parameter.step)
             elif parameter._type == 'category':
-                optuna_dict[name] = self.trial.suggest_categorical(
+                optuna_dict[name] = trial.suggest_categorical(
                     name=name,
                     choices=parameter.categories)
             elif parameter._type == 'object':
-                optuna_dict[name] = self.trial.suggest_categorical(
+                optuna_dict[name] = trial.suggest_categorical(
                     name=name, choices=[parameter.value])
 
         return ExperimentSample(input_data=optuna_dict,
                                 domain=self.data.domain)
-
-    def update_step(self) -> Tuple[np.ndarray, np.ndarray]:
-        self.trial = self.algorithm.ask()
-        experiment_sample = self.data_generator._run(
-            self._create_trial(), domain=self.data.domain)
-
-        x, y = experiment_sample.to_numpy()
-        self.algorithm.tell(self.trial, y)
-        return np.atleast_2d(x), np.atleast_2d(y)
 
 
 def domain_to_optuna_distributions(domain: Domain) -> dict:

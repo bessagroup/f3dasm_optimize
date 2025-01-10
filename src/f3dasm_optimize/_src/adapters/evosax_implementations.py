@@ -2,15 +2,13 @@
 # =============================================================================
 
 # Standard
-from typing import Optional, Tuple, Type
+from typing import Optional, Type
 
 # Third-party
 import jax
 import numpy as np
 from evosax import Strategy
-from f3dasm import ExperimentData, ExperimentSample
-from f3dasm.datageneration import DataGenerator
-from f3dasm.optimization import Optimizer
+from f3dasm import Block, ExperimentData
 
 #                                                          Authorship & Credits
 # =============================================================================
@@ -22,7 +20,7 @@ __status__ = 'Stable'
 # =============================================================================
 
 
-class EvoSaxOptimizer(Optimizer):
+class EvoSaxOptimizer(Block):
     type: str = 'evosax'
     require_gradients: bool = False
 
@@ -37,9 +35,8 @@ class EvoSaxOptimizer(Optimizer):
         self.seed = seed
         self.hyperparameters = hyperparameters
 
-    def arm(self, data: ExperimentData, data_generator: DataGenerator):
+    def arm(self, data: ExperimentData):
         self.data = data
-        self.data_generator = data_generator
         self.algorithm: Strategy = self.algorithm_cls(num_dims=len(
             data.domain), popsize=self.population, **self.hyperparameters)
 
@@ -54,33 +51,22 @@ class EvoSaxOptimizer(Optimizer):
         self.state = self.algorithm.initialize(
             rng_ask, self.evosax_param)
 
-        # Set data
-        x_init, y_init = self.data.get_n_best_output(
-            self.population).to_numpy()
-
-        self.state = self.algorithm.tell(
-            x_init, y_init.ravel(), self.state, self.evosax_param)
-
-    def update_step(self) -> Tuple[np.ndarray, np.ndarray]:
+    def call(self, **kwargs) -> ExperimentData:
         _, rng_ask = jax.random.split(
             jax.random.PRNGKey(self.seed))
+
+        # Get the last candidates
+        x_i, y_i = self.data[-self.population:].to_numpy()
+
+        # Tell the last candidates
+        self.state = self.algorithm.tell(
+            x_i, y_i.ravel(), self.state, self.evosax_param)
 
         # Ask for a set candidates
         x, state = self.algorithm.ask(
             rng_ask, self.state, self.evosax_param)
 
-        # Evaluate the candidates
-        y = []
-        for x_i in np.array(x):
-            _x = ExperimentSample.from_numpy(input_array=x_i,
-                                             domain=self.data.domain)
-            experiment_sample = self.data_generator._run(
-                _x, domain=self.data.domain)
-            y.append(experiment_sample.to_numpy()[1])
-
-        y = np.array(y).ravel()
-
-        # Update the strategy based on fitness
-        self.state = self.algorithm.tell(
-            x, y.ravel(), state, self.evosax_param)
-        return np.array(x), y
+        return type(self.data)(
+            input_data=np.array(x),
+            domain=self.data.domain,
+            project_dir=self.data.project_dir)
