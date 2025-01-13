@@ -6,7 +6,7 @@ from typing import Optional
 
 # Third party
 import optuna
-from f3dasm.optimization import Optimizer
+from f3dasm import Block
 
 # Local
 from .adapters.optuna_implementations import OptunaOptimizer
@@ -21,7 +21,7 @@ __status__ = 'Stable'
 # =============================================================================
 
 
-def tpe_sampler(seed: Optional[int] = None, **kwargs) -> Optimizer:
+def tpe_sampler(seed: Optional[int] = None, **kwargs) -> Block:
     """
     Tree-structured Parzen Estimator (TPE) sampler.
     Adapted from the optuna library

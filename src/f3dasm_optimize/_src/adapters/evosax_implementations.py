@@ -35,6 +35,42 @@ class EvoSaxOptimizer(Block):
         self.seed = seed
         self.hyperparameters = hyperparameters
 
+    @property
+    def _seed(self) -> int:
+        """
+        Property to return the seed of the optimizer
+
+        Returns
+        -------
+        int | None
+            Seed of the optimizer
+
+        Note
+        ----
+        If the seed is not set, the property will return None
+        This is done to prevent errors when the seed is not an available
+        attribute in a custom optimizer class.
+        """
+        return self.seed if hasattr(self, 'seed') else None
+
+    @property
+    def _population(self) -> int:
+        """
+        Property to return the population size of the optimizer
+
+        Returns
+        -------
+        int
+            Number of individuals in the population
+
+        Note
+        ----
+        If the population is not set, the property will return 1
+        This is done to prevent errors when the population size is not an
+        available attribute in a custom optimizer class.
+        """
+        return self.population if hasattr(self, 'population') else 1
+
     def arm(self, data: ExperimentData):
         self.data = data
         self.algorithm: Strategy = self.algorithm_cls(num_dims=len(

@@ -5,7 +5,7 @@
 from typing import Optional
 
 import optax
-from f3dasm.optimization import Optimizer
+from f3dasm import Block
 
 # Local
 from .adapters.optax_implementations import OptaxOptimizer
@@ -22,7 +22,7 @@ __status__ = 'Stable'
 
 def adam(learning_rate: float = 0.001, beta_1: float = 0.9,
          beta_2: float = 0.999, epsilon: float = 1e-07, eps_root: float = 0.0,
-         seed: Optional[int] = None, **kwargs) -> Optimizer:
+         seed: Optional[int] = None, **kwargs) -> Block:
     """
     Adam optimizer.
     Adapted from the Optax library.
@@ -66,7 +66,7 @@ def adam(learning_rate: float = 0.001, beta_1: float = 0.9,
 
 def sgd(learning_rate: float = 0.01, momentum: float = 0.0,
         nesterov: bool = False, seed: Optional[int] = None, **kwargs
-        ) -> Optimizer:
+        ) -> Block:
     """
     Stochastic Gradient Descent (SGD) optimizer.
     Adapted from the Optax library.

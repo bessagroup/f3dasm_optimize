@@ -23,6 +23,42 @@ __status__ = 'Stable'
 class OptaxOptimizer(Block):
     require_gradients: bool = True
 
+    @property
+    def _seed(self) -> int:
+        """
+        Property to return the seed of the optimizer
+
+        Returns
+        -------
+        int | None
+            Seed of the optimizer
+
+        Note
+        ----
+        If the seed is not set, the property will return None
+        This is done to prevent errors when the seed is not an available
+        attribute in a custom optimizer class.
+        """
+        return self.seed if hasattr(self, 'seed') else None
+
+    @property
+    def _population(self) -> int:
+        """
+        Property to return the population size of the optimizer
+
+        Returns
+        -------
+        int
+            Number of individuals in the population
+
+        Note
+        ----
+        If the population is not set, the property will return 1
+        This is done to prevent errors when the population size is not an
+        available attribute in a custom optimizer class.
+        """
+        return self.population if hasattr(self, 'population') else 1
+
     def __init__(self, algorithm_cls, seed: Optional[int], **hyperparameters):
         self.algorithm_cls = algorithm_cls
         self.seed = seed

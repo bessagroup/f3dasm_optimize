@@ -10,19 +10,19 @@ import numpy as np
 import pytest
 import xarray as xr
 # Locals
-from f3dasm import ExperimentData, logger
+from f3dasm import Block, ExperimentData, logger
 from f3dasm._src.datageneration.datagenerator_factory import \
     _datagenerator_factory
 from f3dasm._src.optimization.optimizer_factory import _optimizer_factory
 from f3dasm.datageneration import DataGenerator
 from f3dasm.datageneration.functions import FUNCTIONS_2D, FUNCTIONS_7D
 from f3dasm.design import Domain, make_nd_continuous_domain
-from f3dasm.optimization import Optimizer, available_optimizers
+from f3dasm.optimization import available_optimizers
 from pathos.helpers import mp
 
 
 class OptimizationResult:
-    def __init__(self, data: List[ExperimentData], optimizer: Optimizer,
+    def __init__(self, data: List[ExperimentData], optimizer: Block,
                  kwargs: Optional[Dict[str, Any]],
                  data_generator: DataGenerator,
                  number_of_samples: int, seeds: List[int],
@@ -93,7 +93,7 @@ class OptimizationResult:
 
 
 def run_optimization(
-    optimizer: Optimizer | str,
+    optimizer: Block | str,
     data_generator: DataGenerator | str,
     sampler: Callable | str,
     domain: Domain,
@@ -155,7 +155,7 @@ def run_optimization(
 
 
 def run_multiple_realizations(
-    optimizer: Optimizer,
+    optimizer: Block,
     data_generator: DataGenerator | str,
     sampler: Callable | str,
     domain: Domain,
