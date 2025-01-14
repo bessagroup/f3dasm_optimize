@@ -6,9 +6,9 @@ from typing import Optional
 
 # Third-party
 import nevergrad as ng
+from f3dasm import Block
 
 # Local
-from ._protocol import Optimizer
 from .adapters.nevergrad_implementations import NeverGradOptimizer
 
 #                                                          Authorship & Credits
@@ -29,7 +29,7 @@ def de_nevergrad(population: int = 30,
                  F1: float = 0.8,
                  F2: float = 0.8,
                  seed: Optional[int] = None,
-                 **kwargs) -> Optimizer:
+                 **kwargs) -> Block:
     """
     Nevergrad Differential Evolution (DE) optimizer.
 
@@ -81,7 +81,7 @@ def pso_nevergrad(
         qo: bool = False,
         sqo: bool = False,
         seed: Optional[int] = None,
-        so: bool = False, **kwargs) -> Optimizer:
+        so: bool = False, **kwargs) -> Block:
     """
     Nevergrad Particle Swarm Optimization (PSO) optimizer.
 

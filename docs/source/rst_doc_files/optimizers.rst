@@ -1,5 +1,3 @@
-.. _Pygmo: https://esa.github.io/pygmo2/
-.. _Tensorflow keras: https://www.tensorflow.org/api_docs/python/tf/keras/optimizers
 .. _Nevergrad: https://facebookresearch.github.io/nevergrad/index.html
 .. _EvoSax: https://github.com/RobertTLange/evosax
 
@@ -8,59 +6,6 @@ Implemented optimizers
 ======================
 
 The following implementations of optimizers can found under this extension package: 
-
-`Pygmo`_ implementations
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-These derivative-free global optimizers are ported from the `pygmo <https://esa.github.io/pygmo2/>`_ Python library: 
-
-In order to use this optimizers you need to install the :code:`pygmo` dependency:
-
-.. code-block:: bash
-
-    pip install pygmo
-
-.. note::
-
-    The `pygmo <https://esa.github.io/pygmo2/>`_ library is not compatible with Python 3.9 yet and only available for Linux and Unix systems.
-
-======================== ========================================================================== ================================================== =======================================================================================================
-Name                     Keyword argument                                                           Function                                           Reference
-======================== ========================================================================== ================================================== =======================================================================================================
-CMAES                    ``"cmaes"``                                                                :func:`~f3dasm_optimize.cmaes_pygmo`               `pygmo cmaes <https://esa.github.io/pygmo2/algorithms.html#pygmo.cmaes>`_
-PSO                      ``"pso_pygmo"``                                                            :func:`~f3dasm_optimize.pso_pygmo`                 `pygmo pso_gen <https://esa.github.io/pygmo2/algorithms.html#pygmo.pso_gen>`_
-SGA                      ``"sga"``                                                                  :func:`~f3dasm_optimize.sga`                       `pygmo sga <https://esa.github.io/pygmo2/algorithms.html#pygmo.sga>`_
-SEA                      ``"sea"``                                                                  :func:`~f3dasm_optimize.sea`                       `pygmo sea <https://esa.github.io/pygmo2/algorithms.html#pygmo.sea>`_
-XNES                     ``"xnes"``                                                                 :func:`~f3dasm_optimize.xnes`                      `pygmo xnes <https://esa.github.io/pygmo2/algorithms.html#pygmo.xnes>`_
-Differential Evolution   ``"de_pygmo"``                                                             :func:`~f3dasm_optimize.de_pygmo`                  `pygmo de <https://esa.github.io/pygmo2/algorithms.html#pygmo.de>`_
-Simulated Annealing      ``"simanneal_pygmo"``                                                      :func:`~f3dasm_optimize.simanneal_pygmo`           `pygmo simulated_annealing <https://esa.github.io/pygmo2/algorithms.html#pygmo.simulated_annealing>`_
-======================== ========================================================================== ================================================== =======================================================================================================
-
-
-`Tensorflow keras`_ optimizers
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-These gradient based optimizers are ported from the `tensorflow keras <https://www.tensorflow.org/api_docs/python/tf/keras/optimizers>`_ Python library:
-
-In order to use this optimizers you need to install the :code:`tensorflow` dependency:
-
-.. code-block:: bash
-
-    pip install tensorflow
-
-
-======================== ====================================================================== ============================================ =====================================================================================================
-Name                     Keyword argument                                                       Function                                     Reference
-======================== ====================================================================== ============================================ =====================================================================================================
-SGD                      ``"sgd_tensorflow"``                                                   :func:`~f3dasm_optimize.sgd_tensorflow`      `tf.keras.optimizers.SGD <https://www.tensorflow.org/api_docs/python/tf/keras/optimizers/SGD>`_
-RMSprop                  ``"rmsprop"``                                                          :func:`~f3dasm_optimize.rmsprop`             `tf.keras.optimizers.RMSprop <https://www.tensorflow.org/api_docs/python/tf/keras/optimizers/RMSprop>`_
-Adam                     ``"adam_tensorflow"``                                                  :func:`~f3dasm_optimize.adam_tensorflow`     `tf.keras.optimizers.Adam <https://www.tensorflow.org/api_docs/python/tf/keras/optimizers/Adam>`_
-Nadam                    ``"nadam"``                                                            :func:`~f3dasm_optimize.nadam`               `tf.keras.optimizers.Nadam <https://www.tensorflow.org/api_docs/python/tf/keras/optimizers/Nadam>`_
-Adamax                   ``"adamax"``                                                           :func:`~f3dasm_optimize.adamax`              `tf.keras.optimizers.Adamax <https://www.tensorflow.org/api_docs/python/tf/keras/optimizers/Adamax>`_
-Ftrl                     ``"ftrl"``                                                             :func:`~f3dasm_optimize.ftrl`                `tf.keras.optimizers.Ftrl <https://www.tensorflow.org/api_docs/python/tf/keras/optimizers/Ftrl>`_
-======================== ====================================================================== ============================================ =====================================================================================================
-
-
 
 
 `Nevergrad`_ optimizers

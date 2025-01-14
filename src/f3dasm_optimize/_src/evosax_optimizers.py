@@ -6,9 +6,9 @@ from typing import Optional
 
 # Third-party
 from evosax import BIPOP_CMA_ES, CMA_ES, DE, PSO, SimAnneal
+from f3dasm import Block
 
 # Local
-from ._protocol import Optimizer
 from .adapters.evosax_implementations import EvoSaxOptimizer
 
 #                                                          Authorship & Credits
@@ -22,7 +22,7 @@ __status__ = 'Stable'
 
 
 def cmaes(population: int = 30,
-          seed: Optional[int] = None, **kwargs) -> Optimizer:
+          seed: Optional[int] = None, **kwargs) -> Block:
     """
     Covariance Matrix Adaptation Evolution Strategy (CMA-ES) optimizer.
     Adapated from the EvoSax library.
@@ -49,7 +49,7 @@ def cmaes(population: int = 30,
 
 
 def pso(population: int = 30,
-        seed: Optional[int] = None, **kwargs) -> Optimizer:
+        seed: Optional[int] = None, **kwargs) -> Block:
     """
     Particle Swarm Optimization (PSO) optimizer.
     Adapted from the EvoSax library.
@@ -76,7 +76,7 @@ def pso(population: int = 30,
 
 
 def simanneal(population: int = 30,
-              seed: Optional[int] = None, **kwargs) -> Optimizer:
+              seed: Optional[int] = None, **kwargs) -> Block:
     """
     Simulated Annealing (SimAnneal) optimizer.
     Adapted from the EvoSax library.
@@ -103,7 +103,7 @@ def simanneal(population: int = 30,
 
 
 def de(population: int = 30,
-       seed: Optional[int] = None, **kwargs) -> Optimizer:
+       seed: Optional[int] = None, **kwargs) -> Block:
     """
     Differential Evolution (DE) optimizer.
     Adapted from the EvoSax library.
@@ -130,7 +130,7 @@ def de(population: int = 30,
 
 
 def bipopcmaes(population: int = 30,
-               seed: Optional[int] = None, **kwargs) -> Optimizer:
+               seed: Optional[int] = None, **kwargs) -> Block:
     """
     BIPOP-CMA-ES optimizer.
     Adapted from the EvoSax library.

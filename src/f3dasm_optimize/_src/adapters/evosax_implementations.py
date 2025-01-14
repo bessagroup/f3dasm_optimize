@@ -2,15 +2,13 @@
 # =============================================================================
 
 # Standard
-from typing import Optional, Tuple, Type
+from typing import Optional, Type
 
 # Third-party
 import jax
 import numpy as np
 from evosax import Strategy
-
-# Local
-from .._protocol import DataGenerator, ExperimentData, Optimizer
+from f3dasm import Block, ExperimentData
 
 #                                                          Authorship & Credits
 # =============================================================================
@@ -22,7 +20,7 @@ __status__ = 'Stable'
 # =============================================================================
 
 
-class EvoSaxOptimizer(Optimizer):
+class EvoSaxOptimizer(Block):
     type: str = 'evosax'
     require_gradients: bool = False
 
@@ -37,9 +35,44 @@ class EvoSaxOptimizer(Optimizer):
         self.seed = seed
         self.hyperparameters = hyperparameters
 
-    def init(self, data: ExperimentData, data_generator: DataGenerator):
+    @property
+    def _seed(self) -> int:
+        """
+        Property to return the seed of the optimizer
+
+        Returns
+        -------
+        int | None
+            Seed of the optimizer
+
+        Note
+        ----
+        If the seed is not set, the property will return None
+        This is done to prevent errors when the seed is not an available
+        attribute in a custom optimizer class.
+        """
+        return self.seed if hasattr(self, 'seed') else None
+
+    @property
+    def _population(self) -> int:
+        """
+        Property to return the population size of the optimizer
+
+        Returns
+        -------
+        int
+            Number of individuals in the population
+
+        Note
+        ----
+        If the population is not set, the property will return 1
+        This is done to prevent errors when the population size is not an
+        available attribute in a custom optimizer class.
+        """
+        return self.population if hasattr(self, 'population') else 1
+
+    def arm(self, data: ExperimentData):
         self.data = data
-        self.data_generator = data_generator
         self.algorithm: Strategy = self.algorithm_cls(num_dims=len(
             data.domain), popsize=self.population, **self.hyperparameters)
 
@@ -54,31 +87,22 @@ class EvoSaxOptimizer(Optimizer):
         self.state = self.algorithm.initialize(
             rng_ask, self.evosax_param)
 
-        # Set data
-        x_init, y_init = self.data.get_n_best_output(
-            self.population).to_numpy()
-
-        self.state = self.algorithm.tell(
-            x_init, y_init.ravel(), self.state, self.evosax_param)
-
-    def update_step(self) -> Tuple[np.ndarray, np.ndarray]:
+    def call(self, **kwargs) -> ExperimentData:
         _, rng_ask = jax.random.split(
             jax.random.PRNGKey(self.seed))
+
+        # Get the last candidates
+        x_i, y_i = self.data[-self.population:].to_numpy()
+
+        # Tell the last candidates
+        self.state = self.algorithm.tell(
+            x_i, y_i.ravel(), self.state, self.evosax_param)
 
         # Ask for a set candidates
         x, state = self.algorithm.ask(
             rng_ask, self.state, self.evosax_param)
 
-        # Evaluate the candidates
-        y = []
-        for x_i in np.array(x):
-            experiment_sample = self.data_generator._run(
-                x_i, domain=self.data.domain)
-            y.append(experiment_sample.to_numpy()[1])
-
-        y = np.array(y).ravel()
-
-        # Update the strategy based on fitness
-        self.state = self.algorithm.tell(
-            x, y.ravel(), state, self.evosax_param)
-        return np.array(x), y
+        return type(self.data)(
+            input_data=np.array(x),
+            domain=self.data.domain,
+            project_dir=self.data.project_dir)

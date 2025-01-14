@@ -2,14 +2,12 @@
 # =============================================================================
 
 # Standard
-from typing import Optional, Tuple
+from typing import Optional
 
 # Third-party
 import autograd.numpy as np
 import nevergrad as ng
-
-# Local
-from .._protocol import DataGenerator, ExperimentData, Optimizer
+from f3dasm import Block, ExperimentData
 
 #                                                          Authorship & Credits
 # =============================================================================
@@ -21,7 +19,7 @@ __status__ = 'Stable'
 # =============================================================================
 
 
-class NeverGradOptimizer(Optimizer):
+class NeverGradOptimizer(Block):
     require_gradients: bool = False
 
     def __init__(self, algorithm_cls, population: int,
@@ -32,9 +30,44 @@ class NeverGradOptimizer(Optimizer):
         self.seed = seed
         self.hyperparameters = hyperparameters
 
-    def init(self, data: ExperimentData, data_generator: DataGenerator):
+    @property
+    def _seed(self) -> int:
+        """
+        Property to return the seed of the optimizer
+
+        Returns
+        -------
+        int | None
+            Seed of the optimizer
+
+        Note
+        ----
+        If the seed is not set, the property will return None
+        This is done to prevent errors when the seed is not an available
+        attribute in a custom optimizer class.
+        """
+        return self.seed if hasattr(self, 'seed') else None
+
+    @property
+    def _population(self) -> int:
+        """
+        Property to return the population size of the optimizer
+
+        Returns
+        -------
+        int
+            Number of individuals in the population
+
+        Note
+        ----
+        If the population is not set, the property will return 1
+        This is done to prevent errors when the population size is not an
+        available attribute in a custom optimizer class.
+        """
+        return self.population if hasattr(self, 'population') else 1
+
+    def arm(self, data: ExperimentData):
         self.data = data
-        self.data_generator = data_generator
         p = ng.p.Array(shape=(len(self.data.domain),),
                        lower=self.data.domain.get_bounds()[:, 0],
                        upper=self.data.domain.get_bounds()[:, 1],
@@ -46,20 +79,18 @@ class NeverGradOptimizer(Optimizer):
             popsize=self.population,
             **self.hyperparameters)(p, budget=1e8)
 
-    def update_step(self) -> Tuple[np.ndarray, None]:
+    def call(self, **kwargs) -> ExperimentData:
+
+        # Get the last candidates
+        xx, yy = self.data[-self.population:].to_numpy()
+
+        for x_tell, y_tell in zip(xx, yy):
+            self.algorithm.tell(
+                self.algorithm.parametrization.spawn_child(x_tell), y_tell)
+
         x = [self.algorithm.ask() for _ in range(
             self.population)]
 
-        # Evaluate the candidates
-        y = []
-        for x_i in x:
-            experiment_sample = self.data_generator._run(
-                x_i.value,
-                domain=self.data.domain)
-            y.append(experiment_sample.to_numpy()[1])
-
-        for x_tell, y_tell in zip(x, y):
-            self.algorithm.tell(x_tell, y_tell)
-
-        # return the data
-        return np.vstack([x_.value for x_ in x]), np.array(y).ravel()
+        return type(self.data)(input_data=np.vstack([x_.value for x_ in x]),
+                               domain=self.data.domain,
+                               project_dir=self.data.project_dir)
