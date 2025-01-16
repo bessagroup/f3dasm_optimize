@@ -67,10 +67,9 @@ class NeverGradOptimizer(Block):
         return self.population if hasattr(self, 'population') else 1
 
     def arm(self, data: ExperimentData):
-        self.data = data
-        p = ng.p.Array(shape=(len(self.data.domain),),
-                       lower=self.data.domain.get_bounds()[:, 0],
-                       upper=self.data.domain.get_bounds()[:, 1],
+        p = ng.p.Array(shape=(len(data.domain),),
+                       lower=data.domain.get_bounds()[:, 0],
+                       upper=data.domain.get_bounds()[:, 1],
                        )
 
         p._set_random_state(np.random.RandomState(self.seed))
@@ -79,10 +78,10 @@ class NeverGradOptimizer(Block):
             popsize=self.population,
             **self.hyperparameters)(p, budget=1e8)
 
-    def call(self, **kwargs) -> ExperimentData:
+    def call(self, data: ExperimentData, **kwargs) -> ExperimentData:
 
         # Get the last candidates
-        xx, yy = self.data[-self.population:].to_numpy()
+        xx, yy = data[-self.population:].to_numpy()
 
         for x_tell, y_tell in zip(xx, yy):
             self.algorithm.tell(
@@ -91,6 +90,6 @@ class NeverGradOptimizer(Block):
         x = [self.algorithm.ask() for _ in range(
             self.population)]
 
-        return type(self.data)(input_data=np.vstack([x_.value for x_ in x]),
-                               domain=self.data.domain,
-                               project_dir=self.data.project_dir)
+        return type(data)(input_data=np.vstack([x_.value for x_ in x]),
+                          domain=data.domain,
+                          project_dir=data.project_dir)

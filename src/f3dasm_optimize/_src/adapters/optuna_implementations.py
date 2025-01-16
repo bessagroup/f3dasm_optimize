@@ -63,16 +63,15 @@ class OptunaOptimizer(Block):
         return self.population if hasattr(self, 'population') else 1
 
     def arm(self, data: ExperimentData):
-        self.data = data
         self.distributions = domain_to_optuna_distributions(
-            self.data.domain)
+            data.domain)
 
         # Set algorithm
         self.algorithm = optuna.create_study(
             sampler=self.algorithm_cls(seed=self.seed, **self.hyperparameters)
         )
 
-        for _, es in self.data:
+        for _, es in data:
             self.algorithm.add_trial(
                 optuna.trial.create_trial(
                     params=es.input_data,
@@ -81,8 +80,8 @@ class OptunaOptimizer(Block):
                 )
             )
 
-    def call(self, **kwargs) -> ExperimentData:
-        for _, es in self.data[-1]:
+    def call(self, data: ExperimentData, **kwargs) -> ExperimentData:
+        for _, es in data[-1]:
             self.algorithm.add_trial(
                 optuna.trial.create_trial(
                     params=es.input_data,
@@ -91,15 +90,16 @@ class OptunaOptimizer(Block):
                 )
             )
         trial = self.algorithm.ask()
-        new_es = self._suggest_experimentsample(trial)
-        return type(self.data).from_data(data={0: new_es},
-                                         domain=self.data.domain,
-                                         project_dir=self.data.project_dir)
+        new_es = self._suggest_experimentsample(
+            trial=trial, domain=data.domain)
+        return type(data).from_data(data={0: new_es},
+                                    domain=data.domain,
+                                    project_dir=data.project_dir)
 
-    def _suggest_experimentsample(self, trial: optuna.Trial
+    def _suggest_experimentsample(self, trial: optuna.Trial, domain: Domain
                                   ) -> ExperimentSample:
         optuna_dict = {}
-        for name, parameter in self.data.domain.input_space.items():
+        for name, parameter in domain.input_space.items():
             if parameter._type == 'float':
                 optuna_dict[name] = trial.suggest_float(
                     name=name,
@@ -119,7 +119,7 @@ class OptunaOptimizer(Block):
                     name=name, choices=[parameter.value])
 
         return ExperimentSample(input_data=optuna_dict,
-                                domain=self.data.domain)
+                                domain=domain)
 
 
 def domain_to_optuna_distributions(domain: Domain) -> dict:

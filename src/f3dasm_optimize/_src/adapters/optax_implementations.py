@@ -65,19 +65,18 @@ class OptaxOptimizer(Block):
         self.hyperparameters = hyperparameters
 
     def arm(self, data: ExperimentData):
-        self.data = data
-
         # Set algorithm
         self.algorithm = self.algorithm_cls(**self.hyperparameters)
 
         # Set data
-        x = self.data[-1].to_numpy()[0].ravel()
+        x = data[-1].to_numpy()[0].ravel()
 
         self.opt_state = self.algorithm.init(jnp.array(x))
 
-    def call(self, grad_fn: Callable, **kwargs) -> ExperimentData:
+    def call(self, data: ExperimentData, grad_fn: Callable, **kwargs
+             ) -> ExperimentData:
         # Set data
-        x = self.data[-1].to_numpy()[0].ravel()
+        x = data[-1].to_numpy()[0].ravel()
 
         def grad_f(params):
             return jnp.array(
@@ -86,9 +85,9 @@ class OptaxOptimizer(Block):
         updates, self.opt_state = self.algorithm.update(
             grad_f(x), self.opt_state)
         new_x = optax.apply_updates(jnp.array(x), updates)
-        new_x = jnp.clip(new_x, self.data.domain.get_bounds()[
-            :, 0], self.data.domain.get_bounds()[:, 1])
+        new_x = jnp.clip(new_x, data.domain.get_bounds()[
+            :, 0], data.domain.get_bounds()[:, 1])
 
-        return type(self.data)(input_data=onp.atleast_2d(new_x),
-                               domain=self.data.domain,
-                               project_dir=self.data.project_dir)
+        return type(data)(input_data=onp.atleast_2d(new_x),
+                          domain=data.domain,
+                          project_dir=data.project_dir)

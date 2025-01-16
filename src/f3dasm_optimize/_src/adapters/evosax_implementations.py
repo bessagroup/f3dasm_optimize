@@ -72,7 +72,6 @@ class EvoSaxOptimizer(Block):
         return self.population if hasattr(self, 'population') else 1
 
     def arm(self, data: ExperimentData):
-        self.data = data
         self.algorithm: Strategy = self.algorithm_cls(num_dims=len(
             data.domain), popsize=self.population, **self.hyperparameters)
 
@@ -82,17 +81,17 @@ class EvoSaxOptimizer(Block):
         self.evosax_param = self.algorithm.default_params
         self.evosax_param = self.evosax_param.replace(
             clip_min=data.domain.get_bounds()[
-                0, 0], clip_max=self.data.domain.get_bounds()[0, 1])
+                0, 0], clip_max=data.domain.get_bounds()[0, 1])
 
         self.state = self.algorithm.initialize(
             rng_ask, self.evosax_param)
 
-    def call(self, **kwargs) -> ExperimentData:
+    def call(self, data: ExperimentData, **kwargs) -> ExperimentData:
         _, rng_ask = jax.random.split(
             jax.random.PRNGKey(self.seed))
 
         # Get the last candidates
-        x_i, y_i = self.data[-self.population:].to_numpy()
+        x_i, y_i = data[-self.population:].to_numpy()
 
         # Tell the last candidates
         self.state = self.algorithm.tell(
@@ -102,7 +101,7 @@ class EvoSaxOptimizer(Block):
         x, state = self.algorithm.ask(
             rng_ask, self.state, self.evosax_param)
 
-        return type(self.data)(
+        return type(data)(
             input_data=np.array(x),
-            domain=self.data.domain,
-            project_dir=self.data.project_dir)
+            domain=data.domain,
+            project_dir=data.project_dir)
