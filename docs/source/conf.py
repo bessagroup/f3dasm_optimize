@@ -24,7 +24,7 @@ for path in src_dir:
 
 project = 'f3dasm_optimize'
 author = 'Martin van der Schelling'
-copyright = '2023, Martin van der Schelling'
+copyright = '2025, Martin van der Schelling'
 version = '2.0.0'
 release = '2.0.0'
 
@@ -35,7 +35,6 @@ release = '2.0.0'
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 
 extensions = ['sphinx.ext.duration',
-              'sphinx_rtd_theme',
               'sphinx.ext.autodoc',
               'sphinx.ext.napoleon',
               'sphinx.ext.autosummary',
@@ -106,13 +105,13 @@ intersphinx_mapping = {
 # Source: https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-html_theme_path
 on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
 if on_rtd:
-    html_theme = 'default'
+    html_theme = 'sphinx_book_theme'
 else:
     # Source: https://sphinx-rtd-theme.readthedocs.io/en/stable/index.html
     # Requires installation of Python package 'sphinx_rtd_theme'
-    import sphinx_rtd_theme
-    html_theme = 'sphinx_rtd_theme'
-    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+    # import sphinx_rtd_theme
+    html_theme = 'sphinx_book_theme'
+    # html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 # Source: https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-html_static_path
 html_static_path = ['_static', ]
