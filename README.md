@@ -8,11 +8,10 @@ f3dasm_optimize
 [![pypi](https://img.shields.io/pypi/v/f3dasm_optimize.svg)](https://pypi.org/project/f3dasm_optimize/)
 [![GitHub license](https://img.shields.io/badge/license-BSD-blue)](https://github.com/bessagroup/f3dasm_optimize)
 
-[**Docs**](https://bessagroup.github.io/f3dasm/)
-| [**Installation**](https://bessagroup.github.io/f3dasm/general/gettingstarted.html)
+[**Docs**](https://f3dasm-optimize.readthedocs.io/en/latest/)
+| [**Installation**](https://f3dasm-optimize.readthedocs.io/en/latest/rst_doc_files/getting_started.html)
 | [**GitHub**](https://github.com/bessagroup/f3dasm)
-| [**PyPI**](https://pypi.org/project/f3dasm/)
-| [**Practical sessions**](https://github.com/mpvanderschelling/f3dasm_teach)
+| [**PyPI**](https://pypi.org/project/f3dasm-optimize/)
 
 ## Summary
 
