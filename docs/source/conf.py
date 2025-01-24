@@ -24,9 +24,9 @@ for path in src_dir:
 
 project = 'f3dasm_optimize'
 author = 'Martin van der Schelling'
-copyright = '2023, Martin van der Schelling'
-version = '1.5.4'
-release = '1.5.4'
+copyright = '2025, Martin van der Schelling'
+version = '2.0.0'
+release = '2.0.0'
 
 # -- General configuration ----------------------------------------------------
 
@@ -35,7 +35,6 @@ release = '1.5.4'
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 
 extensions = ['sphinx.ext.duration',
-              'sphinx_rtd_theme',
               'sphinx.ext.autodoc',
               'sphinx.ext.napoleon',
               'sphinx.ext.autosummary',
@@ -82,7 +81,7 @@ autoclass_content = 'both'
 # napoleon: https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html
 napoleon_numpy_docstring = True
 napoleon_include_init_with_doc = True
-napoleon_include_private_with_doc = False
+napoleon_include_private_with_doc = True
 
 # autosummary: https://www.sphinx-doc.org/en/master/usage/extensions/autosummary.html#module-sphinx.ext.autosummary
 autosummary_generate = True
@@ -106,13 +105,13 @@ intersphinx_mapping = {
 # Source: https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-html_theme_path
 on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
 if on_rtd:
-    html_theme = 'default'
+    html_theme = 'sphinx_book_theme'
 else:
     # Source: https://sphinx-rtd-theme.readthedocs.io/en/stable/index.html
     # Requires installation of Python package 'sphinx_rtd_theme'
-    import sphinx_rtd_theme
-    html_theme = 'sphinx_rtd_theme'
-    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+    # import sphinx_rtd_theme
+    html_theme = 'sphinx_book_theme'
+    # html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 # Source: https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-html_static_path
 html_static_path = ['_static', ]

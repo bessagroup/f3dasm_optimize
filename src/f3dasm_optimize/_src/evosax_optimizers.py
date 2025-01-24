@@ -6,9 +6,9 @@ from typing import Optional
 
 # Third-party
 from evosax import BIPOP_CMA_ES, CMA_ES, DE, PSO, SimAnneal
+from f3dasm import Block
 
 # Local
-from ._protocol import Domain
 from .adapters.evosax_implementations import EvoSaxOptimizer
 
 #                                                          Authorship & Credits
@@ -21,72 +21,136 @@ __status__ = 'Stable'
 # =============================================================================
 
 
-class EvoSaxCMAES(EvoSaxOptimizer):
-    require_gradients: bool = False
+def cmaes(population: int = 30,
+          seed: Optional[int] = None, **kwargs) -> Block:
+    """
+    Covariance Matrix Adaptation Evolution Strategy (CMA-ES) optimizer.
+    Adapated from the EvoSax library.
 
-    def __init__(
-        self, domain: Domain, population: int = 30, seed: Optional[int] = None,
-            **kwargs):
-        super().__init__(
-            domain=domain, population=population, seed=seed)
-        self.evosax_algorithm = CMA_ES
-        self._set_algorithm()
+    Parameters
+    ----------
+    population : int, optional
+        The number of individuals in the population, by default 30
+    seed : Optional[int], optional
+        The seed for the random number generator, by default None
 
-# =============================================================================
-
-
-class EvoSaxPSO(EvoSaxOptimizer):
-    require_gradients: bool = False
-
-    def __init__(
-        self, domain: Domain, population: int = 30, seed: Optional[int] = None,
-            **kwargs):
-        super().__init__(
-            domain=domain, population=population, seed=seed, **kwargs)
-        self.evosax_algorithm = PSO
-        self._set_algorithm()
-
-# =============================================================================
-
-
-class EvoSaxSimAnneal(EvoSaxOptimizer):
-    require_gradients: bool = False
-
-    def __init__(
-        self, domain: Domain, population: int = 30, seed: Optional[int] = None,
-            **kwargs):
-        super().__init__(
-            domain=domain, population=population, seed=seed)
-        self.evosax_algorithm = SimAnneal
-        self._set_algorithm()
+    Returns
+    -------
+    Optimizer
+        Optimizer object
+    """
+    return EvoSaxOptimizer(
+        algorithm_cls=CMA_ES,
+        population=population,
+        seed=seed,
+        **kwargs)
 
 # =============================================================================
 
 
-EvoSaxDE_DEFAULTS = {'population': 30}
+def pso(population: int = 30,
+        seed: Optional[int] = None, **kwargs) -> Block:
+    """
+    Particle Swarm Optimization (PSO) optimizer.
+    Adapted from the EvoSax library.
 
+    Parameters
+    ----------
+    population : int, optional
+        The number of individuals in the population, by default 30
+    seed : Optional[int], optional
+        The seed for the random number generator, by default None
 
-class EvoSaxDE(EvoSaxOptimizer):
-    require_gradients: bool = False
-
-    def __init__(
-        self, domain: Domain, population: int = 30, seed: Optional[int] = None,
-            **kwargs):
-        super().__init__(
-            domain=domain, population=population, seed=seed)
-        self.evosax_algorithm = DE
-        self._set_algorithm()
+    Returns
+    -------
+    Optimizer
+        Optimizer object
+    """
+    return EvoSaxOptimizer(
+        algorithm_cls=PSO,
+        population=population,
+        seed=seed,
+        **kwargs)
 
 # =============================================================================
 
 
-class EvoSaxBIPOPCMAES(EvoSaxOptimizer):
-    require_gradients: bool = False
+def simanneal(population: int = 30,
+              seed: Optional[int] = None, **kwargs) -> Block:
+    """
+    Simulated Annealing (SimAnneal) optimizer.
+    Adapted from the EvoSax library.
 
-    def __init__(
-        self, domain: Domain, population: int = 30, seed: Optional[int] = None,
-            **kwargs):
-        super().__init__(
-            domain=domain, population=population, seed=seed)
-        self.evosax_algorithm = BIPOP_CMA_ES
-        self._set_algorithm()
+    Parameters
+    ----------
+    population : int, optional
+        The number of individuals in the population, by default 30
+    seed : Optional[int], optional
+        The seed for the random number generator, by default None
+
+    Returns
+    -------
+    Optimizer
+        Optimizer object
+    """
+    return EvoSaxOptimizer(
+        algorithm_cls=SimAnneal,
+        population=population,
+        seed=seed,
+        **kwargs)
+
+# =============================================================================
+
+
+def de(population: int = 30,
+       seed: Optional[int] = None, **kwargs) -> Block:
+    """
+    Differential Evolution (DE) optimizer.
+    Adapted from the EvoSax library.
+
+    Parameters
+    ----------
+    population : int, optional
+        The number of individuals in the population, by default 30
+    seed : Optional[int], optional
+        The seed for the random number generator, by default None
+
+    Returns
+    -------
+    Optimizer
+        Optimizer object
+    """
+    return EvoSaxOptimizer(
+        algorithm_cls=DE,
+        population=population,
+        seed=seed,
+        **kwargs)
+
+# =============================================================================
+
+
+def bipopcmaes(population: int = 30,
+               seed: Optional[int] = None, **kwargs) -> Block:
+    """
+    BIPOP-CMA-ES optimizer.
+    Adapted from the EvoSax library.
+
+    Parameters
+    ----------
+    population : int, optional
+        The number of individuals in the population, by default 30
+    seed : Optional[int], optional
+        The seed for the random number generator, by default None
+
+    Returns
+    -------
+    Optimizer
+        Optimizer object
+    """
+    return EvoSaxOptimizer(
+        algorithm_cls=BIPOP_CMA_ES,
+        population=population,
+        seed=seed,
+        **kwargs)
+
+# =============================================================================

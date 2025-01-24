@@ -18,6 +18,23 @@
 
    
    
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:
+   
+      adam
+      cmaes
+      de
+      de_nevergrad
+      optimizers_extension
+      pso
+      pso_nevergrad
+      sgd
+      simanneal
+      tpe_sampler
+      try_import
+   
    
 
    

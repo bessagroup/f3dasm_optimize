@@ -15,9 +15,9 @@ extension will be automatically loaded when you look at the available optimizers
 
 .. code-block:: python
 
-    import f3dasm
+    from f3dasm import optimization
 
-    print(f3dasm.optimization.OPTIMIZERS)
+    print(f3dasm.optimization.available_optimizers())
     >>> ['RandomSearch', 'CG', 'LBFGSB', 'NelderMead']
 
 Wait a second .. these are only the `optimizers that can be found in the 
@@ -39,9 +39,9 @@ Then, when you inspect the optimizers, the list will be updated:
 
 .. code-block:: python
 
-    import f3dasm
+    from f3dasm import optimization
 
-    print(f3dasm.optimization.OPTIMIZERS)
+    print(f3dasm.optimization.available_optimizers())
     >>> ['RandomSearch', 'CG', 'LBFGSB', 'NelderMead', 'TPESampler']
 
 Now, you can use the new optimizers in your code:
@@ -55,5 +55,8 @@ Now, you can use the new optimizers in your code:
     Some optimizers are not compatible with particular versions of Python or operating systems.
     Consult the documentation of the optimizer you want to use to see if there are any other requirements
     that need to be met.
+
+    Also note that most optimizers only work when you use built-in parameter types (e.g. float, int, bool).
+    If you want to use custom parameter types, you need to implement a custom optimizer yourself!
 
 Happy optimizing!

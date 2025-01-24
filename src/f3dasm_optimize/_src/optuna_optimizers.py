@@ -6,8 +6,7 @@ from typing import Optional
 
 # Third party
 import optuna
-
-from f3dasm_optimize._src._protocol import Domain
+from f3dasm import Block
 
 # Local
 from .adapters.optuna_implementations import OptunaOptimizer
@@ -22,15 +21,24 @@ __status__ = 'Stable'
 # =============================================================================
 
 
-class TPESampler(OptunaOptimizer):
-    require_gradients: bool = False
+def tpe_sampler(seed: Optional[int] = None, **kwargs) -> Block:
+    """
+    Tree-structured Parzen Estimator (TPE) sampler.
+    Adapted from the optuna library
 
-    def __init__(self, domain: Domain, seed: Optional[int] = None, **kwargs):
-        super().__init__(domain)
-        self.seed = seed
-        self._set_algorithm()
+    Parameters
+    ----------
+    seed : int, optional
+        Random seed, by default None.
 
-    def _set_algorithm(self):
-        self.algorithm = optuna.create_study(
-            sampler=optuna.samplers.TPESampler(
-                seed=self.seed))
+    Returns
+    -------
+    Optimizer
+        Optimizer object.
+    """
+
+    return OptunaOptimizer(
+        algorithm_cls=optuna.samplers.TPESampler,
+        seed=seed,
+        **kwargs
+    )

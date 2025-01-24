@@ -7,6 +7,8 @@ and modified to fit the specific case of f3dasm.
 #                                                                       Modules
 # =============================================================================
 
+from __future__ import annotations
+
 # Standard
 from types import TracebackType
 from typing import Optional, Tuple, Type
@@ -33,7 +35,7 @@ class _DeferredImportExceptionContextManager:
     def __init__(self) -> None:
         self._deferred: Optional[Tuple[Exception, str]] = None
 
-    def __enter__(self) -> "_DeferredImportExceptionContextManager":
+    def __enter__(self) -> _DeferredImportExceptionContextManager:
         """Enter the context manager.
 
         Returns:
@@ -108,6 +110,8 @@ class _DeferredImportExceptionContextManager:
         if self._deferred is not None:
             exc_value, message = self._deferred
             raise ImportError(message) from exc_value
+
+# =============================================================================
 
 
 def try_import() -> _DeferredImportExceptionContextManager:

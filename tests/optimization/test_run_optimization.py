@@ -10,19 +10,19 @@ import numpy as np
 import pytest
 import xarray as xr
 # Locals
-from f3dasm import ExperimentData, logger
-from f3dasm._src.datageneration.functions.function_factory import \
+from f3dasm import Block, ExperimentData, logger
+from f3dasm._src.datageneration.datagenerator_factory import \
     _datagenerator_factory
 from f3dasm._src.optimization.optimizer_factory import _optimizer_factory
 from f3dasm.datageneration import DataGenerator
 from f3dasm.datageneration.functions import FUNCTIONS_2D, FUNCTIONS_7D
 from f3dasm.design import Domain, make_nd_continuous_domain
-from f3dasm.optimization import OPTIMIZERS, Optimizer
+from f3dasm.optimization import available_optimizers
 from pathos.helpers import mp
 
 
 class OptimizationResult:
-    def __init__(self, data: List[ExperimentData], optimizer: Optimizer,
+    def __init__(self, data: List[ExperimentData], optimizer: Block,
                  kwargs: Optional[Dict[str, Any]],
                  data_generator: DataGenerator,
                  number_of_samples: int, seeds: List[int],
@@ -47,8 +47,6 @@ class OptimizationResult:
             total optimization time
         """
         self.data = data
-        self.optimizer = _optimizer_factory(
-            optimizer=optimizer, domain=self.data[0].domain)
         self.data_generator = data_generator
         self.kwargs = kwargs,
         self.number_of_samples = number_of_samples
@@ -56,8 +54,8 @@ class OptimizationResult:
         self.opt_time = opt_time
 
         self.func = _datagenerator_factory(
-            data_generator=self.data_generator,
-            domain=self.data[0].domain, kwargs=kwargs)
+            data_generator=self.data_generator, **kwargs)
+        self.optimizer = _optimizer_factory(optimizer=optimizer)
         self._log()
 
     def _log(self):
@@ -67,7 +65,7 @@ class OptimizationResult:
                 function (seed={self.func.seed}, "
              f"dim={len(self.data[0].domain)}, "
              f"noise={self.func.noise}) "
-             f"with {self.optimizer.get_name()} optimizer for "
+             f"with {self.optimizer.__class__.__name__} optimizer for "
              f"{len(self.data)} realizations ({self.opt_time:.3f} s).")
         )
 
@@ -95,7 +93,7 @@ class OptimizationResult:
 
 
 def run_optimization(
-    optimizer: Optimizer | str,
+    optimizer: Block | str,
     data_generator: DataGenerator | str,
     sampler: Callable | str,
     domain: Domain,
@@ -139,14 +137,16 @@ def run_optimization(
         hyperparameters = {}
 
     # Set function seed
-    optimizer = _optimizer_factory(
-        optimizer=optimizer, domain=domain, hyperparameters=hyperparameters)
+    data_generator = _datagenerator_factory(
+        data_generator=data_generator, **kwargs)
+
+    optimizer = _optimizer_factory(optimizer=optimizer, **hyperparameters)
 
     # Sample
     data = ExperimentData.from_sampling(
         sampler=sampler, domain=domain, n_samples=number_of_samples, seed=seed)
 
-    data.evaluate(data_generator, mode='sequential', kwargs=kwargs)
+    data.evaluate(data_generator, mode='sequential', **kwargs)
     data.optimize(optimizer=optimizer, data_generator=data_generator,
                   iterations=iterations, kwargs=kwargs,
                   hyperparameters=hyperparameters)
@@ -155,7 +155,7 @@ def run_optimization(
 
 
 def run_multiple_realizations(
-    optimizer: Optimizer,
+    optimizer: Block,
     data_generator: DataGenerator | str,
     sampler: Callable | str,
     domain: Domain,
@@ -244,7 +244,7 @@ def run_multiple_realizations(
 
 
 @pytest.mark.smoke
-@pytest.mark.parametrize("optimizer", OPTIMIZERS)
+@pytest.mark.parametrize("optimizer", available_optimizers())
 @pytest.mark.parametrize("data_generator", ['Levy', 'Ackley', 'Sphere'])
 @pytest.mark.parametrize("dimensionality", [2])
 def test_run_multiple_realizations_3_functions(data_generator: str,
@@ -252,7 +252,7 @@ def test_run_multiple_realizations_3_functions(data_generator: str,
     test_run_multiple_realizations(data_generator, optimizer, dimensionality)
 
 
-@pytest.mark.parametrize("optimizer", OPTIMIZERS)
+@pytest.mark.parametrize("optimizer", available_optimizers())
 @pytest.mark.parametrize("data_generator", FUNCTIONS_2D)
 @pytest.mark.parametrize("dimensionality", [2])
 def test_run_multiple_realizations(data_generator: str, optimizer: str, dimensionality: int):
@@ -272,7 +272,11 @@ def test_run_multiple_realizations(data_generator: str, optimizer: str, dimensio
     else:
         PARALLELIZATION = True
 
-    if optimizer in ['EvoSaxCMAES', 'EvoSaxSimAnneal', 'EvoSaxPSO', 'EvoSaxDE']:
+    data_generator_ = _datagenerator_factory(
+        data_generator=data_generator, **kwargs)
+    optimizer_ = _optimizer_factory(optimizer=optimizer)
+
+    if optimizer_.type == 'evosax':
         PARALLELIZATION = False
 
     _ = run_multiple_realizations(
@@ -287,14 +291,14 @@ def test_run_multiple_realizations(data_generator: str, optimizer: str, dimensio
     )
 
 
-@pytest.mark.parametrize("optimizer", OPTIMIZERS)
+@pytest.mark.parametrize("optimizer", available_optimizers())
 @pytest.mark.parametrize("data_generator", FUNCTIONS_7D)
 @pytest.mark.parametrize("dimensionality", [7])
 def test_run_multiple_realizations_7D(data_generator: str, optimizer: str, dimensionality: int):
     test_run_multiple_realizations(data_generator, optimizer, dimensionality)
 
 
-@pytest.mark.parametrize("optimizer", OPTIMIZERS)
+@pytest.mark.parametrize("optimizer", available_optimizers())
 @pytest.mark.parametrize("data_generator", ['griewank'])
 @pytest.mark.parametrize("dimensionality", [2])
 def test_run_multiple_realizations_fast(data_generator: str, optimizer: str, dimensionality: int):

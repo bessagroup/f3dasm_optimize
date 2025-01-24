@@ -6,26 +6,16 @@
 from ._imports import try_import
 
 with try_import() as _evosax_imports:
-    from .evosax_optimizers import (EvoSaxCMAES, EvoSaxDE, EvoSaxPSO,
-                                    EvoSaxSimAnneal)
+    from .evosax_optimizers import cmaes, de, pso, simanneal
 
 with try_import() as _nevergrad_imports:
-    from .nevergrad_optimizers import PSO, NevergradDE
-
-with try_import() as _pygmo_imports:
-    from .pygmo_optimizers import (CMAES, SADE, SEA, SGA, XNES,
-                                   DifferentialEvolution, PygmoPSO,
-                                   SimulatedAnnealing)
+    from .nevergrad_optimizers import de_nevergrad, pso_nevergrad
 
 with try_import() as _optuna_imports:
-    from .optuna_optimizers import TPESampler
-
-with try_import() as _tensorflow_imports:
-    from .tensorflow_optimizers import (SGD, Adamax, AdamTensorflow, Ftrl,
-                                        Nadam, RMSprop)
+    from .optuna_optimizers import tpe_sampler
 
 with try_import() as _optax_imports:
-    from .optax_optimizers import Adam
+    from .optax_optimizers import adam, sgd
 
 #                                                          Authorship & Credits
 # =============================================================================
@@ -37,52 +27,32 @@ __status__ = 'Stable'
 # =============================================================================
 
 
-_OPTIMIZERS = []
+def optimizers_extension():
+    optimizer_list = []
 
-if _pygmo_imports.is_successful():
-    _OPTIMIZERS.extend([CMAES, PygmoPSO, SADE, SEA, SGA, XNES,
-                        DifferentialEvolution, SimulatedAnnealing])
+    if _optuna_imports.is_successful():
+        optimizer_list.extend([tpe_sampler])
 
-if _optuna_imports.is_successful():
-    _OPTIMIZERS.extend([TPESampler])
+    if _evosax_imports.is_successful():
+        optimizer_list.extend([cmaes, de, pso, simanneal])
 
-if _tensorflow_imports.is_successful():
-    _OPTIMIZERS.extend([SGD, AdamTensorflow, Adamax, Ftrl, Nadam, RMSprop])
+    if _nevergrad_imports.is_successful():
+        optimizer_list.extend([de_nevergrad, pso_nevergrad])
 
-if _evosax_imports.is_successful():
-    _OPTIMIZERS.extend([EvoSaxPSO, EvoSaxSimAnneal, EvoSaxDE,
-                        EvoSaxCMAES])
+    if _optax_imports.is_successful():
+        optimizer_list.extend([adam, sgd])
 
-if _nevergrad_imports.is_successful():
-    _OPTIMIZERS.extend([NevergradDE, PSO])
+    return optimizer_list
 
-if _optax_imports.is_successful():
-    _OPTIMIZERS.extend([Adam])
 
 __all__ = [
-    'AdamTensorflow',
-    'Adamax',
-    'CMAES',
-    'DifferentialEvolution',
-    'EvoSaxCMAES',
-    'EvoSaxDE',
-    'EvoSaxPSO',
-    'EvoSaxSimAnneal',
-    'EvoSaxBIPOPCMAES',
-    'Ftrl',
-    'MMA',
-    'Nadam',
-    'NevergradDE',
-    'PSO',
-    'PygmoPSO',
-    'RMSprop',
-    'SADE',
-    'SEA',
-    'SGA',
-    'SGD',
-    'SimulatedAnnealing',
-    'XNES',
-    'TPESampler',
-    'Adam',
-    '__version__',
+    'adam',
+    'cmaes',
+    'de',
+    'de_nevergrad',
+    'pso',
+    'pso_nevergrad',
+    'sgd',
+    'simanneal',
+    'tpe_sampler',
 ]

@@ -2,16 +2,13 @@
 # =============================================================================
 
 # Standard
-from typing import Optional, Tuple
+from typing import Callable, Optional
 
 # Third-party
 import jax.numpy as jnp
 import numpy as onp
 import optax
-
-# Local
-from .._protocol import DataGenerator, Domain
-from ..optimizer import Optimizer
+from f3dasm import Block, ExperimentData
 
 #                                                          Authorship & Credits
 # =============================================================================
@@ -23,24 +20,74 @@ __status__ = 'Stable'
 # =============================================================================
 
 
-class OptaxOptimizer(Optimizer):
-    def __init__(self, domain: Domain, seed: Optional[int]):
-        self.domain = domain
+class OptaxOptimizer(Block):
+    require_gradients: bool = True
+
+    @property
+    def _seed(self) -> int:
+        """
+        Property to return the seed of the optimizer
+
+        Returns
+        -------
+        int | None
+            Seed of the optimizer
+
+        Note
+        ----
+        If the seed is not set, the property will return None
+        This is done to prevent errors when the seed is not an available
+        attribute in a custom optimizer class.
+        """
+        return self.seed if hasattr(self, 'seed') else None
+
+    @property
+    def _population(self) -> int:
+        """
+        Property to return the population size of the optimizer
+
+        Returns
+        -------
+        int
+            Number of individuals in the population
+
+        Note
+        ----
+        If the population is not set, the property will return 1
+        This is done to prevent errors when the population size is not an
+        available attribute in a custom optimizer class.
+        """
+        return self.population if hasattr(self, 'population') else 1
+
+    def __init__(self, algorithm_cls, seed: Optional[int], **hyperparameters):
+        self.algorithm_cls = algorithm_cls
         self.seed = seed
+        self.hyperparameters = hyperparameters
 
-    def update_step(
-            self,
-            data_generator: DataGenerator) -> Tuple[onp.ndarray, onp.ndarray]:
+    def arm(self, data: ExperimentData):
+        # Set algorithm
+        self.algorithm = self.algorithm_cls(**self.hyperparameters)
+
+        # Set data
+        x = data[-1].to_numpy()[0].ravel()
+
+        self.opt_state = self.algorithm.init(jnp.array(x))
+
+    def call(self, data: ExperimentData, grad_fn: Callable, **kwargs
+             ) -> ExperimentData:
+        # Set data
+        x = data[-1].to_numpy()[0].ravel()
+
+        def grad_f(params):
+            return jnp.array(
+                grad_fn(onp.array(params)))
+
         updates, self.opt_state = self.algorithm.update(
-            self.grad_f(self.params), self.opt_state)
-        self.params = optax.apply_updates(self.params, updates)
-        self.params = jnp.clip(self.params, self.domain.get_bounds()[
-                               :, 0], self.domain.get_bounds()[:, 1])
-        return onp.atleast_2d(self.params), None
+            grad_f(x), self.opt_state)
+        new_x = optax.apply_updates(jnp.array(x), updates)
+        new_x = jnp.clip(new_x, data.domain.get_bounds()[
+            :, 0], data.domain.get_bounds()[:, 1])
 
-    def _construct_model(self, data_generator: DataGenerator):
-        self.grad_f = lambda params: jnp.array(
-            data_generator.dfdx(onp.array(params)))
-        self.params = jnp.array(self.data.get_experiment_sample(
-            self.data.index[-1]).to_numpy()[0])
-        self.opt_state = self.algorithm.init(self.params)
+        return type(data)(input_data=onp.atleast_2d(new_x),
+                          domain=data.domain,
+                          project_dir=data.project_dir)

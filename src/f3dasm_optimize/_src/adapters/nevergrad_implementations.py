@@ -2,14 +2,12 @@
 # =============================================================================
 
 # Standard
-from typing import Tuple
+from typing import Optional
 
 # Third-party
 import autograd.numpy as np
-
-# Local
-from .._protocol import DataGenerator, Domain
-from ..optimizer import Optimizer
+import nevergrad as ng
+from f3dasm import Block, ExperimentData
 
 #                                                          Authorship & Credits
 # =============================================================================
@@ -21,25 +19,77 @@ __status__ = 'Stable'
 # =============================================================================
 
 
-class NeverGradOptimizer(Optimizer):
-    def __init__(self, domain: Domain, population: int):
-        self.domain = domain
-        self.population = population
+class NeverGradOptimizer(Block):
+    require_gradients: bool = False
 
-    def update_step(self,
-                    data_generator: DataGenerator) -> Tuple[np.ndarray, None]:
+    def __init__(self, algorithm_cls, population: int,
+                 seed: Optional[int] = None,
+                 **hyperparameters):
+        self.algorithm_cls = algorithm_cls
+        self.population = population
+        self.seed = seed
+        self.hyperparameters = hyperparameters
+
+    @property
+    def _seed(self) -> int:
+        """
+        Property to return the seed of the optimizer
+
+        Returns
+        -------
+        int | None
+            Seed of the optimizer
+
+        Note
+        ----
+        If the seed is not set, the property will return None
+        This is done to prevent errors when the seed is not an available
+        attribute in a custom optimizer class.
+        """
+        return self.seed if hasattr(self, 'seed') else None
+
+    @property
+    def _population(self) -> int:
+        """
+        Property to return the population size of the optimizer
+
+        Returns
+        -------
+        int
+            Number of individuals in the population
+
+        Note
+        ----
+        If the population is not set, the property will return 1
+        This is done to prevent errors when the population size is not an
+        available attribute in a custom optimizer class.
+        """
+        return self.population if hasattr(self, 'population') else 1
+
+    def arm(self, data: ExperimentData):
+        p = ng.p.Array(shape=(len(data.domain),),
+                       lower=data.domain.get_bounds()[:, 0],
+                       upper=data.domain.get_bounds()[:, 1],
+                       )
+
+        p._set_random_state(np.random.RandomState(self.seed))
+
+        self.algorithm = self.algorithm_cls(
+            popsize=self.population,
+            **self.hyperparameters)(p, budget=1e8)
+
+    def call(self, data: ExperimentData, **kwargs) -> ExperimentData:
+
+        # Get the last candidates
+        xx, yy = data[-self.population:].to_numpy()
+
+        for x_tell, y_tell in zip(xx, yy):
+            self.algorithm.tell(
+                self.algorithm.parametrization.spawn_child(x_tell), y_tell)
+
         x = [self.algorithm.ask() for _ in range(
             self.population)]
 
-        # Evaluate the candidates
-        y = []
-        for x_i in x:
-            experiment_sample = data_generator._run(x_i.value,
-                                                    domain=self.domain)
-            y.append(experiment_sample.to_numpy()[1])
-
-        for x_tell, y_tell in zip(x, y):
-            self.algorithm.tell(x_tell, y_tell)
-
-        # return the data
-        return np.vstack([x_.value for x_ in x]), np.array(y).ravel()
+        return type(data)(input_data=np.vstack([x_.value for x_ in x]),
+                          domain=data.domain,
+                          project_dir=data.project_dir)

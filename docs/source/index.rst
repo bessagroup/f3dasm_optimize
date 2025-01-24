@@ -16,8 +16,14 @@ f3dasm_optimize
    :hidden:
 
    rst_doc_files/reference/index.rst
-   Code <_autosummary/f3dasm_optimize>
+   API reference <_autosummary/f3dasm_optimize>
+
+.. toctree::
+   :name: licensetoc
+   :caption: License
+   :hidden:
+
+   license.rst
 
 .. include:: readme.rst
 
-  
