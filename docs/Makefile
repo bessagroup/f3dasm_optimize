@@ -20,6 +20,15 @@ help:
 %: Makefile
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
+clean:
+	-rm -rf $(BUILDDIR)/*
+	-rm -rf $(SOURCEDIR)/auto_examples/*
+	-rm -rf $(SOURCEDIR)/gen_modules/*
+html:
+	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(SOURCEDIR) $(BUILDDIR)/html 
+	@echo
+	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
+
 apidoc:
 	-rm -rf ./$(SOURCEDIR)/$(APIDOCDIR)/*
 	sphinx-apidoc -o ./$(SOURCEDIR)/$(APIDOCDIR)/ ../src/$(PACKAGENAME)
@@ -29,3 +38,8 @@ apidoc:
 html-open:
 	make html
 	xdg-open ./$(BUILDDIR)/html/index.html
+
+clean-autosummary:
+	-rm -rf ./$(SOURCEDIR)/$(APIDOCDIR)/*.rst
+	@echo
+	@echo "Removed all autosummary files in ./$(SOURCEDIR)/$(APIDOCDIR)/"

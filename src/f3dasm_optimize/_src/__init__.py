@@ -3,6 +3,7 @@
 
 # Standard
 
+from . import jax_optimizers
 from ._imports import try_import
 
 with try_import() as _evosax_imports:
@@ -46,6 +47,7 @@ def optimizers_extension():
 
 
 __all__ = [
+    'jax_optimizers',
     'adam',
     'cmaes',
     'de',

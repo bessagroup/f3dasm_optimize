@@ -2,3 +2,6 @@ nevergrad
 evosax
 optuna
 optax==0.1.7
+equinox
+jax
+jaxtyping
