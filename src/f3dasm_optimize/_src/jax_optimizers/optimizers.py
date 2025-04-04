@@ -13,10 +13,10 @@ import equinox as eqx
 import jax
 import jax.numpy as jnp
 import jax.random as jr
-import jax.tree as jt
 import optax
 from evosax import EvoParams, EvoState, Strategy
 from f3dasm import Block, ExperimentData
+from jax.tree_util import tree_map
 from jaxtyping import PyTree
 from tqdm import tqdm
 
@@ -195,7 +195,7 @@ class UpdateStep(Block):
 
                 history_list.append(history)
 
-            history = jax.tree.map(lambda *xs: jnp.vstack(xs), *history_list)
+            history = tree_map(lambda *xs: jnp.vstack(xs), *history_list)
 
         input_data, output_data = self.post_fn(history)
 
@@ -287,7 +287,7 @@ class EvoSaxUpdate(UpdateStep):
 
         self.optimizer = self.optimizer_class(
             popsize=self.popsize,
-            pholder_params=jt.map(lambda x: x[0], self.params),
+            pholder_params=tree_map(lambda x: x[0], self.params),
             **self.hyperparameters)
 
         rng, rng_init = jr.split(self.seed)
@@ -380,7 +380,7 @@ def lbfgs_scan(static: PyTree,
 
         # Apply box constraints if `bounded` is True
         if bounded is not None:
-            new_params = jax.tree_map(
+            new_params = tree_map(
                 lambda p: jnp.clip(p, bounded[0], bounded[1]), new_params)
 
         history = {'loss': loss}
@@ -477,7 +477,7 @@ def optax_scan(static: PyTree,
 
         # Apply box constraints if `bounded` is True
         if bounded is not None:
-            new_params = jax.tree_map(
+            new_params = tree_map(
                 lambda p: jnp.clip(p, bounded[0], bounded[1]), new_params)
 
         history = {'loss': loss}

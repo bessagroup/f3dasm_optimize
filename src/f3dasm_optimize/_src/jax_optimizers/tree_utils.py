@@ -3,7 +3,7 @@
 
 # Third-party
 import jax
-import jax.tree as jt
+from jax.tree_util import tree_map
 from jaxtyping import PyTree
 
 #                                                          Authorship & Credits
@@ -39,7 +39,7 @@ def tree_flatten_population_dim(params: PyTree) -> PyTree:
         return x.reshape((batch_size * population_dim, *other_dims))
 
     # Apply flatten_fn to each element of the parameter tree
-    return jt.map(flatten_fn, params)
+    return tree_map(flatten_fn, params)
 
 
 def tree_to_dict_list(tree: PyTree, name: str) -> list[dict[str, PyTree]]:
@@ -82,5 +82,5 @@ def dict_list_to_tree(dict_list: list[dict[str, PyTree]], name: str) -> PyTree:
     PyTree
         The resulting PyTree.
     """
-    return jt.map(lambda *params: jax.numpy.stack(params, axis=0),
-                  *[d[name] for d in dict_list])
+    return tree_map(lambda *params: jax.numpy.stack(params, axis=0),
+                    *[d[name] for d in dict_list])
