@@ -1,6 +1,6 @@
 nevergrad
 optuna
 optax
-evosax
+evosax==0.1.6
 equinox
 jaxtyping
