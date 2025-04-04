@@ -1,7 +1,6 @@
 nevergrad
-evosax
 optuna
 optax
+evosax
 equinox
-jax
 jaxtyping
