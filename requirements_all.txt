@@ -1,7 +1,7 @@
 nevergrad
 evosax
 optuna
-optax==0.1.7
+optax
 equinox
 jax
 jaxtyping
