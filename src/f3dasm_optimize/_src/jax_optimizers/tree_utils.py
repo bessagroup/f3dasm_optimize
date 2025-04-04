@@ -1,6 +1,8 @@
 #                                                                       Modules
 # =============================================================================
 
+from typing import List
+
 # Third-party
 import jax
 from jax.tree_util import tree_map
@@ -42,7 +44,7 @@ def tree_flatten_population_dim(params: PyTree) -> PyTree:
     return tree_map(flatten_fn, params)
 
 
-def tree_to_dict_list(tree: PyTree, name: str) -> list[dict[str, PyTree]]:
+def tree_to_dict_list(tree: PyTree, name: str) -> List[dict[str, PyTree]]:
     """
     Convert a PyTree into a list of dictionaries.
 
@@ -66,7 +68,7 @@ def tree_to_dict_list(tree: PyTree, name: str) -> list[dict[str, PyTree]]:
             for i in range(num_models)]
 
 
-def dict_list_to_tree(dict_list: list[dict[str, PyTree]], name: str) -> PyTree:
+def dict_list_to_tree(dict_list: List[dict[str, PyTree]], name: str) -> PyTree:
     """
     Convert a list of dictionaries into a PyTree.
 
