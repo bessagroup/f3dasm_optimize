@@ -11,7 +11,7 @@ import sys
 # If extensions or Python modules are in a different directory than this file,
 # then add these directories to sys.path so that Sphinx can search for them
 # Source: https://docs.python.org/3/library/sys.html#sys.path
-
+sys.path.insert(0, os.path.abspath('../'))
 sys.path.insert(0, os.path.abspath('../..'))
 sys.path.insert(0, os.path.abspath('../../src'))
 src_dir = [f.path for f in os.scandir(
@@ -25,8 +25,8 @@ for path in src_dir:
 project = 'f3dasm_optimize'
 author = 'Martin van der Schelling'
 copyright = '2025, Martin van der Schelling'
-version = '2.0.0'
-release = '2.0.0'
+version = '2.0.1'
+release = '2.0.1'
 
 # -- General configuration ----------------------------------------------------
 

@@ -4,6 +4,15 @@
 
 
 
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :template: custom-module-template.rst
+   :recursive:
+
+   jaxadapters
+
 
 
 .. automodule:: f3dasm_optimize
@@ -26,13 +35,10 @@
       adam
       cmaes
       de
-      de_nevergrad
       optimizers_extension
       pso
-      pso_nevergrad
       sgd
       simanneal
-      tpe_sampler
       try_import
    
    
