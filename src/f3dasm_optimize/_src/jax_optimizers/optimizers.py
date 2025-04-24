@@ -174,7 +174,7 @@ class UpdateStep(Block):
         # Option 1: There is no batching, hence we fix the sample and
         # use scan
         if use_scan:
-            (_, opt_state, _), history = jax.lax.scan(
+            (_, self.opt_state, _), history = jax.lax.scan(
                 f=lambda carry, _: self.make_step(
                     carry, sample=data_iter.data),
                 init=(self.params, self.opt_state, rng),
@@ -565,25 +565,25 @@ def evosax_scan(static: PyTree,
 
         rng, rng_gen = jr.split(rng)
 
-        new_params, opt_state = optimizer.ask(
-            rng=rng_gen,
-            state=opt_state,
-            params=es_params)
-
         if pass_rng:
             rng_sample = {'key': jr.split(rng, num=popsize)}
         else:
             rng_sample = {}
 
         loss = jax.vmap(partial(combined_loss, **sample)
-                        )(new_params, **rng_sample)
+                        )(inner_params, **rng_sample)
 
         opt_state = optimizer.tell(
-            x=new_params,
+            x=inner_params,
             fitness=loss,
             state=opt_state,
             params=es_params
         )
+
+        new_params, opt_state = optimizer.ask(
+            rng=rng_gen,
+            state=opt_state,
+            params=es_params)
 
         history = {'loss': loss}
 
